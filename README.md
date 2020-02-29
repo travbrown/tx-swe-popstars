@@ -1,1 +1,0 @@
-# tx-swe-popstars
