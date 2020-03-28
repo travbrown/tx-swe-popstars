@@ -11,13 +11,13 @@ const DifficultyPage = () => {
         <h1> Difficulty </h1>
       </div>
       <header className="App-header">
-        <Link to="/start_game">Easy</Link>
+        <Link to="/start_game" class= "button" >Easy</Link>
         <p></p>
-        <Link to="/start_game">Medium</Link>
+        <Link to="/start_game" class= "button" >Medium</Link>
         <p></p>
-        <Link to="/start_game">Hard</Link>
+        <Link to="/start_game" class= "button" >Hard</Link>
         <p></p><p></p>
-        <Link to="/">Back</Link>    
+        <Link to="/" class= "button2" >Back</Link>    
       </header>
     </div>
   );

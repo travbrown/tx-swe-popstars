@@ -8,10 +8,10 @@ const startPage = () => {
     <div className="App">
       <h2> Username </h2>
       <header className="App-header">
-        <Link to="/">START GAME</Link>
+        <Link to="/" class= "button" > START GAME</Link>
         <p></p>
         <p></p>
-        <Link to="/">Back</Link>       
+        <Link to="/" class= "button2" >Back</Link>       
       </header>
     </div>
   );

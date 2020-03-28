@@ -1,11 +1,19 @@
-a {
+ .button {
     background-color: rgba(5, 93, 151, 0.61);
     color: white;
     padding: 0.8em 2em;
     text-decoration: none;
     text-transform: uppercase;
   }
-  
+
+  .button2 {
+    background-color: rgba(149, 153, 155, 0.61);
+    color: white;
+    padding: 0.8em 2em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+ 
   .App-header {
     background-color: #282c34;
     min-height: 100vh;
