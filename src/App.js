@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './popstarslogo.png';
 import './App.css';
-import { Button } from 'react';
+import Button from '@material-ui/core/Button';
 
 function App() {
   return (
