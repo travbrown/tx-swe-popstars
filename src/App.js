@@ -4,7 +4,7 @@ import './App.css';
 import * as $ from "jquery";
 import Player from "./Player";
 import Button from '@material-ui/core/Button';
-export const authEndpoint = 'https://accounts.spotify.com/authorize';
+export const authEndpoint = 'https://accounts.spotify.com/authorize?';
 
 const clientId = "d686743392b64810a7a8c2b5d56bf5c6";
 const redirectUri = "http://localhost:3000/callback/";
