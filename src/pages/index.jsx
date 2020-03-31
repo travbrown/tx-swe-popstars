@@ -1,23 +1,21 @@
 import React from "react";
-import Button from '@material-ui/core/Button';
 import './index.css';
 import { Link } from "react-router-dom";
 
 const DifficultyPage = () => {
   return (
     <div className="App">
-      <h2> Username </h2>
-      <div className="App2">
-        <h1> Difficulty </h1>
-      </div>
+      <div class ="item">Username</div>
+      <div class ="item">Difficulty</div> 
+
       <header className="App-header">
-        <Link to="/start_game" class= "button" >Easy</Link>
+        <Link to="/start_game" class= "active_button"> Easy</Link>
         <p></p>
-        <Link to="/start_game" class= "button" >Medium</Link>
+        <Link to="/start_game" class= "active_button"> Medium</Link>
         <p></p>
-        <Link to="/start_game" class= "button" >Hard</Link>
+        <Link to="/start_game" class= "active_button"> Hard</Link>
         <p></p><p></p>
-        <Link to="/" class= "button2" >Back</Link>    
+        <Link to="/" class= "default_button"> Back</Link>    
       </header>
     </div>
   );

@@ -1,20 +1,19 @@
 import React from "react";
-import Button from '@material-ui/core/Button';
 import './index.css';
 import { Link } from "react-router-dom";
 
-const startPage = () => {
+const StartPage = () => {
   return (
     <div className="App">
-      <h2> Username </h2>
+      <div class ="item">Username</div>
       <header className="App-header">
-        <Link to="/" class= "button" > START GAME</Link>
+        <Link to="/countdown" class= "active_button"> START GAME</Link>
         <p></p>
         <p></p>
-        <Link to="/" class= "button2" >Back</Link>       
+        <Link to="/" class= "default_button">Back</Link>       
       </header>
     </div>
   );
 };
 
-export default startPage;
+export default StartPage;

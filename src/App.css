@@ -1,8 +1,16 @@
 .App {
   text-align: left;
+  background: #282c34;
+  color: white;
 }
-.App2 {
-  text-align: center;
+
+.item {
+  width: 580px;
+  padding: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  display: inline-block;
+  text-transform: uppercase;
 }
 
 .App-logo {

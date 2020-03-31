@@ -1,4 +1,4 @@
- .button {
+ .active_button {
     background-color: rgba(5, 93, 151, 0.61);
     color: white;
     padding: 0.8em 2em;
@@ -6,8 +6,16 @@
     text-transform: uppercase;
   }
 
-  .button2 {
+  .default_button {
     background-color: rgba(149, 153, 155, 0.61);
+    color: white;
+    padding: 0.8em 2em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .quit_button {
+    background-color: rgba(139, 8, 8, 0.911);
     color: white;
     padding: 0.8em 2em;
     text-decoration: none;

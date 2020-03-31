@@ -1,11 +1,10 @@
 import React from "react";
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch, Link, Redirect } from "react-router-dom";
-
 import DifficultyPage from "./pages";
-import startPage from "./pages/start_game";
-import Button from '@material-ui/core/Button';
+import StartPage from "./pages/start_game";
+import CountdownPage from "./pages/countdown";
+import GamePage from "./pages/gamePage";
 
 
 export default function App() {
@@ -13,7 +12,9 @@ export default function App() {
     <Router>
       <Switch>
         <Route exact path="/" component ={DifficultyPage} />
-        <Route exact path="/start_game" component ={startPage} />
+        <Route exact path="/start_game" component ={StartPage} />
+        <Route exact path="/countdown" component ={CountdownPage} />
+        <Route exact path="/gamePage" component ={GamePage} />
       </Switch>
     </Router>
   );
