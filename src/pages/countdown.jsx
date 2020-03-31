@@ -4,7 +4,7 @@ import './countdown.css';
 const CountdownPage = () => {
     const FULL_DASH_ARRAY = 3000;
     const WARNING_THRESHOLD = 5;
-    const ALERT_THRESHOLD = 2;
+    const ALERT_THRESHOLD = 3;
 
     const COLOR_CODES = {
     info: {
@@ -31,7 +31,6 @@ const CountdownPage = () => {
             setRemainingPathColor(timeLeft);
           }, 1000);
         if (timeLeft === 0) {   
-            //change url react router for smoother transition
             window.location.href="/gamePage";
         }
         return () => clearInterval(interval);
