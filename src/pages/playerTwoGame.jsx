@@ -1,11 +1,12 @@
 import React from "react";
 import './gamePage.css';
+import { Link } from "react-router-dom";
 
-const GamePage = () => {
+const PlayerTwoGame = () => {
     return (
       <div className="App">
             <div class ="item">Username</div>
-            <div class ="item">score: 0</div>   
+            <div class ="item">score: 10</div>   
             <div id="background-wrap">
                 <div class="bubble x1"></div>
                 <div class="bubble x2"></div>
@@ -18,17 +19,8 @@ const GamePage = () => {
                 <div class="bubble x9"></div>
                 <div class="bubble x10"></div>
             </div>
-
-            <a class="quit_button" href="#quit_button"> QUIT</a> 
-            <div id="quit_button" class="overlay">
-            <div class="popup">
-                <h2> Are you sure you want to quit? </h2>
-                <a class = "yes" href="/"> YES </a>
-                <a class = "no" href="#"> NO </a>
-            </div>
-            </div>
-
+            <Link to="/timeUp2" class= "default_button"> end</Link> 
         </div>
     );
   };
-  export default GamePage;
+  export default PlayerTwoGame;

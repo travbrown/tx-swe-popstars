@@ -15,7 +15,9 @@ const DifficultyPage = () => {
         <p></p>
         <Link to="/start_game" class= "active_button"> Hard</Link>
         <p></p><p></p>
-        <Link to="/" class= "default_button"> Back</Link>    
+        <Link to="/" class= "default_button"> Back</Link> 
+        <p></p>
+        <Link to="/multiplayerPage">Multi-Player</Link>   
       </header>
     </div>
   );
