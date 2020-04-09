@@ -1,19 +1,34 @@
 import React, { useState, useEffect } from 'react';
+import {Howl, Howler} from 'howler';
+import { BrowserRouter as Router, Route, Switch, Link, Redirect } from "react-router-dom";
+import SpotifyWebApi from 'spotify-web-api-js';
+import Button from '@material-ui/core/Button';
 import './App.css';
-import {
-    Link,
-} from "react-router-dom";
 export const authEndpoint = 'https://accounts.spotify.com/authorize?';
 
     const SpotifyLoginPage = () => {
-        const clientId = "d686743392b64810a7a8c2b5d56bf5c6";
+        //Lauren's 
+        //const clientId = "d686743392b64810a7a8c2b5d56bf5c6";
+        
+        //Travis - something wrong with my client ID
+        const clientId = "6ba9b22fdb4e467197055100a53c4a90";   
+        const clientSecret = "6dc7ed667d824b27b65770f3c4052a0c";
         const redirectUri = "http://localhost:3000/callback/";
+
         const scopes = [
             "user-read-currently-playing",
+            "app-remote-control",
+            "streaming",
+            "user-modify-playback-state",
+            "playlist-modify-public",
+            "ugc-image-upload",
             "user-read-playback-state",
         ];
+        const spotifyApi = new SpotifyWebApi();
+
+
         // Get the hash of the url
-        const hash1 = window.location.hash
+        const hash = window.location.hash
             .substring(1)
             .split("&")
             .reduce(function (initial, item) {
@@ -25,7 +40,8 @@ export const authEndpoint = 'https://accounts.spotify.com/authorize?';
             }, {});
         window.location.hash = "";
 
-        const [isPlaying, setIsPlaying] = useState([]);
+        const [isPlaying, setIsPlaying] = useState(null);
+        const [songs, setSongs] = useState(null);
         const [progressMs, setProgressMs] = useState([]);
         const [token, setToken] = useState(null);
         const [item, setItem] = useState({
@@ -36,6 +52,7 @@ export const authEndpoint = 'https://accounts.spotify.com/authorize?';
             artists: [{ name: "" }],
             duration_ms: 0,
         });
+
         function getCurrentlyPlaying(token) {
             // Make a call using the token
             fetch({
@@ -45,34 +62,129 @@ export const authEndpoint = 'https://accounts.spotify.com/authorize?';
                     xhr.setRequestHeader("Authorization", "Bearer " + token);
                 },
                 success: (data) => {
-                    this.setState({
-                        item: data.item,
-                        is_playing: data.is_playing,
-                        progress_ms: data.progress_ms,
-                    });
+                    setItem(data.item);
+                    setIsPlaying(data.is_playing);
+                    setProgressMs(data.progress_ms);
+                    
                 }
             });
         }
 
+        function getAccessToken(){
+            fetch({
+                url: "https://accounts.spotify.com/api/token",
+                type: "POST",
+                form: {
+                    //code: code,
+                    redirect_uri: redirectUri,
+                    grant_type: 'authorization_code'
+                  },
+                beforeSend: (xhr) => {
+                    xhr.setRequestHeader("Authorization", "Bearer " + (new Buffer(clientId + ':' + clientSecret).toString('base64')));
+                },
+                // success: (data) => {
+                //     setItem(data.item);
+                //     setIsPlaying(data.is_playing);
+                //     setProgressMs(data.progress_ms);
+                    
+                // }
+            })
+            .then(response => response.json())
+            .then(data => console.log('WEEE GOT ITTT'))
+            .catch( e => console.log('We got an Error: ', e));
+        }
+
+        function getSong(){
+            /**
+             * We are currently taking the below access token straight from the website and it is valid for only an hour
+             * TODO: Implement 2nd call to spotify API for access and refresh tokens.
+             */
+            spotifyApi.setAccessToken("BQCnhZsKEBrwmJWPeua1pJxm1ygKWe9oFgF_TeRdfpRg5By4VpZ2PwQ5jdLjtQ3UsSd8EoUzHVvl-Ewc9ZNgeEXwHL3lFFSD2uYew8YLjsJGnNQxlytDEcRLZ9GAHGMH60CpPTvE7sL3johxUFlIyYkrar9MRLnYukKYscoKSyXUXfUsbGqXBLc");
+            //Couldn't get the Promise implementation to work
+            //spotifyApi.setPromiseImplementation(Q);
+            spotifyApi.searchTracks('God Damn Masicka')
+                .then(function(data) {
+                    let foundSongs = '';
+                    console.log('Search by "God Damn Masicka"', data.tracks);
+                    data.tracks.items.forEach((item) => {
+                        foundSongs = item.preview_url;
+                    });
+                    setSongs(foundSongs);
+                    playMusic(foundSongs);
+                }, function(err) {
+                    console.error(err);
+                });
+        }
+
+        function playMusic(song){
+            const sound = new Howl({
+                src: [song],
+                html5: true,
+                format: ['mp3','aac'],
+                autoplay: true,
+                loop: true,
+                volume: 0.5,
+                onend: function() {
+                  console.log('Finished!');
+                }
+              });
+            sound.play();
+        }
+
         useEffect(() => {
             // Set token
-            let _token = hash1.access_token;
+            console.log('UseEffect activated');
+            let _token = hash.access_token;
             if (_token) {
+                console.log('TOKEN:', typeof(_token));
+
                 // Set token
-                setToken({
-                    token: _token
-                });
+                setToken(_token);
             }
-        });
+ 
+        }, []);
+        
         return (
             <div>
-                <button>
-                    <a href={`${authEndpoint}client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`} class="active_button">Login with Spotify</a>
-                </button>
-                <br></br>
-                <button>
-                    <Link to="/GuestLogin" class="active_button">Login as a Guest</Link>
-                </button>
+                {!token && (
+                    <div>
+                        <Button 
+                            variant="outlined" 
+                            color="secondary"
+                            href={`${authEndpoint}client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`}
+                            > 
+                            Login with Spotify
+                        </Button>
+                        <br></br>
+                        <Button variant="outlined" 
+                            color="secondary">
+                            <Link color="secondary" to="/GuestLogin" class="active_button">Login as a Guest</Link>
+                        </Button>
+                    </div>
+                    
+                )}                
+                    
+                <Router>
+                    <div>
+                        <Switch>
+                            <Route path="/callback/">
+                                YOOOOOOOO
+                            </Route>
+                        </Switch>
+                    </div>
+                </Router>
+
+                {token && (
+                    <div>
+                        {/* {getAccessToken()} */}
+                        Displaying Below:
+                        {getSong()}
+                        {/* {songs} */}
+                    </div>
+                )}
+                     
+                    
+                    
             </div>
         );
 
