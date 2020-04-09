@@ -7,11 +7,10 @@ import SpotifyLoginPage from './SpotifyLoginPage';
 
 const SpotifyLogin = () => {
 
-    return ( 
-      <div> <div>
-        <SpotifyLoginPage/>
-      <Link to={"/SpotifyLoginPage"} class= "active_button">Login </Link></div>
-</div>
+  return (
+    <div>
+      <SpotifyLoginPage />
+    </div>
   );
 }
 export default SpotifyLogin;

@@ -1,23 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import logo from './popstarslogo.png';
-import './App.css';
 import * as $ from "jquery";
-import Player from "./Player";
 import { Link } from "react-router-dom";
+import GuestLoginPage from './GuestLoginPage';
+import  { Redirect } from 'react-router-dom'
+import NameInput from './nameInput'
+import { useHistory } from 'react-router-dom';
 
+function GuestLogin() {
+    const history = useHistory();
 
-
-
-  const GuestLogin = () => {
+    const handleClick = () => {
+        history.push("/nameInput");
+    }
 
   return (
-
-        
-          <Link to="/GuestLogin" class= "active_button">Login as a Guest</Link>
-
+    <button onClick={handleClick}>
+      Login as Guest
+    </button>
   );
 }
-
 export default GuestLogin;
+
+
 
 

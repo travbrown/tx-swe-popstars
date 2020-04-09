@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-
 import {
     Link,
 } from "react-router-dom";
+
 export const authEndpoint = 'https://accounts.spotify.com/authorize?';
 
     const SpotifyLoginPage = () => {
