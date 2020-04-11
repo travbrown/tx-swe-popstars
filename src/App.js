@@ -1,5 +1,9 @@
 import React from "react";
 import './App.css';
+import GuestLoginPage from './GuestLogin';
+import SpotifyLoginPage from './SpotifyLoginPage';
+import SpotifyLogin from './SpotifyLogin';
+import logo from './popstarslogo.png';
 import { BrowserRouter as Router, Route, Switch, Link, Redirect } from "react-router-dom";
 import DifficultyPage from "./pages";
 import StartPage from "./pages/start_game";
@@ -15,6 +19,20 @@ import TimeUp2 from "./pages/timeUp2";
 
 export default function App() {
   return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <br></br>
+        <Router>
+          <div>
+            <Switch>
+              <SpotifyLoginPage />
+              <Route path="/SpotifyLogin"> Login</Route>
+            </Switch>
+          </div>
+        </Router>
+      </header>
+    </div>
     <Router>
       <Switch>
         <Route exact path="/" component ={DifficultyPage} />
@@ -32,3 +50,5 @@ export default function App() {
     </Router>
   );
 }
+
+export default App;
