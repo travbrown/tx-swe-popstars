@@ -31,9 +31,7 @@ export default function App() {
             </Switch>
           </div>
         </Router>
-      </header>
-    </div>
-    <Router>
+        <Router>
       <Switch>
         <Route exact path="/" component ={DifficultyPage} />
         <Route exact path="/start_game" component ={StartPage} />
@@ -48,7 +46,7 @@ export default function App() {
         <Route exact path ="/timeUp2" component = {TimeUp2} />
       </Switch>
     </Router>
+      </header>
+    </div>
   );
 }
-
-export default App;
