@@ -4,6 +4,13 @@
 h2{
   color: white; 
 }
+button{
+  color: black; 
+  background-color: #61dafb;
+  border-radius: 10px;
+  width: 300px;
+  height: 45px;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

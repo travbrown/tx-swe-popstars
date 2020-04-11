@@ -10,7 +10,7 @@ function NameInput(){
     const history = useHistory();
 
     const handleClick = () => {
-        history.push("/gameMode");
+        history.push("/multiplayerPage");
     }
 
     
@@ -25,4 +25,4 @@ function NameInput(){
     );
   
 }
-  export default NameInput; 
+  export default gameMode; 
