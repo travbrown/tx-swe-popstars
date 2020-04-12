@@ -1,9 +1,9 @@
-import React from "react";
+import React, {useState, useEffect} from 'react';
 import './gamePage.css';
 
 const GamePage = () => {
     return (
-      <div className="App">
+        <div className="App">
             <div class ="item">Username</div>
             <div class ="item">score: 0</div>   
             <div id="background-wrap">
@@ -23,11 +23,10 @@ const GamePage = () => {
             <div id="quit_button" class="overlay">
             <div class="popup">
                 <h2> Are you sure you want to quit? </h2>
-                <a class = "yes" href="/"> YES </a>
-                <a class = "no" href="#"> NO </a>
+                <a class = "quit" href="/index"> QUIT </a>
+                <a class = "cancel" href="#"> CANCEL </a>
             </div>
             </div>
-
         </div>
     );
   };

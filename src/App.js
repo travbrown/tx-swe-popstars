@@ -30,7 +30,7 @@ function AllLogins() {
 
 export default function App() {
   return (
-    <div className="App">
+    <div className="App-login ">
       <Router>
         <Switch>
           <Route exact path="/" component={AllLogins} />
