@@ -7,7 +7,7 @@ export const authEndpoint = 'https://accounts.spotify.com/authorize?';
 
     const SpotifyLoginPage = () => {
         const clientId = "d686743392b64810a7a8c2b5d56bf5c6";
-        const redirectUri = "http://localhost:3000/callback/";
+        const redirectUri = "http://localhost:3000/GameMode";
         const scopes = [
             "user-read-currently-playing",
             "user-read-playback-state",
