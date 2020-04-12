@@ -75,8 +75,8 @@ const SpotifyLogin = () => {
       <div>
         <button>
     <Link to={"/SpotifyLoginPage"} class= "active_button">Login with Spotify</Link></button>
-    <br></br>
-    <button><Link to="/GuestLogin" class= "active_button">Login as a Guest</Link></button>
+    {/* <br></br>
+    <button><Link to="/GuestLogin" class= "active_button">Login as a Guest</Link></button> */}
     </div>
   );
 
