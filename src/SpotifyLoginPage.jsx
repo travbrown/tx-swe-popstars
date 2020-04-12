@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {Howl, Howler} from 'howler';
+import GameMode from './GameMode';
 import { BrowserRouter as Router, Route, Switch, Link, Redirect } from "react-router-dom";
 import SpotifyWebApi from 'spotify-web-api-js';
 import Button from '@material-ui/core/Button';
@@ -70,36 +71,12 @@ export const authEndpoint = 'https://accounts.spotify.com/authorize?';
             });
         }
 
-        function getAccessToken(){
-            fetch({
-                url: "https://accounts.spotify.com/api/token",
-                type: "POST",
-                form: {
-                    //code: code,
-                    redirect_uri: redirectUri,
-                    grant_type: 'authorization_code'
-                  },
-                beforeSend: (xhr) => {
-                    xhr.setRequestHeader("Authorization", "Bearer " + (new Buffer(clientId + ':' + clientSecret).toString('base64')));
-                },
-                // success: (data) => {
-                //     setItem(data.item);
-                //     setIsPlaying(data.is_playing);
-                //     setProgressMs(data.progress_ms);
-                    
-                // }
-            })
-            .then(response => response.json())
-            .then(data => console.log('WEEE GOT ITTT'))
-            .catch( e => console.log('We got an Error: ', e));
-        }
-
         function getSong(){
             /**
              * We are currently taking the below access token straight from the website and it is valid for only an hour
              * TODO: Implement 2nd call to spotify API for access and refresh tokens.
              */
-            spotifyApi.setAccessToken("BQCnhZsKEBrwmJWPeua1pJxm1ygKWe9oFgF_TeRdfpRg5By4VpZ2PwQ5jdLjtQ3UsSd8EoUzHVvl-Ewc9ZNgeEXwHL3lFFSD2uYew8YLjsJGnNQxlytDEcRLZ9GAHGMH60CpPTvE7sL3johxUFlIyYkrar9MRLnYukKYscoKSyXUXfUsbGqXBLc");
+            spotifyApi.setAccessToken("BQBz5wGulBvjMyFlHeh1YMB7n7JrH0K-4CSBQwIg-63q166zVDe1W7rEMtWwvSyAsAK54q5bjPygmBYX35aNZtTUezrVjH-b26L8qv5QFOgCPfYu4N4gWNF0mrYkgjZmF7TGNHicPYef-MNJ_yZNwG-vE5BYZCdiu5xwmNN64w4q4FuK11VewwE");
             //Couldn't get the Promise implementation to work
             //spotifyApi.setPromiseImplementation(Q);
             spotifyApi.searchTracks('God Damn Masicka')
@@ -148,6 +125,7 @@ export const authEndpoint = 'https://accounts.spotify.com/authorize?';
             <div>
                 {!token && (
                     <div>
+                        
                         <Button 
                             variant="outlined" 
                             color="secondary"
@@ -163,16 +141,6 @@ export const authEndpoint = 'https://accounts.spotify.com/authorize?';
                     </div>
                     
                 )}                
-                    
-                <Router>
-                    <div>
-                        <Switch>
-                            <Route path="/callback/">
-                                YOOOOOOOO
-                            </Route>
-                        </Switch>
-                    </div>
-                </Router>
 
                 {token && (
                     <div>

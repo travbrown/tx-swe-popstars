@@ -7,16 +7,21 @@ import SpotifyLogin from './SpotifyLogin';
 import logo from './popstarslogo.png';
 
 export default function App() {
+
+
+  
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <br></br>
         <Router>
           <div>
             <Switch>
-              <SpotifyLoginPage />
-              <Route path="/SpotifyLogin"> Login</Route>
+              <Route exact path="/">
+                <SpotifyLoginPage />
+              </Route>
+              <Route path="/callback/">
+                HELLO I WORK PROPERLY
+              </Route>
             </Switch>
           </div>
         </Router>
