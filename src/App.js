@@ -17,6 +17,7 @@ export default function App() {
           <div>
             <Switch>
               <Route exact path="/">
+                <img src={logo} className="App-logo" alt="logo" />
                 <SpotifyLoginPage />
               </Route>
               <Route path="/callback/">

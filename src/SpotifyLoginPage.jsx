@@ -76,7 +76,7 @@ export const authEndpoint = 'https://accounts.spotify.com/authorize?';
              * We are currently taking the below access token straight from the website and it is valid for only an hour
              * TODO: Implement 2nd call to spotify API for access and refresh tokens.
              */
-            spotifyApi.setAccessToken("BQBz5wGulBvjMyFlHeh1YMB7n7JrH0K-4CSBQwIg-63q166zVDe1W7rEMtWwvSyAsAK54q5bjPygmBYX35aNZtTUezrVjH-b26L8qv5QFOgCPfYu4N4gWNF0mrYkgjZmF7TGNHicPYef-MNJ_yZNwG-vE5BYZCdiu5xwmNN64w4q4FuK11VewwE");
+            spotifyApi.setAccessToken("BQDFF7JWP9TfWv9DOZ2dtgOqqyLTKu9he_C8-HQfkmd9gtebEO7jCzZNcatevXSP7a2eCmG-wFp1-ScMU-aCKSbV5ZzQKwHOsYeu0T2v2AVNtUpvHoAKTTXgcL0vNf6IKl4dvZbTXW1j5PbamkkJ1Zvm89mk0YtGxmjzoYy2M8sujXhp3_XciVw");
             //Couldn't get the Promise implementation to work
             //spotifyApi.setPromiseImplementation(Q);
             spotifyApi.searchTracks('God Damn Masicka')
@@ -91,7 +91,7 @@ export const authEndpoint = 'https://accounts.spotify.com/authorize?';
                 }, function(err) {
                     console.error(err);
                 });
-        }
+            }
 
         function playMusic(song){
             const sound = new Howl({
