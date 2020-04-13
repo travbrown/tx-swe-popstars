@@ -1,5 +1,5 @@
 import React from "react";
-import './index.css';
+import './difficultyPage.css';
 import { Link } from "react-router-dom";
 
 const StartPage = () => {
@@ -10,7 +10,7 @@ const StartPage = () => {
         <Link to="/countdown" class= "active_button"> START GAME</Link>
         <p></p>
         <p></p>
-        <Link to="/" class= "default_button">Back</Link>       
+        <Link to="/difficultyPage" class= "default_button">Back</Link>       
       </header>
     </div>
   );

@@ -8,7 +8,7 @@ import {
   Link,
   Redirect
 } from "react-router-dom";
-import DifficultyPage from "./pages";
+import DifficultyPage from "./pages/difficultyPage";
 import StartPage from "./pages/start_game";
 import CountdownPage from "./pages/countdown";
 import GamePage from "./pages/gamePage";
@@ -34,7 +34,7 @@ export default function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={AllLogins} />
-          <Route exact path="/index" component={DifficultyPage} />
+          <Route exact path="/difficultyPage" component={DifficultyPage} />
           <Route exact path="/start_game" component={StartPage} />
           <Route exact path="/countdown" component={CountdownPage} />
           <Route exact path="/gamePage" component={GamePage} />
