@@ -7,7 +7,8 @@ const GamePage = () => {
 
     const spotifyApi = new SpotifyWebApi();
     const [songLoadState, setSongLoadState] = useState(false);
-    const [playlist, setPlaylist] = useState([]);
+    const [songs, setSong] = useState([]);
+    const [artists, setArtists] = useState([]);
 
 
     function getPlaylist(access_token) {
@@ -17,14 +18,17 @@ const GamePage = () => {
         spotifyApi.getPlaylistTracks('5I5JG3z1Bbk70WFz8i2OEf').then(
             function(data) {
                 let foundSongs = [];
-                console.log('My Rap Playlist', data.items);
+                let artist = [];
+                //console.log('My Rap Playlist', data.items);
                 data.items.forEach(item => {
                     if(item.track.preview_url !== null && foundSongs.length < 10){
-                    console.log(item.track.preview_url);
-                    foundSongs.push(item.track.preview_url);
+                        artist.push(item.track.artists[0].name);
+                        foundSongs.push(item.track.preview_url);
                     }     
                 });   
-                setPlaylist(foundSongs);             
+                console.log(artist);
+                setArtists(artist);
+                setSong(foundSongs);             
                 //playMusic(foundSongs);
             },
             function(err) {
@@ -34,6 +38,7 @@ const GamePage = () => {
     }
     
     function playMusic(song) {
+
         const sound = new Howl({
             src: [song],
             html5: true,
@@ -57,7 +62,7 @@ const GamePage = () => {
         let token = localStorage.getItem('access_token');
         getPlaylist(token);
         document.getElementById("autoPlay").click();
-    },[])
+    },[]);
 
     // useEffect(() =>{
     //     sound.ctx.resume();
@@ -65,7 +70,7 @@ const GamePage = () => {
 
     return (
       <div className="App">
-            <button id="autoPlay" style={{ display: "none" }} onClick={playMusic(playlist)}>
+            <button id="autoPlay" style={{ display: "none" }} onClick={playMusic(songs)}>
                 can you see me?
             </button>
             <div class ="item">Username</div>
@@ -91,7 +96,6 @@ const GamePage = () => {
                 <a class = "no" href="#"> NO </a>
             </div>
             </div>
-
         </div>
     );
   };
