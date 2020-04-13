@@ -10,7 +10,6 @@ const SpotifyLoginPage = () => {
 
   //Travis
   const clientId = "6ba9b22fdb4e467197055100a53c4a90";
-  const clientSecret = "6dc7ed667d824b27b65770f3c4052a0c";
   const redirectUri = "http://localhost:3000/index";
 
   const scopes = [
@@ -30,9 +29,7 @@ const SpotifyLoginPage = () => {
         style={{ marginTop: "-300px", height: "100px", width: "400px", fontSize: "30px"}}
         variant="outlined"
         color="secondary"
-        href={`${authEndpoint}client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
-          "%20"
-        )}&response_type=token&show_dialog=true`}
+        href={`${authEndpoint}client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`}
       >
         Login with Spotify
       </Button>

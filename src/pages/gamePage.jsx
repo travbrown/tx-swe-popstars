@@ -1,7 +1,63 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import {Howl, Howler} from 'howler';
+import SpotifyWebApi from 'spotify-web-api-js';
 import './gamePage.css';
 
 const GamePage = () => {
+
+    const spotifyApi = new SpotifyWebApi();
+    const [songLoadState, setSongLoadState] = useState(false);
+
+    function getSong(access_token) {
+        spotifyApi.setAccessToken(access_token);
+        //Couldn't get the Promise implementation to work
+        //spotifyApi.setPromiseImplementation(Q);
+        spotifyApi.getPlaylistTracks('5I5JG3z1Bbk70WFz8i2OEf').then(
+            function(data) {
+                let foundSongs = [];
+                console.log('My Rap Playlist', data.items);
+                data.items.forEach(item => {
+                    if(item.track.preview_url !== null && foundSongs.length < 10){
+                    console.log(item.track.preview_url);
+                    foundSongs.push(item.track.preview_url);
+                    }     
+                });                
+                playMusic(foundSongs);
+            },
+            function(err) {
+                console.error(err);
+            }
+        );
+    }
+    
+    function playMusic(song) {
+        const sound = new Howl({
+            src: song,
+            html5: true,
+            format: ["mp3", "aac"],
+            autoplay: true,
+            loop: true,
+            volume: 0.5,
+            onload: function(){
+                console.log('LOADED!!');
+                setSongLoadState(true);
+            },
+            onend: function() {
+                console.log("Finished!");
+            }
+        });
+
+    }
+
+    useEffect(() => {
+        let token = localStorage.getItem('access_token');
+        getSong(token);
+    },[])
+
+    // useEffect(() =>{
+    //     sound.ctx.resume();
+    // },[songLoadState]);
+
     return (
       <div className="App">
             <div class ="item">Username</div>
