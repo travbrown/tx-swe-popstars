@@ -7,8 +7,10 @@ const GamePage = () => {
 
     const spotifyApi = new SpotifyWebApi();
     const [songLoadState, setSongLoadState] = useState(false);
+    const [playlist, setPlaylist] = useState([]);
 
-    function getSong(access_token) {
+
+    function getPlaylist(access_token) {
         spotifyApi.setAccessToken(access_token);
         //Couldn't get the Promise implementation to work
         //spotifyApi.setPromiseImplementation(Q);
@@ -21,8 +23,9 @@ const GamePage = () => {
                     console.log(item.track.preview_url);
                     foundSongs.push(item.track.preview_url);
                     }     
-                });                
-                playMusic(foundSongs);
+                });   
+                setPlaylist(foundSongs);             
+                //playMusic(foundSongs);
             },
             function(err) {
                 console.error(err);
@@ -32,26 +35,28 @@ const GamePage = () => {
     
     function playMusic(song) {
         const sound = new Howl({
-            src: song,
+            src: [song],
             html5: true,
             format: ["mp3", "aac"],
-            autoplay: true,
-            loop: true,
+            autoplay: false,
+            loop: false,
             volume: 0.5,
             onload: function(){
                 console.log('LOADED!!');
-                setSongLoadState(true);
+                //setSongLoadState(true);
             },
             onend: function() {
                 console.log("Finished!");
             }
+            
         });
-
+        sound.play();
     }
 
     useEffect(() => {
         let token = localStorage.getItem('access_token');
-        getSong(token);
+        getPlaylist(token);
+        document.getElementById("autoPlay").click();
     },[])
 
     // useEffect(() =>{
@@ -60,6 +65,9 @@ const GamePage = () => {
 
     return (
       <div className="App">
+            <button id="autoPlay" style={{ display: "none" }} onClick={playMusic(playlist)}>
+                can you see me?
+            </button>
             <div class ="item">Username</div>
             <div class ="item">score: 0</div>   
             <div id="background-wrap">
