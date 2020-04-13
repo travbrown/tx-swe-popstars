@@ -1,5 +1,5 @@
 import React from "react";
-import './index.css';
+import './difficultyPage.css';
 import { Link } from "react-router-dom";
 
 const TimeUp2 = () => {
