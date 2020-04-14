@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.css";
-import SpotifyLoginPage from "./SpotifyLoginPage";
 import {
   BrowserRouter as Router,
   Route,
   Switch,
 } from "react-router-dom";
+import SpotifyLoginPage from "./SpotifyLoginPage";
 import DifficultyPage from "./pages/difficultyPage";
 import StartPage from "./pages/start_game";
 import CountdownPage from "./pages/countdown";
@@ -17,6 +17,7 @@ import PlayerTwoPage from "./pages/playerTwo";
 import PlayerTwoGamePage from "./pages/playerTwoGame";
 import TimeUp1 from "./pages/timeUp1";
 import TimeUp2 from "./pages/timeUp2";
+import GameMode from './pages/gameMode';
 
 function AllLogins() {
   return (
@@ -32,6 +33,7 @@ export default function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={AllLogins} />
+          <Route exact path="/gameMode" component ={GameMode} />
           <Route exact path="/difficultyPage" component={DifficultyPage} />
           <Route exact path="/start_game" component={StartPage} />
           <Route exact path="/countdown" component={CountdownPage} />
