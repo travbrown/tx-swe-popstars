@@ -8,6 +8,10 @@ import cardi_b from "../photos/cardi_b.png";
 import drake from "../photos/drake.png";
 import lil_wayne from "../photos/lil_wayne.png";
 import tupac from "../photos/tupac.png";
+import kanye_west from "../photos/kanye_west.png";
+import jcole from "../photos/jcole.png";
+import nicki_minaj from "../photos/nicki_minaj.png";
+import beyonce from "../photos/Beyonce.png";
 
 let artistsFaces = [
     {name: 'ASAP Ferg', image: asap_ferg},
@@ -16,11 +20,15 @@ let artistsFaces = [
     {name: 'Drake', image: drake},
     {name: 'Lil Wayne', image: lil_wayne},
     {name: 'Tupac', image: tupac},
+    {name: 'Kanye West', image: kanye_west},
+    {name: 'Jcole', image: jcole},
+    {name: 'Nicki Minaj', image: nicki_minaj},
+    {name: 'Beyonce', image: beyonce},
 ]
 
-const Bubble = ({ number, hasArtist, image }) => {
+const Bubble = ({ number, hasArtist, image, name }) => {
     return (
-      <div class={`bubble x${number}`}>
+      <div class={`bubble x${number}`} onClick={() =>alert()}>
         <img
           style={{
             display: hasArtist ? "inline-block" : "none",
