@@ -1,8 +1,24 @@
 .App {
+  /* text-align: center; */
+  text-align: left;
+  background: #000000;
+  color: white;
+}
+
+.App-login {
   text-align: center;
   /* text-align: left; */
   background: #000000;
   color: white;
+}
+
+.item {
+  width: 580px;
+  padding: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  display: inline-block;
+  text-transform: uppercase;
 }
 
 .item {
@@ -19,19 +35,6 @@
   width: 100%;
   object-fit: cover;
   pointer-events: none;
-}
-body{
-  background-color: #000000;
-}
-
-div{
-  background-color: #000000;
-}
-html{
-  background-color: #000000;
-}
-footer{
-  background-color: black;
 }
 
 .App-header {

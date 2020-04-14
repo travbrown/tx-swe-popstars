@@ -7,11 +7,10 @@ const StartPage = () => {
     <div className="App">
       <div class ="item">Username</div>
       <header className="App-header">
-        <Link to="/countdown" class="active_button"> START GAME </Link>
-        
+        <Link to="/countdown" class= "active_button"> START GAME</Link>
         <p></p>
         <p></p>
-        <Link to="/" class= "default_button">Back</Link>       
+        <Link to="/difficultyPage" class= "default_button">Back</Link>       
       </header>
     </div>
   );
