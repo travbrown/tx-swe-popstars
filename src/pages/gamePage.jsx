@@ -105,10 +105,6 @@ const GamePage = () => {
         document.getElementById("autoPlay").click();
     },[]);
 
-    // useEffect(() =>{
-    //     sound.ctx.resume();
-    // },[songLoadState]);
-
     return (
       <div className="App">
             <button id="autoPlay" style={{ display: "none" }} onClick={playMusic(songs)}>

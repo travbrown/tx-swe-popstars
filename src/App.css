@@ -6,7 +6,6 @@
 
 .App-login {
   text-align: center;
-  /* text-align: left; */
   background: #000000;
   color: white;
 }
@@ -51,7 +50,6 @@ h2{
 .App-header {
   background-color: #000000;
   min-height: 100vh;
-  /* min-height: 5vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
