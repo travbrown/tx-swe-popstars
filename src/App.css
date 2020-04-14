@@ -1,4 +1,11 @@
 .App {
+  /* text-align: center; */
+  text-align: left;
+  background: #000000;
+  color: white;
+}
+
+.App-login {
   text-align: center;
   /* text-align: left; */
   background: #000000;
@@ -13,6 +20,7 @@
   display: inline-block;
   text-transform: uppercase;
 }
+<<<<<<< HEAD
 h2{
   color: white; 
 }
@@ -23,12 +31,25 @@ button{
   width: 300px;
   height: 45px;
 }
+=======
+
+.item {
+  width: 580px;
+  padding: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+>>>>>>> afb9c1e93a2b472f7bbd9a1c5476654c09af6f1f
 .App-logo {
   /* height: 40vmin; */
   width: 100%;
   object-fit: scale-down;
   pointer-events: none;
 }
+<<<<<<< HEAD
 body{
   background-color: #000000;
 }
@@ -54,6 +75,8 @@ html{
 footer{
   background-color: black;
 }
+=======
+>>>>>>> afb9c1e93a2b472f7bbd9a1c5476654c09af6f1f
 
 .App-header {
   min-height: 5vh;

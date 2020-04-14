@@ -1,16 +1,17 @@
 import React from "react";
 import "./App.css";
-import logo from './popstarslogo.png';
 import SpotifyLoginPage from "./SpotifyLoginPage";
 import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Link,
-  Redirect
 } from "react-router-dom";
+<<<<<<< HEAD
 import firebase from "./firebase"
 import DifficultyPage from "./pages";
+=======
+import DifficultyPage from "./pages/difficultyPage";
+>>>>>>> afb9c1e93a2b472f7bbd9a1c5476654c09af6f1f
 import StartPage from "./pages/start_game";
 import CountdownPage from "./pages/countdown";
 import GamePage from "./pages/gamePage";
@@ -41,13 +42,12 @@ function allModes(){
   )
 }
 export default function App() {
-  
   return (
-    <div className="App">
+    <div className="App-login ">
       <Router>
         <Switch>
           <Route exact path="/" component={AllLogins} />
-          <Route exact path="/index" component={DifficultyPage} />
+          <Route exact path="/difficultyPage" component={DifficultyPage} />
           <Route exact path="/start_game" component={StartPage} />
           <Route exact path="/countdown" component={CountdownPage} />
           <Route exact path="/gamePage" component={GamePage} />
