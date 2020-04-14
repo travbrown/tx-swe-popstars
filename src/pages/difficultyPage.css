@@ -20,7 +20,6 @@
   width: 350px;
   height: 60px;
 }
-
 .quit_button {
   background-color: rgba(139, 8, 8, 0.911);
   color: white;
@@ -45,7 +44,7 @@ a.quit_button:focus {
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #000000;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

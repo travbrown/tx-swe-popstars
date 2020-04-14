@@ -108,34 +108,28 @@ const GamePage = () => {
     return (
       <div className="App">
             <button id="autoPlay" style={{ display: "none" }} onClick={playMusic(songs)}>
-
                 can you see me?
             </button>
             <div class ="item">Username</div>
             <div class ="item">score: 0</div>   
             <div id="background-wrap">
+            
             {artistsFaces.map((item, idx) => (
                 <>
                 <Bubble
                 key={idx}
                 image={item.image}
                 hasArtist
-                number={Math.round(Math.random() * 10)}
-                />
-                <Bubble
-                key={idx}
-                number={Math.round(Math.random() * 10)}
-                />
+                number={idx} />
                 </>
             ))}
-            </div>
 
+            </div>
             <a class="quit_button" href="#quit_button"> QUIT</a> 
             <div id="quit_button" class="overlay">
             <div class="popup">
                 <h2> Are you sure you want to quit? </h2>
-
-                <a class = "quit" href="/difficultyPage"> QUIT </a>
+                <a class = "quit" href="/gameMode"> QUIT </a>
                 <a class = "cancel" href="#"> CANCEL </a>
             </div>
             </div>

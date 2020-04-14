@@ -119,11 +119,7 @@ const PlayerTwoGame = () => {
                 key={idx}
                 image={item.image}
                 hasArtist
-                number={Math.round(Math.random() * 10)}
-                />
-                <Bubble
-                key={idx}
-                number={Math.round(Math.random() * 10)}
+                number={idx}
                 />
                 </>
             ))}
