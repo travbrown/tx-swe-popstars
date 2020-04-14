@@ -19,6 +19,9 @@ import PlayerTwoPage from "./pages/playerTwo";
 import PlayerTwoGamePage from "./pages/playerTwoGame";
 import TimeUp1 from "./pages/timeUp1";
 import TimeUp2 from "./pages/timeUp2";
+import SinglePlayer from './singlePlayer';
+import MultiPlayer from './multiPlayer'; 
+import nameInput from './nameInput';
 
 function AllLogins() {
   return (
@@ -28,8 +31,17 @@ function AllLogins() {
   );
 }
 
+function allModes(){
+  return(
+  <div>
+    <SinglePlayer/>
+    <MultiPlayer/>
+  </div>
+  )
+}
 export default function App() {
   return (
+                <Route exact path="/nameInput" component ={nameInput} />
     <div className="App-login ">
       <Router>
         <Switch>
@@ -48,5 +60,6 @@ export default function App() {
         </Switch>
       </Router>
     </div>
+                <Route exact path="/gameMode" component ={allModes} />
   );
 }
