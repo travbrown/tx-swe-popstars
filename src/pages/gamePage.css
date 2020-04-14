@@ -1,14 +1,4 @@
-body {
-
-	color: #333;
-	font: 100% Lato, Arial, Sans Serif;
-	margin: 0;
-	padding: 0;
-	overflow-x: hidden;
-}
-
 #background-wrap {
-
 	background: #00b4ff;
     bottom: 0;
 	left: 0;
@@ -75,6 +65,19 @@ body {
 }
 
 /* ANIMATIONS */
+
+.x0 {
+    -webkit-animation: animateBubble 15s linear infinite, sideWays 4s ease-in-out infinite alternate;
+	-moz-animation: animateBubble 15s linear infinite, sideWays 4s ease-in-out infinite alternate;
+	animation: animateBubble 15s linear infinite, sideWays 4s ease-in-out infinite alternate;
+	
+	left: 15%;
+	top: 55%;
+	
+	-webkit-transform: scale(0.6);
+	-moz-transform: scale(0.6);
+	transform: scale(0.6);
+}
 
 .x1 {
     -webkit-animation: animateBubble 25s linear infinite, sideWays 2s ease-in-out infinite alternate;
