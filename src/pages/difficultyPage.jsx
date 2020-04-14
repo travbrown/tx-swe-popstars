@@ -9,6 +9,7 @@ const DifficultyPage = () => {
       <div class ="item">Difficulty</div> 
 
       <header className="App-header">
+
         <Link to="/start_game" class= "active_button" > Easy</Link>
         <p></p>
         <Link to="/start_game" class= "active_button"> Medium</Link>
