@@ -18,7 +18,7 @@ h2{
 }
 button{
   color: black; 
-  background-color: #61dafb;
+  background-color: #03D4EF;
   border-radius: 10px;
   width: 300px;
   height: 45px;
@@ -26,7 +26,7 @@ button{
 .App-logo {
   /* height: 40vmin; */
   width: 100%;
-  object-fit: cover;
+  object-fit: scale-down;
   pointer-events: none;
 }
 body{
@@ -37,11 +37,13 @@ body{
     animation: App-logo-spin infinite 20s linear;
   }
 }*/
+
 html{
   background-color: #000000;
 }
 footer{
   background-color: black;
+  height: 100px;
 }
 div{
   background-color: #000000;

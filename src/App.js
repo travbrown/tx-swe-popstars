@@ -9,6 +9,7 @@ import {
   Link,
   Redirect
 } from "react-router-dom";
+import firebase from "./firebase"
 import DifficultyPage from "./pages";
 import StartPage from "./pages/start_game";
 import CountdownPage from "./pages/countdown";
