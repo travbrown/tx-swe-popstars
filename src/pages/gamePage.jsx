@@ -15,7 +15,7 @@ const GamePage = () => {
         spotifyApi.setAccessToken(access_token);
         //Couldn't get the Promise implementation to work
         //spotifyApi.setPromiseImplementation(Q);
-        spotifyApi.getPlaylistTracks('5I5JG3z1Bbk70WFz8i2OEf').then(
+        spotifyApi.getPlaylistTracks('4h4V4Cbn8sjznAc3uirZmK').then(
             function(data) {
                 let foundSongs = [];
                 let artist = [];
