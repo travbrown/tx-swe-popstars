@@ -1,13 +1,10 @@
 import React from "react";
 import "./App.css";
-import logo from './popstarslogo.png';
 import SpotifyLoginPage from "./SpotifyLoginPage";
 import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Link,
-  Redirect
 } from "react-router-dom";
 import DifficultyPage from "./pages/difficultyPage";
 import StartPage from "./pages/start_game";
@@ -30,9 +27,8 @@ function AllLogins() {
 }
 
 export default function App() {
-  
   return (
-    <div className="App">
+    <div className="App-login ">
       <Router>
         <Switch>
           <Route exact path="/" component={AllLogins} />

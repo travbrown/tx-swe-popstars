@@ -1,14 +1,15 @@
 body {
-	background: #00b4ff;
+
 	color: #333;
 	font: 100% Lato, Arial, Sans Serif;
-	height: 100vh;
 	margin: 0;
 	padding: 0;
 	overflow-x: hidden;
 }
 
 #background-wrap {
+
+	background: #00b4ff;
     bottom: 0;
 	left: 0;
 	position: fixed;
@@ -300,25 +301,27 @@ body {
 	color: #333;
 	font-family: Tahoma, Arial, sans-serif;
 }
-.popup .yes {
-    background-color: rgba(16, 179, 51, 0.911);
+
+.popup .quit {
+    background-color: rgba(139, 8, 8, 0.911);
     color: white;
 	padding: 0.8em 2em;
-	margin-left: 50px;
+	margin-left: 40px;
     text-decoration: none;
 	text-transform: uppercase;
-	font-size: 20px;
+	font-size: 15px;
 	font-weight: bold;
 	display: inline-block;
 }
-.popup .no {
-    background-color: rgba(139, 8, 8, 0.911);
+.popup .cancel {
+    background-color: rgba(119, 118, 118, 0.575);
     color: white;
 	padding: 0.8em 2em;
 	margin-left: 100px;
     text-decoration: none;
 	text-transform: uppercase;
-	font-size: 20px;
+
+	font-size: 15px;
 	font-weight: bold;
 	display: inline-block;
 }
