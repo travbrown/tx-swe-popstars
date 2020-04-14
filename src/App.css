@@ -20,7 +20,6 @@
   display: inline-block;
   text-transform: uppercase;
 }
-<<<<<<< HEAD
 h2{
   color: white; 
 }
@@ -31,7 +30,6 @@ button{
   width: 300px;
   height: 45px;
 }
-=======
 
 .item {
   width: 580px;
@@ -42,14 +40,12 @@ button{
   text-transform: uppercase;
 }
 
->>>>>>> afb9c1e93a2b472f7bbd9a1c5476654c09af6f1f
 .App-logo {
   /* height: 40vmin; */
   width: 100%;
   object-fit: scale-down;
   pointer-events: none;
 }
-<<<<<<< HEAD
 body{
   background-color: #000000;
 }
@@ -75,8 +71,6 @@ html{
 footer{
   background-color: black;
 }
-=======
->>>>>>> afb9c1e93a2b472f7bbd9a1c5476654c09af6f1f
 
 .App-header {
   min-height: 5vh;

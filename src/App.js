@@ -6,12 +6,8 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-<<<<<<< HEAD
 import firebase from "./firebase"
 import DifficultyPage from "./pages";
-=======
-import DifficultyPage from "./pages/difficultyPage";
->>>>>>> afb9c1e93a2b472f7bbd9a1c5476654c09af6f1f
 import StartPage from "./pages/start_game";
 import CountdownPage from "./pages/countdown";
 import GamePage from "./pages/gamePage";
