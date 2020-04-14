@@ -1,4 +1,5 @@
 body {
+
 	color: #333;
 	font: 100% Lato, Arial, Sans Serif;
 	margin: 0;
@@ -7,6 +8,7 @@ body {
 }
 
 #background-wrap {
+
 	background: #00b4ff;
     bottom: 0;
 	left: 0;
@@ -299,6 +301,7 @@ body {
 	color: #333;
 	font-family: Tahoma, Arial, sans-serif;
 }
+
 .popup .quit {
     background-color: rgba(139, 8, 8, 0.911);
     color: white;
@@ -317,6 +320,7 @@ body {
 	margin-left: 100px;
     text-decoration: none;
 	text-transform: uppercase;
+
 	font-size: 15px;
 	font-weight: bold;
 	display: inline-block;

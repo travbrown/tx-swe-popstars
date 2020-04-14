@@ -14,6 +14,7 @@ const MultiplayerPage = () => {
             <p></p>
             <Link to="/playerOne" class= "active_button"> Hard</Link>
             <p></p><p></p>
+
             <Link to="/difficultyPage" class= "default_button"> Back</Link>  
           </header>
         </div>

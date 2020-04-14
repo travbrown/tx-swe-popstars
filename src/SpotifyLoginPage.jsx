@@ -36,4 +36,5 @@ const SpotifyLoginPage = () => {
     </div>
   )
 };
+
 export default SpotifyLoginPage;

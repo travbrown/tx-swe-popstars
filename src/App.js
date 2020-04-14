@@ -4,8 +4,6 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Link,
-  Redirect
 } from "react-router-dom";
 import SpotifyLoginPage from "./SpotifyLoginPage";
 import DifficultyPage from "./pages/difficultyPage";

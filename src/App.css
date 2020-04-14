@@ -6,6 +6,18 @@
 
 .App-login {
   text-align: center;
+  /* text-align: left; */
+  background: #000000;
+  color: white;
+}
+
+.item {
+  width: 580px;
+  padding: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  display: inline-block;
+  text-transform: uppercase;
 }
 
 .item {
