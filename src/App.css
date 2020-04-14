@@ -1,5 +1,4 @@
 .App {
-  /* text-align: center; */
   text-align: left;
   background: #000000;
   color: white;
@@ -21,30 +20,21 @@
 h2{
   color: white; 
 }
-button{
-  color: black; 
-  background-color: #61dafb;
-  border-radius: 10px;
-  width: 300px;
-  height: 45px;
-}
+
+
 .App-logo {
   /* height: 40vmin; */
   width: 100%;
   object-fit: cover;
   pointer-events: none;
 }
-body{
-  background-color: #000000;
-}
+
 /*@media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }*/
-div{
-  background-color: #000000;
-}
+
 
 .App-header {
   background-color: black;

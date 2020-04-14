@@ -100,7 +100,6 @@ const CountdownPage = () => {
             </svg>
             <span id="base-timer-label" class="base-timer__label">{formatTime(timeLeft)}</span>
             </div>
-
         </header>
       </div>
     );

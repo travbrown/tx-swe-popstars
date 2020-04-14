@@ -10,7 +10,7 @@ const StartPage = () => {
         <Link to="/countdown" class= "active_button"> START GAME</Link>
         <p></p>
         <p></p>
-        <Link to="/difficultyPage" class= "default_button">Back</Link>       
+        <Link to="/gameMode" class= "default_button">Back</Link>       
       </header>
     </div>
   );
