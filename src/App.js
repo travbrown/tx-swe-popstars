@@ -6,8 +6,7 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-import firebase from "./firebase";
-import SpotifyLoginPage from "./SpotifyLoginPage";
+import SpotifyLoginPage from "./pages/SpotifyLoginPage";
 import DifficultyPage from "./pages/difficultyPage";
 import StartPage from "./pages/start_game";
 import CountdownPage from "./pages/countdown";

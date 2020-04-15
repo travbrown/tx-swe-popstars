@@ -1,78 +1,40 @@
-import React, { useState, useEffect } from 'react';
-import {
-    Link,
-} from "react-router-dom";
-
+import React from 'react';
+import logo from "../popstarslogo.png";
+import Button from '@material-ui/core/Button';
+import '../App.css';
 export const authEndpoint = 'https://accounts.spotify.com/authorize?';
 
-    const SpotifyLoginPage = () => {
-        const clientId = "d686743392b64810a7a8c2b5d56bf5c6";
-        const redirectUri = "http://localhost:3000/GameMode";
-        const scopes = [
-            "user-read-currently-playing",
-            "user-read-playback-state",
-        ];
-        // Get the hash of the url
-        const hash1 = window.location.hash
-            .substring(1)
-            .split("&")
-            .reduce(function (initial, item) {
-                if (item) {
-                    var parts = item.split("=");
-                    initial[parts[0]] = decodeURIComponent(parts[1]);
-                }
-                return initial;
-            }, {});
-        window.location.hash = "";
+const SpotifyLoginPage = () => {
+  //Lauren's
+  //const clientId = "d686743392b64810a7a8c2b5d56bf5c6";
 
-        const [isPlaying, setIsPlaying] = useState([]);
-        const [progressMs, setProgressMs] = useState([]);
-        const [token, setToken] = useState(null);
-        const [item, setItem] = useState({
-            album: {
-                images: [{ url: "" }]
-            },
-            name: "",
-            artists: [{ name: "" }],
-            duration_ms: 0,
-        });
-        function getCurrentlyPlaying(token) {
-            // Make a call using the token
-            fetch({
-                url: "https://api.spotify.com/v1/me/player",
-                type: "GET",
-                beforeSend: (xhr) => {
-                    xhr.setRequestHeader("Authorization", "Bearer " + token);
-                },
-                success: (data) => {
-                    this.setState({
-                        item: data.item,
-                        is_playing: data.is_playing,
-                        progress_ms: data.progress_ms,
-                    });
-                }
-            });
-        }
+  //Travis
+  const clientId = "6ba9b22fdb4e467197055100a53c4a90";
+  const redirectUri = "http://localhost:3000/gameMode";
 
-        useEffect(() => {
-            // Set token
-            let _token = hash1.access_token;
-            if (_token) {
-                // Set token
-                setToken({
-                    token: _token
-                });
-            }
-        });
-        return (
-            <div>
-                <button>
-                    <a href={`${authEndpoint}client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`} class="active_button">Login with Spotify</a>
-                </button>
-                <br></br>
-                
-            </div>
-        );
+  const scopes = [
+    "user-read-currently-playing",
+    "app-remote-control",
+    "streaming",
+    "user-modify-playback-state",
+    "playlist-modify-public",
+    "ugc-image-upload",
+    "user-read-playback-state"
+  ];
 
-    }
-export default SpotifyLoginPage; 
+  return (
+    <div style={{ height: "100vh", width: "100vw", margin: "auto" }}>
+      <img src={logo} className="App-logo" alt="logo" />
+      <Button
+        style={{ marginTop: "-300px", height: "100px", width: "400px", fontSize: "30px"}}
+        variant="outlined"
+        color="secondary"
+        href={`${authEndpoint}client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`}
+      >
+        Login with Spotify
+      </Button>
+    </div>
+  )
+};
+
+export default SpotifyLoginPage;
