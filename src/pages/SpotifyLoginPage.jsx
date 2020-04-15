@@ -1,7 +1,7 @@
 import React from 'react';
-import logo from "./popstarslogo.png";
+import logo from "../popstarslogo.png";
 import Button from '@material-ui/core/Button';
-import './App.css';
+import '../App.css';
 export const authEndpoint = 'https://accounts.spotify.com/authorize?';
 
 const SpotifyLoginPage = () => {
