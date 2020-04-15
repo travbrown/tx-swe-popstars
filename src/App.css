@@ -1,7 +1,7 @@
 .App {
   text-align: left;
-  background: #000000;
-  color: white;
+  background: white;
+  color: black;
 }
 
 .App-login {
@@ -53,7 +53,7 @@ body{
     animation: App-logo-spin infinite 20s linear;
   }
 }*/
-
+/*
 html{
   background-color: #000000;
 }
@@ -69,15 +69,23 @@ html{
 }
 footer{
   background-color: black;
-}
+}*/
 
 /*@media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }*/
-
-
+#inputNames{
+  color: #61dafb;
+}
+textarea{
+  border-radius: 10px;
+  -webkit-box-shadow: inset 5px 5px 5px 0px #dddddd;
+  -moz-box-shadow: inset 5px 5px 5px 0px #dddddd;
+  box-shadow: inset 2px 2px 2px 0px #dddddd;
+  color: black;
+}
 .App-header {
   background-color: #000000;
   min-height: 100vh;
@@ -89,7 +97,9 @@ footer{
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
+*{
+  font-family: 'Fredoka One', cursive;
+}
 
 .App-link {
   color: #61dafb;
