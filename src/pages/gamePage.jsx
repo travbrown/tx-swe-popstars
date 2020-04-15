@@ -27,8 +27,18 @@ let artistsFaces = [
 ]
 
 const Bubble = ({ number, hasArtist, image, name }) => {
+    const [clicked, setClicked] = useState(false);
+    
+    //When right answer is clicked update score
+    const checkAnswer = ()=> {
+        setClicked(true)
+        alert('wrong')
+    }
+
     return (
-      <div class={`bubble x${number}`} onClick={() =>alert()}>
+      <div class={`bubble x${number}`}  
+      style={{ display: clicked ? "none" : "flex" }}
+      onClick={checkAnswer} >
         <img
           style={{
             display: hasArtist ? "inline-block" : "none",
