@@ -1,4 +1,6 @@
+//import React from "react";
 import firebase from "firebase";
+import './App.css';
 
 console.log("App!!!");
  
@@ -27,8 +29,9 @@ console.log("App!!!");
  });
   
  //Leaderboard Code
+ 
  var leader = firebase.firestore().collection("Users");
- var query = leader.where("Score",">=", 325);
+ var query = leader.where("Score",">=", 325).orderBy("Score","desc");
  query.get()
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
@@ -39,5 +42,7 @@ console.log("App!!!");
     .catch(function(error) {
         console.log("Error getting documents: ", error);
     });
+    export default function Leaderboard() {
+ }
 
-export default Leaderboard;
+ //console.log(Leaderboard);
