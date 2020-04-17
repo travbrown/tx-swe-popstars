@@ -6,7 +6,7 @@ const MultiplayerPage = () => {
         <div className="App">
           <div class ="item">Username</div>
           <div class ="item">Difficulty</div> 
-    
+          
           <header className="App-header">
             <Link to="/playerOne" class= "active_button"> Easy</Link>
             <p></p>
