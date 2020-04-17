@@ -9,6 +9,7 @@ const TimeUp1 = () => {
                 <h1> TIME'S UP!</h1>
                 <h2> Score: 0 </h2>
                 <h1> PLAYER TWO'S TURN</h1>
+                <p></p> <p></p>
                 <Link to="/playerTwo" class= "active_button"> START</Link> 
             </header>
         </div>

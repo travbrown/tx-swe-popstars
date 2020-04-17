@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from "react";
-import {Howl, Howler} from 'howler';
-import SpotifyWebApi from 'spotify-web-api-js';
-import './gamePage.css';
+import React, { useState, useEffect } from "react";
+import { Howl } from "howler";
+import SpotifyWebApi from "spotify-web-api-js";
+import "./gamePage.css";
 import asap_ferg from "../photos/ASAP_Ferg.png";
 import asap_rocky from "../photos/ASAP_Rocky.png";
 import cardi_b from "../photos/cardi_b.png";
@@ -14,25 +14,30 @@ import nicki_minaj from "../photos/nicki_minaj.png";
 import beyonce from "../photos/Beyonce.png";
 
 let artistsFaces = [
-    {name: 'ASAP Ferg', image: asap_ferg},
-    {name: 'ASAP Rocky', image: asap_rocky},
-    {name: 'Cardi B', image: cardi_b},
-    {name: 'Drake', image: drake},
-    {name: 'Lil Wayne', image: lil_wayne},
-    {name: 'Tupac', image: tupac},
-    {name: 'Kanye West', image: kanye_west},
-    {name: 'Jcole', image: jcole},
-    {name: 'Nicki Minaj', image: nicki_minaj},
-    {name: 'Beyonce', image: beyonce},
-]
+  { name: "A$AP Ferg", image: asap_ferg },
+  { name: "A$AP Rocky", image: asap_rocky },
+  { name: "Cardi B", image: cardi_b },
+  { name: "Drake", image: drake },
+  { name: "Lil Wayne", image: lil_wayne },
+  { name: "Tupac", image: tupac },
+  { name: "Kanye West", image: kanye_west },
+  { name: "Jcole", image: jcole },
+  { name: "Nicki Minaj", image: nicki_minaj },
+  { name: "Beyonce", image: beyonce }
+];
 
 const Bubble = ({ number, hasArtist, image, name }) => {
     const [clicked, setClicked] = useState(false);
-    
+    //const [correctAnswer, setCorrectAnswer] = useState([]);
+
     //When right answer is clicked update score
     const checkAnswer = ()=> {
         setClicked(true)
-        alert('wrong')
+        //alert('wrong')
+        // if (correctAnswer.includes(name)) {
+        //     //do something 
+        //     //correctAnswer = {item.name}
+        // }
     }
 
     return (
@@ -47,7 +52,7 @@ const Bubble = ({ number, hasArtist, image, name }) => {
             objectFit: "cover",
             borderRadius: "50%"
           }}
-          alt="bubble pic"
+          alt= "bubble pic"
           src={image}
         />
       </div>
@@ -55,96 +60,108 @@ const Bubble = ({ number, hasArtist, image, name }) => {
   };
 
 const GamePage = () => {
+  const spotifyApi = new SpotifyWebApi();
+  const [playlist, setPlaylists] = useState(null);
+  const [track, setTrack] = useState(null);
+  const [trackIndex, setTrackIndex] = useState(0);
+  const [soundHowl, setSoundHowl] = useState(null);
+  const [artists, setArtists] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
-    const spotifyApi = new SpotifyWebApi();
-    const [songLoadState, setSongLoadState] = useState(false);
-    const [songs, setSong] = useState([]);
-    const [artists, setArtists] = useState([]);
-    // const [playlist, setPlaylist] = useState([]);
+  const doSumn = async token => {
+    await getPlaylist(token);
+  };
+  useEffect(() => {
+    let token = localStorage.getItem("access_token");
+    doSumn(token);
+  }, []);
 
-
-    function getPlaylist(access_token) {
-        spotifyApi.setAccessToken(access_token);
-        //Couldn't get the Promise implementation to work
-        //spotifyApi.setPromiseImplementation(Q);
-        spotifyApi.getPlaylistTracks('4h4V4Cbn8sjznAc3uirZmK').then(
-            function(data) {
-                let foundSongs = [];
-                let artist = [];
-                //console.log('My Rap Playlist', data.items);
-                data.items.forEach(item => {
-                    if(item.track.preview_url !== null && foundSongs.length < 10){
-                        artist.push(item.track.artists[0].name);
-                        foundSongs.push(item.track.preview_url);
-                    }     
-                });   
-                console.log(artist);
-                setArtists(artist);
-                setSong(foundSongs);             
-                //playMusic(foundSongs);
-            },
-            function(err) {
-                console.error(err);
+  const getPlaylist = async access_token => {
+    spotifyApi.setAccessToken(access_token);
+    //Couldn't get the Promise implementation to work
+    //spotifyApi.setPromiseImplementation(Q);
+    await spotifyApi
+      .getPlaylistTracks("4h4V4Cbn8sjznAc3uirZmK")
+      .then(
+        function(data) {
+          let foundSongs = [];
+          let artist = [];
+          //console.log('My Rap Playlist', data.items);
+          data.items.forEach(item => {
+            if (item.track.preview_url !== null && foundSongs.length < 10) {
+              artist.push(item.track.artists[0].name);
+              foundSongs.push(item.track.preview_url);
             }
-        );
-    }
-    
-    function playMusic(song) {
-        const sound = new Howl({
-            src: [song],
-            html5: true,
-            format: ["mp3", "aac"],
-            autoplay: false,
-            loop: false,
-            volume: 0.5,
-            onload: function(){
-                console.log('LOADED!!');
-                //setSongLoadState(true);
-            },
-            onend: function() {
-                console.log("Finished!");
-            }
-            
-        });
-        sound.play();
-    }
+          });
+          setTrack(foundSongs[trackIndex]);
+          setArtists(artist);
+          setPlaylists(foundSongs);
+        },
+        function(err) {
+          console.error(err);
+        }
+      )
+      .catch(e => console.log(e));
+    document.getElementById("autoPlay").click();
+  };
 
-    useEffect(() => {
-        let token = localStorage.getItem('access_token');
-        getPlaylist(token);
-        document.getElementById("autoPlay").click();
-    },[]);
-
-    return (
-      <div className="App">
-            <button id="autoPlay" style={{ display: "none" }} onClick={playMusic(songs)}>
-                can you see me?
-            </button>
-            <div class ="item">Username</div>
-            <div class ="item">score: 0</div>   
-            <div id="background-wrap">
-            
-            {artistsFaces.map((item, idx) => (
-                <>
-                <Bubble
-                key={idx}
-                image={item.image}
-                hasArtist
-                number={idx} />
-                </>
-            ))}
-
-            </div>
-            <a class="quit_button" href="#quit_button"> QUIT</a> 
-            <div id="quit_button" class="overlay">
-            <div class="popup">
-                <h2> Are you sure you want to quit? </h2>
-                <a class = "quit" href="/gameMode"> QUIT </a>
-                <a class = "cancel" href="#"> CANCEL </a>
-            </div>
-            </div>
-        </div>
+  useEffect(() => {
+    if (soundHowl) soundHowl.play();
+  }, [soundHowl]);
+  const playMusic = () => {
+    setSoundHowl(
+      new Howl({
+        src: [track],
+        html5: true,
+        format: ["mp3", "aac"],
+        autoplay: false,
+        loop: false,
+        volume: 0.5,
+        onload: function() {
+          console.log("LOADED!!");
+          //setSongLoadState(true);
+        },
+        onend: function() {
+          console.log("Finished!");
+        }
+      })
     );
   };
-  
-  export default GamePage;
+
+  return (
+    <div className="App">
+      <button
+        id="autoPlay"
+        style={{ display: "none" }}
+        onClick={playMusic} > can you see me? </button>
+      <div class="item">Username</div>
+      <div class="item">score: </div>
+      <div id="background-wrap">
+        {artistsFaces.map((item, idx) => (
+          <>
+            <Bubble
+              key={idx}
+              image={item.image}
+              hasArtist
+              number={idx}
+              name={item.name}
+            />
+          </>
+        ))}
+      </div>
+      <button className = "quit_button" onClick={() => setShowModal(true)}> QUIT </button>
+      <div
+        className={showModal ? "modal show" : "modal"}
+        onClick={() => setShowModal(false)}
+      >
+        <div id="modalContainer" >
+            <h1>Are you sure you want to quit?</h1>
+            <a class='quit' href='/gameMode'> QUIT </a>
+            <a class='cancel' href= '#'> CANCEL </a>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default GamePage;

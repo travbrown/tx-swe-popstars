@@ -249,17 +249,6 @@
 	width: 180px;
 }
   
-.box {
-	width: 40%;
-	margin: 0 auto;
-	background: rgba(255,255,255,0.2);
-	padding: 35px;
-	border: 2px solid #fff;
-	border-radius: 20px/50px;
-	background-clip: padding-box;
-	text-align: center;
-}
-  
 .quit_button {
     background-color: rgba(139, 8, 8, 0.911);
     color: white;
@@ -268,36 +257,7 @@
     text-transform: uppercase;
 }
   
-.overlay {
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background: rgba(0, 0, 0, 0.7);
-	transition: opacity 500ms;
-	visibility: hidden;
-	opacity: 0;
-}
-.overlay:target {
-	visibility: visible;
-	opacity: 1;
-}
-
-.popup {
-	margin: 70px auto;
-	padding: 20px;
-	background: #fff;
-	border-radius: 5px;
-	width: 30%;
-	position: fixed;
-	top: 40%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	transition: all 5s ease-in-out;
-	
-}
-.popup h2 {
+.h2 {
 	margin-top: 0;
 	padding: 20px;
 	padding-bottom: 40px;
@@ -305,28 +265,62 @@
 	font-family: Tahoma, Arial, sans-serif;
 }
 
-.popup .quit {
+.quit {
     background-color: rgba(139, 8, 8, 0.911);
     color: white;
-	padding: 0.8em 2em;
-	margin-left: 40px;
+	padding: 0.9em 3em;
+	margin-left: 30px;
+	margin-top: 60px;
+	text-transform: uppercase;
+	font-size: 15px;
+	font-weight: bold;
+	display: inline-block;
+}
+a.quit:hover,
+a.quit:focus {
+  text-decoration: none;
+}
+
+.cancel {
+    background-color: rgba(119, 118, 118, 0.575);
+    color: white;
+	padding: 0.9em 3em;
+	margin-left: 80px;
     text-decoration: none;
 	text-transform: uppercase;
 	font-size: 15px;
 	font-weight: bold;
 	display: inline-block;
 }
-.popup .cancel {
-    background-color: rgba(119, 118, 118, 0.575);
-    color: white;
-	padding: 0.8em 2em;
-	margin-left: 100px;
-    text-decoration: none;
-	text-transform: uppercase;
+a.cancel:hover,
+a.cancel:focus {
+  text-decoration: none;
+}
 
-	font-size: 15px;
-	font-weight: bold;
-	display: inline-block;
+.modal {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	display: none;
+	transition: all 0.35s;
+}
+
+.modal.show {
+	display: flex !important;
+	justify-content: center;
+	align-items: center;
+	z-index: 100;
+	background: rgba(0, 0, 0, 0.7);
+}
+
+#modalContainer {
+	width: 40%;
+	height: 30%;
+	padding-top: 20px;
+	border-radius: 20px;
+	background: #fff;
+	text-align: center;
 }
 
 @media screen and (max-width: 700px){
