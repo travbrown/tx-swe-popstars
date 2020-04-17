@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import { Howl } from 'howler';
 import SpotifyWebApi from 'spotify-web-api-js';
 import './gamePage.css';
@@ -14,8 +14,8 @@ import nicki_minaj from '../photos/nicki_minaj.png';
 import beyonce from '../photos/Beyonce.png';
 
 let artistsFaces = [
-    { name: 'ASAP Ferg', image: asap_ferg },
-    { name: 'ASAP Rocky', image: asap_rocky },
+    { name: 'A$AP Ferg', image: asap_ferg },
+    { name: 'A$AP Rocky', image: asap_rocky },
     { name: 'Cardi B', image: cardi_b },
     { name: 'Drake', image: drake },
     { name: 'Lil Wayne', image: lil_wayne },
@@ -26,24 +26,6 @@ let artistsFaces = [
     { name: 'Beyonce', image: beyonce },
 ];
 
-const Bubble = ({ number, hasArtist, image, name }) => {
-    return (
-        <div class={`bubble x${number}`} onClick={() => alert()}>
-            <img
-                style={{
-                    display: hasArtist ? 'inline-block' : 'none',
-                    height: '100%',
-                    width: '100%',
-                    objectFit: 'cover',
-                    borderRadius: '50%',
-                }}
-                alt='bubble pic'
-                src={image}
-            />
-        </div>
-    );
-};
-
 const GamePage = () => {
     const spotifyApi = new SpotifyWebApi();
     const [playlist, setPlaylists] = useState(null);
@@ -51,6 +33,24 @@ const GamePage = () => {
     const [trackIndex, setTrackIndex] = useState(0);
     const [soundHowl, setSoundHowl] = useState(null);
     const [artists, setArtists] = useState([]);
+
+    const Bubble = ({ number, hasArtist, image, name }) => {
+        return (
+            <div class={`bubble x${number}`} onClick={() => bubbleCheck(name)}>
+                <img
+                    style={{
+                        display: hasArtist ? 'inline-block' : 'none',
+                        height: '100%',
+                        width: '100%',
+                        objectFit: 'cover',
+                        borderRadius: '50%',
+                    }}
+                    alt='bubble pic'
+                    src={image}
+                />
+            </div>
+        );
+    };
 
     const doSumn = async (token) => {
         await getPlaylist(token);
@@ -60,6 +60,31 @@ const GamePage = () => {
         doSumn(token);
         console.log('3');
     }, []);
+
+    /**
+     * if you click a bubble,
+     * it checks if the artist in the bubble is the artist of the song playing
+     *  if yes:
+     *      - artistFound()
+     *        - pop bubble, 
+     *        - stop current song, 
+     *        - increment index
+     *          start over with new song
+     */
+    const bubbleCheck = (name) => {
+        if(name === artists[trackIndex]){
+            artistsFound();
+        }
+    }
+
+    const artistsFound = () => {
+        //TODO: POP THE BUBBLE
+        soundHowl.stop();
+        // setTrackIndex(trackIndex+1);
+        // console.log(trackIndex)
+        // setTrack(playlist[trackIndex]);
+        // playMusic();
+    }
 
     const getPlaylist = async (access_token) => {
         spotifyApi.setAccessToken(access_token);
@@ -83,7 +108,7 @@ const GamePage = () => {
                         }
                     });
                     setTrack(foundSongs[trackIndex]);
-                    console.log(`setting track to: ${foundSongs[trackIndex]}`);
+                    //console.log(`setting track to: ${foundSongs[trackIndex]}`);
                     setArtists(artist);
                     setPlaylists(foundSongs);
                 },
@@ -140,6 +165,7 @@ const GamePage = () => {
                             image={item.image}
                             hasArtist
                             number={idx}
+                            name={item.name}
                         />
                     </>
                 ))}
