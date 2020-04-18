@@ -42,8 +42,7 @@ const GamePage = () => {
     const checkAnswer = ()=> {
         setClicked(true)
         if (name === artists[trackIndex]) {
-            console.log("correct artist");
-            updateScore();
+            setScore(score + 5);
         }
     };
   
@@ -125,10 +124,6 @@ const GamePage = () => {
       })
     );
   };
-
-    const updateScore = () => {
-        setScore(score + 5);
-    };
 
   return (
     <div className="App">
