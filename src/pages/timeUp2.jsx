@@ -9,7 +9,8 @@ const TimeUp2 = () => {
                 <h1> TIME'S UP!</h1>
                 <h2> Score: 10 </h2>
                 <h1> PLAYER TWO WINS</h1>
-                <Link to="/" class= "active_button"> HOME </Link> 
+                <p></p> <p></p>
+                <Link to="/gameMode" class= "active_button"> HOME </Link> 
             </header>
         </div>
     );

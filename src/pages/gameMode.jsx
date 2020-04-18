@@ -34,6 +34,7 @@ const GameMode = () => {
     return (
       <div className="App">
         <div class ="item">Username</div>
+        <div class ="item">Game Mode</div> 
         <header className="App-header">
             <Link to="/difficultyPage" class= "active_button"> Single Player</Link>
             <p></p>

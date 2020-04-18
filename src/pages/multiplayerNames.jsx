@@ -15,10 +15,11 @@ function NameOneInput(){
         history.push("/multiplayerPage");
     
     }
+
     
     const [name1, setName1] = useState("");
     const [name2, setName2] = useState(""); 
-    
+
  return( 
      
     <div className="App">
