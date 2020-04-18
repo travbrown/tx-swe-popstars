@@ -1,11 +1,12 @@
 import React from "react";
+import {logo} from "./popstarslogo.png"; 
 import "./App.css";
 import {
   BrowserRouter as Router,
   Route,
   Switch,
 } from "react-router-dom";
-import SpotifyLoginPage from "./SpotifyLoginPage";
+import SpotifyLoginPage from "./pages/SpotifyLoginPage";
 import DifficultyPage from "./pages/difficultyPage";
 import StartPage from "./pages/start_game";
 import CountdownPage from "./pages/countdown";
@@ -18,6 +19,8 @@ import PlayerTwoGamePage from "./pages/playerTwoGame";
 import TimeUp1 from "./pages/timeUp1";
 import TimeUp2 from "./pages/timeUp2";
 import GameMode from './pages/gameMode';
+import NameOneInput from "./pages/multiplayerNames";
+
 
 function AllLogins() {
   return (
@@ -27,9 +30,13 @@ function AllLogins() {
   );
 }
 
+
 export default function App() {
   return (
     <div className="App-login ">
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Fredoka+One&family=Press+Start+2P&family=Russo+One&display=swap');
+</style>
       <Router>
         <Switch>
           <Route exact path="/" component={AllLogins} />
@@ -45,6 +52,7 @@ export default function App() {
           <Route exact path="/playerTwoGame" component={PlayerTwoGamePage} />
           <Route exact path="/timeUp1" component={TimeUp1} />
           <Route exact path="/timeUp2" component={TimeUp2} />
+          <Route exact path="/multiplayerNames" component={NameOneInput} />
         </Switch>
       </Router>
     </div>

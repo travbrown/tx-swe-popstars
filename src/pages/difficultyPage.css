@@ -44,7 +44,7 @@ a.quit_button:focus {
 }
 
 .App-header {
-  background-color: #000000;
+  background-color: black;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

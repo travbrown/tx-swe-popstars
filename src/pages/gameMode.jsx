@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import { Link } from "react-router-dom";
-
+import { useHistory } from 'react-router-dom';
 const GameMode = () => {
 
     function getParameterByName(name) {
@@ -18,7 +18,19 @@ const GameMode = () => {
         let access_token = getAccessToken();
         localStorage.setItem('access_token', access_token);
     }, []);
-
+    function MultiPName(){
+      const history = useHistory();
+  
+      const handleClick = () => {
+          history.push("/multiplayerNames");
+      }
+      return (
+        <button class= "active_button" onClick={handleClick}>
+          MultiPlayer
+        </button>
+      );
+    }
+  
     return (
       <div className="App">
         <div class ="item">Username</div>
@@ -26,7 +38,8 @@ const GameMode = () => {
         <header className="App-header">
             <Link to="/difficultyPage" class= "active_button"> Single Player</Link>
             <p></p>
-            <Link to="/multiplayerPage" class= "active_button"> MultiPlayer</Link>      
+            
+            <MultiPName></MultiPName>      
         </header>
       </div>
     );
