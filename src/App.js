@@ -6,7 +6,7 @@ import {
   Switch,
 } from "react-router-dom";
 import SpotifyLoginPage from "./SpotifyLoginPage";
-import firebase from "firebase";
+import Leaderboard from "./Leaderboard";
 import DifficultyPage from "./pages/difficultyPage";
 import StartPage from "./pages/start_game";
 import CountdownPage from "./pages/countdown";
@@ -28,6 +28,15 @@ function AllLogins() {
   );
 }
 
+function LeaderboardInfo()
+{
+  return (
+    <div>
+      <Leaderboard />
+    </div>
+  )
+}
+
 export default function App() {
   return (
     <div className="App-login ">
@@ -39,6 +48,7 @@ export default function App() {
           <Route exact path="/start_game" component={StartPage} />
           <Route exact path="/countdown" component={CountdownPage} />
           <Route exact path="/gamePage" component={GamePage} />
+          <Route exact path="/" component={LeaderboardInfo} />
           <Route exact path="/multiplayerPage" component={MultiplayerPage} />
           <Route exact path="/playerOne" component={PlayerOnePage} />
           <Route exact path="/playerOneGame" component={PlayerOneGamePage} />

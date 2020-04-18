@@ -1,9 +1,15 @@
-//import React from "react";
 import firebase from "firebase";
+import React from "react";
 import './App.css';
 
 console.log("App!!!");
- 
+/*<div class = "info"> <form id="myform" method="post" >
+    <input type="username" id="userName" placeholder="Enter Username" />
+    <input type="score" id="userScore" placeholder="Score" />
+    <button id="Submitinfo" onclick="Submitinfo(); return false;">Submit</button>
+</form>
+</div>
+ */
   /*
   firebase.firestore().collection("kristak").doc("testID").get().then(function(doc) {
       if (doc.exists) {
@@ -17,6 +23,7 @@ console.log("App!!!");
   });
   */
    //Added a new collection, users
+
  firebase.firestore().collection("Users").doc("Tariq").set({
   Username : "Tariqqqq123",
   Score : 325
