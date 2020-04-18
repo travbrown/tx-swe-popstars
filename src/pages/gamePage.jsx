@@ -15,7 +15,7 @@ import beyonce from "../photos/Beyonce.png";
 
 let artistsFaces = [
     { name: "A$AP Ferg", image: asap_ferg },
-    { name: "A$AP Rocky", image: asap_rocky },
+    { name: "A$AP Rocky", image: asap_rocky},
     { name: "Cardi B", image: cardi_b },
     { name: "Drake", image: drake },
     { name: "Lil Wayne", image: lil_wayne },
@@ -34,7 +34,6 @@ const GamePage = () => {
   const [soundHowl, setSoundHowl] = useState(null);
   const [artists, setArtists] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const [correctAnswer, setCorrectAnswer] = useState([]);
   const [score, setScore] = useState(0);
 
 
@@ -42,7 +41,7 @@ const GamePage = () => {
     const [clicked, setClicked] = useState(false);
     const checkAnswer = ()=> {
         setClicked(true)
-        if (correctAnswer.includes(name) === artists[trackIndex]) {
+        if (name === artists[trackIndex]) {
             console.log("correct artist");
             updateScore();
         }
