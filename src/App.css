@@ -1,7 +1,7 @@
 .App {
   text-align: left;
-  background: #000000;
-  color: white;
+  background: white;
+  color: black;
 }
 
 .App-login {
@@ -9,42 +9,14 @@
   background: #000000;
   color: white;
 }
-
-.item {
-  width: 580px;
-  padding: 20px;
-  font-size: 30px;
-  font-weight: bold;
-  display: inline-block;
-  text-transform: uppercase;
+.active_button{
+  -webkit-box-shadow: inset 5px 5px 5px 0px #dddddd;
+  -moz-box-shadow: inset 5px 5px 5px 0px #dddddd;
+  box-shadow: inset 2px 2px 2px 0px #dddddd;
+  box-shadow:
+			0 0 4rem 0 rgba(black, 0.1),
+			0 1rem 2rem -1rem rgba(black, 0.3);
 }
-
-.item {
-  width: 580px;
-  padding: 20px;
-  font-size: 30px;
-  font-weight: bold;
-  display: inline-block;
-  text-transform: uppercase;
-}
-
-h2{
-  color: white; 
-}
-
-
-.App-logo {
-  /* height: 40vmin; */
-  width: 100%;
-  object-fit: cover;
-  pointer-events: none;
-}
-
-/*@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}*/
 
 
 .App-header {
@@ -59,6 +31,101 @@ h2{
 }
 
 
+.item {
+  width: 580px;
+  padding: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  display: inline-block;
+  text-transform: uppercase;
+}
+h2{
+  color: white; 
+}
+button{
+  color: black; 
+  background-color: #03D4EF;
+  border-radius: 10px;
+  width: 300px;
+  height: 45px;
+  color: white;
+  text-align: center;
+}
+
+input{
+  width: 350px;
+  height: 60px;
+  border-radius: 10px;
+ 
+}
+.item {
+  width: 580px;
+  padding: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  display: inline-block;
+  text-transform: uppercase;
+  box-shadow:
+			0 0 4rem 0 rgba(black, 0.1),
+			0 1rem 2rem -1rem rgba(black, 0.3);
+}
+
+#next{
+  font-size: calc(10px + 2vmin);
+  color: white; 
+  background-color: #EB573B;
+  border-radius: 10px;
+  width: 350px;
+  height: 60px;
+  border: none; 
+  -webkit-box-shadow: inset 5px 5px 5px 0px #dddddd;
+  -moz-box-shadow: inset 5px 5px 5px 0px #dddddd;
+  box-shadow: inset 2px 2px 2px 0px #dddddd;
+  box-shadow:
+			0 0 4rem 0 rgba(black, 0.1),
+			0 1rem 2rem -1rem rgba(black, 0.3);
+}
+.App-logo {
+  /* height: 40vmin; */
+  width: 100%;
+  object-fit: scale-down;
+  pointer-events: none;
+}
+body{
+  background-color: #000000;
+}
+
+
+#inputNames{
+  color: white;
+}
+textarea{
+  width: 350px;
+  height: 60px;
+  border-radius: 10px;
+  -webkit-box-shadow: inset 5px 5px 5px 0px #dddddd;
+  -moz-box-shadow: inset 5px 5px 5px 0px #dddddd;
+  box-shadow: inset 2px 2px 2px 0px #dddddd;
+  box-shadow:
+			0 0 4rem 0 rgba(black, 0.1),
+			0 1rem 2rem -1rem rgba(black, 0.3);
+  color: black;
+}
+.App-header {
+  background-color: #000000;
+  min-height: 100vh;
+  /* min-height: 5vh; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+*{
+  font-family: 'Fredoka One', cursive;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -70,4 +137,9 @@ h2{
   to {
     transform: rotate(360deg);
   }
+}
+.default_button{
+  -webkit-box-shadow: inset 5px 5px 5px 0px #dddddd;
+  -moz-box-shadow: inset 5px 5px 5px 0px #dddddd;
+  box-shadow: inset 2px 2px 2px 0px #dddddd;
 }
