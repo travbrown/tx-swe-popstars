@@ -14,51 +14,18 @@ import nicki_minaj from "../photos/nicki_minaj.png";
 import beyonce from "../photos/Beyonce.png";
 
 let artistsFaces = [
-  { name: "A$AP Ferg", image: asap_ferg },
-  { name: "A$AP Rocky", image: asap_rocky },
-  { name: "Cardi B", image: cardi_b },
-  { name: "Drake", image: drake },
-  { name: "Lil Wayne", image: lil_wayne },
-  { name: "Tupac", image: tupac },
-  { name: "Kanye West", image: kanye_west },
-  { name: "Jcole", image: jcole },
-  { name: "Nicki Minaj", image: nicki_minaj },
-  { name: "Beyonce", image: beyonce }
+    { name: "A$AP Ferg", image: asap_ferg },
+    { name: "A$AP Rocky", image: asap_rocky },
+    { name: "Cardi B", image: cardi_b },
+    { name: "Drake", image: drake },
+    { name: "Lil Wayne", image: lil_wayne },
+    { name: "Tupac", image: tupac },
+    { name: "Kanye West", image: kanye_west },
+    { name: "Jcole", image: jcole },
+    { name: "Nicki Minaj", image: nicki_minaj },
+    { name: "Beyonce", image: beyonce }
 ];
-
-const Bubble = ({ number, hasArtist, image, name }) => {
-    const [clicked, setClicked] = useState(false);
-    //const [correctAnswer, setCorrectAnswer] = useState([]);
-
-    //When right answer is clicked update score
-    const checkAnswer = ()=> {
-        setClicked(true)
-        //alert('wrong')
-        // if (correctAnswer.includes(name)) {
-        //     //do something 
-        //     //correctAnswer = {item.name}
-        // }
-    }
-
-    return (
-      <div class={`bubble x${number}`}  
-      style={{ display: clicked ? "none" : "flex" }}
-      onClick={checkAnswer} >
-        <img
-          style={{
-            display: hasArtist ? "inline-block" : "none",
-            height: "100%",
-            width: "100%",
-            objectFit: "cover",
-            borderRadius: "50%"
-          }}
-          alt= "bubble pic"
-          src={image}
-        />
-      </div>
-    );
-  };
-
+  
 const GamePage = () => {
   const spotifyApi = new SpotifyWebApi();
   const [playlist, setPlaylists] = useState(null);
@@ -67,7 +34,39 @@ const GamePage = () => {
   const [soundHowl, setSoundHowl] = useState(null);
   const [artists, setArtists] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [correctAnswer, setCorrectAnswer] = useState([]);
+  const [score, setScore] = useState(0);
 
+
+  const Bubble = ({ number, hasArtist, image, name }) => {
+    const [clicked, setClicked] = useState(false);
+    const checkAnswer = ()=> {
+        setClicked(true)
+        if (correctAnswer.includes(name) === artists[trackIndex]) {
+            console.log("correct artist");
+            updateScore();
+        }
+    };
+  
+    return (
+        <div class={`bubble x${number}`}  
+        style={{ display: clicked ? "none" : "flex" }}
+        onClick={checkAnswer} >
+          <img
+            style={{
+              display: hasArtist ? "inline-block" : "none",
+              height: "100%",
+              width: "100%",
+              objectFit: "cover",
+              borderRadius: "50%"
+            }}
+            alt= "bubble pic"
+            src={image}
+          />
+        </div>
+      );
+    };
+ 
   const doSumn = async token => {
     await getPlaylist(token);
   };
@@ -128,14 +127,20 @@ const GamePage = () => {
     );
   };
 
+    const updateScore = () => {
+        setScore(score + 5);
+    };
+
   return (
     <div className="App">
-      <button
+    <button
         id="autoPlay"
         style={{ display: "none" }}
-        onClick={playMusic} > can you see me? </button>
-      <div class="item">Username</div>
-      <div class="item">score: </div>
+        onClick={playMusic} > can you see me? 
+    </button>
+    <div class="item">Username</div>
+    <div class="item">SCORE: {score}</div>
+      
       <div id="background-wrap">
         {artistsFaces.map((item, idx) => (
           <>
