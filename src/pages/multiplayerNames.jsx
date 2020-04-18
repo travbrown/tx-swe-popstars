@@ -14,8 +14,6 @@ function NameOneInput(){
         
     }
 
-    
-    
  return( 
      
     <div className="App">

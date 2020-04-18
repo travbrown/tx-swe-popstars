@@ -252,7 +252,8 @@
 .quit_button {
     background-color: rgba(139, 8, 8, 0.911);
     color: white;
-    padding: 0.8em 2em;
+	padding: 0.8em 2em;
+	width: 100px;
     text-decoration: none;
     text-transform: uppercase;
 }
