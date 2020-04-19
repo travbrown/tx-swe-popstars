@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../popstarslogo.png"
-
+import {PlayerOneName} from './multiplayerNames'; 
 const MultiplayerPage = () => {
     return (
         <div className="App">
           <div class ="item">
+            <h2><PlayerOneName/></h2>
             <li id="username">Username </li>
             <li id="subject"><center>Difficulty </center></li>
           </div>

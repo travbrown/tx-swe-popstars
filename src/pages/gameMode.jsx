@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
 import logo from "../popstarslogo.png"
+
 const GameMode = () => {
 
     function getParameterByName(name) {
@@ -14,14 +15,14 @@ const GameMode = () => {
     }
 
     useEffect(() => {
-        // Set token
-        console.log("UseEffect activated");
-        let access_token = getAccessToken();
-        localStorage.setItem('access_token', access_token);
-    }, []);
+      // Set token
+      console.log("UseEffect activated");
+      let access_token = getAccessToken();
+      localStorage.setItem('access_token', access_token);
+  }, []);
     function MultiPName(){
       const history = useHistory();
-  
+
       const handleClick = () => {
           history.push("/multiplayerNames");
       }
@@ -31,9 +32,8 @@ const GameMode = () => {
         </button>
       );
     }
-  
-    return (
-      
+    
+    return (      
       <div className="App">
         <div class ="item">
           <li id="username">Username</li>
@@ -51,5 +51,4 @@ const GameMode = () => {
       </div>
     );
   };
-  
-export default GameMode; 
+  export default GameMode; 
