@@ -43,14 +43,14 @@ const GamePage = () => {
 
 	const Bubble = ({ number, hasArtist, image, name }) => {
     
-    const [clicked, setClicked] = useState(false);
-    
-    const checkAnswer = () => {
-        setClicked(true);
-        if (name === artists[artistIndex]) {
-            setScore(score + 5);
-            nextSong();
-        }
+		const [clicked, setClicked] = useState(false);
+		
+		const checkAnswer = () => {
+			setClicked(true);
+			if (name === artists[artistIndex]) {
+				setScore(score + 5);
+				nextSong();
+			}
     };
   
     return (
@@ -73,9 +73,9 @@ const GamePage = () => {
 	};
 
     const nextSong = () => {
-      soundHowl.stop();
-      setArtistIndex(artistIndex+1);
-      playMusic();
+		soundHowl.stop();
+		setArtistIndex(artistIndex+1);
+		playMusic();
 	}
  
 	const makeSpotifyCall = async (token) => {
