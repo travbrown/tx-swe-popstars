@@ -14,35 +14,42 @@ import nicki_minaj from "../photos/nicki_minaj.png";
 import beyonce from "../photos/Beyonce.png";
 
 let artistsFaces = [
-    { name: "A$AP Ferg", image: asap_ferg },
-    { name: "A$AP Rocky", image: asap_rocky},
-    { name: "Cardi B", image: cardi_b },
-    { name: "Drake", image: drake },
-    { name: "Lil Wayne", image: lil_wayne },
-    { name: "Tupac", image: tupac },
-    { name: "Kanye West", image: kanye_west },
-    { name: "Jcole", image: jcole },
-    { name: "Nicki Minaj", image: nicki_minaj },
-    { name: "Beyonce", image: beyonce }
+  { name: 'A$AP Ferg', image: asap_ferg },
+  { name: 'A$AP Rocky', image: asap_rocky },
+  { name: 'Cardi B', image: cardi_b },
+  { name: 'Drake', image: drake },
+  { name: 'Lil Wayne', image: lil_wayne },
+  { name: '2Pac', image: tupac },
+  { name: 'Kanye West', image: kanye_west },
+  { name: 'J. Cole', image: jcole },
+  { name: 'Nicki Minaj', image: nicki_minaj },
+  { name: 'Beyoncé', image: beyonce },
 ];
   
 const GamePage = () => {
   const spotifyApi = new SpotifyWebApi();
-  const [playlist, setPlaylists] = useState(null);
+  
+  const [playlist, setPlaylist] = useState(null);
+  const [artists, setArtists] = useState(null);
   const [track, setTrack] = useState(null);
-  const [trackIndex, setTrackIndex] = useState(0);
+    
+  const [songIndex, setSongIndex] = useState(0);
+  const [artistIndex, setArtistIndex] = useState(0);
+    
   const [soundHowl, setSoundHowl] = useState(null);
-  const [artists, setArtists] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [score, setScore] = useState(0);
 
 
   const Bubble = ({ number, hasArtist, image, name }) => {
+    
     const [clicked, setClicked] = useState(false);
-    const checkAnswer = ()=> {
-        setClicked(true)
-        if (name === artists[trackIndex]) {
+    
+    const checkAnswer = () => {
+        setClicked(true);
+        if (name === artists[artistIndex]) {
             setScore(score + 5);
+            nextSong();
         }
     };
   
@@ -64,13 +71,20 @@ const GamePage = () => {
         </div>
       );
     };
+
+    const nextSong = () => {
+      soundHowl.stop();
+      setArtistIndex(artistIndex+1);
+      playMusic();
+  }
  
-  const doSumn = async token => {
+  const makeSpotifyCall = async (token) => {
     await getPlaylist(token);
-  };
+};
+
   useEffect(() => {
-    let token = localStorage.getItem("access_token");
-    doSumn(token);
+      let token = localStorage.getItem('access_token');
+      makeSpotifyCall(token);
   }, []);
 
   const getPlaylist = async access_token => {
@@ -83,16 +97,15 @@ const GamePage = () => {
         function(data) {
           let foundSongs = [];
           let artist = [];
-          //console.log('My Rap Playlist', data.items);
           data.items.forEach(item => {
             if (item.track.preview_url !== null && foundSongs.length < 10) {
               artist.push(item.track.artists[0].name);
               foundSongs.push(item.track.preview_url);
             }
           });
-          setTrack(foundSongs[trackIndex]);
+          setTrack(foundSongs[songIndex]);
           setArtists(artist);
-          setPlaylists(foundSongs);
+          setPlaylist(foundSongs);
         },
         function(err) {
           console.error(err);
@@ -116,7 +129,8 @@ const GamePage = () => {
         volume: 0.5,
         onload: function() {
           console.log("LOADED!!");
-          //setSongLoadState(true);
+          setTrack(playlist[songIndex+1]);
+          setSongIndex(songIndex+1);
         },
         onend: function() {
           console.log("Finished!");
@@ -130,7 +144,8 @@ const GamePage = () => {
     <button
         id="autoPlay"
         style={{ display: "none" }}
-        onClick={playMusic} > can you see me? 
+        onClick={playMusic}> 
+      can you see me? 
     </button>
     <div class="item">Username</div>
     <div class="item">SCORE: {score}</div>
