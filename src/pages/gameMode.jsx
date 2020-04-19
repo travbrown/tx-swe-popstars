@@ -18,6 +18,7 @@ const GameMode = () => {
         let access_token = getAccessToken();
         localStorage.setItem('access_token', access_token);
     }, []);
+    
     function MultiPName(){
       const history = useHistory();
   
