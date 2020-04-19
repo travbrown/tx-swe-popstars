@@ -28,12 +28,16 @@ let artistsFaces = [
 
 const GamePage = () => {
     const spotifyApi = new SpotifyWebApi();
+    
     const [playlist, setPlaylist] = useState(null);
+    const [artists, setArtists] = useState(null);
     const [track, setTrack] = useState(null);
+    
     const [songIndex, setSongIndex] = useState(0);
     const [artistIndex, setArtistIndex] = useState(0);
+    
     const [soundHowl, setSoundHowl] = useState(null);
-    const [artists, setArtists] = useState([]);
+    
 
     const Bubble = ({ number, hasArtist, image, name }) => {
         return (
@@ -63,25 +67,13 @@ const GamePage = () => {
         console.log('3');
     }, []);
 
-    /**
-     * if you click a bubble,
-     * it checks if the artist in the bubble is the artist of the song playing
-     *  if yes:
-     *      - artistFound()
-     *        - pop bubble, 
-     *        - stop current song, 
-     *        - increment songIndex
-     *          start over with new song
-     *              set new track & play
-     */
     const bubbleCheck = (name) => {
         if(name === artists[artistIndex]){
-            artistsFound();
+            nextSong();
         }
     }
 
-    const artistsFound = () => {
-        //TODO: POP THE BUBBLE
+    const nextSong = () => {
         soundHowl.stop();
         setArtistIndex(artistIndex+1);
         playMusic();
@@ -89,9 +81,6 @@ const GamePage = () => {
 
     const getPlaylist = async (access_token) => {
         spotifyApi.setAccessToken(access_token);
-        //Couldn't get the Promise implementation to work
-        //spotifyApi.setPromiseImplementation(Q);
-        console.log('1');
         await spotifyApi
             .getPlaylistTracks('4h4V4Cbn8sjznAc3uirZmK')
             .then(
@@ -124,9 +113,11 @@ const GamePage = () => {
     }, [soundHowl]);
 
     const playMusic = () => {
+        
         if(artistIndex === 10){
             return
         }
+
         setSoundHowl(
             new Howl({
                 src: [track],
@@ -140,9 +131,8 @@ const GamePage = () => {
                     setTrack(playlist[songIndex+1]);
                     setSongIndex(songIndex+1);
                 },
-                onend: function () {
+                onend: function() {
                     console.log('Finished!');
-
                 },
             })
         );
@@ -154,7 +144,6 @@ const GamePage = () => {
             <button
                 id='autoPlay'
                 style={{ display: 'none' }}
-                // onClick={() => console.log('1')}
                 onClick={playMusic}
             >
                 can you see me?
