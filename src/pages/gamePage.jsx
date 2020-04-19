@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Howl } from 'howler';
 import SpotifyWebApi from 'spotify-web-api-js';
 import './gamePage.css';
@@ -26,39 +26,14 @@ let artistsFaces = [
     { name: 'Beyoncé', image: beyonce },
 ];
 
-const counterReducer = (state, action) => {
-    switch (action.type) {
-      case 'INCREMENT':
-        //let num = trackIndex + 1;
-        //console.log(Date.now());
-        console.log('10');
-        return {
-            trackIndex: state.trackIndex + 1
-        };
-      default:
-        return state;
-    }
-  };
-
 const GamePage = () => {
     const spotifyApi = new SpotifyWebApi();
     const [playlist, setPlaylist] = useState(null);
     const [track, setTrack] = useState(null);
-    const [index, setIndex] = useState(0);
+    const [songIndex, setSongIndex] = useState(0);
+    const [artistIndex, setArtistIndex] = useState(0);
     const [soundHowl, setSoundHowl] = useState(null);
     const [artists, setArtists] = useState([]);
-
-    
-
-    const handleIncrease = () => {
-        dispatch({ 
-            type: 'INCREMENT',
-            trackIndex: state.trackIndex,
-           });
-    };
-  
-    let initialState = { trackIndex : 0 };
-    const [state, dispatch] = useReducer(counterReducer, initialState);
 
     const Bubble = ({ number, hasArtist, image, name }) => {
         return (
@@ -95,12 +70,12 @@ const GamePage = () => {
      *      - artistFound()
      *        - pop bubble, 
      *        - stop current song, 
-     *        - increment index
+     *        - increment songIndex
      *          start over with new song
      *              set new track & play
      */
     const bubbleCheck = (name) => {
-        if(name === artists[state.trackIndex]){
+        if(name === artists[artistIndex]){
             artistsFound();
         }
     }
@@ -108,9 +83,7 @@ const GamePage = () => {
     const artistsFound = () => {
         //TODO: POP THE BUBBLE
         soundHowl.stop();
-        console.log('9');
-        handleIncrease();
-        console.log('track index has now become:', state.trackIndex);
+        setArtistIndex(artistIndex+1);
         playMusic();
     }
 
@@ -134,7 +107,7 @@ const GamePage = () => {
                             foundSongs.push(item.track.preview_url);
                         }
                     });
-                    setTrack(foundSongs[index]);
+                    setTrack(foundSongs[songIndex]);
                     setArtists(artist);
                     setPlaylist(foundSongs);
                 },
@@ -143,7 +116,6 @@ const GamePage = () => {
                 }
             )
             .catch((e) => console.log(e));
-        console.log('2');
         document.getElementById('autoPlay').click();
     };
 
@@ -152,15 +124,9 @@ const GamePage = () => {
     }, [soundHowl]);
 
     const playMusic = () => {
-        
-        if(state.trackIndex === 10){
+        if(artistIndex === 10){
             return
         }
-        console.log('curr index:',state.trackIndex);
-        console.log('artist:' ,artists)
-        console.log(playlist[state.trackIndex])
-        
-        console.log('new track:',track);
         setSoundHowl(
             new Howl({
                 src: [track],
@@ -171,21 +137,17 @@ const GamePage = () => {
                 volume: 0.5,
                 onload: function () {
                     console.log('LOADED!!');
-                    setTrack(playlist[index+1]);
-                    setIndex(index+1);
+                    setTrack(playlist[songIndex+1]);
+                    setSongIndex(songIndex+1);
                 },
                 onend: function () {
                     console.log('Finished!');
+
                 },
             })
         );
         
     };
-
-    // useEffect(() => {
-    //     setTrack(playlist[state.trackIndex]);
-    //     playMusic();
-    // }, [state.trackIndex]);
 
     return (
         <div className='App'>
@@ -198,7 +160,7 @@ const GamePage = () => {
                 can you see me?
             </button>
             <div class='item'>Username</div>
-            <div class='item'>score: {state.trackIndex}</div>
+            <div class='item'>score: 0</div>
             <div id='background-wrap'>
                 {artistsFaces.map((item, idx) => (
                     <>
