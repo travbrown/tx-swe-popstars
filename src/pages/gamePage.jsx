@@ -44,7 +44,7 @@ const GamePage = () => {
     const spotifyApi = new SpotifyWebApi();
     const [playlist, setPlaylist] = useState(null);
     const [track, setTrack] = useState(null);
-    //const [trackIndex, setTrackIndex] = useState(0);
+    const [index, setIndex] = useState(0);
     const [soundHowl, setSoundHowl] = useState(null);
     const [artists, setArtists] = useState([]);
 
@@ -125,7 +125,6 @@ const GamePage = () => {
                 function (data) {
                     let foundSongs = [];
                     let artist = [];
-                    //console.log('My Rap Playlist', data.items);
                     data.items.forEach((item) => {
                         if (
                             item.track.preview_url !== null &&
@@ -135,8 +134,7 @@ const GamePage = () => {
                             foundSongs.push(item.track.preview_url);
                         }
                     });
-                    //setTrack(foundSongs[state.trackIndex]);
-                    
+                    setTrack(foundSongs[index]);
                     setArtists(artist);
                     setPlaylist(foundSongs);
                 },
@@ -160,7 +158,8 @@ const GamePage = () => {
         }
         console.log('curr index:',state.trackIndex);
         console.log('artist:' ,artists)
-        setTrack(playlist[state.trackIndex]);
+        console.log(playlist[state.trackIndex])
+        
         console.log('new track:',track);
         setSoundHowl(
             new Howl({
@@ -172,14 +171,21 @@ const GamePage = () => {
                 volume: 0.5,
                 onload: function () {
                     console.log('LOADED!!');
-                    //setSongLoadState(true);
+                    setTrack(playlist[index+1]);
+                    setIndex(index+1);
                 },
                 onend: function () {
                     console.log('Finished!');
                 },
             })
         );
+        
     };
+
+    // useEffect(() => {
+    //     setTrack(playlist[state.trackIndex]);
+    //     playMusic();
+    // }, [state.trackIndex]);
 
     return (
         <div className='App'>
