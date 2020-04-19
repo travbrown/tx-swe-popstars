@@ -6,7 +6,7 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-import Leaderboard from "./Leaderboard";
+import Leaderboard from "./pages/Leaderboard";
 import SpotifyLoginPage from "./pages/SpotifyLoginPage";
 import DifficultyPage from "./pages/difficultyPage";
 import StartPage from "./pages/start_game";

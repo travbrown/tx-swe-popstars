@@ -39,6 +39,7 @@ const GamePage = () => {
 	const [soundHowl, setSoundHowl] = useState(null);
 	const [showModal, setShowModal] = useState(false);
 	const [score, setScore] = useState(0);
+	localStorage.setItem('User Score', score);
 
 
 	const Bubble = ({ number, hasArtist, image, name }) => {
@@ -178,5 +179,6 @@ const GamePage = () => {
     </div>
   );
 };
+
 
 export default GamePage;

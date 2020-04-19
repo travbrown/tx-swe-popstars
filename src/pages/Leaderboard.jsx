@@ -1,6 +1,7 @@
 import firebase from "firebase";
+import gamepage from "./gamePage.jsx";
 import React from "react";
-import './App.css';
+
 
 console.log("App!!!");
 /*<div class = "info"> <form id="myform" method="post" >
@@ -23,7 +24,7 @@ console.log("App!!!");
   });
   */
    //Added a new collection, users
-
+/*
  firebase.firestore().collection("Users").doc("Tariq").set({
   Username : "Tariqqqq123",
   Score : 325
@@ -34,6 +35,23 @@ console.log("App!!!");
  .catch(function(error) {
   console.error("Error writing document: ", error);
  });
+*/
+//will be the variable that counts as the 10th highest score 
+const highScore = 0;
+var userScore = localStorage.getItem('User Score')
+var name = localStorage.getItem("Name1");
+
+if(userScore > highScore){
+firebase.firestore().collection("Users").doc("TESTING").set({
+    Score : userScore
+   })
+   .then(function() {
+    console.log("Document successfully written!");
+   })
+   .catch(function(error) {
+    console.error("Error writing document: ", error);
+   });
+}
   
  //Leaderboard Code
  
