@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Howl } from "howler";
 import SpotifyWebApi from "spotify-web-api-js";
 import "./gamePage.css";
+import { Link } from "react-router-dom";
 import asap_ferg from "../photos/ASAP_Ferg.png";
 import asap_rocky from "../photos/ASAP_Rocky.png";
 import cardi_b from "../photos/cardi_b.png";
@@ -44,32 +45,38 @@ const GamePage = () => {
 	const Bubble = ({ number, hasArtist, image, name }) => {
     
 		const [clicked, setClicked] = useState(false);
-		
 		const checkAnswer = () => {
 			setClicked(true);
 			if (name === artists[artistIndex]) {
 				setScore(score + 5);
 				nextSong();
-			}
-    };
-  
-    return (
-        <div class={`bubble x${number}`}  
-        style={{ display: clicked ? "none" : "flex" }}
-        onClick={checkAnswer} >
-          <img
-            style={{
-              display: hasArtist ? "inline-block" : "none",
-              height: "100%",
-              width: "100%",
-              objectFit: "cover",
-              borderRadius: "50%"
-            }}
-            alt= "bubble pic"
-            src={image}
-          />
-        </div>
-      );
+            }
+            else {
+                setScore(score - 2);
+            }
+
+            if (artistIndex === artists.length-1) {
+                window.location.href="/gameOver";
+            }
+        };
+    
+        return (
+            <div class={`bubble x${number}`}  
+            style={{ display: clicked ? "none" : "flex" }}
+            onClick={checkAnswer} >
+            <img
+                style={{
+                display: hasArtist ? "inline-block" : "none",
+                height: "100%",
+                width: "100%",
+                objectFit: "cover",
+                borderRadius: "50%"
+                }}
+                alt= "bubble pic"
+                src={image}
+            />
+            </div>
+        );
 	};
 
     const nextSong = () => {
@@ -167,8 +174,7 @@ const GamePage = () => {
 		<button className = "quit_button" onClick={() => setShowModal(true)}> QUIT </button>
 		<div
 			className={showModal ? "modal show" : "modal"}
-			onClick={() => setShowModal(false)}
-		>
+			onClick={() => setShowModal(false)} >
 			<div id="modalContainer" >
 				<h1>Are you sure you want to quit?</h1>
 				<a class='quit' href='/gameMode'> QUIT </a>

@@ -26,7 +26,7 @@ const SpotifyLoginPage = () => {
     <div style={{ height: "100vh", width: "100vw", margin: "auto" }}>
       <img src={logo} className="App-logo" alt="logo" />
       <Button
-        style={{ marginTop: "-300px", height: "100px", width: "400px", fontSize: "30px"}}
+        style={{ marginTop: "-400px", marginLeft: "-40px", height: "100px", width: "350px", fontSize: "25px"}}
         variant="outlined"
         color="secondary"
         href={`${authEndpoint}client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`}
