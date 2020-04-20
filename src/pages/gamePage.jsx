@@ -51,7 +51,7 @@ const GamePage = () => {
 				setScore(score + 5);
 				nextSong();
 			}
-    };
+    	};
   
     return (
         <div class={`bubble x${number}`}  
@@ -95,20 +95,20 @@ const GamePage = () => {
 		.getPlaylistTracks("4h4V4Cbn8sjznAc3uirZmK")
 		.then(
 			function(data) {
-			let foundSongs = [];
-			let artist = [];
-			data.items.forEach(item => {
-				if (item.track.preview_url !== null && foundSongs.length < 10) {
-				artist.push(item.track.artists[0].name);
-				foundSongs.push(item.track.preview_url);
-				}
-			});
-			setTrack(foundSongs[songIndex]);
-			setArtists(artist);
-			setPlaylist(foundSongs);
+				let foundSongs = [];
+				let artist = [];
+				data.items.forEach(item => {
+					if (item.track.preview_url !== null && foundSongs.length < 10) {
+					artist.push(item.track.artists[0].name);
+					foundSongs.push(item.track.preview_url);
+					}
+				});
+				setTrack(foundSongs[songIndex]);
+				setArtists(artist);
+				setPlaylist(foundSongs);
 			},
 			function(err) {
-			console.error(err);
+				console.error(err);
 			}
 		)
 		.catch(e => console.log(e));
