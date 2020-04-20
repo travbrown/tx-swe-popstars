@@ -25,12 +25,17 @@ li{
 			0 0 4rem 0 rgba(black, 0.1),
 			0 1rem 2rem -1rem rgba(black, 0.3);
 }
-#subject{
-  transform: translateY(-50px);
-  color: #03D4EF;
-  
+ul.top li {
+  display:inline;
 }
-
+#subject{
+  position: absolute;  
+  left:45%; 
+  transform: translateY(-85px);
+}
+#username{
+  transform: translateY(-20px);
+}
 h2{
   color: white; 
 }
@@ -46,7 +51,7 @@ button{
 
 input{
   width: 350px;
-  height: 60px;
+  height: 90px;
   border-radius: 10px;
  
 }
@@ -55,9 +60,10 @@ input{
   width: 100%;
   height: 60px;
   padding: 20px;
+  margin-bottom: auto;
   font-size: 30px;
   font-weight: bold;
-  display: inline-block;
+  color: black; 
   text-transform: uppercase;
   box-shadow:
 			0 0 4rem 0 rgba(black, 0.1),

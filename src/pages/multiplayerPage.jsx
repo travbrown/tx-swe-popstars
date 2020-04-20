@@ -2,15 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../popstarslogo.png"
 import {PlayerOneName} from './multiplayerNames'; 
+var name1 = localStorage.getItem('name1'); 
 const MultiplayerPage = () => {
     return (
+
         <div className="App">
-          <div class ="item">
-            <h2><PlayerOneName/></h2>
-            <li id="username">Username </li>
-            <li id="subject"><center>Difficulty </center></li>
-          </div>
-          
+          <nav class="item">
+            <h2 id="username"> {name1} </h2>
+            <h2 id="subject"> Difficulty </h2>
+          </nav>
+       
           <header >
             <div className="centerItems">
             <img src={logo} className="App-logo" alt="logo" height = "300px" />

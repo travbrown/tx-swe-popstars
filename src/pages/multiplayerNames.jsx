@@ -13,22 +13,41 @@ const NameOneInput = () => {
         history.push("/multiplayerPage");
     }
     const [name1, setName1] = useState('');
+    localStorage.setItem('name1', name1)
     const handleName1 = event => setName1(event.target.value);
     localStorage.setItem('playerOneName', name1);
+    const [name2, setName2] = useState('');
+    localStorage.setItem('name2', name2)
+    const handleName2 = event => setName2(event.target.value);
 
     return(
             <div>
-                <img src={logo} className="App-logo" alt="logo" />
+                <img src={logo} className="App-logo" alt="logo" height = "300px" />
                 <header id="inputNames">
-                <PlayerOneName playeronename = {name1} />
-                <Input value={name1} onBlur={handleName1}></Input>
-          <center><button onClick={handleClick} id="next">NEXT</button></center></header>
+                    <header id="centerItems">
+                    
+                        
+                        
+                        <h2>Player One: <PlayerOneName/></h2>
+                        <PlayerOneName playeronename = {name1} />
+                        <Input value={name1} onBlur={handleName1}></Input><br></br>
+                        <h2>Player Two: <PlayerTwoName/></h2>
+                        <PlayerTwoName playertwoname = {name2} />
+                        <Input value={name2} onBlur={handleName2}></Input>
+                            <center>
+                                <button onClick={handleClick} id="next">NEXT</button>
+                            </center>
+              
+                    </header>
+                </header>
           <h2><PlayerOneName/></h2>
+          <h2><PlayerTwoName/></h2>
             </div>
         );
     };
 
      const PlayerOneName = ({playeronename}) => <h2>{playeronename}</h2> ; 
+     const PlayerTwoName = ({playertwoname}) => <h2>{playertwoname}</h2> ; 
      const Input = ({value, onBlur, children}) => (
          <label>
              {children}
@@ -41,7 +60,6 @@ const NameOneInput = () => {
       export default NameOneInput;
       export {PlayerOneName};
 //    
-
 
    
 
