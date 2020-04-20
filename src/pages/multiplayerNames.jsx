@@ -14,6 +14,7 @@ const NameOneInput = () => {
     }
     const [name1, setName1] = useState('');
     const handleName1 = event => setName1(event.target.value);
+    localStorage.setItem('playerOneName', name1);
 
     return(
             <div>
@@ -83,5 +84,3 @@ const NameOneInput = () => {
 //export default NameOneInput; 
 
 // }
-
-  

@@ -39,10 +39,10 @@ console.log("App!!!");
 //will be the variable that counts as the 10th highest score 
 const highScore = 0;
 var userScore = localStorage.getItem('User Score')
-var name = localStorage.getItem("Name1");
+var name = localStorage.getItem("playerOneName");
 
 if(userScore > highScore){
-firebase.firestore().collection("Users").doc("TESTING").set({
+firebase.firestore().collection("Users").doc("name").set({
     Score : userScore
    })
    .then(function() {

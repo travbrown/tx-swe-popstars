@@ -37,6 +37,7 @@ const PlayerTwoGame = () => {
   const [artists, setArtists] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [score, setScore] = useState(0);
+  localStorage.setItem('User Score', score);
 
 
   const Bubble = ({ number, hasArtist, image, name }) => {

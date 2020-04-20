@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import './countdown.css';
 
+
+
 const PlayerOnePage = () => {
     const FULL_DASH_ARRAY = 3000;
     const WARNING_THRESHOLD = 5;
@@ -79,9 +81,12 @@ const PlayerOnePage = () => {
 
     return (
       <div className="App">
-        <div class ="item">Username</div>
-        <div class ="item">Player One</div>    
-        <header className="App-header"> 
+        <div class ="item">
+          <li id="username">Username</li>
+          <li id="subject"><center>Player One</center></li>
+       </div>  
+       
+       <div className="centerItems">
             <div class="base-timer">
             <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <g class="base-timer__circle">
@@ -100,8 +105,8 @@ const PlayerOnePage = () => {
             </svg>
             <span id="base-timer-label" class="base-timer__label">{formatTime(timeLeft)}</span>
             </div>
-
-        </header>
+</div>
+        
       </div>
     );
 };

@@ -1,14 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../popstarslogo.png"
-
+import {PlayerOneName} from './multiplayerNames'; 
 const MultiplayerPage = () => {
     return (
         <div className="App">
-          <div class ="item">Username</div>
-          <div class ="item">Difficulty</div> 
-          <img src={logo} className="App-logo" alt="logo" />
-          <header className="App-header">
+          <div class ="item">
+            <h2><PlayerOneName/></h2>
+            <li id="username">Username </li>
+            <li id="subject"><center>Difficulty </center></li>
+          </div>
+          
+          <header >
+            <div className="centerItems">
+            <img src={logo} className="App-logo" alt="logo" height = "300px" />
             <Link to="/playerOne" class= "active_button"> Easy</Link>
             <p></p>
             <Link to="/playerOne" class= "active_button"> Medium</Link>
@@ -17,6 +22,8 @@ const MultiplayerPage = () => {
             <p></p><p></p>
 
             <Link to="/difficultyPage" class= "default_button"> Back</Link>  
+            </div>
+            
           </header>
         </div>
     );
