@@ -1,9 +1,17 @@
 .App {
   text-align: left;
-  background: white;
+  background-color:black;
   color: black;
 }
-
+ul{
+  list-style-type: none;
+  margin: 0; 
+  padding: 0; 
+}
+li{
+  display: inline; 
+  padding: 50px; 
+}
 .App-login {
   text-align: center;
   background: #000000;
@@ -18,27 +26,16 @@
 			0 1rem 2rem -1rem rgba(black, 0.3);
 } */
 
-.App-header {
-  background-color: #000000;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+ul.top li {
+  display:inline;
 }
-
-.item {
-  width: 580px;
-  padding: 20px;
-  font-size: 30px;
-  font-weight: bold;
-  display: inline-block;
-  text-transform: uppercase;
-  box-shadow:
-			0 0 4rem 0 rgba(black, 0.1),
-			0 1rem 2rem -1rem rgba(black, 0.3);
+#subject{
+  position: absolute;  
+  left:45%; 
+  transform: translateY(-85px);
+}
+#username{
+  transform: translateY(-20px);
 }
 
 /* h2{
@@ -57,9 +54,23 @@
 
 input{
   width: 350px;
-  height: 60px;
+  height: 90px;
   border-radius: 10px;
-  background-color: #03D4EF;
+ 
+}
+.item {
+  background-color: white;
+  width: 100%;
+  height: 60px;
+  padding: 20px;
+  margin-bottom: auto;
+  font-size: 30px;
+  font-weight: bold;
+  color: black; 
+  text-transform: uppercase;
+  box-shadow:
+			0 0 4rem 0 rgba(black, 0.1),
+			0 1rem 2rem -1rem rgba(black, 0.3);
 }
 
 #next{
@@ -102,6 +113,30 @@ textarea{
 			0 0 4rem 0 rgba(black, 0.1),
 			0 1rem 2rem -1rem rgba(black, 0.3);
   color: black;
+}
+
+.App-header {
+  background-color: #000000;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  position: fixed;
+}
+
+
+.centerItems{
+  background-color: #000000;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  
 }
 
 *{
