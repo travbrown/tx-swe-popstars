@@ -12,6 +12,7 @@ import kanye_west from "../photos/kanye_west.png";
 import jcole from "../photos/jcole.png";
 import nicki_minaj from "../photos/nicki_minaj.png";
 import beyonce from "../photos/Beyonce.png";
+import { Link } from "react-router-dom";
 
 let artistsFaces = [
   { name: 'A$AP Ferg', image: asap_ferg },
@@ -140,7 +141,7 @@ const GamePage = () => {
 			})
 		);
 	};
-
+	var name1 = localStorage.getItem('name1'); 
   return (
     <div className="App">
 		<button
@@ -149,8 +150,12 @@ const GamePage = () => {
 			onClick={playMusic}> 
 			can you see me? 
 		</button>
-		<div class="item">Username</div>
-		<div class="item">SCORE: {score}</div>
+		<nav class="item">
+
+<h2 id="username"> {name1}</h2>
+<h2 id="subject"> score: {score} </h2>
+<h2 id="end-btn"> <button onClick={() => setShowModal(true)} id="end">QUIT</button></h2>
+</nav>
 		
 		<div id="background-wrap">
 		{artistsFaces.map((item, idx) => (
@@ -165,15 +170,16 @@ const GamePage = () => {
 			</>
 		))}
 		</div>
-		<button className = "quit_button" onClick={() => setShowModal(true)}> QUIT </button>
+		
 		<div
 			className={showModal ? "modal show" : "modal"}
 			onClick={() => setShowModal(false)}
 		>
 			<div id="modalContainer" >
 				<h1>Are you sure you want to quit?</h1>
-				<a class='quit' href='/gameMode'> QUIT </a>
-				<a class='cancel' href= '#'> CANCEL </a>
+				<button id="cancel"><a id='cancel' href= '#'> CANCEL </a></button>
+				<button id='end'> <a id='cancel' href='/gameMode'> QUIT </a></button>
+				
 			</div>
 		</div>
     </div>
