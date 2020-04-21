@@ -38,6 +38,7 @@ const GamePage = () => {
   const [showModal, setShowModal] = useState(false);
   const [score, setScore] = useState(0);
   localStorage.setItem("score", score);
+
   let artistsFaces = [
     { name: "A$AP Ferg", image: asap_ferg },
     { name: "A$AP Rocky", image: asap_rocky },
@@ -63,7 +64,6 @@ const GamePage = () => {
 
   const shuffle = array => {
     console.log(array[0]);
-
     for (let i = array.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
@@ -110,14 +110,12 @@ const GamePage = () => {
   };
 
   const nextSong = () => {
+    shuffle(artistsFaces);
     soundHowl.stop();
     setArtistIndex(artistIndex + 1);
     playMusic();
   };
 
-  const makeSpotifyCall = async token => {
-    await getPlaylist(token);
-  };
 
   useEffect(() => {
     let token = localStorage.getItem("access_token");
@@ -125,6 +123,10 @@ const GamePage = () => {
     makeSpotifyCall(token);
   }, []);
 
+  const makeSpotifyCall = async token => {
+    await getPlaylist(token);
+  };
+  
   const getPlaylist = async access_token => {
     spotifyApi.setAccessToken(access_token);
     //Couldn't get the Promise implementation to work
