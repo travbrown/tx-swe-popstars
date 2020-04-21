@@ -49,7 +49,7 @@ const GamePage = () => {
     { name: "Kanye West", image: kanye_west },
     { name: "J. Cole", image: jcole },
     { name: "Nicki Minaj", image: nicki_minaj },
-    { name: "BeyoncÃ©", image: beyonce },
+    { name: "Beyoncé", image: beyonce },
     { name: "Davido", image: davido },
     { name: "Justin Beiber", image: Justin_beiber },
     { name: "Lizzo", image: lizzo },
@@ -63,7 +63,6 @@ const GamePage = () => {
   ];
 
   const shuffle = array => {
-    console.log(array[0]);
     for (let i = array.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
