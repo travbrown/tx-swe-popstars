@@ -41,6 +41,17 @@ const GamePage = () => {
 	const [showModal, setShowModal] = useState(false);
 	const [score, setScore] = useState(0);
 
+	const shuffle = array => {
+		//console.log(array[0]);
+	
+		for (let i = array.length - 1; i > 0; i--) {
+		  let j = Math.floor(Math.random() * (i + 1));
+		  [array[i], array[j]] = [array[j], array[i]];
+		}
+		console.log(array);
+		//return array;
+	};
+
 
 	const Bubble = ({ number, hasArtist, image, name }) => {
     
@@ -54,7 +65,6 @@ const GamePage = () => {
             else {
                 setScore(score - 2);
             }
-
             if (artistIndex === artists.length-1) {
                 window.location.href="/gameOver";
             }
@@ -81,6 +91,7 @@ const GamePage = () => {
 
     const nextSong = () => {
 		soundHowl.stop();
+		shuffle(artistsFaces);
 		setArtistIndex(artistIndex+1);
 		playMusic();
 	}
@@ -91,6 +102,7 @@ const GamePage = () => {
 
 	useEffect(() => {
 		let token = localStorage.getItem('access_token');
+		shuffle(artistsFaces);
 		makeSpotifyCall(token);
 	}, []);
 
