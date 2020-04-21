@@ -3,6 +3,9 @@
   background-color:black;
   color: black;
 }
+.nameClass{
+  color: black; 
+}
 ul{
   list-style-type: none;
   margin: 0; 
@@ -25,20 +28,57 @@ li{
 			0 0 4rem 0 rgba(black, 0.1),
 			0 1rem 2rem -1rem rgba(black, 0.3);
 }
+html {background-color: black};
 ul.top li {
   display:inline;
 }
+#subject-getready{
+  position: absolute;  
+  left:43%; 
+  transform: translateY(-83px);
+}
+#subject-diff{
+  position: absolute;  
+  left:39%; 
+  transform: translateY(-50px);
+}
 #subject{
   position: absolute;  
-  left:45%; 
+  left:42%; 
   transform: translateY(-85px);
+}
+#end-btn{
+  position: absolute;  
+  left:75%; 
+  transform: translateY(-95px);
+
+}
+#end{
+  background-color: #ec583b;
+  color: white;
+ 
+}
+#btn-size{
+  height: 60px;
+}
+#subject-no-user-username{
+  position: absolute;  
+  left:40%; 
+  transform: translateY(-20px);
+}
+#subject-no-user{
+  position: absolute;  
+  left:43%; 
+  transform: translateY(-20px);
 }
 #username{
   transform: translateY(-20px);
 }
+
 h2{
   color: white; 
 }
+
 button{
   color: black; 
   background-color: #03D4EF;
@@ -49,11 +89,13 @@ button{
   text-align: center;
 }
 
+
 input{
   width: 350px;
-  height: 90px;
+  height: 60px;
   border-radius: 10px;
- 
+  color: black; 
+ background-color:white ;
 }
 .item {
   background-color: white;
@@ -73,7 +115,7 @@ input{
 #next{
   font-size: calc(10px + 2vmin);
   color: white; 
-  background-color: #EB573B;
+  background-color: #ec583b; 
   border-radius: 10px;
   width: 350px;
   height: 60px;
@@ -96,10 +138,11 @@ body{
   background-color: #000000;
 }
 
-
+/*color of the headings ex: "Player One:" NOT whats in the input box*/
 #inputNames{
   color: white;
 }
+
 textarea{
   width: 350px;
   height: 60px;
@@ -140,7 +183,10 @@ textarea{
 *{
   font-family: 'Fredoka One', cursive;
 }
-
+div{
+  color: black; 
+  font-size: 30px;
+}
 .App-link {
   color: #61dafb;
 }

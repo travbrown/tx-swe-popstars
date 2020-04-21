@@ -3,18 +3,18 @@ import gamepage from "./gamePage.jsx";
 import React from "react";
 
 console.log("App!!!");
-var leader = firebase.firestore().collection("Users");
-var query = leader.where("Score",">=", 0).orderBy("Score","desc").limit(10);
+var leader = firebase.firestore().collection("Users").where("Score",">", 0).orderBy("Score","desc").limit(10);
 
 //console.log(Leaderboard);
-var userScore = localStorage.getItem('User Score')
-var name1 = localStorage.getItem("playerOneName");
+var userScore = parseInt(localStorage.getItem('User Score'));
+
+//var name1 = localStorage.getItem("playerOneName");
 
 //const multiplayer = localStorage.getItem("mulitplayer");
 
 // "'" + name1 + "'"  // This will input the variable as a name 
    
-        firebase.firestore().collection("Users").doc("Serena Williams").set({
+        firebase.firestore().collection("Users").doc("Krazy Kam").set({
             Score : userScore
            })
            .then(function() {
@@ -25,9 +25,9 @@ var name1 = localStorage.getItem("playerOneName");
            });
 
         //Leaderboard Code
-    //const Leaderboard = () => {
-    console.log("Balooga");    
-    query.get() // This grabs all 10 entries.
+    //const Leaderboard = () => { 
+        
+leader.get() // This grabs all 10 entries.
        .then(function(querySnapshot) {
            querySnapshot.forEach(function(doc) {
                // doc.data() is never undefined for query doc snapshots
@@ -37,6 +37,7 @@ var name1 = localStorage.getItem("playerOneName");
        .catch(function(error) {
            console.log("Error getting documents: ", error);
        });
+     
     
    // }
     
@@ -45,5 +46,5 @@ var name1 = localStorage.getItem("playerOneName");
           
         export default function Leaderboard()
         {
-
+           
         }
