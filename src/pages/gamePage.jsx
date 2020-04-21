@@ -31,12 +31,16 @@ const GamePage = () => {
 
 	const [playlist, setPlaylist] = useState(null);
 	const [artists, setArtists] = useState(null);
-	const [track, setTrack] = useState(null);
+	const [track, setTrackInternal] = useState(null);
+	let setTrack = (newTrack) => { 
+		console.log('Setting new track', newTrack); 
+		setTrackInternal(newTrack); };
 
 	const [songIndex, setSongIndex] = useState(0);
 	const [artistIndex, setArtistIndex] = useState(0);
 
 	const [soundHowl, setSoundHowl] = useState(null);
+	const [prevSoundHowl, setPrevSoundHowl] = useState(null);
 	const [showModal, setShowModal] = useState(false);
 	const [score, setScore] = useState(0);
 
@@ -116,10 +120,18 @@ const GamePage = () => {
 	};
 
 	useEffect(() => {
-		if (soundHowl) soundHowl.play();
+		
+		if (soundHowl) {
+			if(soundHowl !== prevSoundHowl){
+				console.log('3 -->', track);
+				soundHowl.play();
+			}
+		}
+		setPrevSoundHowl(soundHowl);
 	}, [soundHowl]);
-	
+	console.log(track);
 	const playMusic = () => {
+		console.log('1 -->',track);
 		setSoundHowl(
 				new Howl({
 				src: [track],
@@ -130,11 +142,16 @@ const GamePage = () => {
 				volume: 0.5,
 				onload: function() {
 					console.log("LOADED!!");
+					console.log('before: ',track);
 					setTrack(playlist[songIndex+1]);
+					console.log('after: ',track);
 					setSongIndex(songIndex+1);
 				},
 				onend: function() {
 					console.log("Finished!");
+					console.log(track);
+					setArtistIndex(artistIndex+1);
+					playMusic();	
 				},
 			})
 		);
