@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Howl } from "howler";
 import SpotifyWebApi from "spotify-web-api-js";
+import Bubble from "./bubbleContainer.jsx";
 import "./gamePage.css";
 import { Link } from "react-router-dom";
 import asap_ferg from "../photos/ASAP_Ferg.png";
@@ -16,30 +17,10 @@ import beyonce from "../photos/Beyonce.png";
 import davido from "../photos/davido.jpg";
 import Justin_beiber from "../photos/Justin_beiber.jpg";
 import lizzo from "../photos/lizzo.jpeg";
-// import rihanna from "../photos/rihanna.jpg";
-// import skepta from "../photos/skepta.jpg";
-// import post_malone from "../photos/post_malone.png";
-// import wiz_khalifa from "../photos/wiz_khalifa.png";
-// import XXXTentacion from "../photos/XXXTentacion.png";
-// import megan_thee_stallion from "../photos/megan_thee_stallion.jpg";
-// import michael_jackson from "../photos/michael_jackson.jpg";
+import rihanna from "../photos/rihanna.jpg";
+import wiz_khalifa from "../photos/wiz_khalifa.png";
 
-const GamePage = () => {
-  const spotifyApi = new SpotifyWebApi();
-
-  const [playlist, setPlaylist] = useState(null);
-  const [artists, setArtists] = useState(null);
-  const [track, setTrack] = useState(null);
-
-  const [songIndex, setSongIndex] = useState(0);
-  const [artistIndex, setArtistIndex] = useState(0);
-
-  const [soundHowl, setSoundHowl] = useState(null);
-  const [showModal, setShowModal] = useState(false);
-  const [score, setScore] = useState(0);
-  localStorage.setItem("score", score);
-
-  let artistsFaces = [
+let artistsFaces = [
     { name: "A$AP Ferg", image: asap_ferg },
     { name: "A$AP Rocky", image: asap_rocky },
     { name: "Cardi B", image: cardi_b },
@@ -53,64 +34,40 @@ const GamePage = () => {
     { name: "Davido", image: davido },
     { name: "Justin Beiber", image: Justin_beiber },
     { name: "Lizzo", image: lizzo },
-    // { name: "Rihanna", image: rihanna },
-    // { name: "Skepta", image: skepta },
-    //{ name: "Post Malone", image: post_malone },
-    // { name: "Wiz Khalifa", image: wiz_khalifa },
-    // { name: "XXXTentacion", image: XXXTentacion },
-    // { name: "Megan thee Stallion ", image: megan_thee_stallion },
-    // { name: "Michael Jackson", image: michael_jackson }
-  ];
+    { name: "Rihanna", image: rihanna },
+    { name: "Wiz Khalifa", image: wiz_khalifa },
+];
 
-//   function Score(props) {
-//     return <h1>{props.value}</h1>;
-//   }
+const GamePage = () => {
+    const spotifyApi = new SpotifyWebApi();
 
-  const shuffle = array => {
-    for (let i = array.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    console.log(artistsFaces);
-    //return array;
-  };
+    const [playlist, setPlaylist] = useState(null);
+    const [artists, setArtists] = useState(null);
+    const [track, setTrack] = useState(null);
 
-  const Bubble = ({ number, hasArtist, image, name }) => {
-    const [clicked, setClicked] = useState(false);
-    const checkAnswer = () => {
-      setClicked(true);
-      if (name === artists[artistIndex]) {
-        setScore(score + 5);
-        nextSong();
-      } else {
-        setScore(score - 2);
-      }
+    const [songIndex, setSongIndex] = useState(0);
+    const [artistIndex, setArtistIndex] = useState(0);
 
-      if (artistIndex === artists.length - 1) {
-        window.location.href = "/gameOver";
-      }
+    const [soundHowl, setSoundHowl] = useState(null);
+    const [showModal, setShowModal] = useState(false);
+    
+    const [score, setScore] = useState(0);
+    localStorage.setItem("score", score);
+
+    const wrapperSetScore = val => {
+       setScore(val);
+       console.log(val);
     };
 
-    return (
-      <div
-        class={`bubble x${number}`}
-        style={{ display: clicked ? "none" : "flex" }}
-        onClick={checkAnswer}
-      >
-        <img
-          style={{
-            display: hasArtist ? "inline-block" : "none",
-            height: "100%",
-            width: "100%",
-            objectFit: "cover",
-            borderRadius: "50%"
-          }}
-          alt="bubble pic"
-          src={image}
-        />
-      </div>
-    );
-  };
+    const shuffle = array => {
+        for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+        }
+        console.log(artistsFaces);
+        //return array;
+    };
+
 
   const nextSong = () => {
     shuffle(artistsFaces);
@@ -181,15 +138,14 @@ const GamePage = () => {
     );
   };
 
-//   const score = 0;
   shuffle(artistsFaces);
-
+  
   return (
     <div className="App">
       <button id="autoPlay" style={{ display: "none" }} onClick={playMusic}>
         can you see me?
       </button>
-      {/* <Score value={score} /> */}
+      
       <div class="item">Username</div>
       <div class="item">SCORE: {score}</div>
       
@@ -202,6 +158,11 @@ const GamePage = () => {
               hasArtist
               number={idx}
               name={item.name}
+              wrapperSetScore = {wrapperSetScore}
+              score = {score}
+              artists = {artists}
+              artistIndex = {artistIndex}
+              nextSong = {nextSong}
             />
           </>
         ))}
