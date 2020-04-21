@@ -16,13 +16,13 @@ import beyonce from "../photos/Beyonce.png";
 import davido from "../photos/davido.jpg";
 import Justin_beiber from "../photos/Justin_beiber.jpg";
 import lizzo from "../photos/lizzo.jpeg";
-import rihanna from "../photos/rihanna.jpg";
-import skepta from "../photos/skepta.jpg";
-import post_malone from "../photos/post_malone.png";
-import wiz_khalifa from "../photos/wiz_khalifa.png";
-import XXXTentacion from "../photos/XXXTentacion.png";
-import megan_thee_stallion from "../photos/megan_thee_stallion.jpg";
-import michael_jackson from "../photos/michael_jackson.jpg";
+// import rihanna from "../photos/rihanna.jpg";
+// import skepta from "../photos/skepta.jpg";
+// import post_malone from "../photos/post_malone.png";
+// import wiz_khalifa from "../photos/wiz_khalifa.png";
+// import XXXTentacion from "../photos/XXXTentacion.png";
+// import megan_thee_stallion from "../photos/megan_thee_stallion.jpg";
+// import michael_jackson from "../photos/michael_jackson.jpg";
 
 const GamePage = () => {
   const spotifyApi = new SpotifyWebApi();
@@ -49,26 +49,30 @@ const GamePage = () => {
     { name: "Kanye West", image: kanye_west },
     { name: "J. Cole", image: jcole },
     { name: "Nicki Minaj", image: nicki_minaj },
-    { name: "BeyoncÃ©", image: beyonce },
+    { name: "Beyoncé", image: beyonce },
     { name: "Davido", image: davido },
     { name: "Justin Beiber", image: Justin_beiber },
     { name: "Lizzo", image: lizzo },
-    { name: "Rihanna", image: rihanna },
-    { name: "Post Malone", image: post_malone },
-    { name: "Skepta", image: skepta },
-    { name: "Wiz Khalifa", image: wiz_khalifa },
-    { name: "XXXTentacion", image: XXXTentacion },
-    { name: "Megan thee Stallion ", image: megan_thee_stallion },
-    { name: "Michael Jackson", image: michael_jackson }
+    // { name: "Rihanna", image: rihanna },
+    // { name: "Skepta", image: skepta },
+    //{ name: "Post Malone", image: post_malone },
+    // { name: "Wiz Khalifa", image: wiz_khalifa },
+    // { name: "XXXTentacion", image: XXXTentacion },
+    // { name: "Megan thee Stallion ", image: megan_thee_stallion },
+    // { name: "Michael Jackson", image: michael_jackson }
   ];
 
+//   function Score(props) {
+//     return <h1>{props.value}</h1>;
+//   }
+
   const shuffle = array => {
-    console.log(array[0]);
+    //console.log(array[0]);
     for (let i = array.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
     }
-    console.log(array);
+    console.log(artistsFaces);
     //return array;
   };
 
@@ -116,17 +120,15 @@ const GamePage = () => {
     playMusic();
   };
 
-
   useEffect(() => {
     let token = localStorage.getItem("access_token");
-    shuffle(artistsFaces);
     makeSpotifyCall(token);
   }, []);
 
   const makeSpotifyCall = async token => {
     await getPlaylist(token);
   };
-  
+
   const getPlaylist = async access_token => {
     spotifyApi.setAccessToken(access_token);
     //Couldn't get the Promise implementation to work
@@ -180,31 +182,33 @@ const GamePage = () => {
     );
   };
 
+//   const score = 0;
+  shuffle(artistsFaces);
+
   return (
     <div className="App">
       <button id="autoPlay" style={{ display: "none" }} onClick={playMusic}>
         can you see me?
       </button>
+      {/* <Score value={score} /> */}
       <div class="item">Username</div>
       <div class="item">SCORE: {score}</div>
-
+      
       <div id="background-wrap">
         {artistsFaces.map((item, idx) => (
           <>
             <Bubble
-              key={idx}
+              key={item.name}
               image={item.image}
               hasArtist
-              // number={idx}
-              number={Math.round(Math.random() * 20)}
+              number={idx}
               name={item.name}
             />
           </>
         ))}
       </div>
       <button className="quit_button" onClick={() => setShowModal(true)}>
-        {" "}
-        QUIT{" "}
+        QUIT
       </button>
       <div
         className={showModal ? "modal show" : "modal"}
@@ -213,12 +217,10 @@ const GamePage = () => {
         <div id="modalContainer">
           <h1>Are you sure you want to quit?</h1>
           <a class="quit" href="/gameMode">
-            {" "}
-            QUIT{" "}
+            QUIT
           </a>
           <a class="cancel" href="#">
-            {" "}
-            CANCEL{" "}
+            CANCEL
           </a>
         </div>
       </div>
