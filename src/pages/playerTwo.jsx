@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './countdown.css';
+import { Link } from "react-router-dom";
 
 const PlayerTwoPage = () => {
     const FULL_DASH_ARRAY = 3000;
@@ -76,11 +77,15 @@ const PlayerTwoPage = () => {
         .getElementById("base-timer-path-remaining")
         .setAttribute("stroke-dasharray", circleDasharray);
     }    
-
+    var name2 = localStorage.getItem('name2'); 
     return (
       <div className="App">
-        <div class ="item">Username</div>
-        <div class ="item">Player Two</div>    
+        <nav class="item">
+
+<h2 id="username"> {name2}</h2>
+<h2 id="subject"> Get Ready </h2>
+
+</nav>  
         <header className="App-header"> 
             <div class="base-timer">
             <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">

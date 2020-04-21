@@ -6,6 +6,9 @@
 .nameClass{
   color: black; 
 }
+a href{
+  color: white; 
+}
 ul{
   list-style-type: none;
   margin: 0; 
@@ -31,6 +34,14 @@ li{
 html {background-color: black};
 ul.top li {
   display:inline;
+}
+#cancel{
+  color:white; 
+}
+#subject-getreadyp1{
+  position: absolute;  
+  left:43%; 
+  transform: translateY(-80px);
 }
 #subject-getready{
   position: absolute;  
@@ -165,7 +176,7 @@ textarea{
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  position: fixed;
+
 }
 
 
@@ -182,6 +193,7 @@ textarea{
 
 *{
   font-family: 'Fredoka One', cursive;
+  text-transform: uppercase;
 }
 div{
   color: black; 

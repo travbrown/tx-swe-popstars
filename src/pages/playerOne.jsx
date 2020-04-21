@@ -86,7 +86,7 @@ const PlayerOnePage = () => {
       <div className="App">
         <nav class="item">
             <h2 id="username"> {name1} </h2>
-            <h2 id="subject"> Get ready </h2>
+            <h2 id="subject-getreadyp1"> Get ready </h2>
           </nav>
         
        <div className="centerItems">
