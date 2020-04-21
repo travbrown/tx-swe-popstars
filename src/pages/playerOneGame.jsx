@@ -126,16 +126,22 @@ const PlayerOneGame = () => {
       })
     );
   };
-
+  var name1 = localStorage.getItem('name1'); 
+  var name2 = localStorage.getItem('name2'); 
   return (
     <div className="App">
+      <nav class="item">
+
+            <h2 id="username"> {name1}</h2>
+            <h2 id="subject"> score: {score} </h2>
+            <h2 id="end-btn"><Link to="/timeUp1"> <button id="end">END</button></Link></h2>
+          </nav>
     <button
         id="autoPlay"
         style={{ display: "none" }}
         onClick={playMusic} > can you see me? 
     </button>
-    <div class="item">Username</div>
-    <div class="item">SCORE: {score}</div>
+    
       
       <div id="background-wrap">
         {artistsFaces.map((item, idx) => (
@@ -150,7 +156,7 @@ const PlayerOneGame = () => {
           </>
         ))}
       </div>
-      <Link to="/timeUp1" class= "default_button"> end</Link>
+      
     </div>
   );
 };

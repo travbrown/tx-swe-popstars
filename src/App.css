@@ -32,10 +32,34 @@ html {background-color: black};
 ul.top li {
   display:inline;
 }
+#subject-getready{
+  position: absolute;  
+  left:43%; 
+  transform: translateY(-83px);
+}
+#subject-diff{
+  position: absolute;  
+  left:39%; 
+  transform: translateY(-50px);
+}
 #subject{
   position: absolute;  
-  left:45%; 
+  left:42%; 
   transform: translateY(-85px);
+}
+#end-btn{
+  position: absolute;  
+  left:75%; 
+  transform: translateY(-95px);
+
+}
+#end{
+  background-color: #ec583b;
+  color: white;
+ 
+}
+#btn-size{
+  height: 60px;
 }
 #subject-no-user-username{
   position: absolute;  
@@ -50,6 +74,7 @@ ul.top li {
 #username{
   transform: translateY(-20px);
 }
+
 h2{
   color: white; 
 }
