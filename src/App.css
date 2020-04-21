@@ -30,17 +30,19 @@ ul.top li {
   display:inline;
 }
 #subject{
-  position: absolute;  
+  position: absolute; 
   left:45%; 
-  transform: translateY(-85px);
+  /* transform: translateY(-85px); */
+  transform: translateY(-50px);
 }
+
 #username{
   transform: translateY(-20px);
 }
 
-/* h2{
+h2{
   color: white; 
-} */
+}
 
 /* button{
   color: black; 
@@ -56,7 +58,7 @@ input{
   width: 350px;
   height: 90px;
   border-radius: 10px;
- 
+  /* background-color: #03D4EF; */
 }
 .item {
   background-color: white;
@@ -68,10 +70,11 @@ input{
   font-weight: bold;
   color: black; 
   text-transform: uppercase;
-  box-shadow:
+  /* box-shadow:
 			0 0 4rem 0 rgba(black, 0.1),
-			0 1rem 2rem -1rem rgba(black, 0.3);
+			0 1rem 2rem -1rem rgba(black, 0.3); */
 }
+
 
 #next{
   font-size: calc(10px + 2vmin);
@@ -93,8 +96,8 @@ input{
   object-fit: scale-down;
   pointer-events: none;
 }
-
-/* body{
+/* 
+body{
   background-color: #000000;
 } */
 
@@ -124,9 +127,8 @@ textarea{
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  position: fixed;
+  /* position: fixed; */
 }
-
 
 .centerItems{
   background-color: #000000;

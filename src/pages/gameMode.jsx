@@ -36,12 +36,14 @@ const GameMode = () => {
     return (      
       <div className="App">
         <div class ="item">
+        {/* <div class ="item"> Username </div>
+        <div class ="item"> Game Mode </div> */}
           <li id="username">Username</li>
           <li id="subject"><center>Game Mode</center></li>
-      </div>
+        </div>
         <header>
         <div className="centerItems">
-        <img src={logo} className="App-logo" alt="logo" height = "300px" />
+        {/* <img src={logo} className="App-logo" alt="logo" height = "300px" /> */}
             <Link to="/difficultyPage" class= "active_button"> Single Player</Link>
             <p></p>
             

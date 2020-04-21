@@ -6,12 +6,11 @@ import logo from "../popstarslogo.png"
 const DifficultyPage = () => {
   return (
     <div className="App">
-     
-      <div class ="item">
+    <div class ="item"> Difficulty </div>
+      {/* <div class ="item">
         <li id="subject"><center>Difficulty</center></li> 
-  </div>
+      </div> */}
       <header></header>
-      <img src={logo} className="App-logo" alt="logo" height = "300px" />
       <div className="centerItems">
         <Link to="/start_game" class= "active_button" > Easy</Link>
         <p></p>
