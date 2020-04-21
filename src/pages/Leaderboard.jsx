@@ -18,7 +18,7 @@ var name = localStorage.getItem("name1");
            })
            .then(function() {
             console.log("Document successfully written!");
-            //localStorage.clear(); //Had to delete this because this stops music from playing
+            //localStorage.clear(); //Had to delete this because this stops music from playing.
            })
            .catch(function(error) {
             console.error("Error writing document: ", error);
