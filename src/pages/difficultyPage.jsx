@@ -8,10 +8,10 @@ const DifficultyPage = () => {
     <div className="App">
      
       <div class ="item">
-        <li id="subject"><center>Difficulty</center></li> 
+        <li id="subject-diff">Difficulty</li> 
   </div>
       <header></header>
-      <img src={logo} className="App-logo" alt="logo" height = "300px" />
+  
       <div className="centerItems">
         <Link to="/start_game" class= "active_button" > Easy</Link>
         <p></p>

@@ -79,13 +79,16 @@ const PlayerOnePage = () => {
         .setAttribute("stroke-dasharray", circleDasharray);
     }    
 
+    var name1 = localStorage.getItem('name1'); 
+    var name2 = localStorage.getItem('name2'); 
+
     return (
       <div className="App">
-        <div class ="item">
-          <li id="username">Username</li>
-          <li id="subject"><center>Player One</center></li>
-       </div>  
-       
+        <nav class="item">
+            <h2 id="username"> {name1} </h2>
+            <h2 id="subject"> Get ready </h2>
+          </nav>
+        
        <div className="centerItems">
             <div class="base-timer">
             <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">

@@ -6,11 +6,11 @@ import logo from "../popstarslogo.png"
 const StartPage = () => {
   return (
     <div className="App">
-      <div class ="item">
-        <li id="subject"><center>GET READY</center></li> 
-  </div>
+      <nav class="item">
+            <h2 id="subject-no-user">Get Ready</h2>
+          </nav>
       <header></header>
-      <img src={logo} className="App-logo" alt="logo" height = "300px" />
+    
       <div className="centerItems">
         <Link to="/countdown" class= "active_button"> START GAME</Link>
         <p></p>

@@ -20,7 +20,7 @@ import TimeUp1 from "./pages/timeUp1";
 import TimeUp2 from "./pages/timeUp2";
 import GameMode from './pages/gameMode';
 import NameOneInput from "./pages/multiplayerNames";
-
+import SinglePlayerInput from "./pages/singleplayerName"; 
 
 function AllLogins() {
   return (
@@ -53,6 +53,7 @@ export default function App() {
           <Route exact path="/timeUp1" component={TimeUp1} />
           <Route exact path="/timeUp2" component={TimeUp2} />
           <Route exact path="/multiplayerNames" component={NameOneInput} />
+          <Route exact path="/singleplayerName" component={SinglePlayerInput} />
         </Switch>
       </Router>
     </div>
