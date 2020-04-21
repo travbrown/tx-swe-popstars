@@ -1,6 +1,7 @@
 import React from "react";
 import './difficultyPage.css';
 import { Link } from "react-router-dom";
+var score = localStorage.getItem('score'); 
 
 const GameOver = () => {
     return (
@@ -8,7 +9,7 @@ const GameOver = () => {
            <header className="App-header">
                 <h1> GAME OVER</h1>
                 <p><p></p></p><p><p></p></p>
-                <h2> Score: 0 </h2>
+                <h2> Score: {score} </h2>
                 <p><p></p></p><p><p></p></p><p><p></p></p><p><p></p></p>
                 <Link to="/start_game" class= "active_button"> PLAY AGAIN</Link>
                 <p></p>

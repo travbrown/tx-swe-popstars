@@ -1,11 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../popstarslogo.png"
 import {PlayerOneName} from './multiplayerNames'; 
 var name1 = localStorage.getItem('name1'); 
 const MultiplayerPage = () => {
     return (
-
         <div className="App">
           <nav class="item">
             <h2 id="username"> {name1} </h2>
@@ -14,7 +12,6 @@ const MultiplayerPage = () => {
        
           <header >
             <div className="centerItems">
-            <img src={logo} className="App-logo" alt="logo" height = "300px" />
             <Link to="/playerOne" class= "active_button"> Easy</Link>
             <p></p>
             <Link to="/playerOne" class= "active_button"> Medium</Link>
