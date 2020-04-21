@@ -26,11 +26,13 @@ const GameMode = () => {
       const handleClick = () => {
           history.push("/multiplayerNames");
       }
+      localStorage.setItem('multiplayer', handleClick);
       return (
         <button class= "active_button" onClick={handleClick}>
           MultiPlayer
         </button>
       );
+
     }
     
     return (      
