@@ -13,6 +13,8 @@ import jcole from "../photos/jcole.png";
 import nicki_minaj from "../photos/nicki_minaj.png";
 import beyonce from "../photos/Beyonce.png";
 import { Link } from "react-router-dom";
+import correct from "../photos/check-mark.png";
+import incorrect from "../photos/cross.png"; 
 
 let artistsFaces = [
   { name: 'A$AP Ferg', image: asap_ferg },
@@ -41,6 +43,7 @@ const GamePage = () => {
 	const [showModal, setShowModal] = useState(false);
 	const [score, setScore] = useState(0);
 
+	const [showImg, setShowImg] = useState(false); 
 
 	const Bubble = ({ number, hasArtist, image, name }) => {
     
@@ -51,6 +54,10 @@ const GamePage = () => {
 			if (name === artists[artistIndex]) {
 				setScore(score + 5);
 				nextSong();
+				setShowImg(correct); 
+			}
+			else{
+				setShowImg(incorrect)
 			}
     	};
   

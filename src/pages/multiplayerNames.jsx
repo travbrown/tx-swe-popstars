@@ -18,7 +18,7 @@ const NameOneInput = () => {
     const [name2, setName2] = useState('');
     localStorage.setItem('name2', name2)
     const handleName2 = event => setName2(event.target.value);
-
+    
     return (
         <div>
             <nav class="item">
