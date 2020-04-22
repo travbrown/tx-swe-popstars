@@ -20,6 +20,7 @@ import Justin_beiber from "../photos/Justin_beiber.jpg";
 import lizzo from "../photos/lizzo.jpeg";
 import rihanna from "../photos/rihanna.jpg";
 import wiz_khalifa from "../photos/wiz_khalifa.png";
+import { Link } from "react-router-dom";
 
 let artistsFaces = [
     { name: "A$AP Ferg", image: asap_ferg },
@@ -40,31 +41,31 @@ let artistsFaces = [
 ];
 
 const GamePage = () => {
-    const spotifyApi = new SpotifyWebApi();
+	const spotifyApi = new SpotifyWebApi();
 
-    const [playlist, setPlaylist] = useState(null);
-    const [artists, setArtists] = useState(null);
-    const [track, setTrack] = useState(null);
+	const [playlist, setPlaylist] = useState(null);
+	const [artists, setArtists] = useState(null);
+	const [track, setTrack] = useState(null);
 
-    const [songIndex, setSongIndex] = useState(0);
-    const [artistIndex, setArtistIndex] = useState(0);
+	const [requestNextSong, setRequestNextSong] = useState(false);
+	const [songIndex, setSongIndex] = useState(0);
+	const [artistIndex, setArtistIndex] = useState(0);
 
-    const [soundHowl, setSoundHowl] = useState(null);
-    const [showModal, setShowModal] = useState(false);
-  
-    const ref = useRef(null);
+	const [soundHowl, setSoundHowl] = useState(null);
+	const [showModal, setShowModal] = useState(false);
 
-    const wrapperSetScore = delta => {
-        ref.current.addToScore(delta);
-     };
 
-    const shuffle = array => {
-        for (let i = array.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-        }
-    };
+  const ref = useRef(null);
+  const wrapperSetScore = delta => {
+      ref.current.addToScore(delta);
+   };
 
+  const shuffle = array => {
+      for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+      }
+  };
 
   const nextSong = () => {
     shuffle(artistsFaces);
@@ -72,15 +73,71 @@ const GamePage = () => {
     setArtistIndex(artistIndex + 1);
     playMusic();
   };
+ 
+	const makeSpotifyCall = async (token) => {
+		await getPlaylist(token);
+	};
 
-  useEffect(() => {
-    let token = localStorage.getItem("access_token");
-    makeSpotifyCall(token);
-  }, []);
+	useEffect(() => {
+		let token = localStorage.getItem('access_token');
+		makeSpotifyCall(token);
+	}, []);
 
-  const makeSpotifyCall = async token => {
-    await getPlaylist(token);
+	const getPlaylist = async access_token => {
+		spotifyApi.setAccessToken(access_token);
+		let foundSongs = [];
+		let artist = [];
+		let playlist = await spotifyApi.getPlaylistTracks("4h4V4Cbn8sjznAc3uirZmK");
+		
+		playlist.items.forEach(item => {
+			if (item.track.preview_url !== null && foundSongs.length < 10) {
+				artist.push(item.track.artists[0].name);
+				foundSongs.push(item.track.preview_url);
+			}
+		});
+		
+		setTrack(foundSongs[songIndex]);
+		setArtists(artist);
+		setPlaylist(foundSongs);
+		document.getElementById("autoPlay").click();
+	};
+
+	useEffect(() => {
+		if (soundHowl) {
+			soundHowl.play();
+		}
+	}, [soundHowl]);
+	
+	const playMusic = () => {
+		setSoundHowl(
+				new Howl({
+				src: [track],
+				html5: true,
+				format: ["mp3", "aac"],
+				autoplay: false,
+				loop: false,
+				volume: 0.5,
+				onload: function() {
+					console.log("LOADED!!");
+					setTrack(playlist[songIndex+1]);
+					setSongIndex(songIndex+1);
+				},
+				onend: () => { 
+					console.log('Finished');
+					setRequestNextSong(true); 
+					
+				},
+			})
+		);
   };
+  
+	var name1 = localStorage.getItem('name1'); 
+
+	if (requestNextSong) {
+		setArtistIndex(artistIndex + 1);
+		setRequestNextSong(false);
+		playMusic();
+	}
 
   const getPlaylist = async access_token => {
     spotifyApi.setAccessToken(access_token);
@@ -181,5 +238,6 @@ const GamePage = () => {
     </div>
   );
 };
+
 
 export default GamePage;

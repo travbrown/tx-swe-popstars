@@ -134,16 +134,20 @@ const PlayerOneGame = () => {
   };
 
   shuffle(artistsFaces);
- 
+  var name1 = localStorage.getItem('name1'); 
+  var name2 = localStorage.getItem('name2'); 
+  
   return (
     <div className="App">
       <button id="autoPlay" style={{ display: "none" }} onClick={playMusic}>
         can you see me?
       </button>
-      
-      <div class="item">Username</div>
-      <div class="item">SCORE: <DisplayScore ref={ref} /></div>
-      
+
+      <nav class="item">
+        <h2 id="username"> {name1}</h2>
+        <h2 id="subject"> SCORE: <DisplayScore ref={ref} /> </h2>
+      </nav>
+        
       <div id="background-wrap">
         {artistsFaces.map((item, idx) => (
           <>
@@ -161,6 +165,7 @@ const PlayerOneGame = () => {
           </>
         ))}
       </div>
+      
     </div>
   );
 };

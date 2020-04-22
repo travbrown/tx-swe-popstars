@@ -6,6 +6,7 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
+import Leaderboard from "./pages/Leaderboard";
 import SpotifyLoginPage from "./pages/SpotifyLoginPage";
 import DifficultyPage from "./pages/difficultyPage";
 import StartPage from "./pages/start_game";
@@ -21,6 +22,7 @@ import TimeUp2 from "./pages/timeUp2";
 import GameMode from './pages/gameMode';
 import NameOneInput from "./pages/multiplayerNames";
 import GameOver from "./pages/gameOver";
+import SinglePlayerInput from "./pages/singleplayerName"; 
 
 function AllLogins() {
   return (
@@ -30,6 +32,14 @@ function AllLogins() {
   );
 }
 
+function LeaderboardInfo()
+{
+  return (
+    <div>
+      <Leaderboard />
+    </div>
+  )
+}
 
 export default function App() {
   return (
@@ -45,6 +55,7 @@ export default function App() {
           <Route exact path="/start_game" component={StartPage} />
           <Route exact path="/countdown" component={CountdownPage} />
           <Route exact path="/gamePage" component={GamePage} />
+          <Route exact path="/" component={LeaderboardInfo} />
           <Route exact path="/multiplayerPage" component={MultiplayerPage} />
           <Route exact path="/playerOne" component={PlayerOnePage} />
           <Route exact path="/playerOneGame" component={PlayerOneGamePage} />
@@ -54,6 +65,7 @@ export default function App() {
           <Route exact path="/timeUp2" component={TimeUp2} />
           <Route exact path="/multiplayerNames" component={NameOneInput} />
           <Route exact path="/gameOver" component ={GameOver} />
+          <Route exact path="/singleplayerName" component={SinglePlayerInput} />
         </Switch>
       </Router>
     </div>

@@ -76,12 +76,16 @@ const CountdownPage = () => {
         .getElementById("base-timer-path-remaining")
         .setAttribute("stroke-dasharray", circleDasharray);
     }    
-
+    var name1 = localStorage.getItem('name1'); 
     return (
       <div className="App">
-        <div class ="item">Username</div>
-        <div class ="item">Get Ready</div>    
-        <header className="App-header"> 
+         <nav class="item">
+           <h2 id="username"> {name1} </h2>
+            <h2 id="subject-getready">Get Ready</h2>
+          </nav>
+      
+          <div class="centerItems">
+
             <div class="base-timer">
             <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <g class="base-timer__circle">
@@ -99,8 +103,8 @@ const CountdownPage = () => {
                 </g>
             </svg>
             <span id="base-timer-label" class="base-timer__label">{formatTime(timeLeft)}</span>
-            </div>
-        </header>
+            </div></div>
+  
       </div>
     );
 };

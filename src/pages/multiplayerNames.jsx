@@ -14,79 +14,36 @@ const NameOneInput = () => {
     const [name1, setName1] = useState('');
     localStorage.setItem('name1', name1)
     const handleName1 = event => setName1(event.target.value);
+    localStorage.setItem('playerOneName', name1);
     const [name2, setName2] = useState('');
-    localStorage.setItem('name2', name2)
+    localStorage.setItem('playerTwoName', name2)
     const handleName2 = event => setName2(event.target.value);
 
-    return(
-            <div>
-                <header id="inputNames">
-                    <header id="centerItems">
-                        <h2>Player One: <PlayerOneName/></h2>
-                        <PlayerOneName playeronename = {name1} />
-                        <Input value={name1} onBlur={handleName1}></Input><br></br>
-                        <h2>Player Two: <PlayerTwoName/></h2>
-                        <PlayerTwoName playertwoname = {name2} />
-                        <Input value={name2} onBlur={handleName2}></Input>
-                            <center>
-                                <button onClick={handleClick} id="next">NEXT</button>
-                            </center>
-              
-                    </header>
-                </header>
-          <h2><PlayerOneName/></h2>
-          <h2><PlayerTwoName/></h2>
+    return (
+        <div>
+            <nav class="item">
+                <h2 id="subject-no-user-username">Enter Username</h2>
+            </nav>
+                <h2 id="inputNames">Player One: <PlayerOneName playeronename = {name1} /> </h2>  
+                     <Input type="text" value={name1} onChange={handleName1} class="nameBox"></Input><br></br>
+                <h2 id="inputNames">Player Two: <PlayerTwoName playertwoname = {name2} /></h2>
+                    <Input type="text" value={name2} onChange={handleName2}></Input>
+                 <center>
+                    <button onClick={handleClick} id="next">NEXT</button>
+                 </center>
             </div>
         );
     };
 
-     const PlayerOneName = ({playeronename}) => <h2>{playeronename}</h2> ; 
-     const PlayerTwoName = ({playertwoname}) => <h2>{playertwoname}</h2> ; 
-     const Input = ({value, onBlur, children}) => (
-         <label>
-             {children}
-             <input type="text" value={value} onChange={onBlur}/>
-         </label>
-     )
-      export default NameOneInput;
-      export {PlayerOneName}; 
+    const PlayerOneName = ({playeronename}) => <h2>{playeronename}</h2> ; 
+    const PlayerTwoName = ({playertwoname}) => <h2>{playertwoname}</h2> ; 
+    const Input = ({value, onChange, children}) => (
+        <label>
+            {children}
+            <input type="text" value={value} onChange={onChange}/>
+        </label>
+    )
 
-//     }
-//     const Name2 = () => {
-//         return <NameTwoComp/>;
-//     };
-
-//     const NameTwoComp = () => {
-//             const [name2, setName2] = useState(""); 
-
-//             const handleName2 = event => setName2(event.target.value);
-//         return (
-//             {name2}
-//             );
-//     }
-    
-//  return( 
-     
-     
-//     <div className="App">
-        
-//     <header id="inputNames">
-//     <img src={logo} className="App-logo" alt="logo" />
-//         <center><h2>Player One: {name1}</h2></center>
-//             <center><input type="text" value={name1} name="name1" onBlur={setNameOne}></input></center>
-//             <center><h2>Player Two: {name2}</h2></center>
-//             <center><input type="text" value={name2} name="name2" onBlur={handleName2}></input></center>
-//      <br></br>
-    
-//         <center><button onClick={handleClick} id="next">NEXT</button></center></header>
-        
-        
-//         </div>
-  
-//     );
-
-
-
-//export default NameOneInput; 
-
-// }
+export default NameOneInput;
+export {PlayerOneName};
+export {PlayerTwoName};

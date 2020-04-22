@@ -26,25 +26,24 @@ const GameMode = () => {
       const handleClick = () => {
           history.push("/multiplayerNames");
       }
+      localStorage.setItem('multiplayer', handleClick);
       return (
         <button class= "active_button" onClick={handleClick}>
           MultiPlayer
         </button>
       );
+
     }
     
     return (      
       <div className="App">
-        <div class ="item">
-        {/* <div class ="item"> Username </div>
-        <div class ="item"> Game Mode </div> */}
-          <li id="username">Username</li>
-          <li id="subject"><center>Game Mode</center></li>
-        </div>
+          <nav class="item">
+            <h2 id="subject-no-user">Game Mode</h2>
+          </nav>
         <header>
         <div className="centerItems">
-        {/* <img src={logo} className="App-logo" alt="logo" height = "300px" /> */}
-            <Link to="/difficultyPage" class= "active_button"> Single Player</Link>
+        <img src={logo} className="App-logo" alt="logo" height = "300px" />
+            <Link to="/singleplayerName" class= "active_button"> Single Player</Link>
             <p></p>
             
             <MultiPName></MultiPName>      

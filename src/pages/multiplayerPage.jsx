@@ -1,12 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {PlayerOneName} from './multiplayerNames'; 
-var name1 = localStorage.getItem('name1'); 
+
 const MultiplayerPage = () => {
+  var name1 = localStorage.getItem('name1'); 
+  var name2 = localStorage.getItem('name2'); 
     return (
         <div className="App">
           <nav class="item">
-            <h2 id="username"> {name1} </h2>
+            <h2 id="username"> {name1} / {name2} </h2>
             <h2 id="subject"> Difficulty </h2>
           </nav>
        
