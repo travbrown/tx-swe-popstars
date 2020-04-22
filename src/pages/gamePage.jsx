@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Howl } from "howler";
+import ReactHowler from "react-howler";
 import SpotifyWebApi from "spotify-web-api-js";
 import "./gamePage.css";
 import asap_ferg from "../photos/ASAP_Ferg.png";
@@ -12,182 +12,147 @@ import kanye_west from "../photos/kanye_west.png";
 import jcole from "../photos/jcole.png";
 import nicki_minaj from "../photos/nicki_minaj.png";
 import beyonce from "../photos/Beyonce.png";
-import { Link } from "react-router-dom";
 
-let artistsFaces = [
-  { name: 'A$AP Ferg', image: asap_ferg },
-  { name: 'A$AP Rocky', image: asap_rocky },
-  { name: 'Cardi B', image: cardi_b },
-  { name: 'Drake', image: drake },
-  { name: 'Lil Wayne', image: lil_wayne },
-  { name: '2Pac', image: tupac },
-  { name: 'Kanye West', image: kanye_west },
-  { name: 'J. Cole', image: jcole },
-  { name: 'Nicki Minaj', image: nicki_minaj },
-  { name: 'Beyoncé', image: beyonce },
+const artistsFaces = [
+  { name: "A$AP Ferg", image: asap_ferg },
+  { name: "A$AP Rocky", image: asap_rocky },
+  { name: "Cardi B", image: cardi_b },
+  { name: "Drake", image: drake },
+  { name: "Lil Wayne", image: lil_wayne },
+  { name: "2Pac", image: tupac },
+  { name: "Kanye West", image: kanye_west },
+  { name: "J. Cole", image: jcole },
+  { name: "Nicki Minaj", image: nicki_minaj },
+  { name: "Beyoncé", image: beyonce }
 ];
-  
+
+function Bubble({ number, image, name, checkAnswer }) {
+  const [clicked, setClicked] = useState(false);
+
+  const onClick = () => {
+    setClicked(true);
+    checkAnswer(name);
+  };
+
+  return (
+    <div
+      className={`bubble x${number}`}
+      style={{ display: clicked ? "none" : "flex" }}
+      onClick={onClick}
+    >
+      <img
+        style={{
+          display: "inline-block",
+          height: "100%",
+          width: "100%",
+          objectFit: "cover",
+          borderRadius: "50%"
+        }}
+        alt="bubble pic"
+        src={image}
+      />
+    </div>
+  );
+}
+
 const GamePage = () => {
-	const spotifyApi = new SpotifyWebApi();
+  const spotifyApi = new SpotifyWebApi();
 
-	const [playlist, setPlaylist] = useState(null);
-	const [artists, setArtists] = useState(null);
-	const [track, setTrack] = useState(null);
+  const [playlist, setPlaylist] = useState(null);
+  const [artists, setArtists] = useState(null);
 
-	const [requestNextSong, setRequestNextSong] = useState(false);
-	const [songIndex, setSongIndex] = useState(0);
-	const [artistIndex, setArtistIndex] = useState(0);
+  const [songIndex, setSongIndex] = useState(0);
 
-	const [soundHowl, setSoundHowl] = useState(null);
-	const [showModal, setShowModal] = useState(false);
-	const [score, setScore] = useState(0);
-	localStorage.setItem('User Score', score);
+  const [showModal, setShowModal] = useState(false);
+  const [score, setScore] = useState(0);
 
+  const checkAnswer = name => {
+    if (name === artists[songIndex]) {
+      setScore(score + 5);
+      nextSong();
+    }
+  };
 
-	const Bubble = ({ number, hasArtist, image, name }) => {
-    
-		const [clicked, setClicked] = useState(false);
-		
-		const checkAnswer = () => {
-			setClicked(true);
-			if (name === artists[artistIndex]) {
-				setScore(score + 5);
-				nextSong();
-			}
-    	};
-  
-    return (
-        <div class={`bubble x${number}`}  
-        style={{ display: clicked ? "none" : "flex" }}
-        onClick={checkAnswer} >
-          <img
-            style={{
-              display: hasArtist ? "inline-block" : "none",
-              height: "100%",
-              width: "100%",
-              objectFit: "cover",
-              borderRadius: "50%"
-            }}
-            alt= "bubble pic"
-            src={image}
-          />
-        </div>
-      );
-	};
+  const nextSong = () => {
+    console.log("Setting index to ", songIndex + 1);
+    setSongIndex(songIndex + 1);
+  };
 
-    const nextSong = () => {
-		soundHowl.stop();
-		setArtistIndex(artistIndex+1);
-		playMusic();
-	}
- 
-	const makeSpotifyCall = async (token) => {
-		await getPlaylist(token);
-	};
+  useEffect(() => {
+    getPlaylist();
+  }, []);
 
-	useEffect(() => {
-		let token = localStorage.getItem('access_token');
-		makeSpotifyCall(token);
-	}, []);
+  const getPlaylist = async () => {
+    let playlist = null;
+    try {
+      const access_token = localStorage.getItem("access_token");
+      spotifyApi.setAccessToken(access_token);
+      playlist = await spotifyApi.getPlaylistTracks("4h4V4Cbn8sjznAc3uirZmK");
+    } catch (error) {
+      console.log(error);
+      return;
+    }
 
-	const getPlaylist = async access_token => {
-		spotifyApi.setAccessToken(access_token);
-		let foundSongs = [];
-		let artist = [];
-		let playlist = await spotifyApi.getPlaylistTracks("4h4V4Cbn8sjznAc3uirZmK");
-		
-		playlist.items.forEach(item => {
-			if (item.track.preview_url !== null && foundSongs.length < 10) {
-				artist.push(item.track.artists[0].name);
-				foundSongs.push(item.track.preview_url);
-			}
-		});
-		
-		setTrack(foundSongs[songIndex]);
-		setArtists(artist);
-		setPlaylist(foundSongs);
-		document.getElementById("autoPlay").click();
-	};
+    let artist = [];
+    let foundSongs = [];
+    for (const item of playlist.items) {
+      if (item.track.preview_url == null) continue;
+      artist.push(item.track.artists[0].name);
+      foundSongs.push(item.track.preview_url);
+      if (foundSongs.length >= 10) break;
+    }
+    setArtists(artist);
+    setPlaylist(foundSongs);
+  };
 
-	useEffect(() => {
-		if (soundHowl) {
-			soundHowl.play();
-		}
-	}, [soundHowl]);
-	
-	const playMusic = () => {
-		setSoundHowl(
-				new Howl({
-				src: [track],
-				html5: true,
-				format: ["mp3", "aac"],
-				autoplay: false,
-				loop: false,
-				volume: 0.5,
-				onload: function() {
-					console.log("LOADED!!");
-					setTrack(playlist[songIndex+1]);
-					setSongIndex(songIndex+1);
-				},
-				onend: () => { 
-					console.log('Finished');
-					setRequestNextSong(true); 
-					
-				},
-			})
-		);
-	};
-	var name1 = localStorage.getItem('name1'); 
-
-	if (requestNextSong) {
-		setArtistIndex(artistIndex + 1);
-		setRequestNextSong(false);
-		playMusic();
-	}
+  const howler =
+    playlist == null ? null : (
+      <ReactHowler
+        src={playlist[songIndex]}
+        format={["mp3", "aac"]}
+        onEnd={nextSong}
+      />
+    );
 
   return (
     <div className="App">
-		<button
-			id="autoPlay"
-			style={{ display: "none" }}
-			onClick={playMusic}> 
-			can you see me? 
-		</button>
-		<nav class="item">
+      <div className="item">Username</div>
+      <div className="item">SCORE: {score}</div>
 
-<h2 id="username"> {name1}</h2>
-<h2 id="subject"> score: {score} </h2>
-<h2 id="end-btn"> <button onClick={() => setShowModal(true)} id="end">QUIT</button></h2>
-</nav>
-		
-		<div id="background-wrap">
-		{artistsFaces.map((item, idx) => (
-			<>
-			<Bubble
-				key={idx}
-				image={item.image}
-				hasArtist
-				number={idx}
-				name={item.name}
-			/>
-			</>
-		))}
-		</div>
-		
-		<div
-			className={showModal ? "modal show" : "modal"}
-			onClick={() => setShowModal(false)}
-		>
-			<div id="modalContainer" >
-				<h1>Are you sure you want to quit?</h1>
-				<button id="cancel"><a id='cancel' href= '#'> CANCEL </a></button>
-				<button id='end'> <a id='cancel' href='/gameMode'> QUIT </a></button>
-				
-			</div>
-		</div>
+      <div id="background-wrap">
+        {artistsFaces.map((item, idx) => (
+          <Bubble
+            checkAnswer={checkAnswer}
+            key={idx}
+            image={item.image}
+            number={idx}
+            name={item.name}
+          />
+        ))}
+      </div>
+      {howler}
+      <button className="quit_button" onClick={() => setShowModal(true)}>
+        {" "}
+        QUIT{" "}
+      </button>
+      <div
+        className={showModal ? "modal show" : "modal"}
+        onClick={() => setShowModal(false)}
+      >
+        <div id="modalContainer">
+          <h1>Are you sure you want to quit?</h1>
+          <a className="quit" href="/gameMode">
+            {" "}
+            QUIT{" "}
+          </a>
+          <a className="cancel" href="#">
+            {" "}
+            CANCEL{" "}
+          </a>
+        </div>
+      </div>
     </div>
   );
 };
-
 
 export default GamePage;
