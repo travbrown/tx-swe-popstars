@@ -31,16 +31,13 @@ const GamePage = () => {
 
 	const [playlist, setPlaylist] = useState(null);
 	const [artists, setArtists] = useState(null);
-	const [track, setTrackInternal] = useState(null);
-	let setTrack = (newTrack) => { 
-		console.log('Setting new track', newTrack); 
-		setTrackInternal(newTrack); };
+	const [track, setTrack] = useState(null);
 
+	const [requestNextSong, setRequestNextSong] = useState(false);
 	const [songIndex, setSongIndex] = useState(0);
 	const [artistIndex, setArtistIndex] = useState(0);
 
 	const [soundHowl, setSoundHowl] = useState(null);
-	const [prevSoundHowl, setPrevSoundHowl] = useState(null);
 	const [showModal, setShowModal] = useState(false);
 	const [score, setScore] = useState(0);
 
@@ -92,46 +89,29 @@ const GamePage = () => {
 	}, []);
 
 	const getPlaylist = async access_token => {
-		spotifyApi.setAccessToken(access_token);
-		//Couldn't get the Promise implementation to work
-		//spotifyApi.setPromiseImplementation(Q);
-		await spotifyApi
-		.getPlaylistTracks("4h4V4Cbn8sjznAc3uirZmK")
-		.then(
-			function(data) {
-				let foundSongs = [];
-				let artist = [];
-				data.items.forEach(item => {
-					if (item.track.preview_url !== null && foundSongs.length < 10) {
-					artist.push(item.track.artists[0].name);
-					foundSongs.push(item.track.preview_url);
-					}
-				});
-				setTrack(foundSongs[songIndex]);
-				setArtists(artist);
-				setPlaylist(foundSongs);
-			},
-			function(err) {
-				console.error(err);
-			}
-		)
-		.catch(e => console.log(e));
-		document.getElementById("autoPlay").click();
-	};
+    spotifyApi.setAccessToken(access_token);
+    let foundSongs = [];
+	let artist = [];
+	let playlist = await spotifyApi.getPlaylistTracks("4h4V4Cbn8sjznAc3uirZmK");
+    playlist.items.forEach(item => {
+        if (item.track.preview_url !== null && foundSongs.length < 10) {
+            artist.push(item.track.artists[0].name);
+            foundSongs.push(item.track.preview_url);
+        }
+    });
+    setTrack(foundSongs[songIndex]);
+    setArtists(artist);
+    setPlaylist(foundSongs);
+    document.getElementById("autoPlay").click();
+};
 
 	useEffect(() => {
-		
 		if (soundHowl) {
-			if(soundHowl !== prevSoundHowl){
-				console.log('3 -->', track);
-				soundHowl.play();
-			}
+			soundHowl.play();
 		}
-		setPrevSoundHowl(soundHowl);
 	}, [soundHowl]);
-	console.log(track);
+	
 	const playMusic = () => {
-		console.log('1 -->',track);
 		setSoundHowl(
 				new Howl({
 				src: [track],
@@ -142,20 +122,23 @@ const GamePage = () => {
 				volume: 0.5,
 				onload: function() {
 					console.log("LOADED!!");
-					console.log('before: ',track);
 					setTrack(playlist[songIndex+1]);
-					console.log('after: ',track);
 					setSongIndex(songIndex+1);
 				},
-				onend: function() {
-					console.log("Finished!");
-					console.log(track);
-					setArtistIndex(artistIndex+1);
-					playMusic();	
+				onend: () => { 
+					console.log('Finished');
+					setRequestNextSong(true); 
+					
 				},
 			})
 		);
 	};
+
+	if (requestNextSong) {
+		setArtistIndex(artistIndex + 1);
+		setRequestNextSong(false);
+		playMusic();
+	}
 
   return (
     <div className="App">
