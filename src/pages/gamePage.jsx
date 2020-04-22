@@ -89,21 +89,23 @@ const GamePage = () => {
 	}, []);
 
 	const getPlaylist = async access_token => {
-    spotifyApi.setAccessToken(access_token);
-    let foundSongs = [];
-	let artist = [];
-	let playlist = await spotifyApi.getPlaylistTracks("4h4V4Cbn8sjznAc3uirZmK");
-    playlist.items.forEach(item => {
-        if (item.track.preview_url !== null && foundSongs.length < 10) {
-            artist.push(item.track.artists[0].name);
-            foundSongs.push(item.track.preview_url);
-        }
-    });
-    setTrack(foundSongs[songIndex]);
-    setArtists(artist);
-    setPlaylist(foundSongs);
-    document.getElementById("autoPlay").click();
-};
+		spotifyApi.setAccessToken(access_token);
+		let foundSongs = [];
+		let artist = [];
+		let playlist = await spotifyApi.getPlaylistTracks("4h4V4Cbn8sjznAc3uirZmK");
+		
+		playlist.items.forEach(item => {
+			if (item.track.preview_url !== null && foundSongs.length < 10) {
+				artist.push(item.track.artists[0].name);
+				foundSongs.push(item.track.preview_url);
+			}
+		});
+		
+		setTrack(foundSongs[songIndex]);
+		setArtists(artist);
+		setPlaylist(foundSongs);
+		document.getElementById("autoPlay").click();
+	};
 
 	useEffect(() => {
 		if (soundHowl) {
