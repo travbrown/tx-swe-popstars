@@ -2,7 +2,8 @@ import React, { useState, useEffect, forwardRef, useImperativeHandle } from "rea
 
 const DisplayScore =
 forwardRef((props, ref) => {
-  const [score, setScore] = useState(false);
+  const [score, setScore] = useState(0);
+  localStorage.setItem("score", score);
 
   const addToScore = (delta) => {
     setScore(score + delta);
@@ -16,9 +17,9 @@ forwardRef((props, ref) => {
   });
     return (
       <span>
-{score}
+        {score}
       </span>
     );
-  });
+});
 
-  export default DisplayScore;
+export default DisplayScore;

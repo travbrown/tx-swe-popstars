@@ -52,9 +52,7 @@ const GamePage = () => {
     const [soundHowl, setSoundHowl] = useState(null);
     const [showModal, setShowModal] = useState(false);
   
-    let score = 0;  
     const ref = useRef(null);
-    //localStorage.setItem("score", score);
 
     const wrapperSetScore = delta => {
         ref.current.addToScore(delta);
@@ -65,7 +63,6 @@ const GamePage = () => {
         let j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
         }
-        //console.log(artistsFaces);
     };
 
 
@@ -127,12 +124,10 @@ const GamePage = () => {
         loop: false,
         volume: 0.5,
         onload: function() {
-          //console.log("LOADED!!");
           setTrack(playlist[songIndex + 1]);
           setSongIndex(songIndex + 1);
         },
         onend: function() {
-          //console.log("Finished!");
         }
       })
     );
@@ -159,7 +154,6 @@ const GamePage = () => {
               number={idx}
               name={item.name}
               wrapperSetScore = {wrapperSetScore}
-              score = {score}
               artists = {artists}
               artistIndex = {artistIndex}
               nextSong = {nextSong}
