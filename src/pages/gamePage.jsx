@@ -34,6 +34,7 @@ const GamePage = () => {
 	const [artists, setArtists] = useState(null);
 	const [track, setTrack] = useState(null);
 
+	const [requestNextSong, setRequestNextSong] = useState(false);
 	const [songIndex, setSongIndex] = useState(0);
 	const [artistIndex, setArtistIndex] = useState(0);
 
@@ -91,34 +92,27 @@ const GamePage = () => {
 
 	const getPlaylist = async access_token => {
 		spotifyApi.setAccessToken(access_token);
-		//Couldn't get the Promise implementation to work
-		//spotifyApi.setPromiseImplementation(Q);
-		await spotifyApi
-		.getPlaylistTracks("4h4V4Cbn8sjznAc3uirZmK")
-		.then(
-			function(data) {
-				let foundSongs = [];
-				let artist = [];
-				data.items.forEach(item => {
-					if (item.track.preview_url !== null && foundSongs.length < 10) {
-					artist.push(item.track.artists[0].name);
-					foundSongs.push(item.track.preview_url);
-					}
-				});
-				setTrack(foundSongs[songIndex]);
-				setArtists(artist);
-				setPlaylist(foundSongs);
-			},
-			function(err) {
-				console.error(err);
+		let foundSongs = [];
+		let artist = [];
+		let playlist = await spotifyApi.getPlaylistTracks("4h4V4Cbn8sjznAc3uirZmK");
+		
+		playlist.items.forEach(item => {
+			if (item.track.preview_url !== null && foundSongs.length < 10) {
+				artist.push(item.track.artists[0].name);
+				foundSongs.push(item.track.preview_url);
 			}
-		)
-		.catch(e => console.log(e));
+		});
+		
+		setTrack(foundSongs[songIndex]);
+		setArtists(artist);
+		setPlaylist(foundSongs);
 		document.getElementById("autoPlay").click();
 	};
 
 	useEffect(() => {
-		if (soundHowl) soundHowl.play();
+		if (soundHowl) {
+			soundHowl.play();
+		}
 	}, [soundHowl]);
 	
 	const playMusic = () => {
@@ -135,13 +129,22 @@ const GamePage = () => {
 					setTrack(playlist[songIndex+1]);
 					setSongIndex(songIndex+1);
 				},
-				onend: function() {
-					console.log("Finished!");
+				onend: () => { 
+					console.log('Finished');
+					setRequestNextSong(true); 
+					
 				},
 			})
 		);
 	};
 	var name1 = localStorage.getItem('name1'); 
+
+	if (requestNextSong) {
+		setArtistIndex(artistIndex + 1);
+		setRequestNextSong(false);
+		playMusic();
+	}
+
   return (
     <div className="App">
 		<button
