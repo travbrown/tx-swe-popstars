@@ -4,7 +4,6 @@ import SpotifyWebApi from "spotify-web-api-js";
 import DisplayScore from "./displayScore.jsx";
 import Bubble from "./bubbleContainer.jsx";
 import "./gamePage.css";
-import { Link } from "react-router-dom";
 import asap_ferg from "../photos/ASAP_Ferg.png";
 import asap_rocky from "../photos/ASAP_Rocky.png";
 import cardi_b from "../photos/cardi_b.png";
@@ -139,57 +138,6 @@ const GamePage = () => {
 		playMusic();
 	}
 
-  const getPlaylist = async access_token => {
-    spotifyApi.setAccessToken(access_token);
-    //Couldn't get the Promise implementation to work
-    //spotifyApi.setPromiseImplementation(Q);
-    await spotifyApi
-      .getPlaylistTracks("4h4V4Cbn8sjznAc3uirZmK")
-      .then(
-        function(data) {
-          let foundSongs = [];
-          let artist = [];
-          data.items.forEach(item => {
-            if (item.track.preview_url !== null && foundSongs.length < 10) {
-              artist.push(item.track.artists[0].name);
-              foundSongs.push(item.track.preview_url);
-            }
-          });
-          setTrack(foundSongs[songIndex]);
-          setArtists(artist);
-          setPlaylist(foundSongs);
-        },
-        function(err) {
-          console.error(err);
-        }
-      )
-      .catch(e => console.log(e));
-    document.getElementById("autoPlay").click();
-  };
-
-  useEffect(() => {
-    if (soundHowl) soundHowl.play();
-  }, [soundHowl]);
-
-  const playMusic = () => {
-    setSoundHowl(
-      new Howl({
-        src: [track],
-        html5: true,
-        format: ["mp3", "aac"],
-        autoplay: false,
-        loop: false,
-        volume: 0.5,
-        onload: function() {
-          setTrack(playlist[songIndex + 1]);
-          setSongIndex(songIndex + 1);
-        },
-        onend: function() {
-        }
-      })
-    );
-  };
-
   shuffle(artistsFaces);
  
   return (
@@ -197,10 +145,13 @@ const GamePage = () => {
       <button id="autoPlay" style={{ display: "none" }} onClick={playMusic}>
         can you see me?
       </button>
-      
-      <div class="item">Username</div>
-      <div class="item">SCORE: <DisplayScore ref={ref} /></div>
-      
+   
+      <nav class="item">
+        <h2 id="username"> {name1}</h2>
+        <h2 id="subject"> SCORE: <DisplayScore ref={ref} /> </h2>
+        <h2 id="end-btn"> <button onClick={() => setShowModal(true)} id="end">QUIT</button></h2>
+      </nav>
+
       <div id="background-wrap">
         {artistsFaces.map((item, idx) => (
           <>
@@ -218,21 +169,15 @@ const GamePage = () => {
           </>
         ))}
       </div>
-      <button className="quit_button" onClick={() => setShowModal(true)}>
-        QUIT
-      </button>
+  
       <div
         className={showModal ? "modal show" : "modal"}
-        onClick={() => setShowModal(false)}
-      >
+        onClick={() => setShowModal(false)} >
+          
         <div id="modalContainer">
           <h1>Are you sure you want to quit?</h1>
-          <a class="quit" href="/gameOver">
-            QUIT
-          </a>
-          <a class="cancel" href="#">
-            CANCEL
-          </a>
+          <button id="cancel"><a id='cancel' href= '#'> CANCEL </a></button>
+				  <button id='end'> <a id='cancel' href='/gameOver'> QUIT </a></button>
         </div>
       </div>
     </div>

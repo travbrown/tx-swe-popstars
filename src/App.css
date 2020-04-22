@@ -23,15 +23,14 @@ li{
   background: #000000;
   color: white;
 }
-/* .active_button{
+.active_button{
   -webkit-box-shadow: inset 5px 5px 5px 0px #dddddd;
   -moz-box-shadow: inset 5px 5px 5px 0px #dddddd;
   box-shadow: inset 2px 2px 2px 0px #dddddd;
   box-shadow:
 			0 0 4rem 0 rgba(black, 0.1),
 			0 1rem 2rem -1rem rgba(black, 0.3);
-} */
-
+}
 html {background-color: black};
 ul.top li {
   display:inline;
@@ -94,6 +93,16 @@ h2{
   color: white; 
 }
 
+button{
+  color: black; 
+  background-color: #03D4EF;
+  border-radius: 10px;
+  width: 300px;
+  height: 45px;
+  color: white;
+  text-align: center;
+}
+
 img{
   padding-bottom: 10px;
 }
@@ -114,11 +123,10 @@ input{
   font-weight: bold;
   color: black; 
   text-transform: uppercase;
-  /* box-shadow:
+  box-shadow:
 			0 0 4rem 0 rgba(black, 0.1),
-			0 1rem 2rem -1rem rgba(black, 0.3); */
+			0 1rem 2rem -1rem rgba(black, 0.3);
 }
-
 
 #next{
   font-size: calc(10px + 2vmin);
@@ -136,13 +144,19 @@ input{
 			0 1rem 2rem -1rem rgba(black, 0.3);
 }
 .App-logo {
+  /* height: 40vmin; */
   width: 100%;
   object-fit: scale-down;
   pointer-events: none;
   padding-bottom: 0%;
   margin-bottom: 0px;
 }
+body{
+  width: 100%;
+  background-color: #000000;
+}
 
+/*color of the headings ex: "Player One:" NOT whats in the input box*/
 #inputNames{
   color: white;
 }
@@ -169,7 +183,9 @@ textarea{
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+
 }
+
 
 .centerItems{
   background-color: #000000;
@@ -202,9 +218,8 @@ div{
     transform: rotate(360deg);
   }
 }
-
-/* .default_button{
+.default_button{
   -webkit-box-shadow: inset 5px 5px 5px 0px #dddddd;
   -moz-box-shadow: inset 5px 5px 5px 0px #dddddd;
   box-shadow: inset 2px 2px 2px 0px #dddddd;
-} */
+}
