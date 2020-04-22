@@ -5,10 +5,10 @@ const Bubble = (props) => {
     const checkAnswer = () => {
         setClicked(true);
         if (props.name === props.artists[props.artistIndex]) {
-            props.wrapperSetScore(props.score + 5);
+            props.wrapperSetScore(5);
             props.nextSong();
         } else {
-            props.wrapperSetScore(props.score - 2);
+            props.wrapperSetScore(-2);
         }
   
         if (props.artistIndex === props.artists.length - 1) {

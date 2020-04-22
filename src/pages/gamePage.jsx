@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Howl } from "howler";
 import SpotifyWebApi from "spotify-web-api-js";
+import DisplayScore from "./displayScore.jsx";
 import Bubble from "./bubbleContainer.jsx";
 import "./gamePage.css";
 import { Link } from "react-router-dom";
@@ -50,22 +51,21 @@ const GamePage = () => {
 
     const [soundHowl, setSoundHowl] = useState(null);
     const [showModal, setShowModal] = useState(false);
-    
-    const [score, setScore] = useState(0);
-    localStorage.setItem("score", score);
+  
+    let score = 0;  
+    const ref = useRef(null);
+    //localStorage.setItem("score", score);
 
-    const wrapperSetScore = val => {
-       setScore(val);
-       console.log(val);
-    };
+    const wrapperSetScore = delta => {
+        ref.current.addToScore(delta);
+     };
 
     const shuffle = array => {
         for (let i = array.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
         }
-        console.log(artistsFaces);
-        //return array;
+        //console.log(artistsFaces);
     };
 
 
@@ -127,19 +127,19 @@ const GamePage = () => {
         loop: false,
         volume: 0.5,
         onload: function() {
-          console.log("LOADED!!");
+          //console.log("LOADED!!");
           setTrack(playlist[songIndex + 1]);
           setSongIndex(songIndex + 1);
         },
         onend: function() {
-          console.log("Finished!");
+          //console.log("Finished!");
         }
       })
     );
   };
 
   shuffle(artistsFaces);
-  
+ 
   return (
     <div className="App">
       <button id="autoPlay" style={{ display: "none" }} onClick={playMusic}>
@@ -147,7 +147,7 @@ const GamePage = () => {
       </button>
       
       <div class="item">Username</div>
-      <div class="item">SCORE: {score}</div>
+      <div class="item">SCORE: <DisplayScore ref={ref} /></div>
       
       <div id="background-wrap">
         {artistsFaces.map((item, idx) => (
@@ -176,7 +176,7 @@ const GamePage = () => {
       >
         <div id="modalContainer">
           <h1>Are you sure you want to quit?</h1>
-          <a class="quit" href="/gameMode">
+          <a class="quit" href="/gameOver">
             QUIT
           </a>
           <a class="cancel" href="#">

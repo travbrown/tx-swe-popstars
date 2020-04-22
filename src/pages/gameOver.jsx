@@ -1,6 +1,7 @@
 import React from "react";
 import './difficultyPage.css';
 import { Link } from "react-router-dom";
+
 var score = localStorage.getItem('score'); 
 
 const GameOver = () => {
