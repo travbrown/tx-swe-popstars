@@ -35,6 +35,9 @@ html {background-color: black};
 ul.top li {
   display:inline;
 }
+.loginbtn{
+  color: white; 
+}
 #cancel{
   color:white; 
 }
@@ -100,7 +103,9 @@ button{
   text-align: center;
 }
 
-
+img{
+  padding-bottom: 10px;
+}
 input{
   width: 350px;
   height: 60px;
@@ -143,6 +148,8 @@ input{
   width: 100%;
   object-fit: scale-down;
   pointer-events: none;
+  padding-bottom: 0%;
+  margin-bottom: 0px;
 }
 body{
   width: 100%;
