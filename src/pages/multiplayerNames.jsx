@@ -5,7 +5,6 @@ import  { Redirect } from 'react-router-dom'
 import ReactDOM from 'react-dom'
 import { useHistory } from 'react-router-dom';
 import { render } from '@testing-library/react';
-import logo from "../popstarslogo.png"
 
 const NameOneInput = () => {
     const history = useHistory();
@@ -36,17 +35,15 @@ const NameOneInput = () => {
         );
     };
 
-     const PlayerOneName = ({playeronename}) => <h2>{playeronename}</h2> ; 
-     const PlayerTwoName = ({playertwoname}) => <h2>{playertwoname}</h2> ; 
-     const Input = ({value, onChange, children}) => (
-         <label>
-             {children}
-             <input type="text" value={value} onChange={onChange}/>
-         </label>
-     )
-    
+    const PlayerOneName = ({playeronename}) => <h2>{playeronename}</h2> ; 
+    const PlayerTwoName = ({playertwoname}) => <h2>{playertwoname}</h2> ; 
+    const Input = ({value, onChange, children}) => (
+        <label>
+            {children}
+            <input type="text" value={value} onChange={onChange}/>
+        </label>
+    )
 
-
-      export default NameOneInput;
-      export {PlayerOneName};
-      export {PlayerTwoName};
+export default NameOneInput;
+export {PlayerOneName};
+export {PlayerTwoName};

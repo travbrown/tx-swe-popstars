@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Howl } from "howler";
 import SpotifyWebApi from "spotify-web-api-js";
+import DisplayScore from "./displayScore.jsx";
+import Bubble from "./bubbleContainer.jsx";
 import "./gamePage.css";
 import asap_ferg from "../photos/ASAP_Ferg.png";
 import asap_rocky from "../photos/ASAP_Rocky.png";
@@ -12,21 +14,31 @@ import kanye_west from "../photos/kanye_west.png";
 import jcole from "../photos/jcole.png";
 import nicki_minaj from "../photos/nicki_minaj.png";
 import beyonce from "../photos/Beyonce.png";
+import davido from "../photos/davido.jpg";
+import Justin_beiber from "../photos/Justin_beiber.jpg";
+import lizzo from "../photos/lizzo.jpeg";
+import rihanna from "../photos/rihanna.jpg";
+import wiz_khalifa from "../photos/wiz_khalifa.png";
 import { Link } from "react-router-dom";
 
 let artistsFaces = [
-  { name: 'A$AP Ferg', image: asap_ferg },
-  { name: 'A$AP Rocky', image: asap_rocky },
-  { name: 'Cardi B', image: cardi_b },
-  { name: 'Drake', image: drake },
-  { name: 'Lil Wayne', image: lil_wayne },
-  { name: '2Pac', image: tupac },
-  { name: 'Kanye West', image: kanye_west },
-  { name: 'J. Cole', image: jcole },
-  { name: 'Nicki Minaj', image: nicki_minaj },
-  { name: 'Beyoncé', image: beyonce },
+    { name: "A$AP Ferg", image: asap_ferg },
+    { name: "A$AP Rocky", image: asap_rocky },
+    { name: "Cardi B", image: cardi_b },
+    { name: "Drake", image: drake },
+    { name: "Lil Wayne", image: lil_wayne },
+    { name: "2Pac", image: tupac },
+    { name: "Kanye West", image: kanye_west },
+    { name: "J. Cole", image: jcole },
+    { name: "Nicki Minaj", image: nicki_minaj },
+    { name: "Beyoncé", image: beyonce },
+    { name: "Davido", image: davido },
+    { name: "Justin Beiber", image: Justin_beiber },
+    { name: "Lizzo", image: lizzo },
+    { name: "Rihanna", image: rihanna },
+    { name: "Wiz Khalifa", image: wiz_khalifa },
 ];
-  
+
 const GamePage = () => {
 	const spotifyApi = new SpotifyWebApi();
 
@@ -40,46 +52,26 @@ const GamePage = () => {
 
 	const [soundHowl, setSoundHowl] = useState(null);
 	const [showModal, setShowModal] = useState(false);
-	const [score, setScore] = useState(0);
-	localStorage.setItem('User Score', score);
 
 
-	const Bubble = ({ number, hasArtist, image, name }) => {
-    
-		const [clicked, setClicked] = useState(false);
-		
-		const checkAnswer = () => {
-			setClicked(true);
-			if (name === artists[artistIndex]) {
-				setScore(score + 5);
-				nextSong();
-			}
-    	};
-  
-    return (
-        <div class={`bubble x${number}`}  
-        style={{ display: clicked ? "none" : "flex" }}
-        onClick={checkAnswer} >
-          <img
-            style={{
-              display: hasArtist ? "inline-block" : "none",
-              height: "100%",
-              width: "100%",
-              objectFit: "cover",
-              borderRadius: "50%"
-            }}
-            alt= "bubble pic"
-            src={image}
-          />
-        </div>
-      );
-	};
+  const ref = useRef(null);
+  const wrapperSetScore = delta => {
+      ref.current.addToScore(delta);
+   };
 
-    const nextSong = () => {
-		soundHowl.stop();
-		setArtistIndex(artistIndex+1);
-		playMusic();
-	}
+  const shuffle = array => {
+      for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+      }
+  };
+
+  const nextSong = () => {
+    shuffle(artistsFaces);
+    soundHowl.stop();
+    setArtistIndex(artistIndex + 1);
+    playMusic();
+  };
  
 	const makeSpotifyCall = async (token) => {
 		await getPlaylist(token);
@@ -136,7 +128,8 @@ const GamePage = () => {
 				},
 			})
 		);
-	};
+  };
+  
 	var name1 = localStorage.getItem('name1'); 
 
 	if (requestNextSong) {
@@ -145,46 +138,48 @@ const GamePage = () => {
 		playMusic();
 	}
 
+  shuffle(artistsFaces);
+ 
   return (
     <div className="App">
-		<button
-			id="autoPlay"
-			style={{ display: "none" }}
-			onClick={playMusic}> 
-			can you see me? 
-		</button>
-		<nav class="item">
+      <button id="autoPlay" style={{ display: "none" }} onClick={playMusic}>
+        can you see me?
+      </button>
+   
+      <nav class="item">
+        <h2 id="username"> {name1}</h2>
+        <h2 id="subject"> SCORE: <DisplayScore ref={ref} /> </h2>
+        <h2 id="end-btn"> <button onClick={() => setShowModal(true)} id="end">QUIT</button></h2>
+      </nav>
 
-<h2 id="username"> {name1}</h2>
-<h2 id="subject"> score: {score} </h2>
-<h2 id="end-btn"> <button onClick={() => setShowModal(true)} id="end">QUIT</button></h2>
-</nav>
-		
-		<div id="background-wrap">
-		{artistsFaces.map((item, idx) => (
-			<>
-			<Bubble
-				key={idx}
-				image={item.image}
-				hasArtist
-				number={idx}
-				name={item.name}
-			/>
-			</>
-		))}
-		</div>
-		
-		<div
-			className={showModal ? "modal show" : "modal"}
-			onClick={() => setShowModal(false)}
-		>
-			<div id="modalContainer" >
-				<h1>Are you sure you want to quit?</h1>
-				<button id="cancel"><a id='cancel' href= '#'> CANCEL </a></button>
-				<button id='end'> <a id='cancel' href='/gameMode'> QUIT </a></button>
-				
-			</div>
-		</div>
+      <div id="background-wrap">
+        {artistsFaces.map((item, idx) => (
+          <>
+            <Bubble
+              key={item.name}
+              image={item.image}
+              hasArtist
+              number={idx}
+              name={item.name}
+              wrapperSetScore = {wrapperSetScore}
+              artists = {artists}
+              artistIndex = {artistIndex}
+              nextSong = {nextSong}
+            />
+          </>
+        ))}
+      </div>
+  
+      <div
+        className={showModal ? "modal show" : "modal"}
+        onClick={() => setShowModal(false)} >
+          
+        <div id="modalContainer">
+          <h1>Are you sure you want to quit?</h1>
+          <button id="cancel"><a id='cancel' href= '#'> CANCEL </a></button>
+				  <button id='end'> <a id='cancel' href='/gameOver'> QUIT </a></button>
+        </div>
+      </div>
     </div>
   );
 };
