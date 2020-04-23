@@ -67,10 +67,13 @@ ul.top li {
   transform: translateY(-95px);
 
 }
+button.end:hover,
+button.end:focus {
+  text-decoration: none;
+}
 #end{
   background-color: #ec583b;
   color: white;
- 
 }
 #btn-size{
   height: 60px;
