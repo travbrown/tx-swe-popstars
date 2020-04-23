@@ -42,7 +42,7 @@ const GameMode = () => {
           </nav>
         <header>
         <div className="centerItems">
-        <img src={logo} className="App-logo" alt="logo" height = "300px" />
+        {/* <img src={logo} className="App-logo" alt="logo" height = "300px" /> */}
             <Link to="/singleplayerName" class= "active_button"> Single Player</Link>
             <p></p>
             
