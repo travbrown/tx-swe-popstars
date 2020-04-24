@@ -19,10 +19,10 @@ const GameMode = () => {
   }, []);
 
   function setAccessToken(){
-    if(localStorage.getItem('access_token') === null){
+    //if(localStorage.getItem('access_token') === null){
       let access_token = getAccessToken();
       localStorage.setItem('access_token', access_token);
-    }
+    //}
   }
     
   function MultiPName(){
