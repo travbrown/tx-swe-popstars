@@ -1,6 +1,7 @@
+  
 import React from "react";
 import { Link } from "react-router-dom";
-import {PlayerOneName} from './multiplayerNames'; 
+
 
 const MultiplayerPage = () => {
   var name1 = localStorage.getItem('name1'); 

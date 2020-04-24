@@ -13,11 +13,11 @@ const DifficultyPage = () => {
       <header></header>
   
       <div className="centerItems">
-        <Link to="/start_game" class= "active_button" > Easy</Link>
+        <Link to="/countdown" class= "active_button" > Easy</Link>
         <p></p>
-        <Link to="/start_game" class= "active_button"> Medium</Link>
+        <Link to="/countdown" class= "active_button"> Medium</Link>
         <p></p>
-        <Link to="/start_game" class= "active_button"> Hard</Link>
+        <Link to="/countdown" class= "active_button"> Hard</Link>
         <p></p><p></p>
         <Link to="/gameMode" class= "default_button"> Back</Link>  
       </div>
