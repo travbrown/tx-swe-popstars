@@ -1,7 +1,7 @@
 import React from "react";
 import './difficultyPage.css';
 import { Link } from "react-router-dom";
-import logo from "../popstarslogo.png"
+// import logo from "../popstarslogo.png"
 
 const StartPage = () => {
   return (
