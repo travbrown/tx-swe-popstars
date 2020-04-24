@@ -55,7 +55,7 @@ export default function App() {
           <Route exact path="/start_game" component={StartPage} />
           <Route exact path="/countdown" component={CountdownPage} />
           <Route exact path="/gamePage" component={GamePage} />
-          <Route exact path="/" component={LeaderboardInfo} />
+          <Route exact path="/Leaderboard" component={Leaderboard} />
           <Route exact path="/multiplayerPage" component={MultiplayerPage} />
           <Route exact path="/playerOne" component={PlayerOnePage} />
           <Route exact path="/playerOneGame" component={PlayerOneGamePage} />
