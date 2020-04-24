@@ -33,6 +33,7 @@ let artistsFaces = [
     { name: "Nicki Minaj", image: nicki_minaj },
     { name: "Beyoncé", image: beyonce },
     { name: "Davido", image: davido },
+    { name: "DaVido", image: davido },
     { name: "Justin Beiber", image: Justin_beiber },
     { name: "Lizzo", image: lizzo },
     { name: "Rihanna", image: rihanna },
