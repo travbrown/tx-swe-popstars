@@ -45,7 +45,9 @@ const GamePage = () => {
 	const spotifyApi = new SpotifyWebApi();
 
 	const [playlist, setPlaylist] = useState(null);
-	const [artists, setArtists] = useState(null);
+  // const [artists, setArtists] = useState(null);
+  //TODO: Limit changes based on Difficulty
+  const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(null);
 
 	const [songIndex, setSongIndex] = useState(0);
 	const [showModal, setShowModal] = useState(false);
@@ -84,22 +86,24 @@ const GamePage = () => {
       return;
     }
 
+  
     let artist = [];
     let foundSongs = [];
     for (const item of playlist.items) {
       if (item.track.preview_url == null) continue;
-      artist.push(item.track.artists[0].name);
-      foundSongs.push(item.track.preview_url);
-      if (foundSongs.length >= 10) break;
+      foundSongs.push({
+        artist_name:item.track.artists[0].name, 
+        song_name: item.track.name, 
+        prev_url: item.track.preview_url });
     }
-    setArtists(artist);
+    shuffle(foundSongs)
     setPlaylist(foundSongs);
   };
 
 	const howler =
     playlist == null ? null : (
       <ReactHowler
-        src={playlist[songIndex]}
+        src={playlist[songIndex].prev_url}
         format={["mp3", "aac"]}
         onEnd={nextSong}
       />
@@ -126,8 +130,8 @@ const GamePage = () => {
               number={idx}
               name={item.name}
               wrapperSetScore = {wrapperSetScore}
-              artists = {artists}
-              artistIndex = {songIndex}
+              playlist = {playlist}
+              songIndex = {songIndex}
               nextSong = {nextSong}
             />
           </>
