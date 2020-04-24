@@ -10,10 +10,6 @@ const Bubble = (props) => {
         } else {
             props.wrapperSetScore(-2);
         }
-  
-        if (props.songIndex === props.playlist.length - 1) {
-          window.location.href = "/gameOver";
-        }
     };
 
     return (

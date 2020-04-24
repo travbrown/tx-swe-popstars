@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ReactHowler from "react-howler";
 import SpotifyWebApi from "spotify-web-api-js";
 import DisplayScore from "./displayScore.jsx";
@@ -32,24 +32,21 @@ let artistsFaces = [
     { name: "J. Cole", image: jcole },
     { name: "Nicki Minaj", image: nicki_minaj },
     { name: "Beyoncé", image: beyonce },
-    { name: "Davido", image: davido },
     { name: "DaVido", image: davido },
-    { name: "Justin Beiber", image: Justin_beiber },
+    { name: "Justin Bieber", image: Justin_beiber },
     { name: "Lizzo", image: lizzo },
     { name: "Rihanna", image: rihanna },
     { name: "Wiz Khalifa", image: wiz_khalifa },
 ];
 
-
-
 const GamePage = () => {
 	const spotifyApi = new SpotifyWebApi();
 
 	const [playlist, setPlaylist] = useState(null);
-  // const [artists, setArtists] = useState(null);
-  //TODO: Limit changes based on Difficulty
-  const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(null);
+  const [difficulty, setDifficulty] = useState(localStorage.getItem("difficulty"));
 
+  //TODO: Limit changes based on Difficulty?
+  const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(setSongLimit());
 	const [songIndex, setSongIndex] = useState(0);
 	const [showModal, setShowModal] = useState(false);
 
@@ -65,30 +62,41 @@ const GamePage = () => {
         [array[i], array[j]] = [array[j], array[i]];
       }
   };
- 
+
 	const nextSong = () => {
-    console.log("Setting index to ", songIndex + 1);
     shuffle(artistsFaces);
+    if (songIndex === playlist.length - 1 || songIndex === limitOfSongsToPlay - 1) {
+      window.location.href = "/gameOver";
+    }
     setSongIndex(songIndex + 1);
   };
 
   useEffect(() => {
     getPlaylist();
+
   }, []);
+
+  function setSongLimit(){
+    if(difficulty === 'medium'){
+      return 10;
+    } else if (difficulty === 'hard'){
+      return 15;
+    }
+    return 7;
+  };
 
   const getPlaylist = async () => {
     let playlist = null;
     try {
       const access_token = localStorage.getItem("access_token");
+      
       spotifyApi.setAccessToken(access_token);
       playlist = await spotifyApi.getPlaylistTracks("4h4V4Cbn8sjznAc3uirZmK");
     } catch (error) {
-      console.log(error);
+      console.log('Need to login again',error);
       return;
     }
 
-  
-    let artist = [];
     let foundSongs = [];
     for (const item of playlist.items) {
       if (item.track.preview_url == null) continue;
@@ -97,6 +105,7 @@ const GamePage = () => {
         song_name: item.track.name, 
         prev_url: item.track.preview_url });
     }
+    console.log(foundSongs);
     shuffle(foundSongs)
     setPlaylist(foundSongs);
   };

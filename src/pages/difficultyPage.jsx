@@ -4,6 +4,11 @@ import { Link } from "react-router-dom";
 import logo from "../popstarslogo.png"
 
 const DifficultyPage = () => {
+
+  const setDifficulty = (difficulty) => {
+    localStorage.setItem('difficulty', difficulty);
+  };
+
   return (
     <div className="App">
      
@@ -13,11 +18,12 @@ const DifficultyPage = () => {
       <header></header>
   
       <div className="centerItems">
-        <Link to="/start_game" class= "active_button" > Easy</Link>
+        
+        <Link to="/start_game" onClick={()=>setDifficulty('easy')} class= "active_button"> Easy</Link>
         <p></p>
-        <Link to="/start_game" class= "active_button"> Medium</Link>
+        <Link to="/start_game" onClick={()=>setDifficulty('medium')} class= "active_button"> Medium</Link>
         <p></p>
-        <Link to="/start_game" class= "active_button"> Hard</Link>
+        <Link to="/start_game" onClick={()=>setDifficulty('hard')} class= "active_button"> Hard</Link>
         <p></p><p></p>
         <Link to="/gameMode" class= "default_button"> Back</Link>  
       </div>
