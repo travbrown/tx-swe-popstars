@@ -1,6 +1,7 @@
 import firebase from "firebase";
 import React, { useState, useEffect } from "react";
 import ReactDOM from 'react-dom'
+import { Link } from "react-router-dom";
     
 export default function Leaderboard(){
   
@@ -50,11 +51,19 @@ export default function Leaderboard(){
   return (
     <div style={{ color: "#03D4EF" }}>
         <h1>Leaderboard</h1>
-        <ul>
+        <ol type = "1">
             {leaderboard.map((item, idx) => (
               <ol type="1"> {item.id} : {item.score} points! </ol>
             ))}
-        </ul>
+        </ol>
+    
+    <div className="App">
+        <header className="App-header">
+        <p><p></p></p><p><p></p></p><p><p></p></p><p><p></p></p>
+        <Link to="/gameMode" class= "default_button"> HOME </Link> 
+        </header>
     </div>
+    </div>
+
     );
 }
