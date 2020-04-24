@@ -15,6 +15,8 @@ const GameOver = () => {
                 <Link to="/start_game" class= "active_button"> PLAY AGAIN</Link>
                 <p></p>
                 <Link to="/gameMode" class= "default_button"> HOME </Link> 
+                <p></p>
+                <Link to="/Leaderboard" class="active_button">Leaderboard</Link>
             </header>
         </div>
     );
