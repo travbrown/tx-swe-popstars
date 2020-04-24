@@ -1,7 +1,9 @@
 import firebase from "firebase";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from 'react-dom'
-
+    
+export default function Leaderboard(){
+  
 
     console.log("App!!!");
     var leader = firebase.firestore().collection("Users").where("Score",">", 0).orderBy("Score","desc").limit(10);
@@ -10,9 +12,8 @@ import ReactDOM from 'react-dom'
 
     //const multiplayer = localStorage.getItem("mulitplayer");
     // "'" + name1 + "'"  // This will input the variable as a name 
-   
 
-    firebase.firestore().collection("Users").doc("'" + name + "'")
+    firebase.firestore().collection("Users").doc("" + name + "")
     .set({ Score : userScore })
     .then(function() {
         console.log("Document successfully written!");
@@ -21,39 +22,39 @@ import ReactDOM from 'react-dom'
     .catch(function(error) {
         console.error("Error writing document: ", error);
     });
-    
-   
-    leader.get() // This grabs all 10 entries.
-    .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
-        });
-        
-    })
-    .catch(function(error) {
-        console.log("Error getting documents: ", error);
-    })
 
     
+    const [leaderboard, setLeaderboard] = useState([]);
+    useEffect(() => {
 
+        leader.get() // This grabs all 10 entries.
+        .then(function(querySnapshot) {
 
-    
-    
-    /*
-    <div className="App">
-            <header className="App-header">
-                {name}:  {userScore}
-            </header>
-        </div>
-    
-    */
-  
-export default function Leaderboard(){
-    
+            let tmpLeaderboard = [];
+            querySnapshot.forEach(function(doc) {
+
+                // doc.data() is never undefined for query doc snapshots
+                console.log(doc.id, " => ", doc.data());
+                tmpLeaderboard.push({id: doc.id, score: doc.data().Score});
+            });
+
+            setLeaderboard(tmpLeaderboard);
+            console.log(tmpLeaderboard);
+            
+        })
+        .catch(function(error) {
+            console.log("Error getting documents: ", error);
+        })
+    }, []);
+
+  return (
+    <div style={{ color: "#03D4EF" }}>
+        <h1>Leaderboard</h1>
+        <ul>
+            {leaderboard.map((item, idx) => (
+              <ol type="1"> {item.id} : {item.score} points! </ol>
+            ))}
+        </ul>
+    </div>
+    );
 }
-  
-   
-
-
-
