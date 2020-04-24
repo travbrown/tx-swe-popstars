@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
-import logo from "../popstarslogo.png"
+import logo from "../popstarslogo.png";
 
 const GameMode = () => {
 
@@ -19,10 +19,10 @@ const GameMode = () => {
   }, []);
 
   function setAccessToken(){
-    if(localStorage.getItem('access_token') === null){
+    // if(localStorage.getItem('access_token') === null){
       let access_token = getAccessToken();
       localStorage.setItem('access_token', access_token);
-    }
+    // }
   }
     
   function MultiPName(){
