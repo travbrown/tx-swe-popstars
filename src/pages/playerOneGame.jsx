@@ -147,7 +147,7 @@ const PlayerOneGame = () => {
         <h2 id="username"> {name1}</h2>
         <h2 id="subject"> SCORE: <DisplayScore ref={ref} /> </h2>
       </nav>
-        
+
       <div id="background-wrap">
         {artistsFaces.map((item, idx) => (
           <>
@@ -165,9 +165,9 @@ const PlayerOneGame = () => {
           </>
         ))}
       </div>
-      
     </div>
   );
 };
 
+localStorage.setItem("Score1",DisplayScore);
 export default PlayerOneGame;
