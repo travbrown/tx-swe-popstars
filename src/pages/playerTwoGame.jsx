@@ -43,9 +43,9 @@ const PlayerTwoGame = () => {
     const spotifyApi = new SpotifyWebApi();
 
     const [playlist, setPlaylist] = useState(null);
-    const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(setSongLimit());
     const [songIndex, setSongIndex] = useState(0);
     const [difficulty, setDifficulty] = useState(localStorage.getItem("difficulty"));
+    const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(setSongLimit());
 
     const ref = useRef(null);
     const wrapperSetScore = delta => {
@@ -63,7 +63,7 @@ const PlayerTwoGame = () => {
     const nextSong = () => {
       shuffle(artistsFaces);
       if (songIndex === playlist.length - 1 || songIndex === limitOfSongsToPlay - 1) {
-        window.location.href = "/timeUp1";
+        window.location.href = "/timeUp2";
       }
       setSongIndex(songIndex + 1);
     };
@@ -141,6 +141,7 @@ const PlayerTwoGame = () => {
               playlist = {playlist}
               songIndex = {songIndex}
               nextSong = {nextSong}
+              difficulty={difficulty}
             />
           </>
         ))}

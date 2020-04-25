@@ -43,9 +43,10 @@ const PlayerOneGame = () => {
     const spotifyApi = new SpotifyWebApi();
 
     const [playlist, setPlaylist] = useState(null);
+    const [difficulty, setDifficulty] = useState(localStorage.getItem("difficulty"));
+
     const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(setSongLimit());
     const [songIndex, setSongIndex] = useState(0);
-    const [difficulty, setDifficulty] = useState(localStorage.getItem("difficulty"));
 
     const ref = useRef(null);
     const wrapperSetScore = delta => {
@@ -140,6 +141,7 @@ const PlayerOneGame = () => {
               playlist = {playlist}
               songIndex = {songIndex}
               nextSong = {nextSong}
+              difficulty={difficulty}
             />
           </>
         ))}
