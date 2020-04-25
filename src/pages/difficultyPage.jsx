@@ -3,11 +3,10 @@ import './difficultyPage.css';
 import "./gamePage.css";
 import { Link } from "react-router-dom";
 
-const DifficultyPage = ({difficulty}) => {
+const DifficultyPage = () => {
 
   const setDifficulty = (difficulty) => {
     localStorage.setItem('difficulty', difficulty);
-    let duration = difficulty === 'easy' ? "4s" : difficulty === 'medium' ? "2s" : "1s";
   };
 
   return (
@@ -17,8 +16,6 @@ const DifficultyPage = ({difficulty}) => {
       </div>
       <header></header>
   
-      {/* <div className='bubble' style={{animationDuration: duration }} /> */}
-
       <div className="centerItems">
         <Link to="/countdown" onClick={()=>setDifficulty('easy')} class= "active_button"> Easy</Link>
         <p></p>

@@ -125,7 +125,7 @@ const GamePage = () => {
   return (
     <div className="App">   
       <nav class="item">
-        <h2 id="username"> {name1}</h2>
+        <h2 id="username"> {name1} </h2>
         <h2 id="subject"> SCORE: <DisplayScore ref={ref} /> </h2>
         <h2 id="end-btn"> <button onClick={() => setShowModal(true)} id="end">QUIT</button></h2>
       </nav>
@@ -143,7 +143,8 @@ const GamePage = () => {
               playlist = {playlist}
               songIndex = {songIndex}
               nextSong = {nextSong}
-            />
+              difficulty={difficulty}
+            />;
           </>
         ))}
       </div>
