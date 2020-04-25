@@ -77,7 +77,7 @@ const PlayerTwoPage = () => {
         .getElementById("base-timer-path-remaining")
         .setAttribute("stroke-dasharray", circleDasharray);
     }    
-    var name2 = localStorage.getItem('name2'); 
+    var name2 = localStorage.getItem('playerTwoName'); 
     return (
       <div className="App">
         <nav class="item">

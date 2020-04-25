@@ -4,15 +4,11 @@ const Bubble = (props) => {
     const [clicked, setClicked] = useState(false);
     const checkAnswer = () => {
         setClicked(true);
-        if (props.name === props.artists[props.artistIndex]) {
+        if (props.name === props.playlist[props.songIndex].artist_name) {
             props.wrapperSetScore(5);
             props.nextSong();
         } else {
             props.wrapperSetScore(-2);
-        }
-  
-        if (props.artistIndex === props.artists.length - 1) {
-          window.location.href = "/gameOver";
         }
     };
 

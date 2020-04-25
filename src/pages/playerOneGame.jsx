@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import { Howl } from "howler";
+import ReactHowler from "react-howler";
 import SpotifyWebApi from "spotify-web-api-js";
 import DisplayScore from "./displayScore.jsx";
 import PlayerOneBubble from "./playerOneContainer.jsx";
 import "./gamePage.css";
-import { Link } from "react-router-dom";
+
 import asap_ferg from "../photos/ASAP_Ferg.png";
 import asap_rocky from "../photos/ASAP_Rocky.png";
 import cardi_b from "../photos/cardi_b.png";
@@ -43,17 +43,11 @@ const PlayerOneGame = () => {
     const spotifyApi = new SpotifyWebApi();
 
     const [playlist, setPlaylist] = useState(null);
-    const [artists, setArtists] = useState(null);
-    const [track, setTrack] = useState(null);
-
+    const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(setSongLimit());
     const [songIndex, setSongIndex] = useState(0);
-    const [artistIndex, setArtistIndex] = useState(0);
+    const [difficulty, setDifficulty] = useState(localStorage.getItem("difficulty"));
 
-    const [soundHowl, setSoundHowl] = useState(null);
-    const [showModal, setShowModal] = useState(false);
-  
     const ref = useRef(null);
-
     const wrapperSetScore = delta => {
         ref.current.addToScore(delta);
      };
@@ -65,87 +59,72 @@ const PlayerOneGame = () => {
         }
     };
 
-
-  const nextSong = () => {
-    shuffle(artistsFaces);
-    soundHowl.stop();
-    setArtistIndex(artistIndex + 1);
-    playMusic();
-  };
-
-  useEffect(() => {
-    let token = localStorage.getItem("access_token");
-    makeSpotifyCall(token);
-  }, []);
-
-  const makeSpotifyCall = async token => {
-    await getPlaylist(token);
-  };
-
-  const getPlaylist = async access_token => {
-    spotifyApi.setAccessToken(access_token);
-    //Couldn't get the Promise implementation to work
-    //spotifyApi.setPromiseImplementation(Q);
-    await spotifyApi
-      .getPlaylistTracks("4h4V4Cbn8sjznAc3uirZmK")
-      .then(
-        function(data) {
-          let foundSongs = [];
-          let artist = [];
-          data.items.forEach(item => {
-            if (item.track.preview_url !== null && foundSongs.length < 10) {
-              artist.push(item.track.artists[0].name);
-              foundSongs.push(item.track.preview_url);
-            }
-          });
-          setTrack(foundSongs[songIndex]);
-          setArtists(artist);
-          setPlaylist(foundSongs);
-        },
-        function(err) {
-          console.error(err);
-        }
-      )
-      .catch(e => console.log(e));
-    document.getElementById("autoPlay").click();
-  };
-
-  useEffect(() => {
-    if (soundHowl) soundHowl.play();
-  }, [soundHowl]);
-
-  const playMusic = () => {
-    setSoundHowl(
-      new Howl({
-        src: [track],
-        html5: true,
-        format: ["mp3", "aac"],
-        autoplay: false,
-        loop: false,
-        volume: 0.5,
-        onload: function() {
-          setTrack(playlist[songIndex + 1]);
-          setSongIndex(songIndex + 1);
-        },
-        onend: function() {
-        }
-      })
-    );
-  };
-
-  shuffle(artistsFaces);
-  var name1 = localStorage.getItem('name1'); 
-  var name2 = localStorage.getItem('name2'); 
+    const nextSong = () => {
+      shuffle(artistsFaces);
+      if (songIndex === playlist.length - 1 || songIndex === limitOfSongsToPlay - 1) {
+        window.location.href = "/timeUp1";
+      }
+      setSongIndex(songIndex + 1);
+    };
   
+    useEffect(() => {
+      getPlaylist();
+  
+    }, []);
+
+    function setSongLimit(){
+      if(difficulty === 'medium'){
+        return 10;
+      } else if (difficulty === 'hard'){
+        return 15;
+      }
+      return 7;
+    };
+
+    const getPlaylist = async () => {
+      let playlist = null;
+      try {
+        const access_token = localStorage.getItem("access_token");
+        
+        spotifyApi.setAccessToken(access_token);
+        playlist = await spotifyApi.getPlaylistTracks("4h4V4Cbn8sjznAc3uirZmK");
+      } catch (error) {
+        console.log('Need to login again',error);
+        return;
+      }
+  
+      let foundSongs = [];
+      for (const item of playlist.items) {
+        if (item.track.preview_url == null) continue;
+        foundSongs.push({
+          artist_name:item.track.artists[0].name, 
+          song_name: item.track.name, 
+          prev_url: item.track.preview_url });
+      }
+      console.log(foundSongs);
+      shuffle(foundSongs)
+      setPlaylist(foundSongs);
+    };
+
+    const howler =
+    playlist == null ? null : (
+      <ReactHowler
+        src={playlist[songIndex].prev_url}
+        format={["mp3", "aac"]}
+        onEnd={nextSong}
+      />
+    );
+  
+
+  var name1 = localStorage.getItem('playerOneName'); 
+  var score1 = <DisplayScore ref={ref} />;
+  shuffle(artistsFaces);
+
   return (
     <div className="App">
-      <button id="autoPlay" style={{ display: "none" }} onClick={playMusic}>
-        can you see me?
-      </button>
-
       <nav class="item">
         <h2 id="username"> {name1}</h2>
-        <h2 id="subject"> SCORE: <DisplayScore ref={ref} /> </h2>
+        <h2 id="subject"> SCORE: {score1} </h2>
       </nav>
         
       <div id="background-wrap">
@@ -158,14 +137,15 @@ const PlayerOneGame = () => {
               number={idx}
               name={item.name}
               wrapperSetScore = {wrapperSetScore}
-              artists = {artists}
-              artistIndex = {artistIndex}
+              playlist = {playlist}
+              songIndex = {songIndex}
               nextSong = {nextSong}
             />
           </>
         ))}
       </div>
-      
+      {howler}
+
     </div>
   );
 };

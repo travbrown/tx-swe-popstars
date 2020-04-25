@@ -15,24 +15,28 @@ const GameMode = () => {
     }
 
     useEffect(() => {
-      // Set token
-      console.log("UseEffect activated");
+      setAccessToken();
+  }, []);
+
+  function setAccessToken(){
+    //if(localStorage.getItem('access_token') === null){
       let access_token = getAccessToken();
       localStorage.setItem('access_token', access_token);
-  }, []);
-    function MultiPName(){
+    //}
+  }
+    
+  function MultiPName(){
       const history = useHistory();
 
       const handleClick = () => {
-          history.push("/multiplayerNames");
-      }
+        history.push("/multiplayerNames");
+      };
       localStorage.setItem('multiplayer', handleClick);
       return (
         <button class= "active_button" onClick={handleClick}>
           MultiPlayer
         </button>
       );
-
     }
     
     return (      
@@ -47,7 +51,7 @@ const GameMode = () => {
             <p></p>
             
             <MultiPName></MultiPName>      
-            </div>
+        </div>
         </header>
       </div>
     );

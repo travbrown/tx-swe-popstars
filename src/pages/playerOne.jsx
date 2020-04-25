@@ -79,8 +79,8 @@ const PlayerOnePage = () => {
         .setAttribute("stroke-dasharray", circleDasharray);
     }    
 
-    var name1 = localStorage.getItem('name1'); 
-    var name2 = localStorage.getItem('name2'); 
+    var name1 = localStorage.getItem('playerOneName'); 
+    //var name2 = localStorage.getItem('name2'); 
 
     return (
       <div className="App">
