@@ -10,7 +10,7 @@ const SpotifyLoginPage = () => {
 
   //Travis
   const clientId = "6ba9b22fdb4e467197055100a53c4a90";
-  const redirectUri = "http://localhost:3000/gameMode";
+  const redirectUri = "https://popstars-76cdd.firebaseapp./gameMode";
 
   const scopes = [
     "user-read-currently-playing",
