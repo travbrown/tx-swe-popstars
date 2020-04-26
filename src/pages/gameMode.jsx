@@ -1,6 +1,7 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useContext} from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
+import {GameContext} from './../gameContext';
 import logo from "../popstarslogo.png";
 
 const GameMode = () => {
@@ -14,15 +15,16 @@ const GameMode = () => {
         return getParameterByName('access_token');
     }
 
+    
     useEffect(() => {
       setAccessToken();
   }, []);
 
   function setAccessToken(){
-    // if(localStorage.getItem('access_token') === null){
-      let access_token = getAccessToken();
-      localStorage.setItem('access_token', access_token);
-    // }
+      let accessToken = getAccessToken();
+      // const {access_token, setAccessToken} = useContext(GameContext);
+      // setAccessToken(accessToken);
+      localStorage.setItem('access_token', accessToken);
   }
     
   function MultiPName(){
@@ -31,7 +33,9 @@ const GameMode = () => {
       const handleClick = () => {
         history.push("/multiplayerNames");
       };
+      
       localStorage.setItem('multiplayer', handleClick);
+      
       return (
         <button class= "active_button" onClick={handleClick}>
           MultiPlayer

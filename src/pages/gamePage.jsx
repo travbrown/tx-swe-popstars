@@ -4,7 +4,7 @@ import SpotifyWebApi from "spotify-web-api-js";
 import DisplayScore from "./displayScore.jsx";
 import Bubble from "./bubbleContainer.jsx";
 import "./gamePage.css";
-import GameContext from './../gameContext';
+import {GameContext} from './../gameContext';
 import asap_ferg from "../photos/ASAP_Ferg.png";
 import asap_rocky from "../photos/ASAP_Rocky.png";
 import cardi_b from "../photos/cardi_b.png";
@@ -42,18 +42,15 @@ let artistsFaces = [
 
 const GamePage = () => {
   const spotifyApi = new SpotifyWebApi();
-  const gameSettings = useContext(GameContext);
+  //const gameSettings = useContext(GameContext);
 
+  console.log(useContext(GameContext));
 	const [playlist, setPlaylist] = useState(null);
   const [difficulty, setDifficulty] = useState(localStorage.getItem("difficulty"));
 
   const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(setSongLimit());
 	const [songIndex, setSongIndex] = useState(0);
   const [showModal, setShowModal] = useState(false);
-  
-
-
-
 
   const ref = useRef(null);
   const wrapperSetScore = delta => {

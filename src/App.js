@@ -6,7 +6,7 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-import {GameSettingsProvider} from './gameContext';
+import GameContextProvider from './gameContext';
 import Leaderboard from "./pages/Leaderboard";
 import SpotifyLoginPage from "./pages/SpotifyLoginPage";
 import DifficultyPage from "./pages/difficultyPage";
@@ -25,6 +25,7 @@ import NameOneInput from "./pages/multiplayerNames";
 import GameOver from "./pages/gameOver";
 import SinglePlayerInput from "./pages/singleplayerName"; 
 import CreateGame from "./pages/createGame";
+import { GameContext } from "./gameContext";
 
 function AllLogins() {
   return (
@@ -45,13 +46,14 @@ function LeaderboardInfo()
 
 export default function App() {
   return (
-    <GameSettingsProvider>
+    
       <div className="App-login ">
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Fredoka+One&family=Press+Start+2P&family=Russo+One&display=swap');
       </style>
         <Router>
           <Switch>
+            <GameContextProvider>
             <Route exact path="/" component={AllLogins} />
             <Route exact path="/gameMode" component ={GameMode} />
             <Route exact path="/createGame" component ={CreateGame} />
@@ -70,9 +72,10 @@ export default function App() {
             <Route exact path="/multiplayerNames" component={NameOneInput} />
             <Route exact path="/gameOver" component ={GameOver} />
             <Route exact path="/singleplayerName" component={SinglePlayerInput} />
+            </GameContextProvider>
           </Switch>
         </Router>
       </div>
-    </GameSettingsProvider>
+    
   );
 }
