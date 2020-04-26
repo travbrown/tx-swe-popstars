@@ -49,8 +49,8 @@ const GameMode = () => {
         {/* <img src={logo} className="App-logo" alt="logo" height = "300px" /> */}
             <Link to="/singleplayerName" class= "active_button"> Single Player</Link>
             <p></p>
-            
             <MultiPName></MultiPName>  
+            <p></p>
             <Link to="/createGame" class= "active_button">Create A Game</Link>    
         </div>
         </header>
