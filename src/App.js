@@ -23,6 +23,7 @@ import GameMode from './pages/gameMode';
 import NameOneInput from "./pages/multiplayerNames";
 import GameOver from "./pages/gameOver";
 import SinglePlayerInput from "./pages/singleplayerName"; 
+import CreateGame from "./pages/createGame";
 
 function AllLogins() {
   return (
@@ -51,6 +52,7 @@ export default function App() {
         <Switch>
           <Route exact path="/" component={AllLogins} />
           <Route exact path="/gameMode" component ={GameMode} />
+          <Route exact path="/createGame" component ={CreateGame} />
           <Route exact path="/difficultyPage" component={DifficultyPage} />
           <Route exact path="/start_game" component={StartPage} />
           <Route exact path="/countdown" component={CountdownPage} />

@@ -50,7 +50,8 @@ const GameMode = () => {
             <Link to="/singleplayerName" class= "active_button"> Single Player</Link>
             <p></p>
             
-            <MultiPName></MultiPName>      
+            <MultiPName></MultiPName>  
+            <Link to="/createGame" class= "active_button">Create A Game</Link>    
         </div>
         </header>
       </div>

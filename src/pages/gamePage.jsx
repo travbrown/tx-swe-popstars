@@ -45,7 +45,6 @@ const GamePage = () => {
 	const [playlist, setPlaylist] = useState(null);
   const [difficulty, setDifficulty] = useState(localStorage.getItem("difficulty"));
 
-  //TODO: Limit changes based on Difficulty?
   const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(setSongLimit());
 	const [songIndex, setSongIndex] = useState(0);
 	const [showModal, setShowModal] = useState(false);
@@ -73,7 +72,6 @@ const GamePage = () => {
 
   useEffect(() => {
     getPlaylist();
-
   }, []);
 
   function setSongLimit(){
