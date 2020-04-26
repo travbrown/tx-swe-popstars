@@ -97,8 +97,9 @@ const GamePage = () => {
       playlist = await spotifyApi.getPlaylistTracks(playlist_code);
       //localStorage.removeItem("playlist_uri_hash");
     } catch (error) {
-      console.log('Need to login again',error);
-      return;
+      alert('Our access to your Spotify has expired. Please Login again');
+      history.push('/');
+      console.log('Need to login again: ',error);
     }
 
     let foundSongs = [];
