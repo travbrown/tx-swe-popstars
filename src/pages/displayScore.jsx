@@ -7,7 +7,7 @@ forwardRef((props, ref) => {
 
   const addToScore = (delta) => {
     setScore(score + delta);
-  }
+  };
 
   console.log(score);
   useImperativeHandle(ref, () => {

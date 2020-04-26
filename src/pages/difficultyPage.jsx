@@ -10,7 +10,7 @@ const DifficultyPage = () => {
   const {setDiff} = useContext(GameContext);
  
   const setDifficulty = (diff) => {
-    localStorage.setItem('difficulty', diff);
+    // localStorage.setItem('difficulty', diff);
     setDiff(diff);
   };
 

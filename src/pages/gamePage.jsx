@@ -20,7 +20,7 @@ import Justin_beiber from "../photos/Justin_beiber.jpg";
 import lizzo from "../photos/lizzo.jpeg";
 import rihanna from "../photos/rihanna.jpg";
 import wiz_khalifa from "../photos/wiz_khalifa.png";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 let artistsFaces = [
     { name: "A$AP Ferg", image: asap_ferg },
@@ -42,11 +42,12 @@ let artistsFaces = [
 
 const GamePage = () => {
   const spotifyApi = new SpotifyWebApi();
-  //const gameSettings = useContext(GameContext);
+  const {difficulty, access_token, playlist_code } = useContext(GameContext);
+  const history = useHistory();
 
-  console.log(useContext(GameContext));
+  //console.log(useContext(GameContext));
 	const [playlist, setPlaylist] = useState(null);
-  const [difficulty, setDifficulty] = useState(localStorage.getItem("difficulty"));
+  //const [difficulty, setDifficulty] = useState(gameSettings.difficulty);
 
   const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(setSongLimit());
 	const [songIndex, setSongIndex] = useState(0);
@@ -67,7 +68,8 @@ const GamePage = () => {
 	const nextSong = () => {
     shuffle(artistsFaces);
     if (songIndex === playlist.length - 1 || songIndex === limitOfSongsToPlay - 1) {
-      window.location.href = "/gameOver";
+      //window.location.href = "/gameOver";
+      history.push("/gameOver");
     }
     setSongIndex(songIndex + 1);
   };
@@ -88,10 +90,11 @@ const GamePage = () => {
   const getPlaylist = async () => {
     let playlist = null;
     try {
-      const access_token = localStorage.getItem("access_token");
+      //const access_token = localStorage.getItem("access_token");
+      
       //const playlist_uri_hash = localStorage.getItem("playlist_uri_hash");
       spotifyApi.setAccessToken(access_token);
-      playlist = await spotifyApi.getPlaylistTracks("4h4V4Cbn8sjznAc3uirZmK");
+      playlist = await spotifyApi.getPlaylistTracks(playlist_code);
       //localStorage.removeItem("playlist_uri_hash");
     } catch (error) {
       console.log('Need to login again',error);
@@ -120,7 +123,7 @@ const GamePage = () => {
       />
     );
   
-	var name1 = localStorage.getItem('name1'); 
+	let name1 = localStorage.getItem('name1'); 
   shuffle(artistsFaces);
  
   return (
@@ -157,7 +160,7 @@ const GamePage = () => {
         <div id="modalContainer">
           <h1>Are you sure you want to quit?</h1>
           <button id="cancel"><a id='cancel' href= '#'> CANCEL </a></button>
-				  <button id='end'> <a id='cancel' href='/gameOver'> QUIT </a></button>
+				  <Link id='cancel' to='/gameOver'><button id='end'> QUIT </button></Link>
         </div>
       </div>
     </div>
