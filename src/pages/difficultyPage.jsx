@@ -19,9 +19,9 @@ const DifficultyPage = () => {
       <div className="centerItems">
         <Link to="/countdown" onClick={()=>setDifficulty('easy')} class= "active_button"> Easy</Link>
         <p></p>
-        <Link to="/countdown" onClick={()=>setDifficulty('medium')} class= "active_button"> Medium</Link>
+        <Link to="/countdownMedium" onClick={()=>setDifficulty('medium')} class= "active_button"> Medium</Link>
         <p></p>
-        <Link to="/countdown" onClick={()=>setDifficulty('hard')} class= "active_button"> Hard</Link>
+        <Link to="/countdownHard" onClick={()=>setDifficulty('hard')} class= "active_button"> Hard</Link>
         <p></p><p></p>
         <Link to="/gameMode" class= "default_button"> Back</Link>  
       </div>

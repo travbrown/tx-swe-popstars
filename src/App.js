@@ -11,6 +11,10 @@ import SpotifyLoginPage from "./pages/SpotifyLoginPage";
 import DifficultyPage from "./pages/difficultyPage";
 import CountdownPage from "./pages/countdown";
 import GamePage from "./pages/gamePage";
+import CountdownPageMedium from "./pages/countdownMedium";
+import GamePageMedium from "./pages/gamePageMedium";
+import CountdownPageHard from "./pages/countdownHard";
+import GamePageHard from "./pages/gamePageHard";
 import MultiplayerPage from "./pages/multiplayerPage";
 import PlayerOnePage from "./pages/playerOne";
 import PlayerOneGamePage from "./pages/playerOneGame";
@@ -53,6 +57,10 @@ export default function App() {
           <Route exact path="/difficultyPage" component={DifficultyPage} />
           <Route exact path="/countdown" component={CountdownPage} />
           <Route exact path="/gamePage" component={GamePage} />
+          <Route exact path="/countdownMedium" component={CountdownPageMedium} />
+          <Route exact path="/gamePageMedium" component={GamePageMedium} />
+          <Route exact path="/countdownHard" component={CountdownPageHard} />
+          <Route exact path="/gamePageHard" component={GamePageHard} />
           <Route exact path="/Leaderboard" component={LeaderboardInfo} />
           <Route exact path="/multiplayerPage" component={MultiplayerPage} />
           <Route exact path="/playerOne" component={PlayerOnePage} />
