@@ -1,22 +1,33 @@
-import React from 'react';  
+/*import React from 'react';  
 import correct from '../photos/check-mark.png';
 import incorrect from '../photos/cross.png'; 
 import ReactDOM from 'react-dom';
+import '../App.css';
+import { useState } from 'react';
 
-function CorrectImg(){
-    return <div img src={correct} alt="check"/>
-}
-function IncorrectImg(){
-    return <div img src={incorrect} alt="cross"/>
-}
+const ImageDisplay = (props) => {
+    const answer = props.isCorrect; 
+        if (answer === 1) {
+            return (
+                <img src={correct} alt="check"/>
+            );
+        }
+        if(answer === -1){
+            return (
+                <img src={incorrect} alt="xmark"/>
+            ); 
+        }
 
-function ImageDisplay(){
+
+
+
+
+return(
+    <div>
+        <ImageDisplay/>
+    </div>
+    );
+};
+
   
-    
-    return <div><CorrectImg /> <IncorrectImg/></div>;
-  
-
-}
-
-  
-export default ImageDisplay;
+export default ImageDisplay;*/

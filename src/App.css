@@ -67,6 +67,9 @@ ul.top li {
   transform: translateY(-95px);
 
 }
+#correctImg{
+  background-color: transparent;
+}
 button.end:hover,
 button.end:focus {
   text-decoration: none;

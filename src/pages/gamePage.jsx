@@ -19,6 +19,8 @@ import Justin_beiber from "../photos/Justin_beiber.jpg";
 import lizzo from "../photos/lizzo.jpeg";
 import rihanna from "../photos/rihanna.jpg";
 import wiz_khalifa from "../photos/wiz_khalifa.png";
+import { Link } from "react-router-dom";
+import ImageDisplay from "./correct.jsx";
 
 let artistsFaces = [
     { name: "A$AP Ferg", image: asap_ferg },
@@ -39,21 +41,19 @@ let artistsFaces = [
 ];
 
 const GamePage = () => {
-  const spotifyApi = new SpotifyWebApi();
+	const spotifyApi = new SpotifyWebApi();
 
-  const [playlist, setPlaylist] = useState(null);
-  const [artists, setArtists] = useState(null);
-  const [track, setTrack] = useState(null);
+	const [playlist, setPlaylist] = useState(null);
+	const [artists, setArtists] = useState(null);
+	const [track, setTrack] = useState(null);
 
-  const [songIndex, setSongIndex] = useState(0);
-  const [artistIndex, setArtistIndex] = useState(0);
+	const [requestNextSong, setRequestNextSong] = useState(false);
+	const [songIndex, setSongIndex] = useState(0);
+	const [artistIndex, setArtistIndex] = useState(0);
 
 	const [soundHowl, setSoundHowl] = useState(null);
 	const [showModal, setShowModal] = useState(false);
-
-  const Bubble = ({ number, hasArtist, image, name }) => {
-    const [clicked, setClicked] = useState(false);
-    //const [isCorrect, setIsCorrect] = useState(0);
+  //const [isCorrect, setIsCorrect] = useState(0);
 
   const ref = useRef(null);
   const wrapperSetScore = delta => {
@@ -66,7 +66,6 @@ const GamePage = () => {
       [array[i], array[j]] = [array[j], array[i]];
       }
   };
-
   const nextSong = () => {
     shuffle(artistsFaces);
     soundHowl.stop();
@@ -152,7 +151,7 @@ const GamePage = () => {
         <h2 id="subject"> SCORE: <DisplayScore ref={ref} /> </h2>
         <h2 id="end-btn"> <button onClick={() => setShowModal(true)} id="end">QUIT</button></h2>
       </nav>
-
+   
       <div id="background-wrap">
         {artistsFaces.map((item, idx) => (
           <>
@@ -170,7 +169,7 @@ const GamePage = () => {
           </>
         ))}
       </div>
-  
+       
       <div
         className={showModal ? "modal show" : "modal"}
         onClick={() => setShowModal(false)} >
@@ -184,5 +183,4 @@ const GamePage = () => {
     </div>
   );
 };
-
 export default GamePage;
