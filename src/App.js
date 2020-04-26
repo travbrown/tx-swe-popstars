@@ -22,6 +22,16 @@ import PlayerTwoPage from "./pages/playerTwo";
 import PlayerTwoGamePage from "./pages/playerTwoGame";
 import TimeUp1 from "./pages/timeUp1";
 import TimeUp2 from "./pages/timeUp2";
+import PlayerOnePageMedium from "./pages/playerOneMedium";
+import PlayerOneGamePageMedium from "./pages/playerOneGameMedium";
+import PlayerTwoPageMedium from "./pages/playerTwoMedium";
+import PlayerTwoGamePageMedium from "./pages/playerTwoGameMedium";
+import TimeUp1Medium from "./pages/timeUp1Medium";
+import PlayerOnePageHard from "./pages/playerOneHard";
+import PlayerOneGamePageHard from "./pages/playerOneGameHard";
+import PlayerTwoPageHard from "./pages/playerTwoHard";
+import PlayerTwoGamePageHard from "./pages/playerTwoGameHard";
+import TimeUp1Hard from "./pages/timeUp1Hard";
 import GameMode from './pages/gameMode';
 import NameOneInput from "./pages/multiplayerNames";
 import GameOver from "./pages/gameOver";
@@ -69,6 +79,16 @@ export default function App() {
           <Route exact path="/playerTwoGame" component={PlayerTwoGamePage} />
           <Route exact path="/timeUp1" component={TimeUp1} />
           <Route exact path="/timeUp2" component={TimeUp2} />
+          <Route exact path="/playerOneMedium" component={PlayerOnePageMedium} />
+          <Route exact path="/playerOneGameMedium" component={PlayerOneGamePageMedium} />
+          <Route exact path="/playerTwoMedium" component={PlayerTwoPageMedium} />
+          <Route exact path="/playerTwoGameMedium" component={PlayerTwoGamePageMedium} />
+          <Route exact path="/timeUp1Medium" component={TimeUp1Medium} />
+          <Route exact path="/playerOneHard" component={PlayerOnePageHard} />
+          <Route exact path="/playerOneGameHard" component={PlayerOneGamePageHard} />
+          <Route exact path="/playerTwoHard" component={PlayerTwoPageHard} />
+          <Route exact path="/playerTwoGameHard" component={PlayerTwoGamePageHard} />
+          <Route exact path="/timeUp1Hard" component={TimeUp1Hard} />
           <Route exact path="/multiplayerNames" component={NameOneInput} />
           <Route exact path="/gameOver" component ={GameOver} />
           <Route exact path="/singleplayerName" component={SinglePlayerInput} />

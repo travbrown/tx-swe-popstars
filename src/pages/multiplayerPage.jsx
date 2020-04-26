@@ -6,6 +6,11 @@ import { Link } from "react-router-dom";
 const MultiplayerPage = () => {
   var name1 = localStorage.getItem('playerOneName'); 
   var name2 = localStorage.getItem('playerTwoName'); 
+
+  const setDifficulty = (difficulty) => {
+    localStorage.setItem('difficulty', difficulty);
+  };
+
     return (
         <div className="App">
           <nav class="item">
@@ -15,11 +20,11 @@ const MultiplayerPage = () => {
        
           <header >
             <div className="centerItems">
-            <Link to="/playerOne" class= "active_button"> Easy</Link>
+            <Link to="/playerOne" onClick={()=>setDifficulty('easy')} class= "active_button"> Easy</Link>
             <p></p>
-            <Link to="/playerOne" class= "active_button"> Medium</Link>
+            <Link to="/playerOneMedium" onClick={()=>setDifficulty('medium')} class= "active_button"> Medium</Link>
             <p></p>
-            <Link to="/playerOne" class= "active_button"> Hard</Link>
+            <Link to="/playerOneHard" onClick={()=>setDifficulty('hard')} class= "active_button"> Hard</Link>
             <p></p><p></p>
 
             <Link to="/difficultyPage" class= "default_button"> Back</Link>  

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const PlayerTwoBubble = ({difficulty ,...props}) => {
+const PlayerTwoBubble = (props) => {
     const [clicked, setClicked] = useState(false);
     const checkAnswer = () => {
         setClicked(true);
@@ -12,16 +12,10 @@ const PlayerTwoBubble = ({difficulty ,...props}) => {
         }
     };
 
-    let duration = "";
-    if (difficulty === "easy") duration = "20s";
-    else if (difficulty === "medium") duration = "10s";
-    else duration = "7s";
-
     return (
       <div
         class={`bubble x${props.number}`}
         style={{ display: clicked ? "none" : "flex",
-        animationDuration: duration
        }}
         onClick={checkAnswer}
       >

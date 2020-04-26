@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './countdown.css';
 
-const PlayerOnePage = () => {
+const PlayerOnePageMedium = () => {
     const FULL_DASH_ARRAY = 3000;
     const WARNING_THRESHOLD = 5;
     const ALERT_THRESHOLD = 3;
@@ -31,7 +31,7 @@ const PlayerOnePage = () => {
             setRemainingPathColor(timeLeft);
           }, 1000);
         if (timeLeft === 0) {   
-            window.location.href="/PlayerOneGame";
+            window.location.href="/PlayerOneGameMedium";
         }
         return () => clearInterval(interval);
     }, [timeLeft, setCircleDasharray, setRemainingPathColor]);
@@ -112,4 +112,4 @@ const PlayerOnePage = () => {
     );
 };
 
-export default PlayerOnePage;
+export default PlayerOnePageMedium;
