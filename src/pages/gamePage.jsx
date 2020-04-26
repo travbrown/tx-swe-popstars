@@ -90,16 +90,14 @@ const GamePage = () => {
   const getPlaylist = async () => {
     let playlist = null;
     try {
-      //const access_token = localStorage.getItem("access_token");
-      
-      //const playlist_uri_hash = localStorage.getItem("playlist_uri_hash");
       spotifyApi.setAccessToken(access_token);
       playlist = await spotifyApi.getPlaylistTracks(playlist_code);
-      //localStorage.removeItem("playlist_uri_hash");
+      
     } catch (error) {
-      alert('Our access to your Spotify has expired. Please Login again');
+      alert('Our access to Spotify has expired.\nPress OK to login and refresh our access');
       history.push('/');
       console.log('Need to login again: ',error);
+      return;
     }
 
     let foundSongs = [];
