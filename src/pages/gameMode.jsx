@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
 import logo from "../popstarslogo.png"
+import { colors } from "@material-ui/core";
 
 const GameMode = () => {
 
@@ -33,8 +34,8 @@ const GameMode = () => {
       };
       localStorage.setItem('multiplayer', handleClick);
       return (
-        <button class= "active_button" onClick={handleClick}>
-          MultiPlayer
+        <button class= "active_button" onClick={handleClick} >
+          Multi Player
         </button>
       );
     }
@@ -46,11 +47,11 @@ const GameMode = () => {
           </nav>
         <header>
         <div className="centerItems">
-        {/* <img src={logo} className="App-logo" alt="logo" height = "300px" /> */}
             <Link to="/singleplayerName" class= "active_button"> Single Player</Link>
             <p></p>
-            
-            <MultiPName></MultiPName>      
+            <MultiPName></MultiPName>    
+            <p></p>
+            <Link to="/createGame" class= "active_button"> Create Game</Link>  
         </div>
         </header>
       </div>

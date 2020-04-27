@@ -36,6 +36,12 @@ import GameMode from './pages/gameMode';
 import NameOneInput from "./pages/multiplayerNames";
 import GameOver from "./pages/gameOver";
 import SinglePlayerInput from "./pages/singleplayerName"; 
+import CreateGame from "./pages/createGame";
+import CutOffMarkEasy from "./pages/cutOffMarkEasy";
+import ChoosePlaylist from "./pages/choosePlaylist";
+import PlaylistOnePage from "./pages/playlistOne";
+import PlaylistOneGame from "./pages/playlistOneGame";
+import EasyGameOver from "./pages/easyGameOver";
 
 function AllLogins() {
   return (
@@ -92,6 +98,12 @@ export default function App() {
           <Route exact path="/multiplayerNames" component={NameOneInput} />
           <Route exact path="/gameOver" component ={GameOver} />
           <Route exact path="/singleplayerName" component={SinglePlayerInput} />
+          <Route exact path="/createGame" component ={CreateGame} />
+          <Route exact path="/CutOffMarkEasy" component={CutOffMarkEasy} />
+          <Route exact path="/choosePlaylist" component={ChoosePlaylist} />
+          <Route exact path="/playlistOne" component={PlaylistOnePage} />
+          <Route exact path="/playlistOneGame" component={PlaylistOneGame}/>
+          <Route exact path="/easyGameOver" component={EasyGameOver}/>
         </Switch>
       </Router>
     </div>

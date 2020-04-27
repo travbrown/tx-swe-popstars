@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 var score1 = localStorage.getItem('score'); 
 
-var name1 = localStorage.getItem('playerOneName'); 
 var name2 = localStorage.getItem('playerTwoName');
 
 const TimeUp1Medium = () => {

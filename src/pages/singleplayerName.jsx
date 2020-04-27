@@ -22,25 +22,22 @@ const SinglePlayerInput = () => {
                 <h2 id="subject-no-user-username">Enter Username</h2>
             </nav>
                 <h2 id="inputNames">Username: <PlayerOneName playeronename = {name1} /> </h2>  
-                     <Input type="text" value={name1} onChange={handleName1} class="nameBox"></Input><br></br>
-               
+                    <Input type="text" value={name1} onChange={handleName1} class="nameBox"></Input><br></br>
+    
                  <center>
                     <button onClick={handleClick} id="next">NEXT</button>
                  </center>
             </div>
         );
-    };
+};
 
-     const PlayerOneName = ({playeronename}) => <h2>{playeronename}</h2> ; 
-     const Input = ({value, onChange, children}) => (
-         <label>
-             {children}
-             <input type="text" value={value} onChange={onChange}/>
-         </label>
-     )
-    
+const PlayerOneName = ({playeronename}) => <h2>{playeronename}</h2> ; 
+const Input = ({value, onChange, children}) => (
+    <label>
+        {children}
+        <input type="text" value={value} onChange={onChange}/>
+    </label>
+)
 
-
-      export default SinglePlayerInput;
-      export {PlayerOneName};
-    
+export default SinglePlayerInput;
+export {PlayerOneName};
