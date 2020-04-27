@@ -31,6 +31,8 @@ const EasyGameOver = () => {
                 <p></p>
                 <h1> {status} </h1>
                 <p><p></p></p><p><p></p></p><p><p></p></p><p><p></p></p>
+                <Link to="/playlistOne" class= "active_button"> PLAY AGAIN</Link>
+                <p></p> <p></p>
                 <Link to="/gameMode" class= "default_button"> HOME</Link> 
             </header>
         </div>

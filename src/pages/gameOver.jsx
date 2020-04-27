@@ -12,6 +12,8 @@ const GameOver = () => {
                 <p><p></p></p><p><p></p></p>
                 <h2> Score: {score} </h2>
                 <p><p></p></p><p><p></p></p><p><p></p></p><p><p></p></p>
+                <Link to="/countdown" class= "active_button"> PLAY AGAIN</Link>
+                <p></p>
                 <Link to="/Leaderboard" class= "active_button"> LEADERBOARD</Link>
                 <p></p>
                 <p></p>
