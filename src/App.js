@@ -24,7 +24,6 @@ import GameMode from './pages/gameMode';
 import NameOneInput from "./pages/multiplayerNames";
 import GameOver from "./pages/gameOver";
 import SinglePlayerInput from "./pages/singleplayerName"; 
-<<<<<<< HEAD
 
 function AllLogins() {
   return (
@@ -35,10 +34,8 @@ function AllLogins() {
 }
 
 
-=======
 import CreateGame from "./pages/createGame";
 import { GameContext } from "./gameContext";
->>>>>>> 7fa9e100584d789b27813321b9fac8ba0324df1f
 
 export default function App() {
   return (
