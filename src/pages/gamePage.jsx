@@ -153,18 +153,6 @@ const GamePage = () => {
       console.log('Need to login again',error);
       return;
     }
-
-    // let foundSongs = [];
-    // for (const item of playlist.items) {
-    //   if (item.track.preview_url == null) continue;
-    //   foundSongs.push({
-    //     artist_name:item.track.artists[0].name, 
-    //     song_name: item.track.name, 
-    //     prev_url: item.track.preview_url });
-    // }
-    // shuffle(foundSongs)
-    // setPlaylist(foundSongs);
-    // ensureCorrectArtistGetsBubbled();
   };
 
 	const howler =
@@ -178,6 +166,11 @@ const GamePage = () => {
   
 	var name1 = localStorage.getItem('name1'); 
   shuffle(artistsFaces);
+  if(difficulty !== 'hard'){
+    ensureCorrectArtistGetsBubbled();
+  };
+  
+
  
   // if(difficulty !== 'hard'){
   //   ensureCorrectArtistGetsBubbled();
