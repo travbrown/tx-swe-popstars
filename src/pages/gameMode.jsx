@@ -15,6 +15,7 @@ const GameMode = () => {
         return getParameterByName('access_token');
     }
 
+
   function _setAccessToken(){
       let accessToken = getAccessToken();
       if(accessToken !== null){
@@ -22,16 +23,17 @@ const GameMode = () => {
       }
   }
     
-  function MultiPName(){
+  function MultiPName(){//Made a component for the button that goes to the name input of a multiplayer game 
       const history = useHistory();
 
       const handleClick = () => {
         _setAccessToken();
-        history.push("/multiplayerNames");
+        history.push("/multiplayerNames"); //on click, this button navigates to the name input page 
       };
       
       localStorage.setItem('multiplayer', handleClick);
       
+
       return (
         <button class= "active_button" onClick={handleClick}>
           MultiPlayer
@@ -48,10 +50,10 @@ const GameMode = () => {
         <div className="centerItems">
             <Link to="/singleplayerName" onClick={_setAccessToken} class= "active_button"> Single Player</Link>
             <p></p>
-            <MultiPName></MultiPName>  
+            <MultiPName/>  
             <p></p>
             <Link to="/createGame" onClick={_setAccessToken} class= "active_button">Create A Game</Link>    
-        </div>
+          </div>
         </header>
       </div>
     );

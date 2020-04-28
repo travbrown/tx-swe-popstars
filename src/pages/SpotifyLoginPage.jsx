@@ -26,11 +26,11 @@ const SpotifyLoginPage = () => {
     <div style={{ height: "100vh", width: "100vw", margin: "auto" }}>
       <img src={logo} className="App-logo" alt="logo" />
       <Button
-         style={{ marginTop: "-400px", marginLeft: "-40px", height: "80px", width: "320px", fontSize: "25px", backgroundColor: '#05D4EF', color: '#fff'}}
-         variant="contained"
-         href={`${authEndpoint}client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`} >
-        LOGIN WITH SPOTIFY
-      </Button>
+style={{ borderRadius:"10px", marginTop: "-400px", marginLeft: "-40px", height: "80px", width: "320px", fontSize: "25px", backgroundColor: '#05D4EF', color: '#fff'}}
+variant="contained"
+href={`${authEndpoint}client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`}
+> Login with Spotify
+</Button>
     </div>
   )
 };

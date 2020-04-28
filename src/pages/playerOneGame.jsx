@@ -53,7 +53,7 @@ const PlayerOneGame = () => {
     const [showModal, setShowModal] = useState(false);
   
     const ref = useRef(null);
-
+  
     const wrapperSetScore = delta => {
         ref.current.addToScore(delta);
      };
