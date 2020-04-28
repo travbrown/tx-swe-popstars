@@ -5,6 +5,7 @@ import DisplayScore from "./displayScore.jsx";
 import Bubble from "./bubbleContainer.jsx";
 import "./gamePage.css";
 import { useHistory } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 import {GameContext} from './../gameContext';
 import asap_ferg from "../photos/ASAP_Ferg.png";
@@ -146,7 +147,6 @@ const GamePage = () => {
       playlist = await spotifyApi.getPlaylistTracks(playlist_code);
       let foundSongs = [];
       for (const item of playlist.items) {
-        
         if (item.track.preview_url == null) continue;
         foundSongs.push({
           artist_name:item.track.artists[0].name, 
@@ -155,7 +155,8 @@ const GamePage = () => {
       }
       shuffle(foundSongs)
       setPlaylist(foundSongs);
-      
+      shuffle(artistsFaces);
+      ensureCorrectArtistGetsBubbled();
     } catch (error) {
       alert('Our access to Spotify has expired.\nPress OK to login and refresh our access');
       history.push('/');
@@ -174,8 +175,11 @@ const GamePage = () => {
     );
   
 	let name1 = localStorage.getItem('name1'); 
-  shuffle(artistsFaces);
+  // shuffle(artistsFaces);
  
+  console.log(artistsFaces);
+  console.log(playlist);
+
   return (
     <div className="App">   
       <nav class="item">

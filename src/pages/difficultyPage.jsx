@@ -3,7 +3,6 @@ import './difficultyPage.css';
 import "./gamePage.css";
 import { Link } from "react-router-dom";
 import {GameContext} from './../gameContext';
-import logo from "../popstarslogo.png";
 import { useContext } from "react";
 
 const DifficultyPage = () => {
@@ -25,9 +24,9 @@ const DifficultyPage = () => {
       <div className="centerItems">
         <Link to="/countdown" onClick={()=>setDifficulty('easy')} class= "active_button"> Easy</Link>
         <p></p>
-        <Link to="/countdown" onClick={()=>setDifficulty('medium')} class= "active_button"> Medium</Link>
+        {/* <Link to="/countdown" onClick={()=>setDifficulty('medium')} class= "active_button"> Medium</Link>
         <p></p>
-        <Link to="/countdown" onClick={()=>setDifficulty('hard')} class= "active_button"> Hard</Link>
+        <Link to="/countdown" onClick={()=>setDifficulty('hard')} class= "active_button"> Hard</Link> */}
         <p></p><p></p>
         <Link to="/gameMode" class= "default_button"> Back</Link>  
       </div>

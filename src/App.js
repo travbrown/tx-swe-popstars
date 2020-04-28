@@ -45,15 +45,14 @@ export default function App() {
             <Route exact path="/gameMode" component ={GameMode} />
             <Route exact path="/createGame" component ={CreateGame} />
             <Route exact path="/difficultyPage" component={DifficultyPage} />
-            <Route exact path="/start_game" component={StartPage} />
             <Route exact path="/countdown" component={CountdownPage} />
             <Route exact path="/gamePage" component={GamePage} />
             <Route exact path="/Leaderboard" component={Leaderboard} />
             <Route exact path="/multiplayerPage" component={MultiplayerPage} />
             <Route exact path="/playerOne" component={PlayerOnePage} />
-            <Route exact path="/playerOneGame" component={PlayerOneGamePage} />
+            <Route exact path="/playerOneGame" component={PlayerOneGame} />
             <Route exact path="/playerTwo" component={PlayerTwoPage} />
-            <Route exact path="/playerTwoGame" component={PlayerTwoGamePage} />
+            <Route exact path="/playerTwoGame" component={PlayerTwoGame} />
             <Route exact path="/timeUp1" component={TimeUp1} />
             <Route exact path="/timeUp2" component={TimeUp2} />
             <Route exact path="/multiplayerNames" component={NameOneInput} />
