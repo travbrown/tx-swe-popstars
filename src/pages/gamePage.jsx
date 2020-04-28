@@ -62,16 +62,18 @@ let artistsFaces = [
     { name: "Eminem", image: eminem },
 ];
 
-const GamePage = () => {
+const GamePage = (props) => {
   const spotifyApi = new SpotifyWebApi();
-  const {difficulty, access_token, playlist_code } = useContext(GameContext);
+  const {difficulty } = useContext(GameContext);
   const history = useHistory();
+  const playlist = props.location.state.playlist;
 
-	const [playlist, setPlaylist] = useState(null);
+	//const [playlist, setPlaylist] = useState(null);
   const [bubbleLimit, setBubbleLimit] = useState(getBubbleLimit());
   const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(setSongLimit());
 	const [songIndex, setSongIndex] = useState(0);
-	const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  console.log('reawefg: ',playlist);
 
   const ref = useRef(null);
   const wrapperSetScore = delta => {
@@ -109,9 +111,9 @@ const GamePage = () => {
 
   const ensureCorrectArtistGetsBubbled = () => {
     for (let i = bubbleLimit; i < artistsFaces.length; i++) {
+      console.log(playlist);
+      console.log(artistsFaces);
       if(artistsFaces[i].name === playlist[songIndex].artist_name){
-        console.log(artistsFaces)
-        console.log(playlist)
         let num = getRandomInt(bubbleLimit);
         [artistsFaces[i], artistsFaces[num]] = [artistsFaces[num], artistsFaces[i]];
         break;
@@ -127,44 +129,6 @@ const GamePage = () => {
     setSongIndex(songIndex + 1);
   };
 
-  useEffect(() => {
-    getPlaylist();
-  }, []);
-
-  function setSongLimit(){
-    if(difficulty === 'medium'){
-      return 10;
-    } else if (difficulty === 'hard'){
-      return 15;
-    }
-    return 7;
-  };
-
-  const getPlaylist = async () => {
-    let playlist = null;
-    try {
-      spotifyApi.setAccessToken(access_token);
-      playlist = await spotifyApi.getPlaylistTracks(playlist_code);
-      let foundSongs = [];
-      for (const item of playlist.items) {
-        if (item.track.preview_url == null) continue;
-        foundSongs.push({
-          artist_name:item.track.artists[0].name, 
-          song_name: item.track.name, 
-          prev_url: item.track.preview_url });
-      }
-      shuffle(foundSongs)
-      setPlaylist(foundSongs);
-      shuffle(artistsFaces);
-      ensureCorrectArtistGetsBubbled();
-    } catch (error) {
-      alert('Our access to Spotify has expired.\nPress OK to login and refresh our access');
-      history.push('/');
-      console.log('Need to login again: ',error);
-      return;
-    }
-  };
-
 	const howler =
     playlist == null ? null : (
       <ReactHowler
@@ -175,10 +139,8 @@ const GamePage = () => {
     );
   
 	let name1 = localStorage.getItem('name1'); 
-  // shuffle(artistsFaces);
- 
-  console.log(artistsFaces);
-  console.log(playlist);
+  shuffle(artistsFaces);
+  ensureCorrectArtistGetsBubbled();
 
   return (
     <div className="App">   
