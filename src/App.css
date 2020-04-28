@@ -1,3 +1,5 @@
+/* This is our css page that controls most design/styling for the app */
+/*Colors for PopStars: Blue: #03D4EF, Dark Orange: #ec583b, Yello: #FFA822*/
 .App {
   text-align: left;
   background-color:black;
@@ -213,7 +215,7 @@ div{
   font-size: 30px;
 }
 .App-link {
-  color: #61dafb;
+  color: #03D4EF;
 }
 
 @keyframes App-logo-spin {

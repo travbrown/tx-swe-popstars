@@ -1,10 +1,7 @@
+//This page allows for name input and stores each name for multiplayer 
 import React, { useState, useEffect } from 'react';
-import * as $ from "jquery";
-import { Link } from "react-router-dom";
-import  { Redirect } from 'react-router-dom'
-import ReactDOM from 'react-dom'
 import { useHistory } from 'react-router-dom';
-import { render } from '@testing-library/react';
+
 
 const NameOneInput = () => {
     const history = useHistory();

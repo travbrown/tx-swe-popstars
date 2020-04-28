@@ -20,13 +20,14 @@ const GameMode = () => {
       let access_token = getAccessToken();
       localStorage.setItem('access_token', access_token);
   }, []);
-    function MultiPName(){
+
+    function MultiPName(){//Made a component for the button that goes to the name input of a multiplayer game 
       const history = useHistory();
 
       const handleClick = () => {
-          history.push("/multiplayerNames");
+          history.push("/multiplayerNames"); //on click, this button navigates to the name input page 
       }
-      localStorage.setItem('multiplayer', handleClick);
+      localStorage.setItem('multiplayer', handleClick); 
       return (
         <button class= "active_button" onClick={handleClick}>
           MultiPlayer
@@ -42,11 +43,9 @@ const GameMode = () => {
           </nav>
         <header>
         <div className="centerItems">
-        {/* <img src={logo} className="App-logo" alt="logo" height = "300px" /> */}
             <Link to="/singleplayerName" class= "active_button"> Single Player</Link>
             <p></p>
-            
-            <MultiPName></MultiPName>      
+            <MultiPName/>     
             </div>
         </header>
       </div>
