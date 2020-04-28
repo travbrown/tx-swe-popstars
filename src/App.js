@@ -1,11 +1,12 @@
+//App.js contains routes and links for our page navigations
 import React from "react";
-import {logo} from "./popstarslogo.png"; 
 import "./App.css";
 import {
   BrowserRouter as Router,
   Route,
   Switch,
 } from "react-router-dom";
+import GameContextProvider from './gameContext';
 import Leaderboard from "./pages/Leaderboard";
 import SpotifyLoginPage from "./pages/SpotifyLoginPage";
 import DifficultyPage from "./pages/difficultyPage";
@@ -23,6 +24,7 @@ import GameMode from './pages/gameMode';
 import NameOneInput from "./pages/multiplayerNames";
 import GameOver from "./pages/gameOver";
 import SinglePlayerInput from "./pages/singleplayerName"; 
+<<<<<<< HEAD
 
 function AllLogins() {
   return (
@@ -33,22 +35,26 @@ function AllLogins() {
 }
 
 
+=======
+import CreateGame from "./pages/createGame";
+import { GameContext } from "./gameContext";
+>>>>>>> 7fa9e100584d789b27813321b9fac8ba0324df1f
 
 export default function App() {
   return (
     <div className="App-login ">
     <style>
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Fredoka+One&family=Press+Start+2P&family=Russo+One&display=swap');
-</style>
+      {/* import url below imports the font used throughout the game */}
+      @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Fredoka+One&family=Press+Start+2P&family=Russo+One&display=swap');
+    </style>
       <Router>
         <Switch>
-          <Route exact path="/" component={AllLogins} />
+          <Route exact path="/" component={SpotifyLoginPage} />
           <Route exact path="/gameMode" component ={GameMode} />
           <Route exact path="/difficultyPage" component={DifficultyPage} />
           <Route exact path="/start_game" component={StartPage} />
           <Route exact path="/countdown" component={CountdownPage} />
           <Route exact path="/gamePage" component={GamePage} />
-          <Route exact path="/Leaderboard" component={Leaderboard} />
           <Route exact path="/multiplayerPage" component={MultiplayerPage} />
           <Route exact path="/playerOne" component={PlayerOnePage} />
           <Route exact path="/playerOneGame" component={PlayerOneGamePage} />
@@ -62,5 +68,6 @@ export default function App() {
         </Switch>
       </Router>
     </div>
+
   );
 }
