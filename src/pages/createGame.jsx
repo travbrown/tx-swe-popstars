@@ -1,25 +1,29 @@
-import React from "react";
-import GameContext from './../gameContext';
+import React, { useState, useEffect, useRef, useContext } from "react";
+import {GameContext} from './../gameContext';
+import { Link } from "react-router-dom";
 
 const CreateGame = () => {
+    const {setDiff} = useContext(GameContext);
+    const setDifficulty = (difficulty) => {
+        setDiff(difficulty);
+    };
 
-    let playlistOptions = [
-        {playlist_name: 'Default', uri_hash: '4h4V4Cbn8sjznAc3uirZmK'},
-        {playlist_name: 'Popstars2', uri_hash: '2kIFfqhp98N33dhVuL7faT'},
-        {playlist_name: 'Popstars3', uri_hash: '0HPFLT1oWfmkUVqQYLyzKl'},
-    ];
-    
     return (      
         <div className="App">
             <nav class="item">
-                <h2 id="subject-no-user">Create A Challenge</h2>
+                <h2 id="subject-challenge"> Create A Challenge</h2>
             </nav>
             <header>
-                <div className="centerItems">
-
-                </div>
+            <div className="centerItems">
+                <h2 id="challengeText"> Choose a Level </h2>
+                <Link to="/cutOffMark" onClick={()=>setDifficulty('easy')} class= "active_button"> Easy</Link>
+                <p></p>
+                <Link to="/cutOffMark" onClick={()=>setDifficulty('medium')} class= "active_button"> Medium</Link>
+                <p></p>
+                <Link to="/cutOffMark" onClick={()=>setDifficulty('hard')} class= "active_button"> Hard</Link>
+            </div>
             </header>
         </div>
     );
-  };
-  export default CreateGame; 
+};
+export default CreateGame; 
