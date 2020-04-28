@@ -119,7 +119,7 @@ const GamePage = () => {
       />
     );
   
-	var name1 = localStorage.getItem('name1'); 
+  var name1 = localStorage.getItem('name1'); 
   shuffle(artistsFaces);
  
   return (
