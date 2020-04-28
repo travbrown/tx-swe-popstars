@@ -1,10 +1,20 @@
 import React from "react";
 import './difficultyPage.css';
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import {GameContext} from './../gameContext';
 
-var score = localStorage.getItem('score'); 
+ 
 
 const GameOver = () => {
+
+    let {differentGame} = useContext(GameContext);
+    let score = localStorage.getItem('score');
+
+    const diffGame = () =>{
+      differentGame();
+    };
+
     return (
       <div className="App">
            <header className="App-header">
@@ -14,7 +24,7 @@ const GameOver = () => {
                 <p><p></p></p><p><p></p></p><p><p></p></p><p><p></p></p>
                 <Link to="/start_game" class= "active_button"> PLAY AGAIN</Link>
                 <p></p>
-                <Link to="/gameMode" class= "default_button"> HOME </Link> 
+                <Link to="/gameMode" onClick={diffGame} class= "default_button"> HOME </Link> 
                 <p></p>
                 <Link to="/Leaderboard" class="active_button">Leaderboard</Link>
             </header>
