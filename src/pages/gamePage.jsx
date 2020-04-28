@@ -51,7 +51,13 @@ const GamePage = () => {
 
   const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(setSongLimit());
 	const [songIndex, setSongIndex] = useState(0);
+	const [artistIndex, setArtistIndex] = useState(0);
+
+	const [soundHowl, setSoundHowl] = useState(null);
+	const [showModal, setShowModal] = useState(false);
+
   const [showModal, setShowModal] = useState(false);
+
 
   const ref = useRef(null);
   const wrapperSetScore = delta => {
@@ -64,6 +70,7 @@ const GamePage = () => {
         [array[i], array[j]] = [array[j], array[i]];
       }
   };
+
 
 	const nextSong = () => {
     shuffle(artistsFaces);
@@ -132,7 +139,7 @@ const GamePage = () => {
         <h2 id="subject"> SCORE: <DisplayScore ref={ref} /> </h2>
         <h2 id="end-btn"> <button onClick={() => setShowModal(true)} id="end">QUIT</button></h2>
       </nav>
-
+   
       <div id="background-wrap">
         {artistsFaces.map((item, idx) => (
           <>
@@ -150,6 +157,7 @@ const GamePage = () => {
           </>
         ))}
       </div>
+
       {howler}
 
       <div
@@ -165,6 +173,5 @@ const GamePage = () => {
     </div>
   );
 };
-
 
 export default GamePage;

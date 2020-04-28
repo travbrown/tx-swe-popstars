@@ -1,3 +1,4 @@
+//This page lets the player control when their game will start -- simply contains a button directing to the countdown 
 import React from "react";
 import './difficultyPage.css';
 import { Link } from "react-router-dom";

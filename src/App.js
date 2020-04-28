@@ -1,5 +1,5 @@
+//App.js contains routes and links for our page navigations
 import React from "react";
-import {logo} from "./popstarslogo.png"; 
 import "./App.css";
 import {
   BrowserRouter as Router,
@@ -27,55 +27,34 @@ import SinglePlayerInput from "./pages/singleplayerName";
 import CreateGame from "./pages/createGame";
 import { GameContext } from "./gameContext";
 
-function AllLogins() {
-  return (
-    <div>
-      <SpotifyLoginPage />
-    </div>
-  );
-}
-
-function LeaderboardInfo()
-{
-  return (
-    <div>
-      <Leaderboard />
-    </div>
-  )
-}
-
 export default function App() {
   return (
-    
-      <div className="App-login ">
-      <style>
-        @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Fredoka+One&family=Press+Start+2P&family=Russo+One&display=swap');
-      </style>
-        <Router>
-          <Switch>
-            <GameContextProvider>
-            <Route exact path="/" component={AllLogins} />
-            <Route exact path="/gameMode" component ={GameMode} />
-            <Route exact path="/createGame" component ={CreateGame} />
-            <Route exact path="/difficultyPage" component={DifficultyPage} />
-            <Route exact path="/start_game" component={StartPage} />
-            <Route exact path="/countdown" component={CountdownPage} />
-            <Route exact path="/gamePage" component={GamePage} />
-            <Route exact path="/Leaderboard" component={Leaderboard} />
-            <Route exact path="/multiplayerPage" component={MultiplayerPage} />
-            <Route exact path="/playerOne" component={PlayerOnePage} />
-            <Route exact path="/playerOneGame" component={PlayerOneGamePage} />
-            <Route exact path="/playerTwo" component={PlayerTwoPage} />
-            <Route exact path="/playerTwoGame" component={PlayerTwoGamePage} />
-            <Route exact path="/timeUp1" component={TimeUp1} />
-            <Route exact path="/timeUp2" component={TimeUp2} />
-            <Route exact path="/multiplayerNames" component={NameOneInput} />
-            <Route exact path="/gameOver" component ={GameOver} />
-            <Route exact path="/singleplayerName" component={SinglePlayerInput} />
-            </GameContextProvider>
-          </Switch>
-        </Router>
-      </div>
-    
+    <div className="App-login ">
+    <style>
+      {/* import url below imports the font used throughout the game */}
+      @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Fredoka+One&family=Press+Start+2P&family=Russo+One&display=swap');
+    </style>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={SpotifyLoginPage} />
+          <Route exact path="/gameMode" component ={GameMode} />
+          <Route exact path="/difficultyPage" component={DifficultyPage} />
+          <Route exact path="/start_game" component={StartPage} />
+          <Route exact path="/countdown" component={CountdownPage} />
+          <Route exact path="/gamePage" component={GamePage} />
+          <Route exact path="/multiplayerPage" component={MultiplayerPage} />
+          <Route exact path="/playerOne" component={PlayerOnePage} />
+          <Route exact path="/playerOneGame" component={PlayerOneGamePage} />
+          <Route exact path="/playerTwo" component={PlayerTwoPage} />
+          <Route exact path="/playerTwoGame" component={PlayerTwoGamePage} />
+          <Route exact path="/timeUp1" component={TimeUp1} />
+          <Route exact path="/timeUp2" component={TimeUp2} />
+          <Route exact path="/multiplayerNames" component={NameOneInput} />
+          <Route exact path="/gameOver" component ={GameOver} />
+          <Route exact path="/singleplayerName" component={SinglePlayerInput} />
+        </Switch>
+      </Router>
+    </div>
+
   );
 }
