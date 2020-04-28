@@ -50,21 +50,17 @@ export default function Leaderboard(){
     //This return will display the information that we grabbed from Firebase as well as some slight CSS to make it look nicer.
     // The div under classname "App" is the container for the button that leads off the leaderboard page and links back to the gameMode page.
   return (
-    <div style={{ color: "#03D4EF" }}>
-        <h1>Leaderboard</h1>
-        <ol type = "1">
-            {leaderboard.map((item, idx) => (
-              <ol type="1"> {item.id} : {item.score} points! </ol>
-            ))}
-        </ol>
-
     <div className="App">
-        <header className="App-header">
-        <p><p></p></p><p><p></p></p><p><p></p></p><p><p></p></p>
-        <Link to="/gameMode" class= "default_button"> HOME </Link> 
-        </header>
-    </div>
-    </div>
-
-    );
+        <div class ="item">
+            <li id="subject-diff">Leaderboard</li> 
+        </div>
+        <center>
+            <div style={{ color: "white", paddingTop: "50px"}}>
+                {leaderboard.map((item, idx) => ( <ol type="1"> {item.id} : {item.score} points </ol> ))}
+            </div>
+            <div  style={{paddingTop: "50px"}}>
+                <Link to="/gameMode" class= "default_button"> HOME </Link>
+            </div>
+        </center>
+    </div> );
 }

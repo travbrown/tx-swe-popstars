@@ -1,10 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {PlayerOneName} from './multiplayerNames'; 
 
 const MultiplayerPage = () => {
-  var name1 = localStorage.getItem('name1'); 
-  var name2 = localStorage.getItem('name2'); 
+  var name1 = localStorage.getItem('playerOneName'); 
+  var name2 = localStorage.getItem('playerTwoName'); 
     return (
         <div className="App">
           <nav class="item">

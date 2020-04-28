@@ -162,7 +162,6 @@ const GamePage = () => {
       }
       shuffle(foundSongs)
       setPlaylist(foundSongs);
-      shuffle(artistsFaces);
       RenderPlaylist();
       ensureCorrectArtistGetsBubbled();
     } catch (error) {
@@ -182,11 +181,8 @@ const GamePage = () => {
       />
     );
   
-	let name1 = localStorage.getItem('name1'); 
-  // shuffle(artistsFaces);
- 
-  console.log(artistsFaces);
-  console.log(playlist);
+  let name1 = localStorage.getItem('name1');  
+  shuffle(artistsFaces);
 
   return (
     <div className="App">   
@@ -195,7 +191,6 @@ const GamePage = () => {
         <h2 id="subject"> SCORE: <DisplayScore ref={ref} /> </h2>
         <h2 id="end-btn"> <button onClick={() => setShowModal(true)} id="end">QUIT</button></h2>
       </nav>
-   
       <div id="background-wrap">
         {artistsFaces.slice(0,bubbleLimit).map((item, idx) => (
           <>

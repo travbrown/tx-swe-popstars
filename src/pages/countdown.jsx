@@ -105,11 +105,9 @@ const CountdownPage = () => {
             </svg>
             <span id="base-timer-label" class="base-timer__label">{formatTime(timeLeft)}</span>
             </div></div>
-            
               <Link to="/gamePage">
                 <button id="nextPage" style={{ display: "none" }}></button>
               </Link>
-            
       </div>
     );
 };

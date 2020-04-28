@@ -102,12 +102,6 @@ const PlaylistGame = () => {
       }
   };
 
-  function RenderPlaylist() {
-    if (playlist === null) {
-      //load
-    }
-  }
-
   function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
@@ -127,7 +121,7 @@ const PlaylistGame = () => {
 	const nextSong = () => {
     shuffle(artistsFaces);
     if (songIndex === playlist.length - 1 || songIndex === limitOfSongsToPlay - 1) {
-      history.push("/gameOver");
+      history.push("/challengeOver");
     }
     setSongIndex(songIndex + 1);
   };
@@ -162,7 +156,6 @@ const PlaylistGame = () => {
       shuffle(foundSongs)
       setPlaylist(foundSongs);
       shuffle(artistsFaces);
-      RenderPlaylist();
       ensureCorrectArtistGetsBubbled();
     } catch (error) {
       // alert('Our access to Spotify has expired.\nPress OK to login and refresh our access');
@@ -190,7 +183,7 @@ const PlaylistGame = () => {
   return (
     <div className="App">   
       <nav class="item">
-        <h2 id="subject-diff"> SCORE: {score} / {maxScore} </h2>
+        <h2 id="subject-getready-no-user"> SCORE: {score} / {maxScore} </h2>
       </nav>
 
       <div id="background-wrap">
