@@ -53,6 +53,11 @@ ul.top li {
   left:43%; 
   transform: translateY(-83px);
 }
+#subject-getready-no-user{
+  position: absolute;  
+  left:43%; 
+  transform: translateY(-20px);
+}
 #subject-diff{
   position: absolute;  
   left:39%; 
@@ -67,8 +72,8 @@ ul.top li {
   position: absolute;  
   left:75%; 
   transform: translateY(-95px);
-
 }
+
 #correctImg{
   background-color: transparent;
 }
@@ -93,12 +98,31 @@ button.end:focus {
   left:43%; 
   transform: translateY(-20px);
 }
+
+#subject-challenge{
+  position: absolute;  
+  left:40%; 
+  transform: translateY(-20px);
+}
+
 #username{
   transform: translateY(-20px);
 }
 
 h2{
   color: white; 
+}
+
+.card-img-title {
+  padding-left: 180px;
+  font-size: 50px;
+  text-align: left;
+}
+
+#subject_text{
+  font-size: 30px;
+  color: white;
+  padding-bottom: 20px;
 }
 
 button{
@@ -119,8 +143,9 @@ input{
   height: 60px;
   border-radius: 10px;
   color: black; 
- background-color:white ;
+  background-color:white ;
 }
+
 .item {
   background-color: white;
   width: 100%;
@@ -139,7 +164,7 @@ input{
 #next{
   font-size: calc(10px + 2vmin);
   color: white; 
-  background-color: #ec583b; 
+  background-color: #03D4EF; 
   border-radius: 10px;
   width: 350px;
   height: 60px;
@@ -151,6 +176,14 @@ input{
 			0 0 4rem 0 rgba(black, 0.1),
 			0 1rem 2rem -1rem rgba(black, 0.3);
 }
+
+.maxText{
+  font-size: calc(10px + 2vmin);
+  color: #ec583b;
+  padding-top: 10px;
+  text-decoration: solid;
+}
+
 .App-logo {
   /* height: 40vmin; */
   width: 100%;
@@ -167,6 +200,21 @@ body{
 /*color of the headings ex: "Player One:" NOT whats in the input box*/
 #inputNames{
   color: white;
+}
+
+#challengeText {
+  color: white;
+  font-size: 40px;
+  position: absolute;  
+  transform: translateY(-200px);
+}
+
+#challengeDescription {
+  color: white;
+  font-size: 20px;
+  position: initial;
+  padding-top: 10px;
+  text-transform: initial;
 }
 
 textarea{

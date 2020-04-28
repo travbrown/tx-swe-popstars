@@ -28,6 +28,18 @@
   text-transform: uppercase;
 }
 
+.card_button {
+  background-color:#05D4EF;
+  color: white;
+  padding: 0.4em 2em;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
 a.active_button:hover,
 a.active_button:focus {
   text-decoration: none;
@@ -40,6 +52,11 @@ a.default_button:focus {
 
 a.quit_button:hover,
 a.quit_button:focus {
+  text-decoration: none;
+}
+
+a.card_button:hover,
+a.card_button:focus {
   text-decoration: none;
 }
 

@@ -10,7 +10,6 @@ import GameContextProvider from './gameContext';
 import Leaderboard from "./pages/Leaderboard";
 import SpotifyLoginPage from "./pages/SpotifyLoginPage";
 import DifficultyPage from "./pages/difficultyPage";
-import StartPage from "./pages/start_game";
 import CountdownPage from "./pages/countdown";
 import GamePage from "./pages/gamePage";
 import MultiplayerPage from "./pages/multiplayerPage";
@@ -25,6 +24,9 @@ import NameOneInput from "./pages/multiplayerNames";
 import GameOver from "./pages/gameOver";
 import SinglePlayerInput from "./pages/singleplayerName"; 
 import CreateGame from "./pages/createGame";
+import CutOffMark from "./pages/cutOffMark";
+import ChoosePlaylist from "./pages/choosePlaylist";
+import ChallengeOver from "./pages/challengeOver";
 import { GameContext } from "./gameContext";
 
 export default function App() {
@@ -40,8 +42,11 @@ export default function App() {
             <Route exact path="/" component={SpotifyLoginPage} />
             <Route exact path="/gameMode" component ={GameMode} />
             <Route exact path="/createGame" component ={CreateGame} />
+            <Route exact path="/cutOffMark" component={CutOffMark} />
+            <Route exact path="/choosePlaylist" component={ChoosePlaylist} />
+
+            <Route exact path="/challengeOver" component={ChallengeOver}/>
             <Route exact path="/difficultyPage" component={DifficultyPage} />
-            <Route exact path="/start_game" component={StartPage} />
             <Route exact path="/countdown" component={CountdownPage} />
             <Route exact path="/gamePage" component={GamePage} />
             <Route exact path="/Leaderboard" component={Leaderboard} />
@@ -55,6 +60,7 @@ export default function App() {
             <Route exact path="/multiplayerNames" component={NameOneInput} />
             <Route exact path="/gameOver" component ={GameOver} />
             <Route exact path="/singleplayerName" component={SinglePlayerInput} />
+            
             </GameContextProvider>
           </Switch>
         </Router>
