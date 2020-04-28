@@ -26,9 +26,6 @@ import SinglePlayerInput from "./pages/singleplayerName";
 import CreateGame from "./pages/createGame";
 import CutOffMark from "./pages/cutOffMark";
 import ChoosePlaylist from "./pages/choosePlaylist";
-import PlaylistCountdown from "./pages/playlistCountdown";
-import PlaylistGame from "./pages/playlistGame";
-
 import ChallengeOver from "./pages/challengeOver";
 import { GameContext } from "./gameContext";
 
@@ -47,8 +44,6 @@ export default function App() {
             <Route exact path="/createGame" component ={CreateGame} />
             <Route exact path="/cutOffMark" component={CutOffMark} />
             <Route exact path="/choosePlaylist" component={ChoosePlaylist} />
-            <Route exact path="/playlistCountdown" component={PlaylistCountdown} />
-            <Route exact path="/playlistGame" component={PlaylistGame}/>
 
             <Route exact path="/challengeOver" component={ChallengeOver}/>
             <Route exact path="/difficultyPage" component={DifficultyPage} />
