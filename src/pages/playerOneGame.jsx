@@ -68,6 +68,7 @@ const PlayerOneGame = () => {
       const [songIndex, setSongIndex] = useState(0);
 
     const ref = useRef(null);
+  
     const wrapperSetScore = delta => {
         ref.current.addToScore(delta);
      };
@@ -171,7 +172,7 @@ const PlayerOneGame = () => {
         <h2 id="username"> {name1}</h2>
         <h2 id="subject"> SCORE: {score1} </h2>
       </nav>
-        
+
       <div id="background-wrap">
         {artistsFaces.slice(0,bubbleLimit).map((item, idx)=> (
           <>
@@ -196,4 +197,5 @@ const PlayerOneGame = () => {
   );
 };
 
+localStorage.setItem("Score1",DisplayScore);
 export default PlayerOneGame;

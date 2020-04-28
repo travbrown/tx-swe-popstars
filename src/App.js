@@ -1,3 +1,4 @@
+//App.js contains routes and links for our page navigations
 import React from "react";
 import "./App.css";
 import {
@@ -5,7 +6,7 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-
+import GameContextProvider from './gameContext';
 import Leaderboard from "./pages/Leaderboard";
 import SpotifyLoginPage from "./pages/SpotifyLoginPage";
 import DifficultyPage from "./pages/difficultyPage";
@@ -28,39 +29,45 @@ import ChoosePlaylist from "./pages/choosePlaylist";
 import PlaylistCountdown from "./pages/playlistCountdown";
 import PlaylistGame from "./pages/playlistGame";
 import ChallengeOver from "./pages/challengeOver";
+import { GameContext } from "./gameContext";
 
 export default function App() {
   return (
-    <div className="App-login ">
-    <style>
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Fredoka+One&family=Press+Start+2P&family=Russo+One&display=swap');
-</style>
-      <Router>
-        <Switch>
-          <Route exact path="/" component={SpotifyLoginPage} />
-          <Route exact path="/gameMode" component ={GameMode} />
-          <Route exact path="/difficultyPage" component={DifficultyPage} />
-          <Route exact path="/countdown" component={CountdownPage} />
-          <Route exact path="/gamePage" component={GamePage} />
-          <Route exact path="/Leaderboard" component={Leaderboard} />
-          <Route exact path="/multiplayerPage" component={MultiplayerPage} />
-          <Route exact path="/playerOne" component={PlayerOnePage} />
-          <Route exact path="/playerOneGame" component={PlayerOneGame} />
-          <Route exact path="/playerTwo" component={PlayerTwoPage} />
-          <Route exact path="/playerTwoGame" component={PlayerTwoGame} />
-          <Route exact path="/timeUp1" component={TimeUp1} />
-          <Route exact path="/timeUp2" component={TimeUp2} />
-          <Route exact path="/multiplayerNames" component={NameOneInput} />
-          <Route exact path="/gameOver" component ={GameOver} />
-          <Route exact path="/singleplayerName" component={SinglePlayerInput} />
-          <Route exact path="/createGame" component={CreateGame} />
-          <Route exact path="/cutOffMark" component={CutOffMark} />
-          <Route exact path="/choosePlaylist" component={ChoosePlaylist} />
-          <Route exact path="/playlistCountdown" component={PlaylistCountdown} />
-          <Route exact path="/playlistGame" component={PlaylistGame}/>
-          <Route exact path="/challengeOver" component={ChallengeOver}/>
-        </Switch>
-      </Router>
-    </div>
+    
+      <div className="App-login ">
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Fredoka+One&family=Press+Start+2P&family=Russo+One&display=swap');
+      </style>
+        <Router>
+          <Switch>
+            <GameContextProvider>
+            <Route exact path="/" component={SpotifyLoginPage} />
+            <Route exact path="/gameMode" component ={GameMode} />
+            <Route exact path="/createGame" component ={CreateGame} />
+            <Route exact path="/difficultyPage" component={DifficultyPage} />
+            <Route exact path="/start_game" component={StartPage} />
+            <Route exact path="/countdown" component={CountdownPage} />
+            <Route exact path="/gamePage" component={GamePage} />
+            <Route exact path="/Leaderboard" component={Leaderboard} />
+            <Route exact path="/multiplayerPage" component={MultiplayerPage} />
+            <Route exact path="/playerOne" component={PlayerOnePage} />
+            <Route exact path="/playerOneGame" component={PlayerOneGamePage} />
+            <Route exact path="/playerTwo" component={PlayerTwoPage} />
+            <Route exact path="/playerTwoGame" component={PlayerTwoGamePage} />
+            <Route exact path="/timeUp1" component={TimeUp1} />
+            <Route exact path="/timeUp2" component={TimeUp2} />
+            <Route exact path="/multiplayerNames" component={NameOneInput} />
+            <Route exact path="/gameOver" component ={GameOver} />
+            <Route exact path="/singleplayerName" component={SinglePlayerInput} />
+            <Route exact path="/createGame" component={CreateGame} />
+            <Route exact path="/cutOffMark" component={CutOffMark} />
+            <Route exact path="/choosePlaylist" component={ChoosePlaylist} />
+            <Route exact path="/playlistCountdown" component={PlaylistCountdown} />
+            <Route exact path="/playlistGame" component={PlaylistGame}/>
+            <Route exact path="/challengeOver" component={ChallengeOver}/>
+            </GameContextProvider>
+          </Switch>
+        </Router>
+      </div>
   );
 }

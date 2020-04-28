@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+//This page allows for name input and stores each name for multiplayer 
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+
 
 const NameOneInput = () => {
     const history = useHistory();
@@ -12,7 +14,7 @@ const NameOneInput = () => {
     const [name2, setName2] = useState('');
     localStorage.setItem('playerTwoName', name2)
     const handleName2 = event => setName2(event.target.value);
-
+    
     return (
         <div>
             <nav class="item">

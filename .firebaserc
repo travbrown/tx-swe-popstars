@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "popstars"
+    "default": "popstars",
+    "staging": "popstars-76cdd"
   }
 }

@@ -2,19 +2,25 @@ import React from "react";
 import './difficultyPage.css';
 import "./gamePage.css";
 import { Link } from "react-router-dom";
+import {GameContext} from './../gameContext';
+import logo from "../popstarslogo.png";
+import { useContext } from "react";
 
 const DifficultyPage = () => {
-
-  const setDifficulty = (difficulty) => {
-    localStorage.setItem('difficulty', difficulty);
+  
+  const {setDiff} = useContext(GameContext);
+ 
+  const setDifficulty = (diff) => {
+    setDiff(diff);
   };
 
   return (
     <div className="App">
-      <div class ="item">
-        <li id="subject-diff">Difficulty</li> 
-      </div>
-      <header></header>
+      <header>
+        <div class ="item">
+          <li id="subject-diff">Difficulty</li> 
+        </div>
+      </header>
   
       <div className="centerItems">
         <Link to="/countdown" onClick={()=>setDifficulty('easy')} class= "active_button"> Easy</Link>

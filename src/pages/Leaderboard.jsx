@@ -1,11 +1,17 @@
+// This page is the leaderboard code, it provides the ability to write to scores and usernames to Firebase and display them in leaderboard fashion.
 import firebase from "firebase";
 import React, { useState, useEffect } from "react";
+import ReactDOM from 'react-dom'
+import { Link } from "react-router-dom";
     
 export default function Leaderboard(){
-    console.log("App!!!");
+  
+//these three variables are responsible for storing the score(userscore), and name(name) variables, as well as containing a query to sort scores (leader)
     var leader = firebase.firestore().collection("Users").where("Score",">", 0).orderBy("Score","desc").limit(10);
     var userScore = parseInt(localStorage.getItem('score'));
     var name = localStorage.getItem("name1");
+
+    //This function provides the code for writing the name and score to Firebase under the "Users" collection.
 
     firebase.firestore().collection("Users").doc("" + name + "")
     .set({ Score : userScore })
@@ -50,7 +56,13 @@ export default function Leaderboard(){
         <div style={{ color: "white", paddingTop: "50px"}}>
             {leaderboard.map((item, idx) => ( <ol type="1"> {item.id} : {item.score} points </ol> ))}
         </div>
+        <header className="App-header">
+        <p><p></p></p><p><p></p></p><p><p></p></p><p><p></p></p>
+        <Link to="/gameMode" class= "default_button"> HOME </Link> 
+        </header>
     </center>
     </div>
+    //This return will display the information that we grabbed from Firebase as well as some slight CSS to make it look nicer.
+    // The div under classname "App" is the container for the button that leads off the leaderboard page and links back to the gameMode page.
     );
 }

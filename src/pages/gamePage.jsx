@@ -1,9 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import ReactHowler from "react-howler";
 import SpotifyWebApi from "spotify-web-api-js";
 import DisplayScore from "./displayScore.jsx";
 import Bubble from "./bubbleContainer.jsx";
 import "./gamePage.css";
+import { useHistory } from 'react-router-dom';
+
+import {GameContext} from './../gameContext';
 import asap_ferg from "../photos/ASAP_Ferg.png";
 import asap_rocky from "../photos/ASAP_Rocky.png";
 import cardi_b from "../photos/cardi_b.png";
@@ -59,13 +62,14 @@ let artistsFaces = [
 ];
 
 const GamePage = () => {
-	const spotifyApi = new SpotifyWebApi();
+  const spotifyApi = new SpotifyWebApi();
+  const {difficulty, access_token, playlist_code } = useContext(GameContext);
+  const history = useHistory();
 
 	const [playlist, setPlaylist] = useState(null);
-  const [difficulty, setDifficulty] = useState(localStorage.getItem("difficulty"));
-  const [songIndex, setSongIndex] = useState(0);
   const [bubbleLimit, setBubbleLimit] = useState(getBubbleLimit());
   const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(setSongLimit());
+	const [songIndex, setSongIndex] = useState(0);
 	const [showModal, setShowModal] = useState(false);
 
   const ref = useRef(null);
@@ -117,25 +121,32 @@ const GamePage = () => {
 	const nextSong = () => {
     shuffle(artistsFaces);
     if (songIndex === playlist.length - 1 || songIndex === limitOfSongsToPlay - 1) {
-      window.location.href = "/gameOver";
+      history.push("/gameOver");
     }
     setSongIndex(songIndex + 1);
   };
 
   useEffect(() => {
     getPlaylist();
-
   }, []);
 
+  function setSongLimit(){
+    if(difficulty === 'medium'){
+      return 10;
+    } else if (difficulty === 'hard'){
+      return 15;
+    }
+    return 7;
+  };
 
   const getPlaylist = async () => {
     let playlist = null;
     try {
-      const access_token = localStorage.getItem("access_token");
       spotifyApi.setAccessToken(access_token);
-      playlist = await spotifyApi.getPlaylistTracks("4h4V4Cbn8sjznAc3uirZmK");
+      playlist = await spotifyApi.getPlaylistTracks(playlist_code);
       let foundSongs = [];
       for (const item of playlist.items) {
+        
         if (item.track.preview_url == null) continue;
         foundSongs.push({
           artist_name:item.track.artists[0].name, 
@@ -144,12 +155,11 @@ const GamePage = () => {
       }
       shuffle(foundSongs)
       setPlaylist(foundSongs);
-      shuffle(artistsFaces);
-      if(difficulty !== 'hard'){
-        ensureCorrectArtistGetsBubbled();
-      };
+      
     } catch (error) {
-      console.log('Need to login again',error);
+      alert('Our access to Spotify has expired.\nPress OK to login and refresh our access');
+      history.push('/');
+      console.log('Need to login again: ',error);
       return;
     }
   };
@@ -163,8 +173,9 @@ const GamePage = () => {
       />
     );
   
-	var name1 = localStorage.getItem('name1'); 
-
+	let name1 = localStorage.getItem('name1'); 
+  shuffle(artistsFaces);
+ 
   return (
     <div className="App">   
       <nav class="item">
@@ -172,7 +183,7 @@ const GamePage = () => {
         <h2 id="subject"> SCORE: <DisplayScore ref={ref} /> </h2>
         <h2 id="end-btn"> <button onClick={() => setShowModal(true)} id="end">QUIT</button></h2>
       </nav>
-
+   
       <div id="background-wrap">
         {artistsFaces.slice(0,bubbleLimit).map((item, idx) => (
           <>
@@ -191,6 +202,7 @@ const GamePage = () => {
           </>
         ))}
       </div>
+
       {howler}
 
       <div
@@ -200,7 +212,7 @@ const GamePage = () => {
         <div id="modalContainer">
           <h1>Are you sure you want to quit?</h1>
           <button id="cancel"><a id='cancel' href= '#'> CANCEL </a></button>
-				  <button id='end'> <a id='cancel' href='/gameOver'> QUIT </a></button>
+				  <Link id='cancel' to='/gameOver'><button id='end'> QUIT </button></Link>
         </div>
       </div>
     </div>

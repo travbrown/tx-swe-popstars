@@ -196,4 +196,5 @@ const PlayerTwoGame = () => {
   );
 };
 
+localStorage.setItem("Score2",DisplayScore);
 export default PlayerTwoGame;
