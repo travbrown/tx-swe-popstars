@@ -103,21 +103,21 @@ const GamePage = () => {
       }
   };
 
-  function RenderPlaylist() {
-    if (playlist === null) {
-      //load
-    }
-  }
+  // function RenderPlaylist() {
+  //   if (playlist === null) {
+  //     //load
+  //   }
+  // }
 
   function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
   const ensureCorrectArtistGetsBubbled = () => {
+    console.log(artistsFaces)
+    console.log(playlist)
     for (let i = bubbleLimit; i < artistsFaces.length; i++) {
       if(artistsFaces[i].name === playlist[songIndex].artist_name){
-        console.log(artistsFaces)
-        console.log(playlist)
         let num = getRandomInt(bubbleLimit);
         [artistsFaces[i], artistsFaces[num]] = [artistsFaces[num], artistsFaces[i]];
         break;
@@ -151,8 +151,8 @@ const GamePage = () => {
     try {
       spotifyApi.setAccessToken(access_token);
       playlist = await spotifyApi.getPlaylistTracks(playlist_code);
+      console.log(playlist)
       let foundSongs = [];
-      
       for (const item of playlist.items) {
         if (item.track.preview_url == null) continue;
         foundSongs.push({
@@ -162,7 +162,8 @@ const GamePage = () => {
       }
       shuffle(foundSongs)
       setPlaylist(foundSongs);
-      RenderPlaylist();
+      //RenderPlaylist();
+      console.log(playlist)
       ensureCorrectArtistGetsBubbled();
     } catch (error) {
       // alert('Our access to Spotify has expired.\nPress OK to login and refresh our access');
