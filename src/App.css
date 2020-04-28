@@ -156,7 +156,7 @@ input{
 #next{
   font-size: calc(10px + 2vmin);
   color: white; 
-  background-color: #ec583b; 
+  background-color: #03D4EF; 
   border-radius: 10px;
   width: 350px;
   height: 60px;
@@ -171,8 +171,8 @@ input{
 
 .maxText{
   font-size: calc(10px + 2vmin);
-  color: rgb(216, 10, 10); 
-  margin-top: 100px;
+  color: #ec583b;
+  padding-top: 10px;
   text-decoration: solid;
 }
 
@@ -199,6 +199,14 @@ body{
   font-size: 40px;
   position: absolute;  
   transform: translateY(-200px);
+}
+
+#challengeDescription {
+  color: white;
+  font-size: 20px;
+  position: initial;
+  padding-top: 10px;
+  text-transform: initial;
 }
 
 textarea{

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 var score = localStorage.getItem('score'); 
 var maxScore = localStorage.getItem('maxEasy');
 
-const EasyGameOver = () => {
+const ChallengeOver = () => {
 
     const [status, setStatus] = useState(null);
 
@@ -38,4 +38,4 @@ const EasyGameOver = () => {
         </div>
     );
   };
-  export default EasyGameOver;
+  export default ChallengeOver;

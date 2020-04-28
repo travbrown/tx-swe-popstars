@@ -39,7 +39,7 @@ let artistsFaces = [
     { name: "Wiz Khalifa", image: wiz_khalifa },
 ];
 
-const PlaylistOneGame = () => {
+const PlaylistGame = () => {
 	const spotifyApi = new SpotifyWebApi();
 
 	const [playlist, setPlaylist] = useState(null);
@@ -91,7 +91,7 @@ const PlaylistOneGame = () => {
       const access_token = localStorage.getItem("access_token");
       
       spotifyApi.setAccessToken(access_token);
-      playlist = await spotifyApi.getPlaylistTracks("4h4V4Cbn8sjznAc3uirZmK");
+      playlist = await spotifyApi.getPlaylistTracks("4h4V4Cbn8sjznAc3uirZmK"); //change uri_hash according to playlist
     } catch (error) {
       console.log('Need to login again',error);
       return;
@@ -153,4 +153,4 @@ const PlaylistOneGame = () => {
     </div>
   );
 };
-export default PlaylistOneGame;
+export default PlaylistGame;

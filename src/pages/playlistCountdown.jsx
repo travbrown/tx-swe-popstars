@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './countdown.css';
 
-const PlaylistOnePage = () => {
+const PlaylistCountdown = () => {
     const FULL_DASH_ARRAY = 3000;
     const WARNING_THRESHOLD = 5;
     const ALERT_THRESHOLD = 3;
@@ -108,4 +108,4 @@ const PlaylistOnePage = () => {
     );
 };
 
-export default PlaylistOnePage;
+export default PlaylistCountdown;

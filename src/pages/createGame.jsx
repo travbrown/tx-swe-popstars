@@ -15,11 +15,11 @@ const CreateGame = () => {
             <header>
             <div className="centerItems">
                 <h2 id="challengeText"> Choose a Level </h2>
-                <Link to="/cutOffMarkEasy" onClick={()=>setDifficulty('easy')} class= "active_button"> Easy</Link>
+                <Link to="/cutOffMark" onClick={()=>setDifficulty('easy')} class= "active_button"> Easy</Link>
                 <p></p>
-                <Link to="/cutOffMark_medium" onClick={()=>setDifficulty('medium')} class= "active_button"> Medium</Link>
+                <Link to="/cutOffMark" onClick={()=>setDifficulty('medium')} class= "active_button"> Medium</Link>
                 <p></p>
-                <Link to="/cutOffMark_hard" onClick={()=>setDifficulty('hard')} class= "active_button"> Hard</Link>
+                <Link to="/cutOffMark" onClick={()=>setDifficulty('hard')} class= "active_button"> Hard</Link>
             </div>
             </header>
         </div>

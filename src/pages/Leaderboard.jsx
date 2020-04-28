@@ -48,13 +48,15 @@ export default function Leaderboard(){
     }, []);
 
   return (
-    <div style={{ color: "#03D4EF" }}>
-        <h1> Leaderboard</h1>
-        <ul>
-            {leaderboard.map((item, idx) => (
-              <ol type="1"> {item.id} : {item.score} points </ol>
-            ))}
-        </ul>
+    <div className="App">
+    <div class ="item">
+        <li id="subject-diff">Leaderboard</li> 
+    </div>
+    <center>
+        <div style={{ color: "white", paddingTop: "50px"}}>
+            {leaderboard.map((item, idx) => ( <ol type="1"> {item.id} : {item.score} points </ol> ))}
+        </div>
+    </center>
     </div>
     );
 }
