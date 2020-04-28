@@ -24,6 +24,8 @@ import GameMode from './pages/gameMode';
 import NameOneInput from "./pages/multiplayerNames";
 import GameOver from "./pages/gameOver";
 import SinglePlayerInput from "./pages/singleplayerName"; 
+import CreateGame from "./pages/createGame";
+import { GameContext } from "./gameContext";
 
 function AllLogins() {
   return (
@@ -33,9 +35,6 @@ function AllLogins() {
   );
 }
 
-
-import CreateGame from "./pages/createGame";
-import { GameContext } from "./gameContext";
 
 export default function App() {
   return (

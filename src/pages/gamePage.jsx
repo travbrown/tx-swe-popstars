@@ -54,7 +54,7 @@ const GamePage = () => {
 	const [soundHowl, setSoundHowl] = useState(null);
 	const [showModal, setShowModal] = useState(false);
 
-  const [showModal, setShowModal] = useState(false);
+  
 
 
   const ref = useRef(null);
