@@ -1,173 +1,210 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
-import { Howl } from "howler";
-import SpotifyWebApi from "spotify-web-api-js";
-import DisplayScore from "./displayScore.jsx";
-import PlayerOneBubble from "./playerOneContainer.jsx";
-import "./gamePage.css";
-import { Link } from "react-router-dom";
-import asap_ferg from "../photos/ASAP_Ferg.png";
-import asap_rocky from "../photos/ASAP_Rocky.png";
-import cardi_b from "../photos/cardi_b.png";
-import drake from "../photos/drake.png";
-import lil_wayne from "../photos/lil_wayne.png";
-import tupac from "../photos/tupac.png";
-import kanye_west from "../photos/kanye_west.png";
-import jcole from "../photos/jcole.png";
-import nicki_minaj from "../photos/nicki_minaj.png";
-import beyonce from "../photos/Beyonce.png";
-import davido from "../photos/davido.jpg";
-import Justin_beiber from "../photos/Justin_beiber.jpg";
-import lizzo from "../photos/lizzo.jpeg";
-import rihanna from "../photos/rihanna.jpg";
-import wiz_khalifa from "../photos/wiz_khalifa.png";
+// import React, { useState, useEffect, useRef, useContext } from "react";
+// import ReactHowler from "react-howler";
+// import SpotifyWebApi from "spotify-web-api-js";
+// import DisplayScore from "./displayScore.jsx";
+// import PlayerOneBubble from "./playerOneContainer.jsx";
+// import "./gamePage.css";
+// import { useHistory } from 'react-router-dom';
 
-let artistsFaces = [
-    { name: "A$AP Ferg", image: asap_ferg },
-    { name: "A$AP Rocky", image: asap_rocky },
-    { name: "Cardi B", image: cardi_b },
-    { name: "Drake", image: drake },
-    { name: "Lil Wayne", image: lil_wayne },
-    { name: "2Pac", image: tupac },
-    { name: "Kanye West", image: kanye_west },
-    { name: "J. Cole", image: jcole },
-    { name: "Nicki Minaj", image: nicki_minaj },
-    { name: "Beyoncé", image: beyonce },
-    { name: "Davido", image: davido },
-    { name: "Justin Beiber", image: Justin_beiber },
-    { name: "Lizzo", image: lizzo },
-    { name: "Rihanna", image: rihanna },
-    { name: "Wiz Khalifa", image: wiz_khalifa },
-];
+// import {GameContext} from './../gameContext';
+// import asap_ferg from "../photos/ASAP_Ferg.png";
+// import asap_rocky from "../photos/ASAP_Rocky.png";
+// import cardi_b from "../photos/cardi_b.png";
+// import drake from "../photos/drake.png";
+// import lil_wayne from "../photos/lil_wayne.png";
+// import tupac from "../photos/tupac.png";
+// import kanye_west from "../photos/kanye_west.png";
+// import jcole from "../photos/jcole.png";
+// import nicki_minaj from "../photos/nicki_minaj.png";
+// import beyonce from "../photos/Beyonce.png";
+// import davido from "../photos/davido.jpg";
+// import Justin_beiber from "../photos/Justin_beiber.jpg";
+// import lizzo from "../photos/lizzo.jpeg";
+// import rihanna from "../photos/rihanna.jpg";
+// import wiz_khalifa from "../photos/wiz_khalifa.png";
+// import megan_thee_stallion from "../photos/megan_thee_stallion.jpg";
+// import michael_jackson from "../photos/michael_jackson.jpg";
+// import skepta from "../photos/skepta.jpg";
+// import post_malone from "../photos/post_malone.png";
+// import XXXTentacion from "../photos/XXXTentacion.png";
+// import burnaboy from "../photos/burnaboy.jpg";
+// import chris_brown from "../photos/chris_brown.jpg";
+// import vybz_kartel from "../photos/vybz_kartel.jpg";
+// import selena_gomez from "../photos/selena_gomez.png";
+// import eminem from "../photos/eminem.png";
 
-const PlayerOneGame = () => {
-    const spotifyApi = new SpotifyWebApi();
+// let artistsFaces = [
+//     { name: "A$AP Ferg", image: asap_ferg },
+//     { name: "A$AP Rocky", image: asap_rocky },
+//     { name: "Cardi B", image: cardi_b },
+//     { name: "Drake", image: drake },
+//     { name: "Lil Wayne", image: lil_wayne },
+//     { name: "2Pac", image: tupac },
+//     { name: "Kanye West", image: kanye_west },
+//     { name: "J. Cole", image: jcole },
+//     { name: "Nicki Minaj", image: nicki_minaj },
+//     { name: "Beyoncé", image: beyonce },
+//     { name: "DaVido", image: davido },
+//     { name: "Justin Bieber", image: Justin_beiber },
+//     { name: "Lizzo", image: lizzo },
+//     { name: "Rihanna", image: rihanna },
+//     { name: "Wiz Khalifa", image: wiz_khalifa },
+//     { name: "Megan Thee Stallion", image: megan_thee_stallion },
+//     { name: "Michael Jackson", image: michael_jackson },
+//     { name: "Skepta", image: skepta },
+//     { name: "Post Malone", image: post_malone },
+//     { name: "XXXTENTACION", image: XXXTentacion },
+//     { name: "Burna Boy", image: burnaboy },
+//     { name: "Chris Brown", image: chris_brown },
+//     { name: "Vybz Kartel", image: vybz_kartel },
+//     { name: "Selena Gomez", image: selena_gomez },
+//     { name: "Eminem", image: eminem },
+// ];
 
-    const [playlist, setPlaylist] = useState(null);
-    const [artists, setArtists] = useState(null);
-    const [track, setTrack] = useState(null);
+// const PlayerOneGame = () => {
+//   const spotifyApi = new SpotifyWebApi();
+//   const {difficulty, access_token, playlist_code } = useContext(GameContext);
+//   const history = useHistory();
 
-    const [songIndex, setSongIndex] = useState(0);
-    const [artistIndex, setArtistIndex] = useState(0);
+// 	const [playlist, setPlaylist] = useState(null);
+//   const [bubbleLimit, setBubbleLimit] = useState(getBubbleLimit());
+//   const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(setSongLimit());
+// 	const [songIndex, setSongIndex] = useState(0);
+// 	const [showModal, setShowModal] = useState(false);
 
-    const [soundHowl, setSoundHowl] = useState(null);
-    const [showModal, setShowModal] = useState(false);
+//   const ref = useRef(null);
+//   const wrapperSetScore = delta => {
+//       ref.current.addToScore(delta);
+//    };
+
+//    function getBubbleLimit(){
+//     if(difficulty === 'medium'){
+//       return 20;
+//     } else if (difficulty === 'hard'){
+//       return 25;
+//     }
+//     return 15;
+//   };
+
+//   function setSongLimit(){
+//     if(difficulty === 'medium'){
+//       return 10;
+//     } else if (difficulty === 'hard'){
+//       return 15;
+//     }
+//     return 7;
+//   };
+
+//   const shuffle = array => {
+//       for (let i = array.length - 1; i > 0; i--) {
+//         let j = Math.floor(Math.random() * (i + 1));
+//         [array[i], array[j]] = [array[j], array[i]];
+//       }
+//   };
+
+//   function getRandomInt(max) {
+//     return Math.floor(Math.random() * Math.floor(max));
+//   }
+
+//   const ensureCorrectArtistGetsBubbled = () => {
+//     for (let i = bubbleLimit; i < artistsFaces.length; i++) {
+//       if(artistsFaces[i].name === playlist[songIndex].artist_name){
+//         console.log(artistsFaces)
+//         console.log(playlist)
+//         let num = getRandomInt(bubbleLimit);
+//         [artistsFaces[i], artistsFaces[num]] = [artistsFaces[num], artistsFaces[i]];
+//         break;
+//       }
+//     }
+//   }
+
+// 	const nextSong = () => {
+//     shuffle(artistsFaces);
+//     if (songIndex === playlist.length - 1 || songIndex === limitOfSongsToPlay - 1) {
+//       history.push("/gameOver");
+//     }
+//     setSongIndex(songIndex + 1);
+//   };
+
+//   useEffect(() => {
+//     getPlaylist();
+//   }, []);
+
+//   function setSongLimit(){
+//     if(difficulty === 'medium'){
+//       return 10;
+//     } else if (difficulty === 'hard'){
+//       return 15;
+//     }
+//     return 7;
+//   };
+
+//   const getPlaylist = async () => {
+//     let playlist = null;
+//     try {
+//       spotifyApi.setAccessToken(access_token);
+//       playlist = await spotifyApi.getPlaylistTracks(playlist_code);
+//       let foundSongs = [];
+      
+//       for (const item of playlist.items) {
+//         if (item.track.preview_url == null) continue;
+//         foundSongs.push({
+//           artist_name:item.track.artists[0].name, 
+//           song_name: item.track.name, 
+//           prev_url: item.track.preview_url });
+//       }
+//       shuffle(foundSongs)
+//       setPlaylist(foundSongs);
+//       shuffle(artistsFaces);
+//       ensureCorrectArtistGetsBubbled();
+//     } catch (error) {
+//       // alert('Our access to Spotify has expired.\nPress OK to login and refresh our access');
+//       // history.push('/');
+//       console.log('Need to login again: ',error);
+//       return;
+//     }
+//   };
+
+// 	const howler =
+//     playlist == null ? null : (
+//       <ReactHowler
+//         src={playlist[songIndex].prev_url}
+//         format={["mp3", "aac"]}
+//         onEnd={nextSong}
+//       />
+//     );
   
-    const ref = useRef(null);
+//   var name1 = localStorage.getItem('name1'); 
   
-    const wrapperSetScore = delta => {
-        ref.current.addToScore(delta);
-     };
+//   return (
+//     <div className="App">
+//       <nav class="item">
+//         <h2 id="username"> {name1}</h2>
+//         <h2 id="subject"> SCORE: <DisplayScore ref={ref} /> </h2>
+//       </nav>
 
-    const shuffle = array => {
-        for (let i = array.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-        }
-    };
+//       <div id="background-wrap">
+//       {artistsFaces.slice(0,bubbleLimit).map((item, idx) => (
+//           <>
+//             <PlayerOneBubble
+//               key={item.name}
+//               image={item.image}
+//               hasArtist
+//               number={idx}
+//               name={item.name}
+//               wrapperSetScore = {wrapperSetScore}
+//               playlist = {playlist}
+//               songIndex = {songIndex}
+//               nextSong = {nextSong}
+//               difficulty={difficulty}
+//             />
+//           </>
+//         ))}
+//       </div>
+//       {howler}
+//     </div>
+//   );
+// };
 
-
-  const nextSong = () => {
-    shuffle(artistsFaces);
-    soundHowl.stop();
-    setArtistIndex(artistIndex + 1);
-    playMusic();
-  };
-
-  useEffect(() => {
-    let token = localStorage.getItem("access_token");
-    makeSpotifyCall(token);
-  }, []);
-
-  const makeSpotifyCall = async token => {
-    await getPlaylist(token);
-  };
-
-  const getPlaylist = async access_token => {
-    spotifyApi.setAccessToken(access_token);
-    //Couldn't get the Promise implementation to work
-    //spotifyApi.setPromiseImplementation(Q);
-    await spotifyApi
-      .getPlaylistTracks("4h4V4Cbn8sjznAc3uirZmK")
-      .then(
-        function(data) {
-          let foundSongs = [];
-          let artist = [];
-          data.items.forEach(item => {
-            if (item.track.preview_url !== null && foundSongs.length < 10) {
-              artist.push(item.track.artists[0].name);
-              foundSongs.push(item.track.preview_url);
-            }
-          });
-          setTrack(foundSongs[songIndex]);
-          setArtists(artist);
-          setPlaylist(foundSongs);
-        },
-        function(err) {
-          console.error(err);
-        }
-      )
-      .catch(e => console.log(e));
-    document.getElementById("autoPlay").click();
-  };
-
-  useEffect(() => {
-    if (soundHowl) soundHowl.play();
-  }, [soundHowl]);
-
-  const playMusic = () => {
-    setSoundHowl(
-      new Howl({
-        src: [track],
-        html5: true,
-        format: ["mp3", "aac"],
-        autoplay: false,
-        loop: false,
-        volume: 0.5,
-        onload: function() {
-          setTrack(playlist[songIndex + 1]);
-          setSongIndex(songIndex + 1);
-        },
-        onend: function() {
-        }
-      })
-    );
-  };
-
-  shuffle(artistsFaces);
-  var name1 = localStorage.getItem('name1'); 
-  var name2 = localStorage.getItem('name2'); 
-  
-  return (
-    <div className="App">
-      <button id="autoPlay" style={{ display: "none" }} onClick={playMusic}>
-        can you see me?
-      </button>
-
-      <nav class="item">
-        <h2 id="username"> {name1}</h2>
-        <h2 id="subject"> SCORE: <DisplayScore ref={ref} /> </h2>
-      </nav>
-
-      <div id="background-wrap">
-        {artistsFaces.map((item, idx) => (
-          <>
-            <PlayerOneBubble
-              key={item.name}
-              image={item.image}
-              hasArtist
-              number={idx}
-              name={item.name}
-              wrapperSetScore = {wrapperSetScore}
-              artists = {artists}
-              artistIndex = {artistIndex}
-              nextSong = {nextSong}
-            />
-          </>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-localStorage.setItem("Score1",DisplayScore);
-export default PlayerOneGame;
+// localStorage.setItem("Score1",DisplayScore);
+// export default PlayerOneGame;

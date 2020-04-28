@@ -1,19 +1,14 @@
-import React, { useState, Component } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { useHistory } from 'react-router-dom';
+import {GameContext} from './../gameContext';
 
-// const EasyCutOff = ({easy_cut_off}) => <h2>{easy_cut_off}</h2> ; 
-// const Input = ({value, onChange, children}) => (
-//     <label>
-//         {children}
-//         <input type="value" value={value} onChange={onChange}/>
-//     </label>
-// )
 
 const CutOffMark = () => { 
     const history = useHistory();
+    const {difficulty} = useContext(GameContext);
+
     const [winningScore, setWinningScore] = useState('');
     const [showModal, setShowModal] = useState(false);
-    const [difficulty, setDifficulty] = useState(localStorage.getItem("difficulty"));
     const [markLimit, setMarkLimit] = useState(getMarkLimit());
 
     localStorage.setItem('winningScore', winningScore);

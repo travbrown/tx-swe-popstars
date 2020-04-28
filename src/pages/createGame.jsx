@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
+import {GameContext} from './../gameContext';
 import { Link } from "react-router-dom";
 
 const CreateGame = () => {
-    
+    const {setDiff} = useContext(GameContext);
     const setDifficulty = (difficulty) => {
-        localStorage.setItem('difficulty', difficulty);
+        setDiff(difficulty);
     };
 
     return (      

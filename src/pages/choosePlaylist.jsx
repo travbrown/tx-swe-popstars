@@ -1,11 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
+import {GameContext} from './../gameContext';
 import { Link } from "react-router-dom";
 import Card from 'react-bootstrap/Card'
 import CardDeck from 'react-bootstrap/CardDeck'
 import album_one from "../photos/album_one.png";
 import album_two from "../photos/album_two.png";
+import album_three from "../photos/album_three.png";
 
 const ChoosePlaylist = () => {
+    const {setPlaylistCode} = useContext(GameContext);
+
+    const setPlaylist = (index) => {
+        setPlaylistCode(playlistOptions[index].uri_hash);
+    };
 
     let playlistOptions = [
         {playlist_name: 'Popstars1', uri_hash: '4h4V4Cbn8sjznAc3uirZmK'},
@@ -25,21 +32,21 @@ const ChoosePlaylist = () => {
                     <Card>
                     <Card.Img variant="top" src= {album_one} />
                         <center> 
-                        <Card.Footer>  <Link to="/playlistCountdown" class ="card_button"> Friday Hits </Link> </Card.Footer>
+                        <Card.Footer>  <Link to="/playlistCountdown" onClick={()=>setPlaylist(0)} class ="card_button"> Friday Hits </Link> </Card.Footer>
                         </center>
                     </Card>
 
                     <Card>
                     <Card.Img variant="top" src= {album_two} />
                     <center> 
-                    <Card.Footer>  <Link to="/playlistCountdown" class ="card_button">TechX Jam </Link> </Card.Footer>
+                    <Card.Footer>  <Link to="/playlistCountdown" onClick={()=>setPlaylist(1)} class ="card_button">TechX Jam </Link> </Card.Footer>
                         </center>
                     </Card>
                     
                     <Card>
-                    <Card.Img variant="top" src= {album_one} />
+                    <Card.Img variant="top" src= {album_three} />
                     <center> 
-                        <Card.Footer>  <Link to="/playlistCountdown" class ="card_button"> happy songs </Link> </Card.Footer>
+                        <Card.Footer>  <Link to="/playlistCountdown" onClick={()=>setPlaylist(2)} class ="card_button"> Throwback </Link> </Card.Footer>
                     </center>
                     </Card>
                     </CardDeck>

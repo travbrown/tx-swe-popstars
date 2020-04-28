@@ -105,11 +105,19 @@ const GamePage = (props) => {
       }
   };
 
+  // function RenderPlaylist() {
+  //   if (playlist === null) {
+  //     //load
+  //   }
+  // }
+
   function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
   const ensureCorrectArtistGetsBubbled = () => {
+    console.log(artistsFaces)
+    console.log(playlist)
     for (let i = bubbleLimit; i < artistsFaces.length; i++) {
       console.log(playlist);
       console.log(artistsFaces);
@@ -149,7 +157,6 @@ const GamePage = (props) => {
         <h2 id="subject"> SCORE: <DisplayScore ref={ref} /> </h2>
         <h2 id="end-btn"> <button onClick={() => setShowModal(true)} id="end">QUIT</button></h2>
       </nav>
-   
       <div id="background-wrap">
         {artistsFaces.slice(0,bubbleLimit).map((item, idx) => (
           <>
