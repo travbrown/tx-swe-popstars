@@ -32,14 +32,7 @@ function AllLogins() {
   );
 }
 
-function LeaderboardInfo()
-{
-  return (
-    <div>
-      <Leaderboard />
-    </div>
-  )
-}
+
 
 export default function App() {
   return (
