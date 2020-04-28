@@ -54,7 +54,7 @@ export default function App() {
         <Router>
           <Switch>
             <GameContextProvider>
-            <Route exact path="/" component={AllLogins} />
+            <Route exact path="/" component={SpotifyLoginPage} />
             <Route exact path="/gameMode" component ={GameMode} />
             <Route exact path="/createGame" component ={CreateGame} />
             <Route exact path="/difficultyPage" component={DifficultyPage} />
