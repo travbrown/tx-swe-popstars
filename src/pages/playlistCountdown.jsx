@@ -1,24 +1,26 @@
 import React, {useState, useEffect} from 'react';
+import { useHistory } from 'react-router-dom';
 import './countdown.css';
 
 const PlaylistCountdown = () => {
-    const FULL_DASH_ARRAY = 3000;
-    const WARNING_THRESHOLD = 5;
-    const ALERT_THRESHOLD = 3;
+  const history = useHistory();
+  const FULL_DASH_ARRAY = 3000;
+  const WARNING_THRESHOLD = 5;
+  const ALERT_THRESHOLD = 3;
 
-    const COLOR_CODES = {
+  const COLOR_CODES = {
     info: {
-        color: "green"
+      color: "green"
     },
     warning: {
-        color: "orange",
-        threshold: WARNING_THRESHOLD
+      color: "orange",
+      threshold: WARNING_THRESHOLD
     },
     alert: {
-        color: "red",
-        threshold: ALERT_THRESHOLD
+      color: "red",
+      threshold: ALERT_THRESHOLD
     }
-    };
+  };
 
     const TIME_LIMIT = 5;
     let remainingPathColor = COLOR_CODES.info.color;
@@ -31,9 +33,9 @@ const PlaylistCountdown = () => {
             setRemainingPathColor(timeLeft);
           }, 1000);
         if (timeLeft === 0) {   
-            window.location.href="/playlistOneGame";
+          history.push("/playlistGame");
         }
-        return () => clearInterval(interval);
+          return () => clearInterval(interval);
     }, [timeLeft, setCircleDasharray, setRemainingPathColor]);
 
     

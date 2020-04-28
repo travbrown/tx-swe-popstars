@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import * as $ from "jquery";
-import { Link } from "react-router-dom";
-import  { Redirect } from 'react-router-dom'
-import ReactDOM from 'react-dom'
 import { useHistory } from 'react-router-dom';
-import { render } from '@testing-library/react';
-import logo from "../popstarslogo.png"
 
 const SinglePlayerInput = () => {
     const history = useHistory();

@@ -1,17 +1,11 @@
 import firebase from "firebase";
 import React, { useState, useEffect } from "react";
-import ReactDOM from 'react-dom'
     
 export default function Leaderboard(){
-  
-
     console.log("App!!!");
     var leader = firebase.firestore().collection("Users").where("Score",">", 0).orderBy("Score","desc").limit(10);
     var userScore = parseInt(localStorage.getItem('score'));
     var name = localStorage.getItem("name1");
-
-    //const multiplayer = localStorage.getItem("mulitplayer");
-    // "'" + name1 + "'"  // This will input the variable as a name 
 
     firebase.firestore().collection("Users").doc("" + name + "")
     .set({ Score : userScore })

@@ -1,14 +1,11 @@
 import React, {useEffect} from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
-import logo from "../popstarslogo.png"
-import { colors } from "@material-ui/core";
 
 const GameMode = () => {
-
     function getParameterByName(name) {
-        var match = RegExp('[#&]' + name + '=([^&]*)').exec(window.location.hash);
-        return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+      var match = RegExp('[#&]' + name + '=([^&]*)').exec(window.location.hash);
+      return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
     }
       
     function getAccessToken() {
@@ -20,10 +17,8 @@ const GameMode = () => {
   }, []);
 
   function setAccessToken(){
-    //if(localStorage.getItem('access_token') === null){
-      let access_token = getAccessToken();
-      localStorage.setItem('access_token', access_token);
-    //}
+    let access_token = getAccessToken();
+    localStorage.setItem('access_token', access_token);
   }
     
   function MultiPName(){

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 
 const DisplayScore =
-forwardRef((props, ref) => {
+forwardRef((ref) => {
   const [score, setScore] = useState(0);
 
   localStorage.setItem("score", score);

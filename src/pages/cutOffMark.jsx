@@ -1,42 +1,41 @@
 import React, { useState, Component } from "react";
 import { useHistory } from 'react-router-dom';
 
-const EasyCutOff = ({easy_cut_off}) => <h2>{easy_cut_off}</h2> ; 
-const Input = ({value, onChange, children}) => (
-    <label>
-        {children}
-        <input type="value" value={value} onChange={onChange}/>
-    </label>
-)
+// const EasyCutOff = ({easy_cut_off}) => <h2>{easy_cut_off}</h2> ; 
+// const Input = ({value, onChange, children}) => (
+//     <label>
+//         {children}
+//         <input type="value" value={value} onChange={onChange}/>
+//     </label>
+// )
 
-const CutOffMark = () => { 
+const CutOffMark = (props) => { 
     const history = useHistory();
-    const [maxEasy, setMaxEasy] = useState('');
+    const [winningScore, setWinningScore] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [difficulty, setDifficulty] = useState(localStorage.getItem("difficulty"));
+    const [markLimit, setMarkLimit] = useState(getMarkLimit());
 
-    localStorage.setItem('maxEasy', maxEasy);
-
+    localStorage.setItem('winningScore', winningScore);
     const handleClick = () => {
-        if (maxEasy > 30) {
+        if (winningScore > markLimit) {
             setShowModal(true)
         }
-        else if (isNaN(maxEasy)) {
+        else if (isNaN(winningScore)) {
             alert("Invalid value. Please enter a number!")
         }
-        else { history.push("/choosePlaylist");}
+        else { history.push('/choosePlaylist');}
     }
+    const handleName = event => setWinningScore(event.target.value);
 
-    const handleName = event => setMaxEasy(event.target.value);
-
-    // function markLimit(){
-    //     if(difficulty === 'medium'){
-    //       return 40;
-    //     } else if (difficulty === 'hard'){
-    //       return 60;
-    //     }
-    //     return 30;
-    //   };
+    function getMarkLimit(){
+        if(difficulty === 'medium'){
+          return 40;
+        } else if (difficulty === 'hard'){
+          return 60;
+        }
+        return 30;
+    };
 
     return (      
         <div>
@@ -46,9 +45,9 @@ const CutOffMark = () => {
             <div className="centerItems">
                 <h2 id="challengeText" > Set Winning Score</h2>  
                 <h2 id="challengeDescription"> Enter the number of points that the player needs to get to win this challenge</h2>
-                <p className="maxText"> Max Point you can set for this level is 30 Points </p>  
+                <p className="maxText"> Max Point you can set for this level is {markLimit} Points </p>  
                 <br></br>
-                <input type="value" placeholder= "Enter a number" value={maxEasy} onChange={handleName}></input><br></br>
+                <input type="value" placeholder= "Enter a number" value={winningScore} onChange={handleName}></input><br></br>
                 <center>
                     <button onClick={handleClick} id="next">NEXT</button>
                 </center>
@@ -67,4 +66,3 @@ const CutOffMark = () => {
 };
 
 export default CutOffMark
-export {EasyCutOff};

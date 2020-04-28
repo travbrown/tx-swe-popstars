@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import './countdown.css';
+import {Link} from 'react-router-dom';
 
 const PlayerOnePage = () => {
+    
     const FULL_DASH_ARRAY = 3000;
     const WARNING_THRESHOLD = 5;
     const ALERT_THRESHOLD = 3;
@@ -30,8 +32,8 @@ const PlayerOnePage = () => {
             setCircleDasharray();
             setRemainingPathColor(timeLeft);
           }, 1000);
-        if (timeLeft === 0) {   
-            window.location.href="/PlayerOneGame";
+        if (timeLeft === 0) {
+          document.getElementById("nextPage").click();   
         }
         return () => clearInterval(interval);
     }, [timeLeft, setCircleDasharray, setRemainingPathColor]);
@@ -107,7 +109,9 @@ const PlayerOnePage = () => {
             <span id="base-timer-label" class="base-timer__label">{formatTime(timeLeft)}</span>
             </div>
 </div>
-        
+              <Link to="/playerOneGame">
+                <button id="nextPage" style={{ display: "none" }}></button>
+              </Link>
       </div>
     );
 };

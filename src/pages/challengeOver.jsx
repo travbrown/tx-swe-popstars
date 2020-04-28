@@ -3,7 +3,7 @@ import './difficultyPage.css';
 import { Link } from "react-router-dom";
 
 var score = localStorage.getItem('score'); 
-var maxScore = localStorage.getItem('maxEasy');
+var maxScore = localStorage.getItem('winningScore');
 
 const ChallengeOver = () => {
 

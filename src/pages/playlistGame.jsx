@@ -19,37 +19,52 @@ import Justin_beiber from "../photos/Justin_beiber.jpg";
 import lizzo from "../photos/lizzo.jpeg";
 import rihanna from "../photos/rihanna.jpg";
 import wiz_khalifa from "../photos/wiz_khalifa.png";
-import { Link } from "react-router-dom";
+import megan_thee_stallion from "../photos/megan_thee_stallion.jpg";
+import michael_jackson from "../photos/michael_jackson.jpg";
+import skepta from "../photos/skepta.jpg";
+import post_malone from "../photos/post_malone.png";
+import XXXTentacion from "../photos/XXXTentacion.png";
+import burnaboy from "../photos/burnaboy.jpg";
+import chris_brown from "../photos/chris_brown.jpg";
+import vybz_kartel from "../photos/vybz_kartel.jpg";
+import selena_gomez from "../photos/selena_gomez.png";
+import eminem from "../photos/eminem.png";
 
 let artistsFaces = [
-    { name: "A$AP Ferg", image: asap_ferg },
-    { name: "A$AP Rocky", image: asap_rocky },
-    { name: "Cardi B", image: cardi_b },
-    { name: "Drake", image: drake },
-    { name: "Lil Wayne", image: lil_wayne },
-    { name: "2Pac", image: tupac },
-    { name: "Kanye West", image: kanye_west },
-    { name: "J. Cole", image: jcole },
-    { name: "Nicki Minaj", image: nicki_minaj },
-    { name: "Beyoncé", image: beyonce },
-    { name: "DaVido", image: davido },
-    { name: "Justin Bieber", image: Justin_beiber },
-    { name: "Lizzo", image: lizzo },
-    { name: "Rihanna", image: rihanna },
-    { name: "Wiz Khalifa", image: wiz_khalifa },
+  { name: "A$AP Ferg", image: asap_ferg },
+  { name: "A$AP Rocky", image: asap_rocky },
+  { name: "Cardi B", image: cardi_b },
+  { name: "Drake", image: drake },
+  { name: "Lil Wayne", image: lil_wayne },
+  { name: "2Pac", image: tupac },
+  { name: "Kanye West", image: kanye_west },
+  { name: "J. Cole", image: jcole },
+  { name: "Nicki Minaj", image: nicki_minaj },
+  { name: "Beyoncé", image: beyonce },
+  { name: "DaVido", image: davido },
+  { name: "Justin Bieber", image: Justin_beiber },
+  { name: "Lizzo", image: lizzo },
+  { name: "Rihanna", image: rihanna },
+  { name: "Wiz Khalifa", image: wiz_khalifa },
+  { name: "Megan Thee Stallion", image: megan_thee_stallion },
+  { name: "Michael Jackson", image: michael_jackson },
+  { name: "Skepta", image: skepta },
+  { name: "Post Malone", image: post_malone },
+  { name: "XXXTENTACION", image: XXXTentacion },
+  { name: "Burna Boy", image: burnaboy },
+  { name: "Chris Brown", image: chris_brown },
+  { name: "Vybz Kartel", image: vybz_kartel },
+  { name: "Selena Gomez", image: selena_gomez },
+  { name: "Eminem", image: eminem },
 ];
 
-const PlaylistGame = () => {
-	const spotifyApi = new SpotifyWebApi();
+const PlaylistGame = (props) => {
 
+	const spotifyApi = new SpotifyWebApi();
 	const [playlist, setPlaylist] = useState(null);
   const [difficulty, setDifficulty] = useState(localStorage.getItem("difficulty"));
-
-  //TODO: Limit changes based on Difficulty?
-  const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(setSongLimit());
+  const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(setSongLimit());  //TODO: Limit changes based on Difficulty?
 	const [songIndex, setSongIndex] = useState(0);
-	const [showModal, setShowModal] = useState(false);
-
 
   const ref = useRef(null);
   const wrapperSetScore = delta => {
@@ -66,7 +81,7 @@ const PlaylistGame = () => {
 	const nextSong = () => {
     shuffle(artistsFaces);
     if (songIndex === playlist.length - 1 || songIndex === limitOfSongsToPlay - 1) {
-      window.location.href = "/easyGameOver";
+      window.location.href = "/challengeOver";
     }
     setSongIndex(songIndex + 1);
   };
@@ -120,14 +135,13 @@ const PlaylistGame = () => {
     );
   
     var name1 = localStorage.getItem('name1'); 
-    var maxScore = localStorage.getItem('maxEasy');
+    var maxScore = localStorage.getItem('winningScore');
     var score = <DisplayScore ref={ref} />;
   shuffle(artistsFaces);
  
   return (
     <div className="App">   
       <nav class="item">
-        <h2 id="username"> {name1} </h2>
         <h2 id="subject-diff"> SCORE: {score} / {maxScore} </h2>
       </nav>
 

@@ -1,10 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import * as $ from "jquery";
-import { Link } from "react-router-dom";
-import  { Redirect } from 'react-router-dom'
-import ReactDOM from 'react-dom'
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { render } from '@testing-library/react';
 
 const NameOneInput = () => {
     const history = useHistory();
@@ -12,7 +7,6 @@ const NameOneInput = () => {
         history.push("/multiplayerPage");
     }
     const [name1, setName1] = useState('');
-    //localStorage.setItem('name1', name1)
     const handleName1 = event => setName1(event.target.value);
     localStorage.setItem('playerOneName', name1);
     const [name2, setName2] = useState('');

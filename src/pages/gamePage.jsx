@@ -63,9 +63,10 @@ const GamePage = () => {
 
 	const [playlist, setPlaylist] = useState(null);
   const [difficulty, setDifficulty] = useState(localStorage.getItem("difficulty"));
-	const [songIndex, setSongIndex] = useState(0);
+  const [songIndex, setSongIndex] = useState(0);
+  const [bubbleLimit, setBubbleLimit] = useState(getBubbleLimit());
+  const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(setSongLimit());
 	const [showModal, setShowModal] = useState(false);
-
 
   const ref = useRef(null);
   const wrapperSetScore = delta => {
@@ -89,9 +90,6 @@ const GamePage = () => {
     }
     return 7;
   };
-
-  const [bubbleLimit, setBubbleLimit] = useState(getBubbleLimit());
-  const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(setSongLimit());
 
   const shuffle = array => {
       for (let i = array.length - 1; i > 0; i--) {
@@ -129,13 +127,11 @@ const GamePage = () => {
 
   }, []);
 
-  
 
   const getPlaylist = async () => {
     let playlist = null;
     try {
       const access_token = localStorage.getItem("access_token");
-      
       spotifyApi.setAccessToken(access_token);
       playlist = await spotifyApi.getPlaylistTracks("4h4V4Cbn8sjznAc3uirZmK");
       let foundSongs = [];
@@ -148,7 +144,10 @@ const GamePage = () => {
       }
       shuffle(foundSongs)
       setPlaylist(foundSongs);
-      ensureCorrectArtistGetsBubbled();
+      shuffle(artistsFaces);
+      if(difficulty !== 'hard'){
+        ensureCorrectArtistGetsBubbled();
+      };
     } catch (error) {
       console.log('Need to login again',error);
       return;
@@ -165,19 +164,7 @@ const GamePage = () => {
     );
   
 	var name1 = localStorage.getItem('name1'); 
-  shuffle(artistsFaces);
-  if(difficulty !== 'hard'){
-    ensureCorrectArtistGetsBubbled();
-  };
-  
 
- 
-  // if(difficulty !== 'hard'){
-  //   ensureCorrectArtistGetsBubbled();
-  // };
-  
-
- 
   return (
     <div className="App">   
       <nav class="item">
