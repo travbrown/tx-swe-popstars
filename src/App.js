@@ -10,7 +10,6 @@ import GameContextProvider from './gameContext';
 import Leaderboard from "./pages/Leaderboard";
 import SpotifyLoginPage from "./pages/SpotifyLoginPage";
 import DifficultyPage from "./pages/difficultyPage";
-import StartPage from "./pages/start_game";
 import CountdownPage from "./pages/countdown";
 import GamePage from "./pages/gamePage";
 import MultiplayerPage from "./pages/multiplayerPage";
@@ -41,7 +40,6 @@ export default function App() {
             <Route exact path="/gameMode" component ={GameMode} />
             <Route exact path="/createGame" component ={CreateGame} />
             <Route exact path="/difficultyPage" component={DifficultyPage} />
-            <Route exact path="/start_game" component={StartPage} />
             <Route exact path="/countdown" component={CountdownPage} />
             <Route exact path="/gamePage" component={GamePage} />
             <Route exact path="/Leaderboard" component={Leaderboard} />

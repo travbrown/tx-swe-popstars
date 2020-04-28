@@ -3,18 +3,13 @@ import React, { useState, useEffect } from "react";
 const Bubble = (props) => {
     const [clicked, setClicked] = useState(false);
    
-
-
     const checkAnswer = () => {
         setClicked(true);
         if (props.name === props.playlist[props.songIndex].artist_name) {
             props.wrapperSetScore(5);
-            props.nextSong();
-            //props.setIsCorrect(1);
-             
+            props.nextSong();             
         } else {
             props.wrapperSetScore(-2);
-           // props.setIsCorrect(-1)
         }
     };
    
@@ -40,4 +35,4 @@ const Bubble = (props) => {
     );
   };
 
-  export default Bubble;
+export default Bubble;

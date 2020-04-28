@@ -1,6 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect, useContext } from "react";
+import SpotifyWebApi from "spotify-web-api-js";
+import {GameContext} from './../gameContext';
 import './countdown.css';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
+
 
 const CountdownPage = () => {
     const FULL_DASH_ARRAY = 3000;
@@ -20,23 +23,65 @@ const CountdownPage = () => {
         threshold: ALERT_THRESHOLD
     }
     };
-
+  
     const TIME_LIMIT = 5;
     let remainingPathColor = COLOR_CODES.info.color;
+    useEffect(() => {
+      getPlaylist();
+    }, []);
 
     const [timeLeft, setTimeLeft] = useState(TIME_LIMIT);
+    let history = useHistory();
+    const spotifyApi = new SpotifyWebApi();
+    const [playlistobject, setPlaylistObject] = useState(null);
+    const {setPlaylist, access_token, playlist_code } = useContext(GameContext);
+    const shuffle = array => {
+      for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+  };
+    
     useEffect(() => {
-        const interval = timeLeft > 0 && setInterval(() => {
-            setTimeLeft(timeLeft => timeLeft - 1);
-            setCircleDasharray();
-            setRemainingPathColor(timeLeft);
-          }, 1000);
-        if (timeLeft === 0) {   
-          document.getElementById("nextPage").click();
-        }
-        return () => clearInterval(interval);
+      const interval = timeLeft > 0 && setInterval(() => {
+          setTimeLeft(timeLeft => timeLeft - 1);
+          setCircleDasharray();
+          setRemainingPathColor(timeLeft);
+        }, 1000);
+      if (timeLeft === 0) {   
+        history.push({
+          pathname:"/gamePage",
+          state: {playlist: playlistobject},
+        });
+      }
+      return () => clearInterval(interval);
     }, [timeLeft, setCircleDasharray, setRemainingPathColor]);
 
+    
+  
+    const getPlaylist = async () => {
+      let playlist = null;
+      try {
+        spotifyApi.setAccessToken(access_token);
+        playlist = await spotifyApi.getPlaylistTracks(playlist_code);
+        let foundSongs = [];
+        for (const item of playlist.items) {
+          if (item.track.preview_url == null) continue;
+          foundSongs.push({
+            artist_name:item.track.artists[0].name, 
+            song_name: item.track.name, 
+            prev_url: item.track.preview_url });
+        }
+        console.log(foundSongs);
+        shuffle(foundSongs);
+        setPlaylistObject(foundSongs);
+      } catch (error) {
+        // alert('Our access to Spotify has expired.\nPress OK to login and refresh our access');
+        // history.push('/');
+        console.log('Need to login again: ',error);
+        return;
+      }
+    };
     
     function formatTime(time) {
       const minutes = Math.floor(time / 60);
@@ -104,12 +149,7 @@ const CountdownPage = () => {
                 </g>
             </svg>
             <span id="base-timer-label" class="base-timer__label">{formatTime(timeLeft)}</span>
-            </div></div>
-            
-              <Link to="/gamePage">
-                <button id="nextPage" style={{ display: "none" }}></button>
-              </Link>
-            
+            </div></div>           
       </div>
     );
 };
