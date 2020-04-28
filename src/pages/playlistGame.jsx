@@ -4,7 +4,6 @@ import {GameContext} from './../gameContext';
 
 import ReactHowler from "react-howler";
 import SpotifyWebApi from "spotify-web-api-js";
-import DisplayScore from "./displayScore.jsx";
 import Bubble from "./bubbleContainer.jsx";
 import "./gamePage.css";
 import asap_ferg from "../photos/ASAP_Ferg.png";
@@ -69,13 +68,19 @@ const PlaylistGame = () => {
 	const [playlist, setPlaylist] = useState(null);
   const [bubbleLimit, setBubbleLimit] = useState(getBubbleLimit());
   const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(setSongLimit());
-	const [songIndex, setSongIndex] = useState(0);
-	const [showModal, setShowModal] = useState(false);
+  const [songIndex, setSongIndex] = useState(0);
+  const [score, setScore] = useState(0);
+
+	//const [showModal, setShowModal] = useState(false);
 
   const ref = useRef(null);
   const wrapperSetScore = delta => {
       ref.current.addToScore(delta);
-   };
+  };
+
+  const updateCurrentScore = delta => {
+    setScore(score+delta);
+  }; 
 
    function getBubbleLimit(){
     if(difficulty === 'medium'){
@@ -165,7 +170,7 @@ const PlaylistGame = () => {
       />
     );
   
-    var score = <DisplayScore ref={ref} />;
+    //var score = <DisplayScore ref={ref} />;
     var maxScore = localStorage.getItem('winningScore');
  
   console.log(artistsFaces);
@@ -186,7 +191,7 @@ const PlaylistGame = () => {
               hasArtist
               number={idx}
               name={item.name}
-              wrapperSetScore = {wrapperSetScore}
+              setScore = {updateCurrentScore}
               playlist = {playlist}
               songIndex = {songIndex}
               nextSong = {nextSong}

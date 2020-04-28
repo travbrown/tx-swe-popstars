@@ -1,12 +1,14 @@
 import React, { useState, useEffect} from "react";
 import './difficultyPage.css';
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import {GameContext} from './../gameContext';
 
-var score = localStorage.getItem('score'); 
 var maxScore = localStorage.getItem('winningScore');
 
 const ChallengeOver = () => {
 
+  const {score} = useContext(GameContext);
     const [status, setStatus] = useState(null);
 
     function getStatus(){
