@@ -49,12 +49,7 @@ const GamePage = () => {
 
   const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(setSongLimit());
 	const [songIndex, setSongIndex] = useState(0);
-	const [artistIndex, setArtistIndex] = useState(0);
-
-	const [soundHowl, setSoundHowl] = useState(null);
 	const [showModal, setShowModal] = useState(false);
-
-  const [showModal, setShowModal] = useState(false);
 
 
   const ref = useRef(null);
