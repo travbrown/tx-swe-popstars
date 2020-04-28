@@ -25,21 +25,21 @@ const ChoosePlaylist = () => {
                     <Card>
                     <Card.Img variant="top" src= {album_one} />
                         <center> 
-                        <Card.Footer>  <Link to="/playlistGame" class ="card_button"> Friday Hits </Link> </Card.Footer>
+                        <Card.Footer>  <Link to="/playlistCountdown" class ="card_button"> Friday Hits </Link> </Card.Footer>
                         </center>
                     </Card>
 
                     <Card>
                     <Card.Img variant="top" src= {album_two} />
                     <center> 
-                    <Card.Footer>  <Link to="/playlistGame" class ="card_button">TechX Jam </Link> </Card.Footer>
+                    <Card.Footer>  <Link to="/playlistCountdown" class ="card_button">TechX Jam </Link> </Card.Footer>
                         </center>
                     </Card>
                     
                     <Card>
                     <Card.Img variant="top" src= {album_one} />
                     <center> 
-                        <Card.Footer>  <Link to="/playlistGame" class ="card_button"> happy songs </Link> </Card.Footer>
+                        <Card.Footer>  <Link to="/playlistCountdown" class ="card_button"> happy songs </Link> </Card.Footer>
                     </center>
                     </Card>
                     </CardDeck>

@@ -1,24 +1,26 @@
 import React, {useState, useEffect} from 'react';
+import { useHistory } from 'react-router-dom';
 import './countdown.css';
 
-const PlayerOnePage = () => {
-    const FULL_DASH_ARRAY = 3000;
-    const WARNING_THRESHOLD = 5;
-    const ALERT_THRESHOLD = 3;
+const PlaylistCountdown = () => {
+  const history = useHistory();
+  const FULL_DASH_ARRAY = 3000;
+  const WARNING_THRESHOLD = 5;
+  const ALERT_THRESHOLD = 3;
 
-    const COLOR_CODES = {
+  const COLOR_CODES = {
     info: {
-        color: "green"
+      color: "green"
     },
     warning: {
-        color: "orange",
-        threshold: WARNING_THRESHOLD
+      color: "orange",
+      threshold: WARNING_THRESHOLD
     },
     alert: {
-        color: "red",
-        threshold: ALERT_THRESHOLD
+      color: "red",
+      threshold: ALERT_THRESHOLD
     }
-    };
+  };
 
     const TIME_LIMIT = 5;
     let remainingPathColor = COLOR_CODES.info.color;
@@ -31,9 +33,9 @@ const PlayerOnePage = () => {
             setRemainingPathColor(timeLeft);
           }, 1000);
         if (timeLeft === 0) {   
-            window.location.href="/PlayerOneGame";
+          history.push("/playlistGame");
         }
-        return () => clearInterval(interval);
+          return () => clearInterval(interval);
     }, [timeLeft, setCircleDasharray, setRemainingPathColor]);
 
     
@@ -76,18 +78,15 @@ const PlayerOnePage = () => {
         .getElementById("base-timer-path-remaining")
         .setAttribute("stroke-dasharray", circleDasharray);
     }    
-
     var name1 = localStorage.getItem('name1'); 
-    var name2 = localStorage.getItem('name2'); 
-
     return (
       <div className="App">
-        <nav class="item">
-            <h2 id="username"> {name1} </h2>
-            <h2 id="subject-getreadyp1"> Get ready </h2>
+         <nav class="item">
+            <h2 id="subject-getready-no-user">Get Ready</h2>
           </nav>
-        
-       <div className="centerItems">
+      
+          <div class="centerItems">
+
             <div class="base-timer">
             <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <g class="base-timer__circle">
@@ -105,11 +104,10 @@ const PlayerOnePage = () => {
                 </g>
             </svg>
             <span id="base-timer-label" class="base-timer__label">{formatTime(timeLeft)}</span>
-            </div>
-</div>
-        
+            </div></div>
+  
       </div>
     );
 };
 
-export default PlayerOnePage;
+export default PlaylistCountdown;
