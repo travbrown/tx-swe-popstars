@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
+import {GameContext} from './../gameContext';
 
 import ReactHowler from "react-howler";
 import SpotifyWebApi from "spotify-web-api-js";
@@ -60,18 +61,39 @@ let artistsFaces = [
   { name: "Eminem", image: eminem },
 ];
 
-const PlaylistGame = (props) => {
-    const history = useHistory();
-	const spotifyApi = new SpotifyWebApi();
+const PlaylistGame = () => {
+  const spotifyApi = new SpotifyWebApi();
+  const {difficulty, access_token, playlist_code } = useContext(GameContext);
+  const history = useHistory();
+
 	const [playlist, setPlaylist] = useState(null);
-    const [difficulty, setDifficulty] = useState(localStorage.getItem("difficulty"));
-    const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(setSongLimit());  //TODO: Limit changes based on Difficulty?
+  const [bubbleLimit, setBubbleLimit] = useState(getBubbleLimit());
+  const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(setSongLimit());
 	const [songIndex, setSongIndex] = useState(0);
+	const [showModal, setShowModal] = useState(false);
 
   const ref = useRef(null);
   const wrapperSetScore = delta => {
       ref.current.addToScore(delta);
    };
+
+   function getBubbleLimit(){
+    if(difficulty === 'medium'){
+      return 20;
+    } else if (difficulty === 'hard'){
+      return 25;
+    }
+    return 15;
+  };
+
+  function setSongLimit(){
+    if(difficulty === 'medium'){
+      return 10;
+    } else if (difficulty === 'hard'){
+      return 15;
+    }
+    return 7;
+  };
 
   const shuffle = array => {
       for (let i = array.length - 1; i > 0; i--) {
@@ -80,17 +102,38 @@ const PlaylistGame = (props) => {
       }
   };
 
+  function RenderPlaylist() {
+    if (playlist === null) {
+      //load
+    }
+  }
+
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
+
+  const ensureCorrectArtistGetsBubbled = () => {
+    for (let i = bubbleLimit; i < artistsFaces.length; i++) {
+      if(artistsFaces[i].name === playlist[songIndex].artist_name){
+        console.log(artistsFaces)
+        console.log(playlist)
+        let num = getRandomInt(bubbleLimit);
+        [artistsFaces[i], artistsFaces[num]] = [artistsFaces[num], artistsFaces[i]];
+        break;
+      }
+    }
+  }
+
 	const nextSong = () => {
     shuffle(artistsFaces);
     if (songIndex === playlist.length - 1 || songIndex === limitOfSongsToPlay - 1) {
-        history.push("/challengeOver");
+      history.push("/gameOver");
     }
     setSongIndex(songIndex + 1);
   };
 
   useEffect(() => {
     getPlaylist();
-
   }, []);
 
   function setSongLimit(){
@@ -105,26 +148,28 @@ const PlaylistGame = (props) => {
   const getPlaylist = async () => {
     let playlist = null;
     try {
-      const access_token = localStorage.getItem("access_token");
-      
       spotifyApi.setAccessToken(access_token);
-      playlist = await spotifyApi.getPlaylistTracks("4h4V4Cbn8sjznAc3uirZmK"); //change uri_hash according to playlist
+      playlist = await spotifyApi.getPlaylistTracks(playlist_code);
+      let foundSongs = [];
+      
+      for (const item of playlist.items) {
+        if (item.track.preview_url == null) continue;
+        foundSongs.push({
+          artist_name:item.track.artists[0].name, 
+          song_name: item.track.name, 
+          prev_url: item.track.preview_url });
+      }
+      shuffle(foundSongs)
+      setPlaylist(foundSongs);
+      shuffle(artistsFaces);
+      RenderPlaylist();
+      ensureCorrectArtistGetsBubbled();
     } catch (error) {
-      console.log('Need to login again',error);
+      // alert('Our access to Spotify has expired.\nPress OK to login and refresh our access');
+      // history.push('/');
+      console.log('Need to login again: ',error);
       return;
     }
-
-    let foundSongs = [];
-    for (const item of playlist.items) {
-      if (item.track.preview_url == null) continue;
-      foundSongs.push({
-        artist_name:item.track.artists[0].name, 
-        song_name: item.track.name, 
-        prev_url: item.track.preview_url });
-    }
-    console.log(foundSongs);
-    shuffle(foundSongs)
-    setPlaylist(foundSongs);
   };
 
 	const howler =
@@ -136,10 +181,11 @@ const PlaylistGame = (props) => {
       />
     );
   
-    var name1 = localStorage.getItem('name1'); 
-    var maxScore = localStorage.getItem('winningScore');
     var score = <DisplayScore ref={ref} />;
-  shuffle(artistsFaces);
+    var maxScore = localStorage.getItem('winningScore');
+ 
+  console.log(artistsFaces);
+  console.log(playlist);
  
   return (
     <div className="App">   
@@ -148,7 +194,7 @@ const PlaylistGame = (props) => {
       </nav>
 
       <div id="background-wrap">
-        {artistsFaces.map((item, idx) => (
+        {artistsFaces.slice(0,bubbleLimit).map((item, idx) => (
           <>
             <Bubble
               key={item.name}
