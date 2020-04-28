@@ -48,11 +48,11 @@ const GameMode = () => {
           </nav>
         <header>
         <div className="centerItems">
-            <Link to="/singleplayerName" onClick={_setAccessToken} activeClassName= "active_button"> Single Player</Link>
+            <Link to="/singleplayerName" onClick={_setAccessToken} class= "active_button"> Single Player</Link>
             <p></p>
             <MultiPName/>  
             <p></p>
-            <Link to="/createGame" onClick={_setAccessToken} activeClassName= "active_button">Create A Game</Link>    
+            <Link to="/createGame" onClick={_setAccessToken} class= "active_button">Create A Game</Link>    
           </div>
         </header>
       </div>

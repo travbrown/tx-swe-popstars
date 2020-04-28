@@ -64,7 +64,7 @@ let artistsFaces = [
 
 const GamePage = (props) => {
   const spotifyApi = new SpotifyWebApi();
-  const {difficulty} = useContext(GameContext);
+  const {difficulty,updateScore} = useContext(GameContext);
   const history = useHistory();
   const playlist = props.location.state.playlist;
 
@@ -72,8 +72,7 @@ const GamePage = (props) => {
   const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(setSongLimit());
 	const [songIndex, setSongIndex] = useState(0);
   const [showModal, setShowModal] = useState(false);
-  
-
+  const [score, setScore] = useState(0);
   
   const ref = useRef(null);
   const wrapperSetScore = delta => {
@@ -83,11 +82,12 @@ const GamePage = (props) => {
    useEffect(()=>{
      localStorage.setItem('score', 0);
    },[]);
-   let score = localStorage.getItem('score');
+   //let score = localStorage.getItem('score');
 
-   const addtoScore = delta => {
-    console.log(typeof(delta),'----' ,typeof(score) );
-    localStorage.setItem('score', parseInt(score) + delta);
+   const updateCurrentScore = delta => {
+    // console.log(typeof(delta),'----' ,typeof(score) );
+    // localStorage.setItem('score', parseInt(score) + delta);
+    setScore(score+delta);
   }; 
 
    function getBubbleLimit(){
@@ -140,8 +140,9 @@ const GamePage = (props) => {
 	const nextSong = () => {
     shuffle(artistsFaces);
     if (songIndex === playlist.length - 1 || songIndex === limitOfSongsToPlay - 1) {
-      resetScore();
+      updateScore(score);
       history.push("/gameOver");
+      
     }
     setSongIndex(songIndex + 1);
   };
@@ -163,7 +164,7 @@ const GamePage = (props) => {
     <div className="App">   
       <nav class="item">
         <h2 id="username"> {name1} </h2>
-        <h2 id="subject"> SCORE: {parseInt(score)}</h2>
+        <h2 id="subject"> SCORE: {score}</h2>
         <h2 id="end-btn"> <button onClick={() => setShowModal(true)} id="end">QUIT</button></h2>
       </nav>
       <div id="background-wrap">
@@ -177,7 +178,7 @@ const GamePage = (props) => {
               number={idx}
               name={item.name}
               // score={score}
-              addtoScore = {addtoScore}
+              setScore = {updateCurrentScore}
               playlist = {playlist}
               songIndex = {songIndex}
               nextSong = {nextSong}
@@ -196,7 +197,7 @@ const GamePage = (props) => {
         <div id="modalContainer">
           <h1>Are you sure you want to quit?</h1>
           <button id="cancel"><a id='cancel' href= '#'> CANCEL </a></button>
-				  <Link id='cancel' onClick={resetScore}to='/gameOver'><button id='end'> QUIT </button></Link>
+				  <Link id='cancel' onClick={()=>updateScore(score)} to='/gameOver'><button id='end'> QUIT </button></Link>
         </div>
       </div>
     </div>

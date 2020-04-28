@@ -68,10 +68,10 @@ const GameContextProvider = ({children}) => {
         });
     };
 
-    const updateScore = (delta) => {
+    const updateScore = (score) => {
         dispatch({
             type: "updateScore",
-            payload: state.score += delta,
+            payload: score,
         });
     }
 

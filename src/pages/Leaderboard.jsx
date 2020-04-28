@@ -3,12 +3,15 @@ import firebase from "firebase";
 import React, { useState, useEffect } from "react";
 import ReactDOM from 'react-dom'
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { GameContext } from "../gameContext";
     
 export default function Leaderboard(){
   
 //these three variables are responsible for storing the score(userscore), and name(name) variables, as well as containing a query to sort scores (leader)
+    const {score} = useContext(GameContext);
     var leader = firebase.firestore().collection("Users").where("Score",">", 0).orderBy("Score","desc").limit(10);
-    var userScore = parseInt(localStorage.getItem('score'));
+    var userScore = score;
     var name = localStorage.getItem("name1");
 
     //This function provides the code for writing the name and score to Firebase under the "Users" collection.
