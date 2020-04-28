@@ -7,7 +7,7 @@ const Bubble = (props) => {
 
     const checkAnswer = () => {
         setClicked(true);
-        if (props.name === props.artists[props.artistIndex]) {
+        if (props.name === props.playlist[props.songIndex].artist_name) {
             props.wrapperSetScore(5);
             props.nextSong();
             //props.setIsCorrect(1);
@@ -15,10 +15,6 @@ const Bubble = (props) => {
         } else {
             props.wrapperSetScore(-2);
            // props.setIsCorrect(-1)
-        }
-  
-        if (props.artistIndex === props.artists.length - 1) {
-          window.location.href = "/gameOver";
         }
     };
    
