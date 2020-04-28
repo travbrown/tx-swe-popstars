@@ -109,8 +109,6 @@ const PlaylistGame = () => {
   const ensureCorrectArtistGetsBubbled = () => {
     for (let i = bubbleLimit; i < artistsFaces.length; i++) {
       if(artistsFaces[i].name === playlist[songIndex].artist_name){
-        console.log(artistsFaces)
-        console.log(playlist)
         let num = getRandomInt(bubbleLimit);
         [artistsFaces[i], artistsFaces[num]] = [artistsFaces[num], artistsFaces[i]];
         break;
@@ -130,14 +128,7 @@ const PlaylistGame = () => {
     getPlaylist();
   }, []);
 
-  function setSongLimit(){
-    if(difficulty === 'medium'){
-      return 10;
-    } else if (difficulty === 'hard'){
-      return 15;
-    }
-    return 7;
-  };
+
 
   const getPlaylist = async () => {
     let playlist = null;

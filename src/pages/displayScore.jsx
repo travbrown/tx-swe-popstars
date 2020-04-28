@@ -1,25 +1,33 @@
-import React, { useState, useEffect, forwardRef, useImperativeHandle } from "react";
+import React, { useState, forwardRef, useImperativeHandle } from "react";
+import { useEffect } from "react";
 
-const DisplayScore =
-forwardRef((ref) => {
-  const [score, setScore] = useState(0);
+// const DisplayScore = ({ref}) => {
+//   const [score, setScore] = useState(0);
 
-  localStorage.setItem("score", score);
+//   localStorage.setItem("score", score);
 
-  const addToScore = (delta) => {
-    setScore(score + delta);
-  };
+//   const addToScore = (delta) => {
+//     setScore(score + delta);
+//   };
 
-  useImperativeHandle(ref, () => {
-    return {
-      addToScore: addToScore,
-    };
-  });
+//   useImperativeHandle(ref, () => {
+//     return {
+//       addToScore: addToScore,
+//     };
+//   });
+//   console.log(ref);
+//   return (
+//     <span> {score} </span> 
+//   );
 
+// };
+const DisplayScore = ({score}) => {
+  useEffect(() =>{
+    localStorage.setItem("score", score);
+  },[score]);
+  
   return (
     <span> {score} </span> 
   );
-
-});
-
+}
 export default DisplayScore;

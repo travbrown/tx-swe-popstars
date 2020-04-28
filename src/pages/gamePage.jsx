@@ -64,21 +64,31 @@ let artistsFaces = [
 
 const GamePage = (props) => {
   const spotifyApi = new SpotifyWebApi();
-  const {difficulty } = useContext(GameContext);
+  const {difficulty} = useContext(GameContext);
   const history = useHistory();
   const playlist = props.location.state.playlist;
 
-	//const [playlist, setPlaylist] = useState(null);
   const [bubbleLimit, setBubbleLimit] = useState(getBubbleLimit());
   const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(setSongLimit());
 	const [songIndex, setSongIndex] = useState(0);
   const [showModal, setShowModal] = useState(false);
-  console.log('reawefg: ',playlist);
+  
 
+  
   const ref = useRef(null);
   const wrapperSetScore = delta => {
       ref.current.addToScore(delta);
    };
+
+   useEffect(()=>{
+     localStorage.setItem('score', 0);
+   },[]);
+   let score = localStorage.getItem('score');
+
+   const addtoScore = delta => {
+    console.log(typeof(delta),'----' ,typeof(score) );
+    localStorage.setItem('score', parseInt(score) + delta);
+  }; 
 
    function getBubbleLimit(){
     if(difficulty === 'medium'){
@@ -105,12 +115,6 @@ const GamePage = (props) => {
       }
   };
 
-  // function RenderPlaylist() {
-  //   if (playlist === null) {
-  //     //load
-  //   }
-  // }
-
   function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
@@ -129,9 +133,14 @@ const GamePage = (props) => {
     }
   }
 
+  const resetScore = () => {
+    localStorage.setItem('score',0);
+  }
+
 	const nextSong = () => {
     shuffle(artistsFaces);
     if (songIndex === playlist.length - 1 || songIndex === limitOfSongsToPlay - 1) {
+      resetScore();
       history.push("/gameOver");
     }
     setSongIndex(songIndex + 1);
@@ -154,25 +163,27 @@ const GamePage = (props) => {
     <div className="App">   
       <nav class="item">
         <h2 id="username"> {name1} </h2>
-        <h2 id="subject"> SCORE: <DisplayScore ref={ref} /> </h2>
+        <h2 id="subject"> SCORE: {parseInt(score)}</h2>
         <h2 id="end-btn"> <button onClick={() => setShowModal(true)} id="end">QUIT</button></h2>
       </nav>
       <div id="background-wrap">
+        
         {artistsFaces.slice(0,bubbleLimit).map((item, idx) => (
-          <>
+          
             <Bubble
               key={item.name}
               image={item.image}
               hasArtist
               number={idx}
               name={item.name}
-              wrapperSetScore = {wrapperSetScore}
+              // score={score}
+              addtoScore = {addtoScore}
               playlist = {playlist}
               songIndex = {songIndex}
               nextSong = {nextSong}
               difficulty={difficulty}
-            />;
-          </>
+            />
+          
         ))}
       </div>
 
@@ -185,7 +196,7 @@ const GamePage = (props) => {
         <div id="modalContainer">
           <h1>Are you sure you want to quit?</h1>
           <button id="cancel"><a id='cancel' href= '#'> CANCEL </a></button>
-				  <Link id='cancel' to='/gameOver'><button id='end'> QUIT </button></Link>
+				  <Link id='cancel' onClick={resetScore}to='/gameOver'><button id='end'> QUIT </button></Link>
         </div>
       </div>
     </div>

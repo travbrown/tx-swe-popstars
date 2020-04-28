@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { GameContext } from "../gameContext";
 
 const Bubble = (props) => {
     const [clicked, setClicked] = useState(false);
+    const {updateScore} = useContext(GameContext);
    
     const checkAnswer = () => {
         setClicked(true);
         if (props.name === props.playlist[props.songIndex].artist_name) {
-            props.wrapperSetScore(5);
+            props.addtoScore(5);
             props.nextSong();             
         } else {
-            props.wrapperSetScore(-2);
+            props.addtoScore(-2);
         }
     };
    
