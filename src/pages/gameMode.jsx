@@ -1,8 +1,7 @@
-import React, {useEffect, useContext} from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
 import {GameContext} from './../gameContext';
-import logo from "../popstarslogo.png";
 
 const GameMode = () => {
 
@@ -21,7 +20,6 @@ const GameMode = () => {
       if(accessToken !== null){
         setAccessToken(accessToken);
       }
-      //localStorage.setItem('access_token', accessToken);
   }
     
   function MultiPName(){
@@ -48,7 +46,6 @@ const GameMode = () => {
           </nav>
         <header>
         <div className="centerItems">
-        {/* <img src={logo} className="App-logo" alt="logo" height = "300px" /> */}
             <Link to="/singleplayerName" onClick={_setAccessToken} class= "active_button"> Single Player</Link>
             <p></p>
             <MultiPName></MultiPName>  
