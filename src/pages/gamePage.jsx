@@ -45,13 +45,17 @@ const GamePage = () => {
   const {difficulty, access_token, playlist_code } = useContext(GameContext);
   const history = useHistory();
 
-  //console.log(useContext(GameContext));
 	const [playlist, setPlaylist] = useState(null);
-  //const [difficulty, setDifficulty] = useState(gameSettings.difficulty);
 
   const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(setSongLimit());
 	const [songIndex, setSongIndex] = useState(0);
+	const [artistIndex, setArtistIndex] = useState(0);
+
+	const [soundHowl, setSoundHowl] = useState(null);
+	const [showModal, setShowModal] = useState(false);
+
   const [showModal, setShowModal] = useState(false);
+
 
   const ref = useRef(null);
   const wrapperSetScore = delta => {
@@ -65,10 +69,10 @@ const GamePage = () => {
       }
   };
 
+
 	const nextSong = () => {
     shuffle(artistsFaces);
     if (songIndex === playlist.length - 1 || songIndex === limitOfSongsToPlay - 1) {
-      //window.location.href = "/gameOver";
       history.push("/gameOver");
     }
     setSongIndex(songIndex + 1);
@@ -92,6 +96,17 @@ const GamePage = () => {
     try {
       spotifyApi.setAccessToken(access_token);
       playlist = await spotifyApi.getPlaylistTracks(playlist_code);
+      let foundSongs = [];
+      for (const item of playlist.items) {
+        
+        if (item.track.preview_url == null) continue;
+        foundSongs.push({
+          artist_name:item.track.artists[0].name, 
+          song_name: item.track.name, 
+          prev_url: item.track.preview_url });
+      }
+      shuffle(foundSongs)
+      setPlaylist(foundSongs);
       
     } catch (error) {
       alert('Our access to Spotify has expired.\nPress OK to login and refresh our access');
@@ -99,18 +114,6 @@ const GamePage = () => {
       console.log('Need to login again: ',error);
       return;
     }
-
-    let foundSongs = [];
-    for (const item of playlist.items) {
-      
-      if (item.track.preview_url == null) continue;
-      foundSongs.push({
-        artist_name:item.track.artists[0].name, 
-        song_name: item.track.name, 
-        prev_url: item.track.preview_url });
-    }
-    shuffle(foundSongs)
-    setPlaylist(foundSongs);
   };
 
 	const howler =
@@ -132,7 +135,7 @@ const GamePage = () => {
         <h2 id="subject"> SCORE: <DisplayScore ref={ref} /> </h2>
         <h2 id="end-btn"> <button onClick={() => setShowModal(true)} id="end">QUIT</button></h2>
       </nav>
-
+   
       <div id="background-wrap">
         {artistsFaces.map((item, idx) => (
           <>
@@ -150,6 +153,7 @@ const GamePage = () => {
           </>
         ))}
       </div>
+
       {howler}
 
       <div
@@ -165,6 +169,5 @@ const GamePage = () => {
     </div>
   );
 };
-
 
 export default GamePage;

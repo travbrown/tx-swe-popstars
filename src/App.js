@@ -1,5 +1,5 @@
+//App.js contains routes and links for our page navigations
 import React from "react";
-import {logo} from "./popstarslogo.png"; 
 import "./App.css";
 import {
   BrowserRouter as Router,
@@ -26,23 +26,6 @@ import GameOver from "./pages/gameOver";
 import SinglePlayerInput from "./pages/singleplayerName"; 
 import CreateGame from "./pages/createGame";
 import { GameContext } from "./gameContext";
-
-function AllLogins() {
-  return (
-    <div>
-      <SpotifyLoginPage />
-    </div>
-  );
-}
-
-function LeaderboardInfo()
-{
-  return (
-    <div>
-      <Leaderboard />
-    </div>
-  )
-}
 
 export default function App() {
   return (

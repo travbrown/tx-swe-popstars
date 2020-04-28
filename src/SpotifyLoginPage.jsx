@@ -1,6 +1,6 @@
+//This page allows the user to login through Spotify -- the first page the user sees
 import React from 'react';
 import logo from "./popstarslogo.png";
-import Button from '@material-ui/core/Button';
 import './App.css';
 export const authEndpoint = 'https://accounts.spotify.com/authorize?';
 
@@ -10,7 +10,7 @@ const SpotifyLoginPage = () => {
 
   //Travis
   const clientId = "6ba9b22fdb4e467197055100a53c4a90";
-  const redirectUri = "http://localhost:3000/difficultyPage";
+  const redirectUri = "http://localhost:3000/difficultyPage"; //site to redirect after login 
 
   const scopes = [
     "user-read-currently-playing",
