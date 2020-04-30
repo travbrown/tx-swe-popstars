@@ -7,7 +7,7 @@ const GameMode = () => {
 
   const {setAccessToken} = useContext(GameContext);
   function getParameterByName(name) {
-        var match = RegExp('[#&]' + name + '=([^&]*)').exec(window.location.hash);
+        let match = RegExp('[#&]' + name + '=([^&]*)').exec(window.location.hash);
         return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
     }
       

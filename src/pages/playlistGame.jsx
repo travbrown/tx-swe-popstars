@@ -175,7 +175,7 @@ const PlaylistGame = () => {
         onEnd={nextSong} />
   );
   
-  var maxScore = localStorage.getItem('winningScore');
+  let maxScore = localStorage.getItem('winningScore');
 
   return (
     <div className="App">   

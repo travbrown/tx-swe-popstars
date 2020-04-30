@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import {GameContext} from './../gameContext';
 import './countdown.css';
-import {Link, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
 const PlayerOnePage = () => {
     const FULL_DASH_ARRAY = 3000;

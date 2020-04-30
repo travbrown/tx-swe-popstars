@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import {GameContext} from './../gameContext';
 import './countdown.css';
-import {Link, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
 const PlayerTwoPage = () => {
     const FULL_DASH_ARRAY = 3000;
@@ -120,11 +120,11 @@ const PlayerTwoPage = () => {
         .setAttribute("stroke-dasharray", circleDasharray);
     }    
     
-    var name2 = localStorage.getItem('name2'); 
+    var name2 = localStorage.getItem('playerTwoName'); 
     return (
       <div className="App">
         <nav class="item">
-          <h2 id="username"> {name2}</h2>
+          <h2 id="username"> {name2} </h2>
           <h2 id="subject"> Get Ready </h2>
         </nav>  
         <div className="centerItems">

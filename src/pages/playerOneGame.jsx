@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import ReactHowler from "react-howler";
-import SpotifyWebApi from "spotify-web-api-js";
 import PlayerOneBubble from "./playerOneContainer.jsx";
 import "./gamePage.css";
 import { useHistory } from 'react-router-dom';
-import { Link } from "react-router-dom";
 
 import {GameContext} from './../gameContext';
 import asap_ferg from "../photos/ASAP_Ferg.png";
@@ -118,8 +116,6 @@ const PlayerOneGame = (props) => {
   const ensureCorrectArtistGetsBubbled = () => {
     for (let i = bubbleLimit; i < artistsFaces.length; i++) {
       if(artistsFaces[i].name === playlist[songIndex].artist_name){
-        console.log(artistsFaces)
-        console.log(playlist)
         let num = getRandomInt(bubbleLimit);
         [artistsFaces[i], artistsFaces[num]] = [artistsFaces[num], artistsFaces[i]];
         break;
@@ -180,5 +176,4 @@ const PlayerOneGame = (props) => {
   );
 };
 
-//localStorage.setItem("Score1",DisplayScore);
 export default PlayerOneGame;

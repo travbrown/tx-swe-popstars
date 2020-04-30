@@ -120,7 +120,7 @@ const CountdownPage = () => {
         .getElementById("base-timer-path-remaining")
         .setAttribute("stroke-dasharray", circleDasharray);
     }    
-    var name1 = localStorage.getItem('name1'); 
+    let name1 = localStorage.getItem('name1'); 
     return (
       <div className="App">
          <nav class="item">

@@ -6,15 +6,15 @@ const PlayerTwoBubble = (props) => {
     const checkAnswer = () => {
         setClicked(true);
         if (props.name === props.playlist[props.songIndex].artist_name) {
-            props.setScore(5);
+            props.setScoreTwo(5);
             props.nextSong();             
         } else {
-            props.setScore(-2);
+            props.setScoreTwo(-2);
         }
   
-        if (props.artistIndex === props.artists.length - 1) {
-          document.getElementById("nextPage").click();
-        }
+        // if (props.artistIndex === props.artists.length - 1) {
+        //   document.getElementById("nextPage").click();
+        // }
     };
 
     return (

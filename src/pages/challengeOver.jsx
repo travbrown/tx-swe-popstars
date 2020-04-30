@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import {GameContext} from './../gameContext';
 
-var maxScore = localStorage.getItem('winningScore');
+let maxScore = localStorage.getItem('winningScore');
 
 const ChallengeOver = () => {
 

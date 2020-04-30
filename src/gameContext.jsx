@@ -75,6 +75,13 @@ const GameContextProvider = ({children}) => {
         });
     }
 
+    const updateScoreTwo = (scoreTwo) => {
+        dispatch({
+            type: "updateScoreTwo",
+            payload: scoreTwo,
+        });
+    }
+
     const setPlaylist = (value) => {
         dispatch({
             type: "set-playlist",
@@ -146,6 +153,7 @@ const GameContextProvider = ({children}) => {
             differentGame,
             setDiff,
             updateScore,
+            updateScoreTwo,
             setPlaylist,
             setAccessToken,
             setPlaylistCode,

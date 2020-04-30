@@ -5,7 +5,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useContext } from "react";
 import {GameContext} from './../gameContext';
 
-const GameOver = (props) => {
+const GameOver = () => {
     const {score} = useContext(GameContext);
     let {differentGame} = useContext(GameContext);
     //let score = props.location.state.finalScore;
