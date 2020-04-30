@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import {GameContext} from './../gameContext';
 import './countdown.css';
-import {Link, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
 const PlayerOnePage = () => {
     const FULL_DASH_ARRAY = 3000;
@@ -48,7 +48,7 @@ const PlayerOnePage = () => {
           }, 1000);
         if (timeLeft === 0) {   
             history.push({
-                pathname:"/PlayerOneGame",
+                pathname:"/playerOneGame",
                 state: {playlist: playlistobject},
             });
         }
@@ -120,7 +120,7 @@ const PlayerOnePage = () => {
         .setAttribute("stroke-dasharray", circleDasharray);
     }    
 
-    var name1 = localStorage.getItem('name1'); 
+    let name1 = localStorage.getItem('name1'); 
 
     return (
       <div className="App">

@@ -13,9 +13,9 @@ import DifficultyPage from "./pages/difficultyPage";
 import CountdownPage from "./pages/countdown";
 import GamePage from "./pages/gamePage";
 import MultiplayerPage from "./pages/multiplayerPage";
-import PlayerOne from "./pages/playerOne";
+import PlayerOnePage from "./pages/playerOne";
 import PlayerOneGame from "./pages/playerOneGame";
-import PlayerTwo from "./pages/playerTwo";
+import PlayerTwoPage from "./pages/playerTwo";
 import PlayerTwoGame from "./pages/playerTwoGame";
 import TimeUp1 from "./pages/timeUp1";
 import TimeUp2 from "./pages/timeUp2";
@@ -31,7 +31,6 @@ import { GameContext } from "./gameContext";
 
 export default function App() {
   return (
-    
       <div className="App-login ">
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Fredoka+One&family=Press+Start+2P&family=Russo+One&display=swap');
@@ -50,9 +49,9 @@ export default function App() {
             <Route exact path="/gamePage" component={GamePage} />
             <Route exact path="/Leaderboard" component={Leaderboard} />
             <Route exact path="/multiplayerPage" component={MultiplayerPage} />
-            <Route exact path="/playerOne" component={PlayerOne} />
+            <Route exact path="/playerOne" component={PlayerOnePage} />
             <Route exact path="/playerOneGame" component={PlayerOneGame} />
-            <Route exact path="/playerTwo" component={PlayerTwo} />
+            <Route exact path="/playerTwo" component={PlayerTwoPage} />
             <Route exact path="/playerTwoGame" component={PlayerTwoGame} />
             <Route exact path="/timeUp1" component={TimeUp1} />
             <Route exact path="/timeUp2" component={TimeUp2} />
@@ -63,6 +62,5 @@ export default function App() {
           </Switch>
         </Router>
       </div>
-    
   );
 }

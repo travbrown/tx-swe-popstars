@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import ReactHowler from "react-howler";
-import SpotifyWebApi from "spotify-web-api-js";
 import PlayerTwoBubble from "./playerTwoContainer.jsx";
 import "./gamePage.css";
 import { useHistory } from 'react-router-dom';
-import { Link } from "react-router-dom";
 
 import {GameContext} from './../gameContext';
 import asap_ferg from "../photos/ASAP_Ferg.png";
@@ -63,14 +61,14 @@ let artistsFaces = [
 
 const PlayerTwoGame = (props) => {
   //const spotifyApi = new SpotifyWebApi();
-    const {difficulty,updateScore} = useContext(GameContext);    
+    const {difficulty,updateScoreTwo} = useContext(GameContext);    
     const history = useHistory();
     const playlist = props.location.state.playlist;
     //const [playlist, setPlaylist] = useState(null);
     const [bubbleLimit, setBubbleLimit] = useState(getBubbleLimit());
     const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(setSongLimit());
     const [songIndex, setSongIndex] = useState(0);
-    const [score, setScore] = useState(0);
+    const [scoreTwo, setScoreTwo] = useState(0);
 
   const ref = useRef(null);
 //   const wrapperSetScore = delta => {
@@ -82,7 +80,7 @@ const PlayerTwoGame = (props) => {
   },[]);
 
   const updateCurrentScore = delta => {
-   setScore(score+delta);
+    setScoreTwo(scoreTwo+delta);
     }; 
 
    function getBubbleLimit(){
@@ -110,27 +108,25 @@ const PlayerTwoGame = (props) => {
       }
   };
 
-  function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
-  }
+  // function getRandomInt(max) {
+  //   return Math.floor(Math.random() * Math.floor(max));
+  // }
 
-  const ensureCorrectArtistGetsBubbled = () => {
-    for (let i = bubbleLimit; i < artistsFaces.length; i++) {
-      if(artistsFaces[i].name === playlist[songIndex].artist_name){
-        console.log(artistsFaces)
-        console.log(playlist)
-        let num = getRandomInt(bubbleLimit);
-        [artistsFaces[i], artistsFaces[num]] = [artistsFaces[num], artistsFaces[i]];
-        break;
-      }
-    }
-  }
+  // const ensureCorrectArtistGetsBubbled = () => {
+  //   for (let i = bubbleLimit; i < artistsFaces.length; i++) {
+  //     if(artistsFaces[i].name === playlist[songIndex].artist_name){
+  //       let num = getRandomInt(bubbleLimit);
+  //       [artistsFaces[i], artistsFaces[num]] = [artistsFaces[num], artistsFaces[i]];
+  //       break;
+  //     }
+  //   }
+  // }
 
   const nextSong = () => {
     shuffle(artistsFaces);
     if (songIndex === playlist.length - 1 || songIndex === limitOfSongsToPlay - 1) {
-      updateScore(score);
-      history.push("/gameOver");
+      updateScoreTwo(scoreTwo);
+      history.push("/timeUp2");
       
     }
     setSongIndex(songIndex + 1);
@@ -145,15 +141,15 @@ const PlayerTwoGame = (props) => {
       />
     );
 
-    let name2 = localStorage.getItem('name2'); 
+    let name2 = localStorage.getItem('playerTwoName'); 
     shuffle(artistsFaces);
-    ensureCorrectArtistGetsBubbled();
+    //ensureCorrectArtistGetsBubbled();
   
   return (
     <div className="App">
       <nav class="item">
         <h2 id="username"> {name2}</h2>
-        <h2 id="subject"> SCORE: {score} </h2>
+        <h2 id="subject"> SCORE: {scoreTwo} </h2>
       </nav>
 
       <div id="background-wrap">
@@ -165,7 +161,7 @@ const PlayerTwoGame = (props) => {
               hasArtist
               number={idx}
               name={item.name}
-              setScore = {updateCurrentScore}
+              setScoreTwo = {updateCurrentScore}
               playlist = {playlist}
               songIndex = {songIndex}
               nextSong = {nextSong}

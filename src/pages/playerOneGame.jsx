@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import ReactHowler from "react-howler";
-import SpotifyWebApi from "spotify-web-api-js";
 import PlayerOneBubble from "./playerOneContainer.jsx";
 import "./gamePage.css";
 import { useHistory } from 'react-router-dom';
-import { Link } from "react-router-dom";
 
 import {GameContext} from './../gameContext';
 import asap_ferg from "../photos/ASAP_Ferg.png";
@@ -111,21 +109,18 @@ const PlayerOneGame = (props) => {
       }
   };
 
-  function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
-  }
+  // function getRandomInt(max) {
+  //   return Math.floor(Math.random() * Math.floor(max));
+  // }
 
-  const ensureCorrectArtistGetsBubbled = () => {
-    for (let i = bubbleLimit; i < artistsFaces.length; i++) {
-      if(artistsFaces[i].name === playlist[songIndex].artist_name){
-        console.log(artistsFaces)
-        console.log(playlist)
-        let num = getRandomInt(bubbleLimit);
-        [artistsFaces[i], artistsFaces[num]] = [artistsFaces[num], artistsFaces[i]];
-        break;
-      }
-    }
-  }
+  // const ensureCorrectArtistGetsBubbled = () => {
+  //   for (let i = bubbleLimit; i < artistsFaces.length; i++) {
+  //     if(artistsFaces[i].name === playlist[songIndex].artist_name){
+  //       let num = getRandomInt(bubbleLimit);
+  //       [artistsFaces[i], artistsFaces[num]] = [artistsFaces[num], artistsFaces[i]];
+  //       break;
+  //     }
+  // }
 
   const nextSong = () => {
     shuffle(artistsFaces);
@@ -136,6 +131,7 @@ const PlayerOneGame = (props) => {
     }
     setSongIndex(songIndex + 1);
   };
+
 
 	const howler =
     playlist == null ? null : (
@@ -148,7 +144,7 @@ const PlayerOneGame = (props) => {
 
     let name1 = localStorage.getItem('name1'); 
     shuffle(artistsFaces);
-    ensureCorrectArtistGetsBubbled();
+    //ensureCorrectArtistGetsBubbled();
   
   return (
     <div className="App">
@@ -159,7 +155,6 @@ const PlayerOneGame = (props) => {
 
       <div id="background-wrap">
       {artistsFaces.slice(0,bubbleLimit).map((item, idx) => (
-          <>
             <PlayerOneBubble
               key={item.name}
               image={item.image}
@@ -172,7 +167,6 @@ const PlayerOneGame = (props) => {
               nextSong = {nextSong}
               difficulty={difficulty}
             />
-          </>
         ))}
       </div>
       {howler}
@@ -180,5 +174,4 @@ const PlayerOneGame = (props) => {
   );
 };
 
-//localStorage.setItem("Score1",DisplayScore);
 export default PlayerOneGame;

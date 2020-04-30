@@ -72,9 +72,9 @@ const PlaylistGame = () => {
   const [score, setScore] = useState(0);
 
   const ref = useRef(null);
-  const wrapperSetScore = delta => {
-      ref.current.addToScore(delta);
-  };
+  // const wrapperSetScore = delta => {
+  //     ref.current.addToScore(delta);
+  // };
 
   useEffect(()=>{
     localStorage.setItem('score', 0);
@@ -175,7 +175,7 @@ const PlaylistGame = () => {
         onEnd={nextSong} />
   );
   
-  var maxScore = localStorage.getItem('winningScore');
+  let maxScore = localStorage.getItem('winningScore');
 
   return (
     <div className="App">   

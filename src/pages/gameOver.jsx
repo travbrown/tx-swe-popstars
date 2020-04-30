@@ -6,11 +6,9 @@ import { useContext, useEffect } from "react";
 import {GameContext} from './../gameContext';
 
 const GameOver = (props) => {
-    const {score, mode, differentGame} = useContext(GameContext);
+    const {score, mode, challenge_goal, differentGame} = useContext(GameContext);
 
     // useEffect( () => {
-
-
     //   let displayText = '';
     //   if(mode === 'create-game'){
     //     displayText = 'CONGRATULATIONS';

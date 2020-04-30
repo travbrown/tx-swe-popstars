@@ -131,7 +131,9 @@ const CountdownPage = (props) => {
         .getElementById("base-timer-path-remaining")
         .setAttribute("stroke-dasharray", circleDasharray);
     }    
-    var name1 = localStorage.getItem('name1'); 
+
+    let name1 = localStorage.getItem('name1'); 
+
     return (
       <div className="App">
          <nav class="item">
@@ -140,7 +142,6 @@ const CountdownPage = (props) => {
           </nav>
       
           <div class="centerItems">
-
             <div class="base-timer">
             <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <g class="base-timer__circle">
