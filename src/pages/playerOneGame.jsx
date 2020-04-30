@@ -120,7 +120,6 @@ const PlayerOneGame = (props) => {
         [artistsFaces[i], artistsFaces[num]] = [artistsFaces[num], artistsFaces[i]];
         break;
       }
-    }
   }
 
   const nextSong = () => {
@@ -132,6 +131,7 @@ const PlayerOneGame = (props) => {
     }
     setSongIndex(songIndex + 1);
   };
+
 
 	const howler =
     playlist == null ? null : (
@@ -155,7 +155,6 @@ const PlayerOneGame = (props) => {
 
       <div id="background-wrap">
       {artistsFaces.slice(0,bubbleLimit).map((item, idx) => (
-          <>
             <PlayerOneBubble
               key={item.name}
               image={item.image}
@@ -168,12 +167,11 @@ const PlayerOneGame = (props) => {
               nextSong = {nextSong}
               difficulty={difficulty}
             />
-          </>
         ))}
       </div>
       {howler}
     </div>
   );
 };
-
+}
 export default PlayerOneGame;

@@ -48,7 +48,7 @@ const PlayerOnePage = () => {
           }, 1000);
         if (timeLeft === 0) {   
             history.push({
-                pathname:"/PlayerOneGame",
+                pathname:"/playerOneGame",
                 state: {playlist: playlistobject},
             });
         }
@@ -120,7 +120,7 @@ const PlayerOnePage = () => {
         .setAttribute("stroke-dasharray", circleDasharray);
     }    
 
-    var name1 = localStorage.getItem('name1'); 
+    let name1 = localStorage.getItem('name1'); 
 
     return (
       <div className="App">

@@ -72,9 +72,9 @@ const PlaylistGame = () => {
   const [score, setScore] = useState(0);
 
   const ref = useRef(null);
-  const wrapperSetScore = delta => {
-      ref.current.addToScore(delta);
-  };
+  // const wrapperSetScore = delta => {
+  //     ref.current.addToScore(delta);
+  // };
 
   useEffect(()=>{
     localStorage.setItem('score', 0);

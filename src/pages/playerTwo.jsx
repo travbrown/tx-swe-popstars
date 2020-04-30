@@ -49,7 +49,7 @@ const PlayerTwoPage = () => {
           }, 1000);
             if (timeLeft === 0) {   
             history.push({
-                pathname:"/PlayerTwoGame",
+                pathname:"/playerTwoGame",
                 state: {playlist: playlistobject},
             });
         }

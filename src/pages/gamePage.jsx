@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import ReactHowler from "react-howler";
-import SpotifyWebApi from "spotify-web-api-js";
 import Bubble from "./bubbleContainer.jsx";
 import "./gamePage.css";
 import { useHistory } from 'react-router-dom';
@@ -116,8 +115,6 @@ const GamePage = (props) => {
 
   const ensureCorrectArtistGetsBubbled = () => {
     for (let i = bubbleLimit; i < artistsFaces.length; i++) {
-      console.log(playlist);
-      console.log(artistsFaces);
       if(artistsFaces[i].name === playlist[songIndex].artist_name){
         let num = getRandomInt(bubbleLimit);
         [artistsFaces[i], artistsFaces[num]] = [artistsFaces[num], artistsFaces[i]];

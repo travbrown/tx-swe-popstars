@@ -6,6 +6,7 @@ let initialState = {
     username2:'',
     mode:'',
     score:0,
+    scoreTwo: 0,
     playlist:null,
     difficulty:'',
     access_token: '',
@@ -30,6 +31,8 @@ const reducer = (state, action) => {
             };
         case "updateScore":
             return {...state, score: action.payload };
+        case "updateScoreTwo":
+            return {...state, scoreTwo: action.payload };
         case "set-diff":
             return {...state, difficulty: action.payload };
         case "set-playlist":
