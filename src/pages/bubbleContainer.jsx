@@ -1,9 +1,14 @@
+//seperation of concern is used here
+//this displays the bubbles with the images in them
+//Adds 5 points if correct bubble is clicked 
+//and subrtacts 2 if wrong bubble is clicked
+
 import React, { useState } from "react";
 
 const Bubble = (props) => {
     const [clicked, setClicked] = useState(false);
    
-    const checkAnswer = () => {
+    const checkAnswer = () => { //checks if the answer is right or wrong
         setClicked(true);
         if (props.name === props.playlist[props.songIndex].artist_name) {
             props.setScore(5);

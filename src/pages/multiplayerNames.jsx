@@ -1,4 +1,5 @@
 //This page allows for name input and stores each name for multiplayer 
+
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 

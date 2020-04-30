@@ -1,15 +1,13 @@
 //this page renders the game over page-- shows score and options to play a new game or return home
 import React from "react";
 import './difficultyPage.css';
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 import {GameContext} from './../gameContext';
 
 const GameOver = () => {
     const {score} = useContext(GameContext);
     let {differentGame} = useContext(GameContext);
-    //let score = props.location.state.finalScore;
-
     const diffGame = () =>{
       differentGame();
     };

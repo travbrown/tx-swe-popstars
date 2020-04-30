@@ -1,3 +1,5 @@
+//Player one's game page- users click on bubbles as the music playes and scores update accordingly
+
 import React, { useState, useEffect, useRef, useContext } from "react";
 import ReactHowler from "react-howler";
 import PlayerOneBubble from "./playerOneContainer.jsx";
@@ -60,21 +62,13 @@ let artistsFaces = [
 ];
 
 const PlayerOneGame = (props) => {
-  //const spotifyApi = new SpotifyWebApi();
     const {difficulty,updateScore} = useContext(GameContext);    
     const history = useHistory();
     const playlist = props.location.state.playlist;
-    //const [playlist, setPlaylist] = useState(null);
     const [bubbleLimit, setBubbleLimit] = useState(getBubbleLimit());
     const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(setSongLimit());
     const [songIndex, setSongIndex] = useState(0);
     const [score, setScore] = useState(0);
-
-  const ref = useRef(null);
-
-//   const wrapperSetScore = delta => {
-//       ref.current.addToScore(delta);
-//    };
 
    useEffect(()=>{
     localStorage.setItem('score', 0);
@@ -109,6 +103,7 @@ const PlayerOneGame = (props) => {
       }
   };
 
+  /*Kept breaking the app*/
   // function getRandomInt(max) {
   //   return Math.floor(Math.random() * Math.floor(max));
   // }
@@ -131,7 +126,6 @@ const PlayerOneGame = (props) => {
     }
     setSongIndex(songIndex + 1);
   };
-
 
 	const howler =
     playlist == null ? null : (

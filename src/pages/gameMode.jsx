@@ -1,3 +1,6 @@
+//this page allows you to choose a game mode
+//users can choose either singleplayer, multiplayer, or create a challenge
+
 import React, {useContext} from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
@@ -7,20 +10,19 @@ const GameMode = () => {
 
   const {setAccessToken} = useContext(GameContext);
   function getParameterByName(name) {
-        let match = RegExp('[#&]' + name + '=([^&]*)').exec(window.location.hash);
-        return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
-    }
+    let match = RegExp('[#&]' + name + '=([^&]*)').exec(window.location.hash);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+  }
       
-    function getAccessToken() {
-        return getParameterByName('access_token');
-    }
-
+  function getAccessToken() {
+    return getParameterByName('access_token');
+  }
 
   function _setAccessToken(){
-      let accessToken = getAccessToken();
-      if(accessToken !== null){
-        setAccessToken(accessToken);
-      }
+    let accessToken = getAccessToken();
+    if(accessToken !== null){
+      setAccessToken(accessToken);
+    }
   }
     
   function MultiPName(){//Made a component for the button that goes to the name input of a multiplayer game 
@@ -32,22 +34,21 @@ const GameMode = () => {
       };
       
       localStorage.setItem('multiplayer', handleClick);
-      
-
-      return (
-        <button class= "active_button" onClick={handleClick}>
-          MultiPlayer
-        </button>
+    
+    return (
+      <button class= "active_button" onClick={handleClick}>
+        MultiPlayer
+      </button>
       );
     }
     
     return (      
       <div className="App">
-          <nav class="item">
-            <h2 id="subject-no-user">Game Mode</h2>
-          </nav>
+        <nav class="item">
+          <h2 id="subject-no-user">Game Mode</h2>
+        </nav>
         <header>
-        <div className="centerItems">
+          <div className="centerItems">
             <Link to="/singleplayerName" onClick={_setAccessToken} class= "active_button"> Single Player</Link>
             <p></p>
             <MultiPName/>  

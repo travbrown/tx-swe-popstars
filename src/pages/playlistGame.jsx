@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
-import { Link, useHistory } from "react-router-dom";
-import {GameContext} from './../gameContext';
+//game challenge page - users click on bubbles as the music playes and scores update accordingly
 
+import React, { useState, useEffect, useRef, useContext } from "react";
+import { useHistory } from "react-router-dom";
+import {GameContext} from './../gameContext';
 import ReactHowler from "react-howler";
 import SpotifyWebApi from "spotify-web-api-js";
 import Bubble from "./bubbleContainer.jsx";
@@ -65,16 +66,10 @@ const PlaylistGame = () => {
   const {difficulty, access_token, playlist_code } = useContext(GameContext);
   const history = useHistory();
   const playlist = props.location.state.playlist;
-	// const [playlist, setPlaylist] = useState(null);
   const [bubbleLimit, setBubbleLimit] = useState(getBubbleLimit());
   const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(setSongLimit());
   const [songIndex, setSongIndex] = useState(0);
   const [score, setScore] = useState(0);
-
-  const ref = useRef(null);
-  // const wrapperSetScore = delta => {
-  //     ref.current.addToScore(delta);
-  // };
 
   useEffect(()=>{
     localStorage.setItem('score', 0);
@@ -123,10 +118,6 @@ const PlaylistGame = () => {
     }
   }
 
-  // const resetScore = () => {
-  //   localStorage.setItem('score',0);
-  // }
-
 	const nextSong = () => {
     shuffle(artistsFaces);
     if (songIndex === playlist.length - 1 || songIndex === limitOfSongsToPlay - 1) {
@@ -160,19 +151,19 @@ const PlaylistGame = () => {
       shuffle(artistsFaces);
       ensureCorrectArtistGetsBubbled();
     } catch (error) {
-      // alert('Our access to Spotify has expired.\nPress OK to login and refresh our access');
-      // history.push('/');
+      alert('Our access to Spotify has expired.\nPress OK to login and refresh our access');
+      history.push('/');
       console.log('Need to login again: ',error);
       return;
     }
   };
 
 	const howler =
-    playlist == null ? null : (
-      <ReactHowler
-        src={playlist[songIndex].prev_url}
-        format={["mp3", "aac"]}
-        onEnd={nextSong} />
+  playlist == null ? null : (
+    <ReactHowler
+    src={playlist[songIndex].prev_url}
+    format={["mp3", "aac"]}
+    onEnd={nextSong} />
   );
   
   let maxScore = localStorage.getItem('winningScore');
@@ -198,8 +189,7 @@ const PlaylistGame = () => {
               nextSong = {nextSong}
               difficulty={difficulty}
             />;
-          </>
-        ))}
+          </> ))}
       </div>
       {howler}
     </div>

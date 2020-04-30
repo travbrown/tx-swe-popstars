@@ -1,14 +1,12 @@
+// users can choose their level of difficulty from easy, medium, or hard
 import React from "react";
 import './difficultyPage.css';
 import { Link } from "react-router-dom";
 import {GameContext} from './../gameContext';
-import logo from "../popstarslogo.png";
 import { useContext } from "react";
 
 const DifficultyPage = () => {
-  
   const {setDiff} = useContext(GameContext);
- 
   const setDifficulty = (diff) => {
     setDiff(diff);
   };

@@ -1,3 +1,5 @@
+//game over page after playerOne for multiplayer
+
 import React from "react";
 import './difficultyPage.css';
 import { Link } from "react-router-dom";

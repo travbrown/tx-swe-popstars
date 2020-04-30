@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {Link} from 'react-router-dom';
 
 const PlayerTwoBubble = (props) => {
@@ -11,10 +11,6 @@ const PlayerTwoBubble = (props) => {
         } else {
             props.setScoreTwo(-2);
         }
-  
-        // if (props.artistIndex === props.artists.length - 1) {
-        //   document.getElementById("nextPage").click();
-        // }
     };
 
     return (

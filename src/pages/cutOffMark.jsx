@@ -1,18 +1,20 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+//Allows the challenger to choose the score the player needs to get to win the challenge 
+
+import React, { useState, useContext } from "react";
 import { useHistory } from 'react-router-dom';
 import {GameContext} from './../gameContext';
-
 
 const CutOffMark = () => { 
     const history = useHistory();
     const {difficulty} = useContext(GameContext);
-
     const [winningScore, setWinningScore] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [markLimit, setMarkLimit] = useState(getMarkLimit());
 
     localStorage.setItem('winningScore', winningScore);
-    const handleClick = () => {
+    const handleClick = () => {  
+        //if statemnet to check if users enter a valid input 
+        //i.e challengers can only enter a number less than or equal to the markLimit
         if (winningScore > markLimit) {
             setShowModal(true)
         }
@@ -21,10 +23,10 @@ const CutOffMark = () => {
         }
         else { history.push('/choosePlaylist');}
     }
+    
     const handleName = event => setWinningScore(event.target.value);
-
     function getMarkLimit(){
-        if(difficulty === 'medium'){
+        if(difficulty === 'medium'){  //sets the mark limit per level
           return 40;
         } else if (difficulty === 'hard'){
           return 60;
@@ -51,7 +53,8 @@ const CutOffMark = () => {
                     className={showModal ? "modal show" : "modal"}
                     onClick={() => setShowModal(false)} >
                     <div id="modalContainer">
-                        <h1 style={{ color: "#ec583b"}}> Error!</h1>
+                         {/* error shows if challenger enters a value more than max Limit*/}
+                        <h1 style={{ color: "#ec583b"}}> Error!</h1> 
                         <h2>The value entered exceeds the max point for this level</h2>
                     </div>
                 </div>

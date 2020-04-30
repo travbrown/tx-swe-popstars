@@ -1,3 +1,6 @@
+//this is the countdown page for player one in multiplayer. 
+//this will give the first player a chance to get ready before the game starts
+
 import React, { useState, useEffect, useContext } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import {GameContext} from './../gameContext';
@@ -9,7 +12,7 @@ const PlayerOnePage = () => {
     const WARNING_THRESHOLD = 5;
     const ALERT_THRESHOLD = 3;
 
-    const COLOR_CODES = {
+    const COLOR_CODES = {   //this changes the color of the timer as it goes from 5 to 0.
     info: {
         color: "green"
     },
@@ -23,7 +26,7 @@ const PlayerOnePage = () => {
     }
     };
 
-    const TIME_LIMIT = 5;
+    const TIME_LIMIT = 5;   //timer is set for 5 seconds
     let remainingPathColor = COLOR_CODES.info.color;
     useEffect(() => {
         getPlaylist();
@@ -70,11 +73,11 @@ const PlayerOnePage = () => {
               prev_url: item.track.preview_url });
           }
           console.log(foundSongs);
-          shuffle(foundSongs);
+          shuffle(foundSongs);  //shuffles the songs so it does not play in a particular order
           setPlaylistObject(foundSongs);
         } catch (error) {
-          // alert('Our access to Spotify has expired.\nPress OK to login and refresh our access');
-          // history.push('/');
+          alert('Our access to Spotify has expired.\nPress OK to login and refresh our access');
+          history.push('/');
           console.log('Need to login again: ',error);
           return;
         }
@@ -120,7 +123,7 @@ const PlayerOnePage = () => {
         .setAttribute("stroke-dasharray", circleDasharray);
     }    
 
-    let name1 = localStorage.getItem('name1'); 
+    let name1 = localStorage.getItem('name1'); //gets player one's name
 
     return (
       <div className="App">

@@ -1,3 +1,6 @@
+//this is the countdown page for player two in multiplayer. 
+//this will give the second player a chance to get ready before the game starts
+
 import React, { useState, useEffect, useContext } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import {GameContext} from './../gameContext';
@@ -9,7 +12,7 @@ const PlayerTwoPage = () => {
     const WARNING_THRESHOLD = 5;
     const ALERT_THRESHOLD = 3;
 
-    const COLOR_CODES = {
+    const COLOR_CODES = { //this changes the color of the timer as it goes from 5 to 0.
     info: {
         color: "green"
     },
@@ -23,7 +26,7 @@ const PlayerTwoPage = () => {
     }
     };
 
-    const TIME_LIMIT = 5;
+    const TIME_LIMIT = 5;   //timer is set for 5 seconds
     let remainingPathColor = COLOR_CODES.info.color;
     useEffect(() => {
         getPlaylist();
@@ -120,7 +123,8 @@ const PlayerTwoPage = () => {
         .setAttribute("stroke-dasharray", circleDasharray);
     }    
     
-    var name2 = localStorage.getItem('playerTwoName'); 
+    var name2 = localStorage.getItem('playerTwoName'); //gets player two's name
+    
     return (
       <div className="App">
         <nav class="item">

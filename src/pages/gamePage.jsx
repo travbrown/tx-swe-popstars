@@ -1,3 +1,5 @@
+//game page- users click on bubbles as the music playes and scores update accordingly
+
 import React, { useState, useEffect, useRef, useContext } from "react";
 import ReactHowler from "react-howler";
 import Bubble from "./bubbleContainer.jsx";
@@ -61,7 +63,6 @@ let artistsFaces = [
 ];
 
 const GamePage = (props) => {
-  // const spotifyApi = new SpotifyWebApi();
   const {difficulty,updateScore} = useContext(GameContext);
   const history = useHistory();
   const playlist = props.location.state.playlist;
@@ -70,21 +71,16 @@ const GamePage = (props) => {
 	const [songIndex, setSongIndex] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [score, setScore] = useState(0);
-  
-  const ref = useRef(null);
-  // const wrapperSetScore = delta => {
-  //     ref.current.addToScore(delta);
-  //  };
 
    useEffect(()=>{
      localStorage.setItem('score', 0);
    },[]);
 
-   const updateCurrentScore = delta => {
+   const updateCurrentScore = delta => {  //this updates the score 
     setScore(score+delta);
   }; 
 
-   function getBubbleLimit(){
+   function getBubbleLimit(){       //the harder the difficulty the more the bubbles
     if(difficulty === 'medium'){
       return 20;
     } else if (difficulty === 'hard'){
@@ -93,7 +89,7 @@ const GamePage = (props) => {
     return 15;
   };
 
-  function setSongLimit(){
+  function setSongLimit(){   //the harder the difficulty the more the songs playing
     if(difficulty === 'medium'){
       return 10;
     } else if (difficulty === 'hard'){
@@ -102,11 +98,11 @@ const GamePage = (props) => {
     return 7;
   };
 
-  const shuffle = array => {
-      for (let i = array.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
+  const shuffle = array => {  //this shuffles the songs and the artist pictures
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
   };
 
   function getRandomInt(max) {
@@ -123,15 +119,11 @@ const GamePage = (props) => {
     }
   }
 
-  // const resetScore = () => {
-  //   localStorage.setItem('score',0);
-  // }
-
 	const nextSong = () => {
-    shuffle(artistsFaces);
+    shuffle(artistsFaces);  //shuffles the artists when the next song is played
     if (songIndex === playlist.length - 1 || songIndex === limitOfSongsToPlay - 1) {
       updateScore(score);
-      history.push("/gameOver");
+      history.push("/gameOver");  //when the user clicks a bubble on the last song it ends the game
       
     }
     setSongIndex(songIndex + 1);
@@ -158,27 +150,21 @@ const GamePage = (props) => {
         <h2 id="end-btn"> <button onClick={() => setShowModal(true)} id="end">QUIT</button></h2>
       </nav>
       <div id="background-wrap">
-        
         {artistsFaces.slice(0,bubbleLimit).map((item, idx) => (
-          
-            <Bubble
-              key={item.name}
-              image={item.image}
-              hasArtist
-              number={idx}
-              name={item.name}
-              setScore = {updateCurrentScore}
-              playlist = {playlist}
-              songIndex = {songIndex}
-              nextSong = {nextSong}
-              difficulty={difficulty}
-            />
-          
-        ))}
+          <Bubble
+            key={item.name}
+            image={item.image}
+            hasArtist
+            number={idx}
+            name={item.name}
+            setScore = {updateCurrentScore}
+            playlist = {playlist}
+            songIndex = {songIndex}
+            nextSong = {nextSong}
+            difficulty={difficulty} />
+          ))}
       </div>
-
       {howler}
-
       <div
         className={showModal ? "modal show" : "modal"}
         onClick={() => setShowModal(false)} >

@@ -1,3 +1,5 @@
+//multiplayers can choose their level of difficulty as well
+
 import React from "react";
 import { Link } from "react-router-dom";
 

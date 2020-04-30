@@ -1,10 +1,14 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+//this is where users can create a challenge
+
+import React, { useContext } from "react";
 import {GameContext} from './../gameContext';
 import { Link } from "react-router-dom";
 
 const CreateGame = () => {
     const {setDiff} = useContext(GameContext);
-    const setDifficulty = (difficulty) => {
+     //checks the difficulty selected to know how many songs to play
+     //and to know the number os bubbles it will have
+    const setDifficulty = (difficulty) => { 
         setDiff(difficulty);
     };
 

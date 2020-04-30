@@ -1,17 +1,18 @@
+//this is the end game page for created challenges
+
 import React, { useState, useEffect} from "react";
 import './difficultyPage.css';
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import {GameContext} from './../gameContext';
 
-let maxScore = localStorage.getItem('winningScore');
+let maxScore = localStorage.getItem('winningScore');  //the winning score the challenger sets
 
 const ChallengeOver = () => {
-
   const {score} = useContext(GameContext);
     const [status, setStatus] = useState(null);
 
-    function getStatus(){
+    function getStatus(){  //checks to see if challenge is passed or not
       if(score >= maxScore) {
         setStatus(" You Won this Challenge! ");
       }

@@ -1,7 +1,6 @@
 // This page is the leaderboard code, it provides the ability to write to scores and usernames to Firebase and display them in leaderboard fashion.
 import firebase from "firebase";
 import React, { useState, useEffect } from "react";
-import ReactDOM from 'react-dom'
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { GameContext } from "../gameContext";
