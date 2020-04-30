@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { GameContext } from "../gameContext";
 
 const MultiplayerPage = () => {
+  
+  const {setDiff} = useContext(GameContext);
   var name1 = localStorage.getItem('playerOneName'); 
   var name2 = localStorage.getItem('playerTwoName'); 
     return (

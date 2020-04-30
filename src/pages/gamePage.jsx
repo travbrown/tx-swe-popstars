@@ -5,7 +5,6 @@ import Bubble from "./bubbleContainer.jsx";
 import "./gamePage.css";
 import { useHistory } from 'react-router-dom';
 import { Link } from "react-router-dom";
-
 import {GameContext} from './../gameContext';
 import asap_ferg from "../photos/ASAP_Ferg.png";
 import asap_rocky from "../photos/ASAP_Rocky.png";
@@ -62,8 +61,7 @@ let artistsFaces = [
 ];
 
 const GamePage = (props) => {
-  // const spotifyApi = new SpotifyWebApi();
-  const {difficulty,updateScore} = useContext(GameContext);
+  const {difficulty, updateScore, challenge_goal, mode} = useContext(GameContext);
   const history = useHistory();
   const playlist = props.location.state.playlist;
   const [bubbleLimit, setBubbleLimit] = useState(getBubbleLimit());
@@ -157,7 +155,12 @@ const GamePage = (props) => {
     <div className="App">   
       <nav class="item">
         <h2 id="username"> {name1} </h2>
-        <h2 id="subject"> SCORE: {score}</h2>
+        { mode === 'create-game'? (
+          <h2 id="subject"> SCORE: {score} / {challenge_goal}</h2>
+        ) : (
+          <h2 id="subject"> SCORE: {score} </h2>
+        )} 
+        
         <h2 id="end-btn"> <button onClick={() => setShowModal(true)} id="end">QUIT</button></h2>
       </nav>
       <div id="background-wrap">

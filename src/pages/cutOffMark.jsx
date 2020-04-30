@@ -5,7 +5,7 @@ import {GameContext} from './../gameContext';
 
 const CutOffMark = () => { 
     const history = useHistory();
-    const {difficulty} = useContext(GameContext);
+    const {difficulty, setChallengeGoal} = useContext(GameContext);
 
     const [winningScore, setWinningScore] = useState('');
     const [showModal, setShowModal] = useState(false);
@@ -14,12 +14,15 @@ const CutOffMark = () => {
     localStorage.setItem('winningScore', winningScore);
     const handleClick = () => {
         if (winningScore > markLimit) {
-            setShowModal(true)
+            setShowModal(true);
         }
         else if (isNaN(winningScore)) {
-            alert("Invalid value. Please enter a number!")
+            alert("Invalid value. Please enter a number!");
         }
-        else { history.push('/choosePlaylist');}
+        else {
+            setChallengeGoal(winningScore);
+            history.push('/choosePlaylist');
+        }
     }
     const handleName = event => setWinningScore(event.target.value);
 

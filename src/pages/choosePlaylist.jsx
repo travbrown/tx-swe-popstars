@@ -15,9 +15,9 @@ const ChoosePlaylist = () => {
     };
 
     let playlistOptions = [
-        {playlist_name: 'Popstars1', uri_hash: '4h4V4Cbn8sjznAc3uirZmK'},
-        {playlist_name: 'Popstars2', uri_hash: '2kIFfqhp98N33dhVuL7faT'},
-        {playlist_name: 'Popstars3', uri_hash: '0HPFLT1oWfmkUVqQYLyzKl'},
+        {playlist_name: 'Friday Hits', uri_hash: '4h4V4Cbn8sjznAc3uirZmK'},
+        {playlist_name: 'TechX Jam', uri_hash: '2kIFfqhp98N33dhVuL7faT'},
+        {playlist_name: 'Throwback', uri_hash: '0HPFLT1oWfmkUVqQYLyzKl'},
     ]; 
 
     return (      
@@ -32,21 +32,42 @@ const ChoosePlaylist = () => {
                     <Card>
                     <Card.Img variant="top" src= {album_one} />
                         <center> 
-                        <Card.Footer>  <Link to="/playlistGame" onClick={()=>setPlaylist(0)} class ="card_button"> Friday Hits </Link> </Card.Footer>
+                        <Card.Footer>  
+                            <Link to={{
+                                pathname: '/countdown',
+                                state: {
+                                    playlist_code: playlistOptions[0].uri_hash
+                                }
+                            }} onClick={()=>setPlaylist(0)} class ="card_button">{playlistOptions[0].playlist_name}</Link> 
+                        </Card.Footer>
                         </center>
                     </Card>
 
                     <Card>
                     <Card.Img variant="top" src= {album_two} />
                     <center> 
-                    <Card.Footer>  <Link to="/playlistGame" onClick={()=>setPlaylist(1)} class ="card_button">TechX Jam </Link> </Card.Footer>
-                        </center>
+                        <Card.Footer>  
+                            <Link to={{
+                                pathname: '/countdown',
+                                state: {
+                                    playlist_code: playlistOptions[1].uri_hash
+                                }
+                            }} onClick={()=>setPlaylist(1)} class ="card_button">{playlistOptions[1].playlist_name}</Link> 
+                        </Card.Footer>
+                    </center>
                     </Card>
                     
                     <Card>
                     <Card.Img variant="top" src= {album_three} />
                     <center> 
-                        <Card.Footer>  <Link to="/playlistGame" onClick={()=>setPlaylist(2)} class ="card_button"> Throwback </Link> </Card.Footer>
+                        <Card.Footer>  
+                            <Link to={{
+                                pathname: '/countdown',
+                                state: {
+                                    playlist_code: playlistOptions[2].uri_hash
+                                }
+                            }} onClick={()=>setPlaylist(2)} class ="card_button">{playlistOptions[2].playlist_name}</Link> 
+                        </Card.Footer>
                     </center>
                     </Card>
                     </CardDeck>

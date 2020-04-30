@@ -2,13 +2,23 @@
 import React from "react";
 import './difficultyPage.css';
 import { Link, useHistory } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import {GameContext} from './../gameContext';
 
 const GameOver = (props) => {
-    const {score} = useContext(GameContext);
-    let {differentGame} = useContext(GameContext);
-    //let score = props.location.state.finalScore;
+    const {score, mode, differentGame} = useContext(GameContext);
+
+    // useEffect( () => {
+
+
+    //   let displayText = '';
+    //   if(mode === 'create-game'){
+    //     displayText = 'CONGRATULATIONS';
+    //   }else{
+
+    //   }
+
+    // },[]);
 
     const diffGame = () =>{
       differentGame();
@@ -17,7 +27,7 @@ const GameOver = (props) => {
     return (
       <div className="App">
            <header className="App-header">
-                <h1> GAME OVER</h1>
+                <h1>GAME OVER</h1>
                 <p><p></p></p><p><p></p></p>
                 <h2> Score: {score} </h2>
                 <p><p></p></p><p><p></p></p><p><p></p></p><p><p></p></p>
