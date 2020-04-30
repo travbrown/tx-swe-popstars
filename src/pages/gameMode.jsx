@@ -8,15 +8,16 @@ import {GameContext} from './../gameContext';
 
 const GameMode = () => {
 
-  const {setAccessToken} = useContext(GameContext);
-  function getParameterByName(name) {
-    let match = RegExp('[#&]' + name + '=([^&]*)').exec(window.location.hash);
-    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
-  }
+  const {setAccessToken,setMode} = useContext(GameContext);
+    function getParameterByName(name) {
+      var match = RegExp('[#&]' + name + '=([^&]*)').exec(window.location.hash);
+      return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+    }
       
-  function getAccessToken() {
-    return getParameterByName('access_token');
-  }
+    function getAccessToken() {
+      return getParameterByName('access_token');
+    }
+
 
   function _setAccessToken(){
     let accessToken = getAccessToken();
@@ -24,23 +25,11 @@ const GameMode = () => {
       setAccessToken(accessToken);
     }
   }
-    
-  function MultiPName(){//Made a component for the button that goes to the name input of a multiplayer game 
-      const history = useHistory();
-
-      const handleClick = () => {
-        _setAccessToken();
-        history.push("/multiplayerNames"); //on click, this button navigates to the name input page 
-      };
-      
-      localStorage.setItem('multiplayer', handleClick);
-    
-    return (
-      <button class= "active_button" onClick={handleClick}>
-        MultiPlayer
-      </button>
-      );
-    }
+  const handleClick = (mode) => {
+    _setAccessToken();
+    localStorage.setItem('multiplayer', handleClick);
+    setMode(mode);
+  };
     
     return (      
       <div className="App">
@@ -48,12 +37,12 @@ const GameMode = () => {
           <h2 id="subject-no-user">Game Mode</h2>
         </nav>
         <header>
-          <div className="centerItems">
-            <Link to="/singleplayerName" onClick={_setAccessToken} class= "active_button"> Single Player</Link>
+        <div className="centerItems">
+            <Link to="/singleplayerName" onClick={()=>handleClick('single-player')} class= "active_button"> Single Player</Link>
+            <p></p> 
+            <Link to="/multiplayerNames" onClick={()=>handleClick('multiplayer')} class="active_button">MultiPlayer</Link>
             <p></p>
-            <MultiPName/>  
-            <p></p>
-            <Link to="/createGame" onClick={_setAccessToken} class= "active_button">Create A Game</Link>    
+            <Link to="/createGame" onClick={()=>handleClick('create-game')} class= "active_button">Create A Game</Link>    
           </div>
         </header>
       </div>

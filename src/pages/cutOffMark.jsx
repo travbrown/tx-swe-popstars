@@ -6,7 +6,7 @@ import {GameContext} from './../gameContext';
 
 const CutOffMark = () => { 
     const history = useHistory();
-    const {difficulty} = useContext(GameContext);
+    const {difficulty, setChallengeGoal} = useContext(GameContext);
     const [winningScore, setWinningScore] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [markLimit, setMarkLimit] = useState(getMarkLimit());
@@ -16,12 +16,15 @@ const CutOffMark = () => {
         //if statemnet to check if users enter a valid input 
         //i.e challengers can only enter a number less than or equal to the markLimit
         if (winningScore > markLimit) {
-            setShowModal(true)
+            setShowModal(true);
         }
         else if (isNaN(winningScore)) {
-            alert("Invalid value. Please enter a number!")
+            alert("Invalid value. Please enter a number!");
         }
-        else { history.push('/choosePlaylist');}
+        else {
+            setChallengeGoal(winningScore);
+            history.push('/choosePlaylist');
+        }
     }
     
     const handleName = event => setWinningScore(event.target.value);

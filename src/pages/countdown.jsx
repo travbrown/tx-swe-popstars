@@ -7,7 +7,9 @@ import {GameContext} from './../gameContext';
 import './countdown.css';
 import {Link, useHistory} from 'react-router-dom';
 
-const CountdownPage = () => {
+
+const CountdownPage = (props) => {
+    const {access_token, playlist_code, mode } = useContext(GameContext);
     const FULL_DASH_ARRAY = 3000;
     const WARNING_THRESHOLD = 5;
     const ALERT_THRESHOLD = 3;
@@ -29,14 +31,21 @@ const CountdownPage = () => {
     const TIME_LIMIT = 5;  //timer is set for 5 seconds
     let remainingPathColor = COLOR_CODES.info.color;
     useEffect(() => {
-      getPlaylist();
+      let hash = '';
+      if(mode === 'create-game'){
+        hash = props.location.state.playlist_code;
+      }else{
+        hash = playlist_code;
+      }
+      getPlaylist(hash);
     }, []);
 
     const [timeLeft, setTimeLeft] = useState(TIME_LIMIT);
     let history = useHistory();
     const spotifyApi = new SpotifyWebApi();
     const [playlistobject, setPlaylistObject] = useState(null);
-    const {setPlaylist, access_token, playlist_code } = useContext(GameContext);
+    
+
     const shuffle = array => {
       for (let i = array.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
@@ -59,11 +68,12 @@ const CountdownPage = () => {
       return () => clearInterval(interval);
     }, [timeLeft, setCircleDasharray, setRemainingPathColor]);
   
-    const getPlaylist = async () => {
+    const getPlaylist = async (hash) => {
       let playlist = null;
       try {
         spotifyApi.setAccessToken(access_token);
-        playlist = await spotifyApi.getPlaylistTracks(playlist_code);
+        console.log('hash:', hash);
+        playlist = await spotifyApi.getPlaylistTracks(hash);
         let foundSongs = [];
         for (const item of playlist.items) {
           if (item.track.preview_url == null) continue;

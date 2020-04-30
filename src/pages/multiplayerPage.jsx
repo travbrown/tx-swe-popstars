@@ -2,10 +2,14 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { GameContext } from "../gameContext";
 
 const MultiplayerPage = () => {
-  let name1 = localStorage.getItem('playerOneName'); 
-  let name2 = localStorage.getItem('playerTwoName'); 
+  
+  const {setDiff} = useContext(GameContext);
+  var name1 = localStorage.getItem('playerOneName'); 
+  var name2 = localStorage.getItem('playerTwoName'); 
     return (
         <div className="App">
           <nav class="item">
