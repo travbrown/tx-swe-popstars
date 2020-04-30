@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import ReactHowler from "react-howler";
 import SpotifyWebApi from "spotify-web-api-js";
-import DisplayScore from "./displayScore.jsx";
 import Bubble from "./bubbleContainer.jsx";
 import "./gamePage.css";
 import { useHistory } from 'react-router-dom';
@@ -47,27 +46,26 @@ let artistsFaces = [
     { name: "Beyoncé", image: beyonce },
     { name: "DaVido", image: davido },
     { name: "Justin Bieber", image: Justin_beiber },
-    // { name: "Lizzo", image: lizzo },
-    // { name: "Rihanna", image: rihanna },
-    // { name: "Wiz Khalifa", image: wiz_khalifa },
-    // { name: "Megan Thee Stallion", image: megan_thee_stallion },
-    // { name: "Michael Jackson", image: michael_jackson },
-    // { name: "Skepta", image: skepta },
-    // { name: "Post Malone", image: post_malone },
-    // { name: "XXXTENTACION", image: XXXTentacion },
-    // { name: "Burna Boy", image: burnaboy },
-    // { name: "Chris Brown", image: chris_brown },
-    // { name: "Vybz Kartel", image: vybz_kartel },
-    // { name: "Selena Gomez", image: selena_gomez },
-    // { name: "Eminem", image: eminem },
+    { name: "Lizzo", image: lizzo },
+    { name: "Rihanna", image: rihanna },
+    { name: "Wiz Khalifa", image: wiz_khalifa },
+    { name: "Megan Thee Stallion", image: megan_thee_stallion },
+    { name: "Michael Jackson", image: michael_jackson },
+    { name: "Skepta", image: skepta },
+    { name: "Post Malone", image: post_malone },
+    { name: "XXXTENTACION", image: XXXTentacion },
+    { name: "Burna Boy", image: burnaboy },
+    { name: "Chris Brown", image: chris_brown },
+    { name: "Vybz Kartel", image: vybz_kartel },
+    { name: "Selena Gomez", image: selena_gomez },
+    { name: "Eminem", image: eminem },
 ];
 
 const GamePage = (props) => {
-  const spotifyApi = new SpotifyWebApi();
+  // const spotifyApi = new SpotifyWebApi();
   const {difficulty,updateScore} = useContext(GameContext);
   const history = useHistory();
   const playlist = props.location.state.playlist;
-
   const [bubbleLimit, setBubbleLimit] = useState(getBubbleLimit());
   const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(setSongLimit());
 	const [songIndex, setSongIndex] = useState(0);
@@ -75,18 +73,15 @@ const GamePage = (props) => {
   const [score, setScore] = useState(0);
   
   const ref = useRef(null);
-  const wrapperSetScore = delta => {
-      ref.current.addToScore(delta);
-   };
+  // const wrapperSetScore = delta => {
+  //     ref.current.addToScore(delta);
+  //  };
 
    useEffect(()=>{
      localStorage.setItem('score', 0);
    },[]);
-   //let score = localStorage.getItem('score');
 
    const updateCurrentScore = delta => {
-    // console.log(typeof(delta),'----' ,typeof(score) );
-    // localStorage.setItem('score', parseInt(score) + delta);
     setScore(score+delta);
   }; 
 
@@ -120,8 +115,6 @@ const GamePage = (props) => {
   }
 
   const ensureCorrectArtistGetsBubbled = () => {
-    console.log(artistsFaces)
-    console.log(playlist)
     for (let i = bubbleLimit; i < artistsFaces.length; i++) {
       console.log(playlist);
       console.log(artistsFaces);
@@ -133,9 +126,9 @@ const GamePage = (props) => {
     }
   }
 
-  const resetScore = () => {
-    localStorage.setItem('score',0);
-  }
+  // const resetScore = () => {
+  //   localStorage.setItem('score',0);
+  // }
 
 	const nextSong = () => {
     shuffle(artistsFaces);
@@ -177,7 +170,6 @@ const GamePage = (props) => {
               hasArtist
               number={idx}
               name={item.name}
-              // score={score}
               setScore = {updateCurrentScore}
               playlist = {playlist}
               songIndex = {songIndex}
@@ -193,7 +185,6 @@ const GamePage = (props) => {
       <div
         className={showModal ? "modal show" : "modal"}
         onClick={() => setShowModal(false)} >
-          
         <div id="modalContainer">
           <h1>Are you sure you want to quit?</h1>
           <button id="cancel"><a id='cancel' href= '#'> CANCEL </a></button>

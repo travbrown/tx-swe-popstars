@@ -44,7 +44,6 @@ export default function App() {
             <Route exact path="/createGame" component ={CreateGame} />
             <Route exact path="/cutOffMark" component={CutOffMark} />
             <Route exact path="/choosePlaylist" component={ChoosePlaylist} />
-
             <Route exact path="/challengeOver" component={ChallengeOver}/>
             <Route exact path="/difficultyPage" component={DifficultyPage} />
             <Route exact path="/countdown" component={CountdownPage} />
@@ -60,7 +59,6 @@ export default function App() {
             <Route exact path="/multiplayerNames" component={NameOneInput} />
             <Route exact path="/gameOver" component ={GameOver} />
             <Route exact path="/singleplayerName" component={SinglePlayerInput} />
-            
             </GameContextProvider>
           </Switch>
         </Router>

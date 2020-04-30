@@ -56,8 +56,6 @@ const CountdownPage = () => {
       }
       return () => clearInterval(interval);
     }, [timeLeft, setCircleDasharray, setRemainingPathColor]);
-
-    
   
     const getPlaylist = async () => {
       let playlist = null;

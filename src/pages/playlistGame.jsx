@@ -64,19 +64,21 @@ const PlaylistGame = () => {
   const spotifyApi = new SpotifyWebApi();
   const {difficulty, access_token, playlist_code } = useContext(GameContext);
   const history = useHistory();
-
-	const [playlist, setPlaylist] = useState(null);
+  const playlist = props.location.state.playlist;
+	// const [playlist, setPlaylist] = useState(null);
   const [bubbleLimit, setBubbleLimit] = useState(getBubbleLimit());
   const [limitOfSongsToPlay, setlimitOfSongsToPlay] = useState(setSongLimit());
   const [songIndex, setSongIndex] = useState(0);
   const [score, setScore] = useState(0);
 
-	//const [showModal, setShowModal] = useState(false);
-
   const ref = useRef(null);
   const wrapperSetScore = delta => {
       ref.current.addToScore(delta);
   };
+
+  useEffect(()=>{
+    localStorage.setItem('score', 0);
+  },[]);
 
   const updateCurrentScore = delta => {
     setScore(score+delta);
@@ -121,10 +123,16 @@ const PlaylistGame = () => {
     }
   }
 
+  // const resetScore = () => {
+  //   localStorage.setItem('score',0);
+  // }
+
 	const nextSong = () => {
     shuffle(artistsFaces);
     if (songIndex === playlist.length - 1 || songIndex === limitOfSongsToPlay - 1) {
-      history.push("/challengeOver");
+      updateScore(score);
+      history.push("/gameOver");
+      
     }
     setSongIndex(songIndex + 1);
   };
@@ -132,8 +140,6 @@ const PlaylistGame = () => {
   useEffect(() => {
     getPlaylist();
   }, []);
-
-
 
   const getPlaylist = async () => {
     let playlist = null;
@@ -166,16 +172,11 @@ const PlaylistGame = () => {
       <ReactHowler
         src={playlist[songIndex].prev_url}
         format={["mp3", "aac"]}
-        onEnd={nextSong}
-      />
-    );
+        onEnd={nextSong} />
+  );
   
-    //var score = <DisplayScore ref={ref} />;
-    var maxScore = localStorage.getItem('winningScore');
- 
-  console.log(artistsFaces);
-  console.log(playlist);
- 
+  var maxScore = localStorage.getItem('winningScore');
+
   return (
     <div className="App">   
       <nav class="item">

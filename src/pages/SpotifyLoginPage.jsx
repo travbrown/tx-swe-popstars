@@ -5,12 +5,9 @@ import '../App.css';
 export const authEndpoint = 'https://accounts.spotify.com/authorize?';
 
 const SpotifyLoginPage = () => {
-  //Lauren's
-  //const clientId = "d686743392b64810a7a8c2b5d56bf5c6";
-
-  //Travis
   const clientId = "6ba9b22fdb4e467197055100a53c4a90";
-  const redirectUri = "https://popstars-76cdd.firebaseapp.com/gameMode";
+  //const redirectUri = "https://popstars-76cdd.firebaseapp.com/gameMode";
+  const redirectUri = "http://localhost:3000/gameMode";
 
   const scopes = [
     "user-read-currently-playing",

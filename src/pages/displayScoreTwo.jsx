@@ -1,25 +1,12 @@
-// import React, { useState, useEffect, forwardRef, useImperativeHandle } from "react";
+import React, { useEffect} from "react";
 
-// const DisplayScoreTwo =
-// forwardRef((ref) => {
-//   const [scoreTwo, setScoreTwo] = useState(0);
-
-//   localStorage.setItem("scoreTwo", scoreTwo);
-
-//   const addToScoreTwo = (delta) => {
-//     setScoreTwo(scoreTwo + delta);
-//   }
-
-//   useImperativeHandle(ref, () => {
-//     return {
-//       addToScoreTwo: addToScoreTwo
-//     };
-//   });
-
-//   return (
-//     <span> {scoreTwo} </span> 
-//   );
-
-// });
-
-// export default DisplayScoreTwo;
+const DisplayScoreTwo = ({scoreTwo}) => {
+  useEffect(() =>{
+    localStorage.setItem("scoreTwo", scoreTwo);
+  },[scoreTwo]);
+  
+  return (
+    <span> {scoreTwo} </span> 
+  );
+}
+export default DisplayScoreTwo;

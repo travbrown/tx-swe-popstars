@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const Bubble = (props) => {
     const [clicked, setClicked] = useState(false);
@@ -14,7 +14,6 @@ const Bubble = (props) => {
     };
    
     return (
-      
       <div
         class={`bubble x${props.number}`}
         style={{ display: clicked ? "none" : "flex" }}
