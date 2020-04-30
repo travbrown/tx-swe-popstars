@@ -7,7 +7,7 @@ import {GameContext} from './../gameContext';
 const TimeUp2 = () => {
 
   const {score} = useContext(GameContext);
-  const {score2} = useContext(GameContext);
+  const {scoreTwo} = useContext(GameContext);
   //var score1 = localStorage.getItem('score'); 
   //var score2 = localStorage.getItem('scoreTwo'); 
 
@@ -17,13 +17,13 @@ const TimeUp2 = () => {
   const [declareWinner, setDeclareWinner] = useState(null);
 
   function getWinner(){
-    if(score > score2) {
+    if(score > scoreTwo) {
       setDeclareWinner(name1 + " wins with a total score of " + score + " points!");
     }
-    else if(score2 > score) {
-      setDeclareWinner(name2 + " wins with a total score of " + score2 + " points!");
+    else if(scoreTwo > score) {
+      setDeclareWinner(name2 + " wins with a total score of " + scoreTwo + " points!");
     }
-    else if (score2 === score){
+    else if (scoreTwo === score){
       setDeclareWinner("It's a tie!");
     }
   }
@@ -36,7 +36,7 @@ const TimeUp2 = () => {
     <div className="App">
       <header className="App-header">
         <h1> TIME'S UP!</h1>
-        <h2> Score: {score2} </h2>
+        <h2> Score: {scoreTwo} </h2>
         <p></p> <p></p>
         <h1> {declareWinner} </h1>
         <p></p> <p></p><p></p> <p></p>

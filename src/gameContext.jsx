@@ -148,6 +148,7 @@ const GameContextProvider = ({children}) => {
             username2: state.username2,
             mode: state.mode,
             score: state.score,
+            scoreTwo: state.scoreTwo,
             difficulty: state.difficulty,
             access_token: state.access_token,
             playlist_code: state.playlist_code,
