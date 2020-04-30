@@ -108,19 +108,19 @@ const PlayerTwoGame = (props) => {
       }
   };
 
-  function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
-  }
+  // function getRandomInt(max) {
+  //   return Math.floor(Math.random() * Math.floor(max));
+  // }
 
-  const ensureCorrectArtistGetsBubbled = () => {
-    for (let i = bubbleLimit; i < artistsFaces.length; i++) {
-      if(artistsFaces[i].name === playlist[songIndex].artist_name){
-        let num = getRandomInt(bubbleLimit);
-        [artistsFaces[i], artistsFaces[num]] = [artistsFaces[num], artistsFaces[i]];
-        break;
-      }
-    }
-  }
+  // const ensureCorrectArtistGetsBubbled = () => {
+  //   for (let i = bubbleLimit; i < artistsFaces.length; i++) {
+  //     if(artistsFaces[i].name === playlist[songIndex].artist_name){
+  //       let num = getRandomInt(bubbleLimit);
+  //       [artistsFaces[i], artistsFaces[num]] = [artistsFaces[num], artistsFaces[i]];
+  //       break;
+  //     }
+  //   }
+  // }
 
   const nextSong = () => {
     shuffle(artistsFaces);
@@ -143,7 +143,7 @@ const PlayerTwoGame = (props) => {
 
     let name2 = localStorage.getItem('playerTwoName'); 
     shuffle(artistsFaces);
-    ensureCorrectArtistGetsBubbled();
+    //ensureCorrectArtistGetsBubbled();
   
   return (
     <div className="App">

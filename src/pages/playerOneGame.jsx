@@ -109,18 +109,18 @@ const PlayerOneGame = (props) => {
       }
   };
 
-  function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
-  }
+  // function getRandomInt(max) {
+  //   return Math.floor(Math.random() * Math.floor(max));
+  // }
 
-  const ensureCorrectArtistGetsBubbled = () => {
-    for (let i = bubbleLimit; i < artistsFaces.length; i++) {
-      if(artistsFaces[i].name === playlist[songIndex].artist_name){
-        let num = getRandomInt(bubbleLimit);
-        [artistsFaces[i], artistsFaces[num]] = [artistsFaces[num], artistsFaces[i]];
-        break;
-      }
-  }
+  // const ensureCorrectArtistGetsBubbled = () => {
+  //   for (let i = bubbleLimit; i < artistsFaces.length; i++) {
+  //     if(artistsFaces[i].name === playlist[songIndex].artist_name){
+  //       let num = getRandomInt(bubbleLimit);
+  //       [artistsFaces[i], artistsFaces[num]] = [artistsFaces[num], artistsFaces[i]];
+  //       break;
+  //     }
+  // }
 
   const nextSong = () => {
     shuffle(artistsFaces);
@@ -144,7 +144,7 @@ const PlayerOneGame = (props) => {
 
     let name1 = localStorage.getItem('name1'); 
     shuffle(artistsFaces);
-    ensureCorrectArtistGetsBubbled();
+    //ensureCorrectArtistGetsBubbled();
   
   return (
     <div className="App">
@@ -173,5 +173,5 @@ const PlayerOneGame = (props) => {
     </div>
   );
 };
-}
+
 export default PlayerOneGame;
