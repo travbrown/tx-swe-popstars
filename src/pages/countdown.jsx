@@ -9,7 +9,7 @@ import {Link, useHistory} from 'react-router-dom';
 
 
 const CountdownPage = (props) => {
-    const {access_token, playlist_code, mode } = useContext(GameContext);
+    const {access_token, playlist_code } = useContext(GameContext);
     const FULL_DASH_ARRAY = 3000;
     const WARNING_THRESHOLD = 5;
     const ALERT_THRESHOLD = 3;
@@ -30,14 +30,9 @@ const CountdownPage = (props) => {
   
     const TIME_LIMIT = 5;  //timer is set for 5 seconds
     let remainingPathColor = COLOR_CODES.info.color;
+    
     useEffect(() => {
-      let hash = '';
-      if(mode === 'create-game'){
-        hash = props.location.state.playlist_code;
-      }else{
-        hash = playlist_code;
-      }
-      getPlaylist(hash);
+      getPlaylist();
     }, []);
 
     const [timeLeft, setTimeLeft] = useState(TIME_LIMIT);
@@ -72,8 +67,8 @@ const CountdownPage = (props) => {
       let playlist = null;
       try {
         spotifyApi.setAccessToken(access_token);
-        console.log('hash:', hash);
-        playlist = await spotifyApi.getPlaylistTracks(hash);
+        //console.log('hash:', hash);
+        playlist = await spotifyApi.getPlaylistTracks(playlist_code);
         let foundSongs = [];
         for (const item of playlist.items) {
           if (item.track.preview_url == null) continue;
