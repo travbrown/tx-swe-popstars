@@ -67,7 +67,6 @@ const CountdownPage = (props) => {
       let playlist = null;
       try {
         spotifyApi.setAccessToken(access_token);
-        //console.log('hash:', hash);
         playlist = await spotifyApi.getPlaylistTracks(playlist_code);
         let foundSongs = [];
         for (const item of playlist.items) {
