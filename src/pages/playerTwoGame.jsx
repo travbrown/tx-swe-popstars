@@ -126,7 +126,7 @@ const PlayerTwoGame = (props) => {
     shuffle(artistsFaces);
     if (songIndex === playlist.length - 1 || songIndex === limitOfSongsToPlay - 1) {
       updateScoreTwo(scoreTwo);
-      history.push("/timeUp2");
+      history.push("/gameOver");
       
     }
     setSongIndex(songIndex + 1);

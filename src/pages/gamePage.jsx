@@ -117,7 +117,7 @@ const GamePage = (props) => {
       }
     }
   }
-
+  
 	const nextSong = () => {
     shuffle(artistsFaces);  //shuffles the artists when the next song is played
     if (songIndex === playlist.length - 1 || songIndex === limitOfSongsToPlay - 1) {
