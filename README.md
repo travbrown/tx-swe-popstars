@@ -1,3 +1,4 @@
+![](https://raw.githubusercontent.com/travbrown/tx-swe-popstars/master/src/popstarslogo.png)
 # Pop Stars
 
 A Music Web Game App using the Spotify API
