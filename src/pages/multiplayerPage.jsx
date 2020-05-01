@@ -22,9 +22,9 @@ const MultiplayerPage = () => {
         <div className="centerItems">
         <Link to="/playerOne" onClick={()=>setDifficulty('easy')} class= "active_button"> Easy</Link>
         <p></p>
-        <Link to="/playerOne" onClick={()=>setDifficulty('easy')} class= "active_button"> Medium</Link>
+        <Link to="/playerOne" onClick={()=>setDifficulty('medium')} class= "active_button"> Medium</Link>
         <p></p>
-        <Link to="/playerOne" onClick={()=>setDifficulty('easy')} class= "active_button"> Hard</Link>
+        <Link to="/playerOne" onClick={()=>setDifficulty('hard')} class= "active_button"> Hard</Link>
         <p></p><p></p>
 
         <Link to="/difficultyPage" class= "default_button"> Back</Link>  
