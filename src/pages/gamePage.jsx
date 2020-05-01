@@ -1,4 +1,4 @@
-//game page- users click on bubbles as the music playes and scores update accordingly
+//game page- 
 
 import React, { useState, useEffect, useRef, useContext } from "react";
 import ReactHowler from "react-howler";
@@ -60,6 +60,17 @@ let artistsFaces = [
     { name: "Selena Gomez", image: selena_gomez },
     { name: "Eminem", image: eminem },
 ];
+
+/**
+ * Users click on bubbles as the music plays and scores update accordingly
+ * 
+ * @todo Ensure the correct gets put in a bubble for display
+ * @todo if wrong artist is clicked, only that bubble should vanish
+ *        this issue was fixed but the other implementation caused huge problems
+ *         so we decided to go keep the version with this issue.
+ *          we did not have enough time to fix it again.
+ * @param {*} props 
+ */
 
 const GamePage = (props) => {
   const {difficulty, updateScore, challenge_goal, mode} = useContext(GameContext);
@@ -139,6 +150,7 @@ const GamePage = (props) => {
   
 	let name1 = localStorage.getItem('name1'); 
   shuffle(artistsFaces);
+  
   ensureCorrectArtistGetsBubbled();
 
   return (

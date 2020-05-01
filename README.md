@@ -20,4 +20,5 @@ Live website: https://popstars-76cdd.firebaseapp.com/gameMode
 > npm install
 > In src/pages/SpotifyLoginPage, change the redirectUri to the localhost link commented out
 
+
 Created by: Latifat Ozoya, Lauren Fraser, Tariq Thomas, Travis Brown
