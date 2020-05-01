@@ -79,7 +79,7 @@ const GamePage = (props) => {
     setScore(score+delta);
   }; 
 
-   function getBubbleLimit(){       //the harder the difficulty the more the bubbles
+  function getBubbleLimit(){       //the harder the difficulty the more the bubbles
     if(difficulty === 'medium'){
       return 20;
     } else if (difficulty === 'hard'){
@@ -174,7 +174,6 @@ const GamePage = (props) => {
         onClick={() => setShowModal(false)} >
         <div id="modalContainer">
           <h1>Are you sure you want to quit?</h1>
-          <button id="cancel"><a id='cancel' href= '#'> CANCEL </a></button>
 				  <Link id='cancel' onClick={()=>updateScore(score)} to='/gameOver'><button id='end'> QUIT </button></Link>
         </div>
       </div>

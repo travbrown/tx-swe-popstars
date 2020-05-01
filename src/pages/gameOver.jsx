@@ -68,9 +68,9 @@ const GameOver = () => {
                 <p></p>
                 <h1> {status} </h1>
                 <p><p></p></p><p><p></p></p><p><p></p></p><p><p></p></p>
-                <Link to="/playlistOne" class= "active_button"> PLAY AGAIN</Link>
+                <Link to="/countdown" class= "active_button"> PLAY AGAIN</Link>
                 <p></p> <p></p>
-                <Link to="/gameMode" class= "default_button"> HOME</Link> 
+                <Link to="/gameMode" onClick={diffGame} class= "default_button"> HOME</Link> 
                </>
             }
 
@@ -82,9 +82,8 @@ const GameOver = () => {
                 <h1> {declareWinner} </h1>
                 <p></p> <p></p><p></p> <p></p>
                 <p></p> <p></p><p></p> <p></p>
-                <Link to="/gameMode" class= "active_button"> HOME </Link> 
+                <Link to="/gameMode" onClick={diffGame} class= "active_button"> HOME </Link> 
               </>
-
             }              
           </header>
         </div>

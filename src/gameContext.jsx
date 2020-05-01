@@ -7,7 +7,6 @@ let initialState = {
     mode:'',
     score:0,
     scoreTwo: 0,
-    playlist:null,
     difficulty:'',
     access_token: '',
     playlist_code: '4h4V4Cbn8sjznAc3uirZmK',
@@ -23,7 +22,8 @@ const reducer = (state, action) => {
                 ...state,
                 username1:'',
                 username2:'',
-                playlist: null,
+                score:0,
+                scoreTwo: 0,
                 mode:'',
                 difficulty:'',
                 playlist_code: '4h4V4Cbn8sjznAc3uirZmK',
@@ -35,8 +35,6 @@ const reducer = (state, action) => {
             return {...state, scoreTwo: action.payload };
         case "set-diff":
             return {...state, difficulty: action.payload };
-        case "set-playlist":
-            return {...state, playlist: action.payload };
         case "set-username1":
             return {...state, username1: action.payload };
         case "set-username2":
@@ -84,13 +82,6 @@ const GameContextProvider = ({children}) => {
             payload: scoreTwo,
         });
     }
-
-    const setPlaylist = (value) => {
-        dispatch({
-            type: "set-playlist",
-            payload: value,
-        });
-    };
 
     const setDiff = (value) => {
         dispatch({
@@ -158,7 +149,6 @@ const GameContextProvider = ({children}) => {
             setDiff,
             updateScore,
             updateScoreTwo,
-            setPlaylist,
             setAccessToken,
             setPlaylistCode,
             setChallengeGoal,
