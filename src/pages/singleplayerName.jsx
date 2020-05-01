@@ -2,14 +2,19 @@
 
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useContext } from 'react';
+import { GameContext } from '../gameContext';
 
 const SinglePlayerInput = () => {
+    const {setUsername1} = useContext(GameContext);
+
     const history = useHistory();
+    
     const handleClick = () => {
+        setUsername1(name1);
         history.push("/difficultyPage");
     }
     const [name1, setName1] = useState('');
-    localStorage.setItem('name1', name1)
     const handleName1 = event => setName1(event.target.value);
     
     return (

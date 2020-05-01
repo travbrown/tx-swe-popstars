@@ -74,14 +74,14 @@ const GameContextProvider = ({children}) => {
             type: "updateScore",
             payload: score,
         });
-    }
+    };
 
     const updateScoreTwo = (scoreTwo) => {
         dispatch({
             type: "updateScoreTwo",
             payload: scoreTwo,
         });
-    }
+    };
 
     const setDiff = (value) => {
         dispatch({

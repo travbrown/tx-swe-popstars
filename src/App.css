@@ -74,6 +74,12 @@ ul.top li {
   transform: translateY(-95px);
 }
 
+#end-challenge-btn{
+  position: absolute;  
+  left:75%; 
+  transform: translateY(-33px);
+}
+
 #correctImg{
   background-color: transparent;
 }

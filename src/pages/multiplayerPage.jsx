@@ -6,15 +6,13 @@ import { useContext } from "react";
 import { GameContext } from "../gameContext";
 
 const MultiplayerPage = () => {
-  const {setDiff} = useContext(GameContext);
+  const {setDiff, username1, username2} = useContext(GameContext);
   const setDifficulty = (diff) => { setDiff(diff); };
   
-  var name1 = localStorage.getItem('playerOneName'); 
-  var name2 = localStorage.getItem('playerTwoName'); 
   return (
     <div className="App">
       <nav class="item">
-        <h2 id="username"> {name1} / {name2} </h2>
+        <h2 id="username"> {username1} / {username2} </h2>
         <h2 id="subject"> Difficulty </h2>
       </nav>
     

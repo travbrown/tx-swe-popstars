@@ -73,7 +73,7 @@ let artistsFaces = [
  */
 
 const GamePage = (props) => {
-  const {difficulty, updateScore, challenge_goal, mode} = useContext(GameContext);
+  const {difficulty, updateScore, challenge_goal, mode, username1} = useContext(GameContext);
   const history = useHistory();
   const playlist = props.location.state.playlist;
   const [bubbleLimit, setBubbleLimit] = useState(getBubbleLimit());
@@ -148,7 +148,6 @@ const GamePage = (props) => {
       />
     );
   
-	let name1 = localStorage.getItem('name1'); 
   shuffle(artistsFaces);
   
   ensureCorrectArtistGetsBubbled();
@@ -156,14 +155,18 @@ const GamePage = (props) => {
   return (
     <div className="App">   
       <nav class="item">
-        <h2 id="username"> {name1} </h2>
         { mode === 'create-game'? (
-          <h2 id="subject"> SCORE: {score} / {challenge_goal}</h2>
+          <>
+            <h2 id="subject-no-user"> SCORE: {score} / {challenge_goal}</h2>
+            <h2 id="end-challenge-btn"> <button onClick={() => setShowModal(true)} id="end">QUIT</button></h2>
+          </>
         ) : (
-          <h2 id="subject"> SCORE: {score} </h2>
-        )} 
-        
-        <h2 id="end-btn"> <button onClick={() => setShowModal(true)} id="end">QUIT</button></h2>
+          <>
+            <h2 id="username"> {username1} </h2>
+            <h2 id="subject"> SCORE: {score} </h2>
+            <h2 id="end-btn"> <button onClick={() => setShowModal(true)} id="end">QUIT</button></h2>
+          </>
+        )}     
       </nav>
       <div id="background-wrap">
         {artistsFaces.slice(0,bubbleLimit).map((item, idx) => (

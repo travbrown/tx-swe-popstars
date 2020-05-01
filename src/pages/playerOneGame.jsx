@@ -62,7 +62,7 @@ let artistsFaces = [
 ];
 
 const PlayerOneGame = (props) => {
-    const {difficulty,updateScore} = useContext(GameContext);    
+    const {difficulty,updateScore,username1} = useContext(GameContext);    
     const history = useHistory();
     const playlist = props.location.state.playlist;
     const [bubbleLimit, setBubbleLimit] = useState(getBubbleLimit());
@@ -136,14 +136,13 @@ const PlayerOneGame = (props) => {
       />
     );
 
-    let name1 = localStorage.getItem('name1'); 
     shuffle(artistsFaces);
     //ensureCorrectArtistGetsBubbled();
   
   return (
     <div className="App">
       <nav class="item">
-        <h2 id="username"> {name1}</h2>
+        <h2 id="username"> {username1}</h2>
         <h2 id="subject"> SCORE: {score} </h2>
       </nav>
 

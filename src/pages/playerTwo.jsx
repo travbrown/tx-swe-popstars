@@ -36,7 +36,7 @@ const PlayerTwoPage = () => {
     let history = useHistory();
     const spotifyApi = new SpotifyWebApi();
     const [playlistobject, setPlaylistObject] = useState(null);
-    const {setPlaylist, access_token, playlist_code } = useContext(GameContext);
+    const {username2, access_token, playlist_code } = useContext(GameContext);
     const shuffle = array => {
       for (let i = array.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
@@ -122,13 +122,11 @@ const PlayerTwoPage = () => {
         .getElementById("base-timer-path-remaining")
         .setAttribute("stroke-dasharray", circleDasharray);
     }    
-    
-    var name2 = localStorage.getItem('playerTwoName'); //gets player two's name
-    
+        
     return (
       <div className="App">
         <nav class="item">
-          <h2 id="username"> {name2} </h2>
+          <h2 id="username"> {username2} </h2>
           <h2 id="subject"> Get Ready </h2>
         </nav>  
         <div className="centerItems">

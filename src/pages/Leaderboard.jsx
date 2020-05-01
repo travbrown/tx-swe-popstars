@@ -8,14 +8,13 @@ import { GameContext } from "../gameContext";
 export default function Leaderboard(){
   
 //these three variables are responsible for storing the score(userscore), and name(name) variables, as well as containing a query to sort scores (leader)
-    const {score} = useContext(GameContext);
+    const {score,username1} = useContext(GameContext);
     let leader = firebase.firestore().collection("Users").where("Score",">", 0).orderBy("Score","desc").limit(10);
     let userScore = score;
-    let name = localStorage.getItem("name1");
 
     //This function provides the code for writing the name and score to Firebase under the "Users" collection.
 
-    firebase.firestore().collection("Users").doc("" + name + "")
+    firebase.firestore().collection("Users").doc("" + username1 + "")
     .set({ Score : userScore })
     .then(function() {
         console.log("Document successfully written!");

@@ -61,7 +61,7 @@ let artistsFaces = [
 
 const PlayerTwoGame = (props) => {
   //const spotifyApi = new SpotifyWebApi();
-    const {difficulty,updateScoreTwo} = useContext(GameContext);    
+    const {difficulty,username2,updateScoreTwo} = useContext(GameContext);    
     const history = useHistory();
     const playlist = props.location.state.playlist;
     //const [playlist, setPlaylist] = useState(null);
@@ -141,14 +141,13 @@ const PlayerTwoGame = (props) => {
       />
     );
 
-    let name2 = localStorage.getItem('playerTwoName'); 
     shuffle(artistsFaces);
     //ensureCorrectArtistGetsBubbled();
   
   return (
     <div className="App">
       <nav class="item">
-        <h2 id="username"> {name2}</h2>
+        <h2 id="username"> {username2}</h2>
         <h2 id="subject"> SCORE: {scoreTwo} </h2>
       </nav>
 

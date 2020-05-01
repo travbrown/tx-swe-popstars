@@ -9,7 +9,7 @@ import {Link, useHistory} from 'react-router-dom';
 
 
 const CountdownPage = (props) => {
-    const {access_token, playlist_code } = useContext(GameContext);
+    const {access_token, playlist_code, username1, mode } = useContext(GameContext);
     const FULL_DASH_ARRAY = 3000;
     const WARNING_THRESHOLD = 5;
     const ALERT_THRESHOLD = 3;
@@ -127,13 +127,17 @@ const CountdownPage = (props) => {
         .setAttribute("stroke-dasharray", circleDasharray);
     }    
 
-    let name1 = localStorage.getItem('name1'); //gets player one's name
-
     return (
       <div className="App">
          <nav class="item">
-           <h2 id="username"> {name1} </h2>
-            <h2 id="subject-getready">Get Ready</h2>
+            { mode !== 'create-game'? (
+              <>
+                <h2 id="username"> {username1} </h2>
+                <h2 id="subject-getready">Get Ready</h2>
+              </>
+            ):(
+              <h2 id="subject-getready-no-user">Get Ready</h2>
+            )}
           </nav>
       
           <div class="centerItems">

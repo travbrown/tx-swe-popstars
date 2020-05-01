@@ -7,15 +7,14 @@ import { useContext } from "react";
 import {GameContext} from './../gameContext';
 
 const TimeUp1 = () => {
-  const {score} = useContext(GameContext);
-  let name2 = localStorage.getItem('playerTwoName');
+  const {score, username2} = useContext(GameContext);
 
     return (
       <header className="App-header">
           <h1> TIME'S UP!</h1>
           <h2> Score: {score} </h2>
           <p></p> <p></p>
-          <h1> {name2}'S TURN</h1>
+          <h1> {username2}'S TURN</h1>
           
           
           <Link to="/playerTwo" class= "active_button"> START</Link> 

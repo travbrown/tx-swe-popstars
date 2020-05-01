@@ -36,7 +36,7 @@ const PlayerOnePage = () => {
     let history = useHistory();
     const spotifyApi = new SpotifyWebApi();
     const [playlistobject, setPlaylistObject] = useState(null);
-    const {setPlaylist, access_token, playlist_code } = useContext(GameContext);
+    const {username1, access_token, playlist_code } = useContext(GameContext);
     const shuffle = array => {
       for (let i = array.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
@@ -123,12 +123,10 @@ const PlayerOnePage = () => {
         .setAttribute("stroke-dasharray", circleDasharray);
     }    
 
-    let name1 = localStorage.getItem('name1'); //gets player one's name
-
     return (
       <div className="App">
         <nav class="item">
-            <h2 id="username"> {name1} </h2>
+            <h2 id="username"> {username1} </h2>
             <h2 id="subject-getreadyp1"> Get ready </h2>
           </nav>
         

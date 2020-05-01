@@ -6,19 +6,25 @@ import { useContext, useEffect, useState } from "react";
 import {GameContext} from './../gameContext';
 
 const GameOver = () => {
-  const {score, scoreTwo, mode, challenge_goal, differentGame} = useContext(GameContext);
+  const {
+    score, 
+    scoreTwo, 
+    username1,
+    username2,
+    mode, 
+    challenge_goal, 
+    differentGame
+  } = useContext(GameContext);
   const [status, setStatus] = useState(null);
 
-  let name1 = localStorage.getItem('playerOneName'); 
-  let name2 = localStorage.getItem('playerTwoName'); 
   const [declareWinner, setDeclareWinner] = useState(null);
 
   function getWinner(){  //checks to see which player won the game 
     if(score > scoreTwo) {
-      setDeclareWinner(name1 + " wins with a total score of " + score + " points!");
+      setDeclareWinner(username1 + " wins with a total score of " + score + " points!");
     }
     else if(scoreTwo > score) {
-      setDeclareWinner(name2 + " wins with a total score of " + scoreTwo + " points!");
+      setDeclareWinner(username2 + " wins with a total score of " + scoreTwo + " points!");
     }
     else if (scoreTwo === score){
       setDeclareWinner("It's a tie!");
